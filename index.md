@@ -23,6 +23,6 @@ This is a fairly rigorous introduction to probability theory with some emphasis 
 
 Grades will be posted on Canvas:
 
-**Section 1:** https://umich.instructure.com/courses/207895
+**Section 1:** [https://umich.instructure.com/courses/207895](https://umich.instructure.com/courses/207895)
 
-**Section 2:** https://umich.instructure.com/courses/194654
+**Section 2:** [https://umich.instructure.com/courses/194654](https://umich.instructure.com/courses/194654)
