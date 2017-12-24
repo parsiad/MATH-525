@@ -1,37 +1,39 @@
-## Welcome to GitHub Pages
+# MATH 525
+## University of Michigan (Winter 2018)
 
-You can use the [editor on GitHub](https://github.com/parsiad/math525/edit/master/index.md) to maintain and preview the content for your website in Markdown files.
+### Instructor
 
-Whenever you commit to this repository, GitHub Pages will run [Jekyll](https://jekyllrb.com/) to rebuild the pages in your site, from the content in your Markdown files.
+[Parsiad Azimzadeh](http://parsiad.ca)
 
-### Markdown
+**Email:** parsiad (at) umich (dot) edu
 
-Markdown is a lightweight and easy-to-use syntax for styling your writing. It includes conventions for
+**Office hours:** TBA
 
-```markdown
-Syntax highlighted code block
+---
 
-# Header 1
-## Header 2
-### Header 3
+### Lectures
 
-- Bulleted
-- List
+**Section 1:** TuTh 10:00AM - 11:30AM in 1640 CHEM
 
-1. Numbered
-2. List
+**Section 2:** TuTh 1:00PM - 2:30PM in 4096 EH
 
-**Bold** and _Italic_ and `Code` text
+---
 
-[Link](url) and ![Image](src)
-```
+## Course description
 
-For more details see [GitHub Flavored Markdown](https://guides.github.com/features/mastering-markdown/).
+This is a fairly rigorous introduction to probability theory with some emphasis given to both theory and applications, although a knowledge of measure theory is not assumed. Topics covered are: probability spaces, conditional probability, discrete and continuous random variables, generating functions, characteristic functions, random walks, branching processes, limit theorems.
 
-### Jekyll Themes
+---
 
-Your Pages site will use the layout and styles from the Jekyll theme you have selected in your [repository settings](https://github.com/parsiad/math525/settings). The name of this theme is saved in the Jekyll `_config.yml` configuration file.
+## Textbook
+(Optional) Probability and Random Processes by G.R. Grimmett and D.R. Stirzaker, 3rd Edition, 2001. ISBN‐10: 0198572220, ISBN‐13: 978‐0198572220"
 
-### Support or Contact
+---
 
-Having trouble with Pages? Check out our [documentation](https://help.github.com/categories/github-pages-basics/) or [contact support](https://github.com/contact) and we’ll help you sort it out.
+## Grading
+
+Grades will be posted on Canvas:
+
+**Section 1:** https://umich.instructure.com/courses/207895
+
+**Section 2:** https://umich.instructure.com/courses/194654
