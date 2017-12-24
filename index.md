@@ -1,5 +1,3 @@
-# University of Michigan (Winter 2018)
-
 ## Instructor
 
 [Parsiad Azimzadeh](http://parsiad.ca)
