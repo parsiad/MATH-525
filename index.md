@@ -30,9 +30,9 @@ Grades will be posted on Canvas:
 
 **Section 2:** [https://umich.instructure.com/courses/194654](https://umich.instructure.com/courses/194654)
 
-## Schedule and topics
+## Lecture notes
 
-* [Th Jan 4](lecture1.pdf)
+* [Th Jan 4: sample spaces, sigma-algebras, and probability measures](lecture1.pdf)
 * Tu Jan 9
 * Th Jan 11
 * Tu Jan 16
@@ -47,8 +47,8 @@ Grades will be posted on Canvas:
 * Th Feb 15
 * Tu Feb 20
 * Th Feb 22
-* Tu Feb 27 (no class)
-* Th Mar 1 (no class)
+* Tu Feb 27: no class
+* Th Mar 1: no class
 * Tu Mar 6
 * Th Mar 8
 * Tu Mar 13
