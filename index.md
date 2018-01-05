@@ -6,7 +6,7 @@
 
 **Email:** parsiad (at) umich (dot) edu
 
-**Office hours:** TBA
+**Office hours:** TuTh 3:00-4:30pm in 1842 EH
 
 ### Lectures
 
