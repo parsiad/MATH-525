@@ -30,6 +30,8 @@ Grades will be posted on Canvas:
 
 **Section 2:** [https://umich.instructure.com/courses/194654](https://umich.instructure.com/courses/194654)
 
+A grading scheme will be posted soon.
+
 ## Assignments
 
 All assignments are to be handed in at the *beginning* of class.
