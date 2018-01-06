@@ -30,6 +30,12 @@ Grades will be posted on Canvas:
 
 **Section 2:** [https://umich.instructure.com/courses/194654](https://umich.instructure.com/courses/194654)
 
+## Assignments
+
+All assignments are to be handed in at the *beginning* of class.
+
+* [Assignment 1: due Tu Jan 16](assignment1.pdf)
+
 ## Lecture notes
 
 * [Th Jan 4: sample spaces, sigma-algebras, and probability measures](lecture1.pdf)
