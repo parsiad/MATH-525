@@ -20,7 +20,7 @@ This is a fairly rigorous introduction to probability theory with some emphasis 
 
 ### Textbook
 
-(Optional) Probability and Random Processes by G.R. Grimmett and D.R. Stirzaker, 3rd Edition, 2001. ISBN‐10: 0198572220, ISBN‐13: 978‐0198572220"
+(Optional) Walsh, John B. Knowing the odds: an introduction to probability. Vol. 139. American Mathematical Soc., 2012.
 
 ### Grading
 
