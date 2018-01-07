@@ -70,3 +70,7 @@ All assignments are to be handed in at the *beginning* of class.
 * Tu Apr 10
 * Th Apr 12
 * Tu Apr 17
+
+## Miscellaneous notes
+
+* (Friedland, Shmuel, and Elliot Krop. "Exact conditions for countable inclusion-exclusion identity and extensions." arXiv preprint math/0602035 (2006))[https://arxiv.org/abs/math/0602035]
