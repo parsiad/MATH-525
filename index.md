@@ -73,6 +73,6 @@ All assignments are to be handed in at the *beginning* of class.
 
 ## Miscellany
 
-You are not expected to know any material in the miscellany section for assignments or exams.
+You are not expected to know any material in this section for assignments/exams.
 
 * It was asked in class if the [principle of inclusion-exclusion](https://en.wikipedia.org/wiki/Inclusion%E2%80%93exclusion_principle) can be extended to countably many events. The answer seems to be yes, but with some technical conditions. See, e.g., [Friedland, Shmuel, and Elliot Krop. "Exact conditions for countable inclusion-exclusion identity and extensions."](https://arxiv.org/abs/math/0602035)
