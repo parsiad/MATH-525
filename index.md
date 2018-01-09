@@ -52,7 +52,7 @@ All assignments are to be handed in at the *beginning* of class.
 * Tu Feb 6
 * Th Feb 8
 * Tu Feb 13
-* Th Feb 15
+* Th Feb 15: **midterm exam 1** (in class)
 * Tu Feb 20
 * Th Feb 22
 * Tu Feb 27: no class
@@ -61,7 +61,7 @@ All assignments are to be handed in at the *beginning* of class.
 * Th Mar 8
 * Tu Mar 13
 * Th Mar 15
-* Tu Mar 20
+* Tu Mar 20: **midterm exam 2** (in class)
 * Th Mar 22
 * Tu Mar 27
 * Th Mar 29
