@@ -44,8 +44,8 @@ All assignments are to be handed in at the *beginning* of class.
 
 ## Lecture notes
 
-* [Th Jan 4: sample spaces, sigma-algebras, and probability measures](lecture1.pdf)
-* [Tu Jan 9: conditional probability, independence, counting, generating a sigma-algebra, and Borel sets](lecture2.pdf)
+* [Th Jan 4: sample spaces, sigma-algebras, and probability measures](lecture1.pdf) (Sections 1.1 and 1.2)
+* [Tu Jan 9: conditional probability, independence, counting, generating a sigma-algebra, and Borel sets](lecture2.pdf) (Sections 1.4 to 1.7)
 * Th Jan 11
 * Tu Jan 16
 * Th Jan 18
