@@ -18,6 +18,10 @@
 
 This is a fairly rigorous introduction to probability theory with some emphasis given to both theory and applications, although a knowledge of measure theory is not assumed. Topics covered are: probability spaces, conditional probability, discrete and continuous random variables, generating functions, characteristic functions, random walks, branching processes, limit theorems.
 
+### Prerequisites
+
+Math 451 required.
+
 ### Textbook
 
 (Optional) Walsh, John B. Knowing the odds: an introduction to probability. Vol. 139. American Mathematical Soc., 2012.
