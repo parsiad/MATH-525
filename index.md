@@ -41,6 +41,7 @@ A grading scheme will be posted soon.
 All assignments are to be handed in at the *beginning* of class.
 
 * [Assignment 1: due Tu Jan 16](assignment1.pdf)
+* [Assignment 2: due Tu Jan 23](assignment2.pdf)
 
 ## Lecture notes
 
