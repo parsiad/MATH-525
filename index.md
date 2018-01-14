@@ -48,7 +48,7 @@ All assignments are to be handed in at the *beginning* of class.
 * [Th Jan 4: sample spaces, sigma-algebras, and probability measures](lecture1.pdf) (Sections 1.1 and 1.2)
 * [Tu Jan 9: conditional probability, independence, counting, generating a sigma-algebra, and Borel sets](lecture2.pdf) (Sections 1.4 to 1.7)
 * [Th Jan 11: random variables, distribution functions, indicator random variables, Borel measurable functions](lecture3.pdf) (Section 2.1)
-* Tu Jan 16
+* [Tu Jan 16: uniform distribution, existence of random variables, independence of random variables, types of distributions](lecture4.pdf) (Section 2.2 to 2.4)
 * Th Jan 18
 * Tu Jan 23
 * Th Jan 25
