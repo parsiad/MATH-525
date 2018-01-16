@@ -28,13 +28,19 @@ Math 451 required.
 
 ### Grading
 
+The grading scheme is as follows:
+
+* Assignments: 20%
+* Midterms: 40%
+* Final: 40%
+
+The lowest of your assignment scores will not count towards your final grade. Midterms will be held in class. The final is on **April 23rd, 1:30 - 3:30 pm** (room TBA).
+
 Grades will be posted on Canvas:
 
 **Section 1:** [https://umich.instructure.com/courses/207895](https://umich.instructure.com/courses/207895)
 
 **Section 2:** [https://umich.instructure.com/courses/194654](https://umich.instructure.com/courses/194654)
-
-A grading scheme will be posted soon.
 
 ## Assignments
 
