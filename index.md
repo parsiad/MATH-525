@@ -10,9 +10,8 @@
 
 ### Lectures
 
-**Section 1:** TuTh 10:00AM - 11:30AM in 1640 CHEM
-
-**Section 2:** TuTh 1:00PM - 2:30PM in 4096 EH
+* **Section 1:** TuTh 10:00AM - 11:30AM in 1640 CHEM
+* **Section 2:** TuTh 1:00PM - 2:30PM in 4096 EH
 
 ### Course description
 
