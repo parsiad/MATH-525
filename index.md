@@ -55,7 +55,7 @@ All assignments are to be handed in at the *beginning* of class.
 * [Tu Jan 9: conditional probability, independence, counting, generating a sigma-algebra, and Borel sets](lecture2.pdf) (Sections 1.4 to 1.7)
 * [Th Jan 11: random variables, distribution functions, indicator random variables, Borel measurable functions](lecture3.pdf) (Section 2.1)
 * [Tu Jan 16: uniform distribution, existence of random variables, independence of random variables, types of distributions](lecture4.pdf) (Section 2.2 to 2.4)
-* Th Jan 18
+* [Th Jan 18: expectations and variances of discrete random variables](lecture5.pdf) (Section 2.5 and 2.6)
 * Tu Jan 23
 * Th Jan 25
 * Tu Jan 30
