@@ -10,8 +10,8 @@
 
 ### Lectures
 
-* **Section 1:** TuTh 10:00AM - 11:30AM in 1640 CHEM
-* **Section 2:** TuTh 1:00PM - 2:30PM in 4096 EH
+**Section 1:** TuTh 10:00AM - 11:30AM in 1640 CHEM
+**Section 2:** TuTh 1:00PM - 2:30PM in 4096 EH
 
 ### Course description
 
@@ -38,7 +38,6 @@ The lowest of your assignment scores will not count towards your final grade. Mi
 Grades will be posted on Canvas:
 
 **Section 1:** [https://umich.instructure.com/courses/207895](https://umich.instructure.com/courses/207895)
-
 **Section 2:** [https://umich.instructure.com/courses/194654](https://umich.instructure.com/courses/194654)
 
 ## Assignments
