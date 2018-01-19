@@ -6,12 +6,15 @@
 
 **Email:** parsiad (at) umich (dot) edu
 
-**Office hours:** TuTh 3:00-4:30pm in 1842 EH
+## Office hours
+
+* Tu 11:30-01:00pm in 1842 EH
+* Th 03:00-04:30pm in 1842 EH
 
 ### Lectures
 
 * **Section 1:** TuTh 10:00AM - 11:30AM in 1640 CHEM
-* **Section 2:** TuTh 1:00PM - 2:30PM in 4096 EH
+* **Section 2:** TuTh 01:00PM - 02:30PM in 4096 EH
 
 ### Course description
 
