@@ -8,8 +8,8 @@
 
 ## Office hours
 
-* Tu 11:30-01:00pm in 1842 EH
-* Th 03:00-04:30pm in 1842 EH
+* Tu 11:30AM-01:00PM in 1842 EH
+* Th 03:00PM-04:30PM in 1842 EH
 
 ### Lectures
 
