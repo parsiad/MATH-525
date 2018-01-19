@@ -55,7 +55,7 @@ All assignments are to be handed in at the *beginning* of class.
 * [Th Jan 11: random variables, distribution functions, indicator random variables, Borel measurable functions](lecture3.pdf) (Section 2.1)
 * [Tu Jan 16: uniform distribution, existence of random variables, independence of random variables, types of distributions](lecture4.pdf) (Section 2.2 to 2.4)
 * [Th Jan 18: expectations and variances of discrete random variables](lecture5.pdf) (Section 2.5 and 2.6)
-* Tu Jan 23
+* [Tu Jan 23: moments, moment generating functions, and special discrete distributions](lecture6.pdf) (Section 2.6 and 2.8)
 * Th Jan 25
 * Tu Jan 30
 * Th Feb 1
