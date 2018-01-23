@@ -47,9 +47,9 @@ Grades will be posted on Canvas:
 
 All assignments are to be handed in at the *beginning* of class.
 
-* [Assignment 1: due Tu Jan 16 (solutions now included)](assignment1.pdf)
-* [Assignment 2: due Tu Jan 23](assignment2.pdf)
-* [Assignment 3: due Tu Jan 30](assignment3.pdf)
+* [Assignment 1: due Tu Jan 16 (solutions now included)](assignment1.pdf) [LaTeX source](assignment1.tex)
+* [Assignment 2: due Tu Jan 23](assignment2.pdf) [LaTeX source](assignment2.tex)
+* [Assignment 3: due Tu Jan 30](assignment3.pdf) [LaTeX source](assignment3.tex)
 
 ## Lecture notes
 
