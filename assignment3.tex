@@ -1,0 +1,77 @@
+%% LyX 2.2.3 created this file.  For more info, see http://www.lyx.org/.
+%% Do not edit unless you really know what you are doing.
+\documentclass[english,12pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage[latin9]{inputenc}
+\usepackage{color}
+\usepackage{babel}
+\usepackage{mathtools}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage[unicode=true,pdfusetitle,
+ bookmarks=true,bookmarksnumbered=false,bookmarksopen=false,
+ breaklinks=false,pdfborder={0 0 1},backref=false,colorlinks=true]
+ {hyperref}
+
+\makeatletter
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% User specified LaTeX commands.
+\usepackage[margin=1in]{geometry}
+
+\makeatother
+
+\begin{document}
+
+\title{Math 525: Assignment 3}
+
+\date{\date{}}
+\maketitle
+\begin{enumerate}
+\item (Borel measurable) Let $f\colon\mathbb{R}\rightarrow\mathbb{R}$ be
+continuous.
+\begin{enumerate}
+\item Let 
+\[
+\mathcal{G}=\left\{ (a,b)\colon-\infty<a<b<\infty\right\} 
+\]
+be the set of all open intervals. Show $\sigma(\mathcal{G})=\mathcal{B}(\mathbb{R})$.\footnote{\textbf{Hint}: use the fact that $(x,\infty)=(x,x+2)\cup(x+1,x+3)\cup\cdots$
+and $(-\infty,x]=\mathbb{R}\setminus(x,\infty)$}
+\item Define
+\[
+\mathcal{M}=\left\{ B\subset\mathbb{R}\colon f^{-1}(B)\in\mathcal{B}(\mathbb{R})\right\} .
+\]
+Show that $\mathcal{M}$ is a $\sigma$-algebra.\footnote{\textbf{Hint}: use the properties of $f^{-1}$ from the previous assignment}
+This establishes $\sigma(\mathcal{M})=\mathcal{M}$.
+\item (Optional) Show that for any $G\in\mathcal{G}$, $f^{-1}(G)$ is a
+countable union of open intervals. This establishes $\mathcal{G}\subset\mathcal{M}$.
+\item Use (a), (b), and (c) to conclude that $\mathcal{B}(\mathbb{R})\subset\mathcal{M}$
+and hence $f$ is Borel measurable.
+\end{enumerate}
+\item (Distribution function) Let $X$ be a discrete random variable with
+distribution function $F$. Show that $\sum_{n}F(x_{n})-F(x_{n}-)=1$.
+\item (Uniform random variable) Define the function $f\colon\mathbb{R}\rightarrow\mathbb{R}$
+by 
+\[
+f(x)=\begin{cases}
+\lambda e^{-\lambda x} & \text{if }x\geq0\\
+0 & \text{otherwise}
+\end{cases}
+\]
+and the function $F$ by $F(x)=\int_{-\infty}^{x}f(y)dy$. Let $Y\sim U[0,1]$.
+Define $X=F^{-1}(Y)$.
+\begin{enumerate}
+\item Simplify the expression for $X$ as much as possible.
+\item What is the distribution function of $X$?
+\end{enumerate}
+\item (Expectation) Let $X_{1},X_{2},\ldots$ be nonnegative integer-valued
+random variables. Suppose they are independent and have the same distribution
+function $F$ (in this case, we say $X_{1},X_{2},\ldots$ are \emph{independent
+and identically distributed}, or i.i.d. for short). Show that\textbf{}\footnote{\textbf{Hint}: use the fact that $\mathbb{E}Y=\sum_{n\geq1}\mathbb{P}(\{Y\geq n\})$
+for a nonnegative integer-valued random variable $Y$}
+\[
+\mathbb{E}\min\{X_{1},\ldots,X_{m}\}=\sum_{n=1}^{\infty}\mathbb{P}\{X_{1}\geq n\}^{m}.
+\]
+\item (Integrability) Let $X$ be a discrete random variable. Suppose $X^{2}$
+is integrable. Show that $X$ is integrable.\textbf{}\footnote{\textbf{Hint}: use the inequality $|a|\leq\max\{1,|a|^{2}\}$}
+\end{enumerate}
+
+\end{document}
