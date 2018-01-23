@@ -1,0 +1,71 @@
+%% LyX 2.2.3 created this file.  For more info, see http://www.lyx.org/.
+%% Do not edit unless you really know what you are doing.
+\documentclass[english,12pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage[latin9]{inputenc}
+\usepackage{amssymb}
+
+\makeatletter
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% LyX specific LaTeX commands.
+%% Binom macro for standard LaTeX users
+\newcommand{\binom}[2]{{#1 \choose #2}}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% User specified LaTeX commands.
+\usepackage[margin=1in]{geometry}
+
+\makeatother
+
+\usepackage{babel}
+\begin{document}
+
+\title{Math 525: Assignment 2}
+
+\date{\date{}}
+\maketitle
+\begin{enumerate}
+\item (Independence) Let $A$ and $B$ be independent events. Show that
+$A^{c}=\Omega\setminus A$ and $B^{c}=\Omega\setminus B$ are independent.
+Also show that $A$ and $B^{c}$ are independent (and so too, by symmetry,
+are $A^{c}$ and $B$).
+\item (Conditional probability) Roll two (fair) dice. What is the probability
+that at least one of the two dice is four given that their sum is
+seven?
+\item (Conditional probability) Let $(\Omega,\mathcal{F},\mathbb{P})$ be
+a probability space. Let $B\in\mathcal{F}$ be an event with $\mathbb{P}(B)>0$.
+Define the function $\mathbb{T}\colon\mathcal{F}\rightarrow[0,1]$
+by $\mathbb{T}(A)=\mathbb{P}(A\mid B)$.
+\begin{enumerate}
+\item Show that $(\Omega,\mathcal{F},\mathbb{T})$ is a probability space.
+\textbf{Hint}: since we already know that $\mathcal{F}$ is a $\sigma$-algebra
+on $\Omega$, we need only check that $\mathbb{T}$ is a probability
+measure.
+\item Why did we require $\mathbb{P}(B)>0$?
+\end{enumerate}
+\item (Counting) Consider a circular table with $N\geq4$ seats. Barbie
+and Ken are two of $N$ dinner guests to be seated at this table.
+In how many ways can the dinner guests be seated such that...
+\begin{enumerate}
+\item Barbie and Ken are not adjacent.
+\item Barbie and Ken are adjacent.
+\end{enumerate}
+\item (Counting) Prove the binomial theorem. That is, prove that for a positive
+integer $n$ and real numbers $a$ and $b$,
+\[
+\left(a+b\right)^{n}=\sum_{k=0}^{n}\binom{n}{k}a^{k}b^{n-k}.
+\]
+\textbf{Hint}: an easy way to do this is with induction.
+\item (Inverse images) Let $f\colon A\rightarrow B$. Show that for any
+$H,J\subset B$,
+\begin{enumerate}
+\item $f^{-1}(H\cup J)=f^{-1}(H)\cup f^{-1}(J)$.
+\item $f^{-1}(H^{c})=(f^{-1}(H))^{c}$.
+\item $f^{-1}(H\cap J)=f^{-1}(H)\cap f^{-1}(J)$. \textbf{Hint}: use parts
+(a) and (b).
+\end{enumerate}
+\item (Random variables) Let $(X_{n})_{n\geq1}$ be a sequence of random
+variables. Prove that $\sup_{n}X_{n}$ is also a random variable.
+\end{enumerate}
+
+\end{document}

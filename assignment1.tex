@@ -1,0 +1,59 @@
+%% LyX 2.2.3 created this file.  For more info, see http://www.lyx.org/.
+%% Do not edit unless you really know what you are doing.
+\documentclass[english,12pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage[latin9]{inputenc}
+\usepackage{amsmath}
+\usepackage{amssymb}
+
+\makeatletter
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% User specified LaTeX commands.
+\usepackage[margin=1in]{geometry}
+
+\makeatother
+
+\usepackage{babel}
+\begin{document}
+
+\title{Math 525: Assignment 1}
+
+\date{\date{}}
+\maketitle
+\begin{enumerate}
+\item Sometimes it is useful to start with a small set of events $\mathcal{G}$
+that is not necessarily a $\sigma$-algebra and ``generate'' a $\sigma$-algebra
+from it. The $\sigma$-algebra generated from $\mathcal{G}$ is
+\[
+\sigma(\mathcal{G})=\bigcap_{\substack{\substack{\mathcal{F}\text{ is a }\sigma}
+\text{-algebra on }\Omega\\
+\mathcal{G}\subset\mathcal{F}
+}
+}\mathcal{F}.
+\]
+That is, $\sigma(\mathcal{G})$ is the intersection of all $\sigma$-algebras
+containing $\mathcal{G}$. Show that...
+\begin{enumerate}
+\item $\sigma(\mathcal{G})$ is a $\sigma$-algebra.
+\item $\sigma(\mathcal{G})\subset\sigma(\mathcal{G}^{\prime})$ whenever
+$\mathcal{G}\subset\mathcal{G}^{\prime}$.
+\item If $\mathcal{F}$ is a $\sigma$-algebra, then $\sigma(\mathcal{F})=\mathcal{F}$.
+\item If $\mathcal{F}$ is a $\sigma$-algebra and $\mathcal{G}\subset\mathcal{F}$,
+then $\sigma(\mathcal{G})\subset\mathcal{F}$.
+\end{enumerate}
+\item Show that the following two are algebras but not $\sigma$-algebras:
+\begin{enumerate}
+\item All finite subsets of $\mathbb{R}$ together with their complements.
+\item All finite unions of intervals in $\mathbb{R}$ of the form $(a,b]$,
+$(-\infty,a]$, and $(b,\infty)$.
+\end{enumerate}
+\item Prove the principle of inclusion-exclusion. That is, show that if
+$A_{1},\ldots,A_{n}\in\mathcal{F}$, then
+\begin{multline*}
+\mathbb{P}(A_{1}\cup\cdots\cup A_{n})\\
+=\sum_{i}\mathbb{P}(A_{i})-\sum_{i<j}\mathbb{P}(A_{i}\cap A_{j})+\sum_{i<j<k}\mathbb{P}(A_{i}\cap A_{j}\cap A_{k})-\cdots+(-1)^{n+1}\mathbb{P}(A_{1}\cap\cdots\cap A_{n}).
+\end{multline*}
+Note that when we write $\sum_{i<j}$, we mean $\sum_{i,j\in\{(i,j)\colon i<j\}}$
+(and similarly for the sums involving more indices).
+\end{enumerate}
+
+\end{document}
