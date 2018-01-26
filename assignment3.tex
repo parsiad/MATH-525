@@ -56,10 +56,15 @@ f(x)=\begin{cases}
 0 & \text{otherwise}
 \end{cases}
 \]
-and the function $F$ by $F(x)=\int_{-\infty}^{x}f(y)dy$. Let $Y\sim U[0,1]$.
-Define $X=F^{-1}(Y)$.
+and the function $F\colon\mathbb{R}\rightarrow[0,1]$ by $F(x)=\int_{-\infty}^{x}f(y)dy$.
+Let $Y\sim U[0,1]$. Note that $F^{-1}(\{0\})$ is a set contaning
+more than one element. Moreover, $F^{-1}(\{1\})$ is empty. As such,
+$F$ is not technically a bijection, and hence the expression $F^{-1}(Y)$
+is not well-defined. However, note that $\{Y=0\}$ and $\{Y=1\}$
+occur with zero probability. Therefore, assuming $Y$ does not take
+the values $0$ or $1$, we can unambiguously define $X=F^{-1}(Y)$.
 \begin{enumerate}
-\item Simplify the expression for $X$ as much as possible.
+\item Simplify the expression $X=F^{-1}(Y)$ as much as possible.
 \item What is the distribution function of $X$?
 \end{enumerate}
 \item (Expectation) Let $X_{1},X_{2},\ldots$ be nonnegative integer-valued

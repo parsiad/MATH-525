@@ -1,0 +1,72 @@
+%% LyX 2.2.3 created this file.  For more info, see http://www.lyx.org/.
+%% Do not edit unless you really know what you are doing.
+\documentclass[english,12pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage[latin9]{inputenc}
+\usepackage{amssymb}
+\usepackage{esint}
+\PassOptionsToPackage{normalem}{ulem}
+\usepackage{ulem}
+
+\makeatletter
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% User specified LaTeX commands.
+\usepackage[margin=1in]{geometry}
+
+\makeatother
+
+\usepackage{babel}
+\begin{document}
+
+\title{Math 525: Assignment 4}
+
+\date{\date{}}
+\maketitle
+\begin{enumerate}
+\item (Moment generating functions) Let $X$ be a random variable with distribution
+function
+\[
+F(x)=\frac{1}{\sqrt{2\pi}}\int_{-\infty}^{x}e^{-u^{2}/2}du
+\]
+(we call $X$ a \emph{standard normal random variable}; you may have
+seen it before). Compute the third raw moment of $X$ \uline{using
+the moment generating function}. \\
+\textbf{Hint}: If $X$ is an absolutely continuous distribution function
+$F$ with density $f$ (i.e., $F(x)=\int_{-\infty}^{x}f(y)dy$) and
+if $g\geq0$ is a Borel measurable function, then
+\[
+\mathbb{E}\left[g(X)\right]=\int_{-\infty}^{\infty}g(u)f(u)du.
+\]
+\item (Expectations) Let $X$ be a nonnegative integrable random variable.
+\begin{enumerate}
+\item Show that $X=0$ a.e. implies $\mathbb{E}X=0$.
+\item Show that $\mathbb{E}X=0$ implies $X=0$ a.e.\textbf{ Hint}: consider
+the sets $\{\{X\geq1/n\}\}_{n\in\mathbb{N}}$.
+\item Let $E$ be a set of probability zero (i.e., $\mathbb{P}(E)=0$).
+Use part (a) to show that $\mathbb{E}[XI_{E}]=0$ where $I_{E}$ is
+the indicator random variable on $E$.
+\end{enumerate}
+\item (Expectations) Let $X$ be a nonnegative random variable with distribution
+function $F$.
+\begin{enumerate}
+\item Show that, for any real number $x\geq0$,
+\[
+x=\int_{0}^{\infty}I_{[0,x)}(y)dy
+\]
+where $I_{[0,x)}(y)=1$ if $0\leq y<x$ and $I_{[0,x)}(y)=0$ otherwise.
+Use this to derive
+\[
+\mathbb{E}X=\mathbb{E}\left[\int_{0}^{\infty}I_{[0,X)}(y)dy\right].
+\]
+\item (Optional) Show, using the results of part (a), that
+\[
+\mathbb{E}X=\int_{0}^{\infty}\mathbb{E}\left[I_{[0,X)}(y)\right]dy.
+\]
+\item Show that $\mathbb{E}[I_{[0,X)}(y)]=\mathbb{P}(X>y).$
+\item Combine your findings in parts (b) and (c) to conclude
+\[
+\mathbb{E}X=\int_{0}^{\infty}\left(1-F(y)\right)dy.
+\]
+\end{enumerate}
+\end{enumerate}
+
+\end{document}
