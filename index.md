@@ -50,36 +50,37 @@ All assignments are to be handed in at the *beginning* of class.
 * Assignment 1: due Tu Jan 16 [\[Description\]](assignment1.pdf) [\[LaTeX source\]](assignment1.tex) [\[Solutions\]](solutions1.pdf)
 * Assignment 2: due Tu Jan 23 [\[Description\]](assignment2.pdf) [\[LaTeX source\]](assignment2.tex)
 * Assignment 3: due Tu Jan 30 [\[Description\]](assignment3.pdf) [\[LaTeX source\]](assignment3.tex)
+* Assignment 4: due Tu Feb 01 [\[Description\]](assignment4.pdf) [\[LaTeX source\]](assignment4.tex)
 
 ## Lecture notes
 
-* [Th Jan 4: sample spaces, sigma-algebras, and probability measures](lecture1.pdf) (Sections 1.1 and 1.2)
-* [Tu Jan 9: conditional probability, independence, counting, generating a sigma-algebra, and Borel sets](lecture2.pdf) (Sections 1.4 to 1.7)
+* [Th Jan 04: sample spaces, sigma-algebras, and probability measures](lecture1.pdf) (Sections 1.1 and 1.2)
+* [Tu Jan 09: conditional probability, independence, counting, generating a sigma-algebra, and Borel sets](lecture2.pdf) (Sections 1.4 to 1.7)
 * [Th Jan 11: random variables, distribution functions, indicator random variables, Borel measurable functions](lecture3.pdf) (Section 2.1)
 * [Tu Jan 16: uniform distribution, existence of random variables, independence of random variables, types of distributions](lecture4.pdf) (Section 2.2 to 2.4)
 * [Th Jan 18: expectations and variances of discrete random variables](lecture5.pdf) (Section 2.5 and 2.6)
 * [Tu Jan 23: moments, moment generating functions, and special discrete distributions](lecture6.pdf) (Section 2.6 and 2.8)
 * [Th Jan 25: expectations of general random variables](lecture7.pdf) (Section 3.1 and 3.3)
 * Tu Jan 30
-* Th Feb 1
-* Tu Feb 6
-* Th Feb 8
+* Th Feb 01
+* Tu Feb 06
+* Th Feb 08
 * Tu Feb 13
 * Th Feb 15: **midterm exam 1** (in class)
 * Tu Feb 20
 * Th Feb 22
 * Tu Feb 27: no class
-* Th Mar 1: no class
-* Tu Mar 6
-* Th Mar 8
+* Th Mar 01: no class
+* Tu Mar 06
+* Th Mar 08
 * Tu Mar 13
 * Th Mar 15
 * Tu Mar 20: **midterm exam 2** (in class)
 * Th Mar 22
 * Tu Mar 27
 * Th Mar 29
-* Tu Apr 3
-* Th Apr 5
+* Tu Apr 03
+* Th Apr 05
 * Tu Apr 10
 * Th Apr 12
 * Tu Apr 17
