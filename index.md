@@ -54,14 +54,14 @@ All assignments are to be handed in at the *beginning* of class.
 
 ## Lecture notes
 
-* [Th Jan 04: sample spaces, sigma-algebras, and probability measures](lecture1.pdf) (Sections 1.1 and 1.2)
-* [Tu Jan 09: conditional probability, independence, counting, generating a sigma-algebra, and Borel sets](lecture2.pdf) (Sections 1.4 to 1.7)
+* [Th Jan 04: sample spaces, sigma-algebras, and probability measures](lecture1.pdf) (Section 1.1 and 1.2)
+* [Tu Jan 09: conditional probability, independence, counting, generating a sigma-algebra, and Borel sets](lecture2.pdf) (Section 1.4 to 1.7)
 * [Th Jan 11: random variables, distribution functions, indicator random variables, Borel measurable functions](lecture3.pdf) (Section 2.1)
 * [Tu Jan 16: uniform distribution, existence of random variables, independence of random variables, types of distributions](lecture4.pdf) (Section 2.2 to 2.4)
-* [Th Jan 18: expectations and variances of discrete random variables](lecture5.pdf) (Section 2.5 and 2.6)
+* [Th Jan 18: expectations and variances of discrete random variables](lecture5.pdf) (Sections 2.5 and 2.6)
 * [Tu Jan 23: moments, moment generating functions, and special discrete distributions](lecture6.pdf) (Section 2.6 and 2.8)
-* [Th Jan 25: expectations of general random variables](lecture7.pdf) (Section 3.1 and 3.3)
-* Tu Jan 30
+* [Th Jan 25: expectations of general random variables](lecture7.pdf) (Section 3.1)
+* [Tu Jan 30: moment inequalities and Jensen's inequality](lecture8.pdf) (Section 3.3 and 3.4)
 * Th Feb 01
 * Tu Feb 06
 * Th Feb 08
