@@ -1,0 +1,349 @@
+%% LyX 2.2.3 created this file.  For more info, see http://www.lyx.org/.
+%% Do not edit unless you really know what you are doing.
+\documentclass[english,12pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage[latin9]{inputenc}
+\usepackage{prettyref}
+\usepackage{mathtools}
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{amssymb}
+
+\makeatletter
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Textclass specific LaTeX commands.
+\theoremstyle{plain}
+\newtheorem{thm}{\protect\theoremname}[section]
+\theoremstyle{definition}
+\newtheorem{defn}[thm]{\protect\definitionname}
+\theoremstyle{definition}
+\newtheorem{example}[thm]{\protect\examplename}
+\theoremstyle{plain}
+\newtheorem{prop}[thm]{\protect\propositionname}
+\ifx\proof\undefined
+\newenvironment{proof}[1][\protect\proofname]{\par
+\normalfont\topsep6\p@\@plus6\p@\relax
+\trivlist
+\itemindent\parindent
+\item[\hskip\labelsep\scshape #1]\ignorespaces
+}{%
+\endtrivlist\@endpefalse
+}
+\providecommand{\proofname}{Proof}
+\fi
+\theoremstyle{plain}
+\newtheorem{cor}[thm]{\protect\corollaryname}
+\theoremstyle{remark}
+\newtheorem{rem}[thm]{\protect\remarkname}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% User specified LaTeX commands.
+\usepackage[margin=1in]{geometry}
+
+\newrefformat{prop}{Proposition \ref{#1}}
+
+\makeatother
+
+\usepackage{babel}
+\providecommand{\corollaryname}{Corollary}
+\providecommand{\definitionname}{Definition}
+\providecommand{\examplename}{Example}
+\providecommand{\propositionname}{Proposition}
+\providecommand{\remarkname}{Remark}
+\providecommand{\theoremname}{Theorem}
+
+\begin{document}
+
+\title{Math 525: Lecture 6}
+
+\date{January 23, 2018}
+\maketitle
+
+\section{Moments}
+\begin{defn}
+Let $X$ be a discrete random variable and $k$ be a positive integer.
+Suppose $X^{k}$ is integrable. Then we call $\mathbb{E}[|X|^{k}]$
+the $k$-th \emph{absolute moment} of $X$, $\mathbb{E}[X^{k}]$ the
+$k$-th \emph{raw moment} of $X$, and $\mathbb{E}[(X-\mathbb{E}[X])^{k}]$
+the $k$-th \emph{central moment} of $X$.
+\end{defn}
+Note that the first moment is the expectation and the second central
+moment is the variance. The $k$-th raw moment is also sometimes simply
+called the $k$-th moment.
+\begin{example}
+Let $X$ be a positive integer-valued random variable satisfying
+\[
+\mathbb{P}(\left\{ X=n\right\} )=c\frac{1}{n^{3}}
+\]
+where $c$ is a ``normalizing constant'' chosen such that
+\[
+\sum_{n\geq1}\mathbb{P}(\left\{ X=n\right\} )=c\sum_{n\geq1}\frac{1}{n^{3}}=1.
+\]
+This random variable has a finite expectation:
+\[
+\mathbb{E}\left[X\right]=\sum_{n\geq1}n\left(c\frac{1}{n^{3}}\right)=c\sum_{n\geq1}\frac{1}{n^{2}}<\infty.
+\]
+However, its variance is infinite:
+\[
+\mathbb{E}\left[X^{2}\right]=\sum_{n\geq1}n^{2}\left(c\frac{1}{n^{3}}\right)=c\sum_{n\geq1}\frac{1}{n}=\infty.
+\]
+The same technique can be used to make a random variable whose first
+$k$ moments are finite but all of its subsequent moments are infinite.
+\end{example}
+\begin{prop}
+\label{prop:sum_integrable}Let $X$ and $Y$ be discrete random variables
+and $k$ be a positive integer. If $X^{k}$ and $Y^{k}$ are integrable,
+so too is $(X+Y)^{k}$.
+\end{prop}
+\begin{proof}
+For any real numbers $x$ and $y$,
+\[
+|x+y|^{k}\leq\left(2\max\{\left|x\right|,\left|y\right|\}\right)^{k}=2^{k}\max\{\left|x\right|^{k},\left|y\right|^{k}\}\leq2^{k}\left|x\right|^{k}+2^{k}\left|y\right|^{k}.
+\]
+Therefore,
+\[
+\left|X+Y\right|^{k}\leq2^{k}\left|X\right|^{k}+2^{k}\left|Y\right|^{k},
+\]
+from which the desired result follows by taking expectations of both
+sides.
+\end{proof}
+\begin{prop}
+\label{prop:smaller_moments_integrable}Let $X$ be a discrete random
+variable and $k$ be a positive integer. If $X^{k}$ is integrable,
+so too is $X^{j}$ for each $0\leq j\leq k$.
+\end{prop}
+\begin{proof}
+For any real number $x\geq0$,
+\[
+x^{j}\leq\max\left\{ x^{k},1\right\} \leq x^{k}+1.
+\]
+Therefore,
+\[
+\left|X\right|^{j}\leq\left|X\right|^{k}+1,
+\]
+from which the desired result follows by taking expectations of both
+sides.
+\end{proof}
+\begin{cor}
+Let $X$ be a discrete random variable and $k$ be a positive integer.
+If $X^{k}$ is integrable, so too is $(X-\mathbb{E}X)^{k}$ (and vice
+versa).
+\end{cor}
+It is understood that the statement $(X-\mathbb{E}X)^{k}$ is integrable
+requires also the integrability of $X$ (otherwise we would not even
+be able to talk about $\mathbb{E}X$, let alone $(X-\mathbb{E}X)^{k}$).
+\begin{proof}
+Suppose $X^{k}$ is integrable. Let $Y=-\mathbb{E}X$ and apply \prettyref{prop:sum_integrable}
+to see that $(X-\mathbb{E}X)^{k}$ is integrable.
+
+Suppose $(X-\mathbb{E}X)^{k}$ is integrable. Then,
+\[
+\left|X\right|^{k}=\left|\left(X-\mathbb{E}X\right)+\mathbb{E}X\right|^{k}\leq\left(\left|X-\mathbb{E}X\right|+\left|\mathbb{E}X\right|\right)^{k}\leq\sum_{j=0}^{k}\binom{k}{j}\left|X-\mathbb{E}X\right|^{j}\left|\mathbb{E}X\right|^{k-j}.
+\]
+Now take expectations of both sides and apply \prettyref{prop:smaller_moments_integrable}.
+\end{proof}
+
+\section{Moment generating functions}
+
+Last lecture, we looked at the probability generating function $G$
+of a discrete \textbf{nonnegative integer-valued} random variable
+$X$,
+\[
+G(t)=\mathbb{E}\left[t^{X}\right].
+\]
+In this lecture, we start by letting $X$ be \textbf{any }discrete
+random variable and\textbf{ }examining the moment generating function
+$M$ of $X$,
+\[
+M(\theta)=\mathbb{E}\left[e^{\theta X}\right].
+\]
+As usual, we have been a bit cavalier in defining $M$, which is only
+well-defined at values of $\theta\in\mathbb{R}$ for which the random
+variable $e^{\theta X}$ is integrable. Remember the Taylor series
+for $e^{x}$ is
+\[
+e^{x}=1+x+\frac{1}{2}x^{2}+\frac{1}{6}x^{3}+\cdots=\sum_{n\geq0}\frac{1}{n!}x^{n}.
+\]
+If we substitute this into $M(\theta)$, we obtain
+\[
+M(\theta)=\mathbb{E}\left[\sum_{n\geq0}\frac{\theta^{n}}{n!}X^{n}\right].
+\]
+Now, we would like to distribute the expectation over the sum to conclude
+\begin{equation}
+M(\theta)=\sum_{n\geq0}\frac{\theta^{n}}{n!}\mathbb{E}\left[X^{n}\right].\label{eq:distribute_expectation}
+\end{equation}
+However, while we know from last lecture that we can distribute the
+expectation over a \textbf{finite} sum (from the property $\mathbb{E}[aX+bY]=a\mathbb{E}X+b\mathbb{E}Y$),
+we cannot argue about infinite sums yet, so the conclusion \eqref{eq:distribute_expectation}
+is just heuristic! We will defer a rigorous proof of this claim to
+a future lecture. For the time being, let's proceed assuming \eqref{eq:distribute_expectation}
+is true. If we take derivatives with respect to $\theta$,
+\begin{align*}
+M^{\prime}(\theta) & =\sum_{n\geq1}\frac{\theta^{n-1}}{\left(n-1\right)!}\mathbb{E}\left[X^{n}\right]\\
+M^{\prime\prime}(\theta) & =\sum_{n\geq2}\frac{\theta^{n-2}}{\left(n-2\right)!}\mathbb{E}\left[X^{n}\right]\\
+ & \vdots\\
+M^{(k)}(\theta) & =\sum_{n\geq k}\frac{\theta^{n-k}}{\left(n-k\right)!}\mathbb{E}\left[X^{n}\right]
+\end{align*}
+and we can conclude
+\begin{equation}
+M^{(k)}(0)=\mathbb{E}\left[X^{k}\right],\qquad k=1,2,\ldots\label{eq:mgf}
+\end{equation}
+Note that we have also ignored the fact that to evaluate the $k$-th
+derivative at $\theta_{0}$, we require $M$ to be defined in a neighborhood
+of $\theta_{0}$. Regardless, if we proceed ignoring this issue, we
+deduce from \eqref{eq:mgf} that the moment generating function generates
+the moments (perhaps unsurprisingly, given its name).
+\begin{rem}
+Note that $M(0)=1$ since $M(0)=\mathbb{E}[X^{0}]=\mathbb{E}[1]$.
+This is true for any random variable, since $1$ is integrable.
+\end{rem}
+
+\section{Special discrete distributions}
+
+There are a handful of discrete distributions which come up frequently
+in applications. Our last topic today is to study some of these special
+distributions and compute their moments.
+
+\subsection{Bernoulli}
+
+A random variable $X$ has a \emph{Bernoulli distribution} if
+\[
+\mathbb{P}(\left\{ X=1\right\} )=p\qquad\text{and}\qquad\mathbb{P}(\left\{ X=0\right\} )=1-p
+\]
+for some $0\leq p\leq1$. We will often simply write $X\sim\operatorname{Bernoulli}(p)$
+to indicate such a random variable.
+\begin{example}
+Toss a coin once, corresponding to the sample space $\Omega=\{H,T\}$.
+Define $X$ by $X(H)=1$ and $X(T)=0$. Then, $X$ has a Bernoulli
+distribution.
+\end{example}
+The moment generating function of $X\sim\operatorname{Bernoulli}(p)$
+is
+\[
+M(\theta)=\mathbb{E}\left[e^{\theta X}\right]=e^{\theta\cdot0}\mathbb{P}(\left\{ X=0\right\} )+e^{\theta\cdot1}\mathbb{P}(\left\{ X=1\right\} )=\left(1-p\right)+e^{\theta}p.
+\]
+Note that $M^{(k)}(\theta)=e^{\theta}p$. Therefore, $\mathbb{E}X^{k}=M^{(k)}(0)=p$
+for all $k=1,2,\ldots$ From this, it follows that
+\[
+\operatorname{Var}(X)=\mathbb{E}\left[X^{2}\right]-\left(\mathbb{E}X\right)^{2}=p-p^{2}=p\left(1-p\right).
+\]
+
+\subsection{Binomial}
+
+A random variable $X$ has a \emph{binomial distribution} with parameters
+$n\in\{1,2,\ldots\}$ and $0\leq p\leq1$ if
+\[
+\mathbb{P}(\{X=k\})=\binom{n}{k}p^{k}\left(1-p\right)^{n-k},\qquad k=0,1,2,\ldots,n.
+\]
+We will often simply write $X\sim B(n,p)$ to indicate such a random
+variable. Note that the above implies that $X$ only takes values
+in $\{0,1,\ldots,n\}$ with positive probability:
+\begin{prop}
+Let $X\sim B(n,p)$. Then,
+\[
+\sum_{k=0}^{n}\mathbb{P}(\left\{ X=k\right\} )=1.
+\]
+\end{prop}
+\begin{proof}
+By the binomial theorem,
+\[
+\sum_{k=0}^{n}\mathbb{P}(\left\{ X=k\right\} )=\sum_{k=0}^{n}\binom{n}{k}p^{k}\left(1-p\right)^{n-k}=\left(p+1-p\right)^{n}=1^{n}=1.\qedhere
+\]
+\end{proof}
+\begin{example}
+Toss the same coin $n$ times. Let $X$ be the number of heads witnessed
+in all $n$ coin tosses. Assume that the probability of getting heads
+on each toss is $0\leq p\leq1$. Then, $X\sim B(n,p)$.
+
+To see this, consider the case in which the first $k$ tosses result
+in heads ($H$) and the remainder result in tails ($T$). This is
+captured by the sample
+\[
+\underbrace{HH\cdots H}_{k\text{ times}}\underbrace{TT\cdots T}_{\mathclap{n-k\text{ times }}}.
+\]
+This sample occurs with probability $p^{k}(1-p)^{n-k}$. However,
+there are $\binom{n}{k}$ permutations of the letters above, from
+which we obtain the expression
+\[
+\mathbb{P}(\left\{ X=k\right\} )=\binom{n}{k}p^{k}\left(1-p\right)^{n-k}.
+\]
+\end{example}
+The moment generating function of $X\sim B(n,p)$ is
+\[
+M(\theta)=\mathbb{E}\left[e^{\theta X}\right]=\sum_{k=0}^{n}e^{\theta k}\mathbb{P}(\left\{ X=k\right\} )=\sum_{k=0}^{n}\binom{n}{k}\left(e^{\theta}p\right)^{k}\left(1-p\right)^{n-k}=\left(\left(e^{\theta}-1\right)p+1\right)^{n}.
+\]
+Taking derivatives,
+\begin{align*}
+M^{\prime}(\theta) & =e^{\theta}npM(\theta)^{(n-1)/n}\\
+M^{\prime\prime}(\theta) & =M^{\prime}(\theta)+e^{2\theta}\left(n-1\right)np^{2}M(\theta)^{(n-2)/n}.
+\end{align*}
+Therefore,
+\begin{align*}
+\mathbb{E}X=M^{\prime}(0) & =M(0)^{(n-1)/n}np=np\\
+\mathbb{E}\left[X^{2}\right]=M^{\prime\prime}(0) & =M^{\prime}(0)+M(0)^{(n-2)/n}\left(n-1\right)np^{2}=np\left(1+\left(n-1\right)p\right)
+\end{align*}
+and hence
+\[
+\operatorname{Var}(X)=\mathbb{E}\left[X^{2}\right]-\left(\mathbb{E}X\right)^{2}=np\left(1+\left(n-1\right)p\right)-\left(np\right)^{2}=np\left(1-p\right).
+\]
+
+\subsection{Poisson}
+
+A random variable $X$ has a \emph{Poisson distribution} with parameter
+$\lambda>0$ if
+\[
+\mathbb{P}(\left\{ X=k\right\} )=\frac{\lambda^{k}}{k!}e^{-\lambda},\qquad k=0,1,2,\ldots
+\]
+We will often simply write $X\sim\operatorname{Poisson}(\lambda)$
+to indicate such a random variable. Note that the above implies that
+$X$ only takes values in $\{0,1,2,\ldots\}$ with positive probability:
+\begin{prop}
+Let $X\sim\operatorname{Poisson}(\lambda)$. Then,
+\[
+\sum_{k\geq0}\mathbb{P}(\left\{ X=k\right\} )=1.
+\]
+\end{prop}
+\begin{proof}
+By the Taylor expansion of $e^{x}$,
+\[
+\sum_{k\geq0}\mathbb{P}(\left\{ X=k\right\} )=\sum_{k\geq0}\frac{\lambda^{k}}{k!}e^{-\lambda}=e^{-\lambda}\sum_{k\geq0}\frac{\lambda^{k}}{k!}=e^{-\lambda}e^{\lambda}=1.\qedhere
+\]
+\end{proof}
+Before we motivate the Poisson distribution, let's blindly compute
+its moment generating function:
+\[
+M(\theta)=\mathbb{E}\left[e^{\theta X}\right]=\sum_{k\geq0}e^{\theta k}\frac{\lambda^{k}}{k!}e^{-\lambda}=e^{-\lambda}\sum_{k\geq0}\frac{\left(\lambda e^{\theta}\right)^{k}}{k!}=e^{-\lambda}e^{\lambda e^{\theta}}=e^{\lambda(e^{\theta}-1)}.
+\]
+Taking derivatives,
+\begin{align*}
+M^{\prime}(\theta) & =\lambda e^{\theta}M(\theta)\\
+M^{\prime\prime}(\theta) & =M^{\prime}(\theta)\left(\lambda e^{\theta}+1\right)
+\end{align*}
+Therefore,
+\begin{align*}
+\mathbb{E}X=M^{\prime}(0) & =\lambda e^{0}M(0)=\lambda\\
+\mathbb{E}\left[X^{2}\right]=M^{\prime\prime}(0) & =M^{\prime}(0)\left(\lambda e^{0}+1\right)=\lambda\left(\lambda+1\right)
+\end{align*}
+and hence
+\[
+\operatorname{Var}(X)=\mathbb{E}\left[X^{2}\right]-\left(\mathbb{E}X\right)^{2}=\lambda\left(\lambda+1\right)-\lambda^{2}=\lambda.
+\]
+
+One way to motivate the Poisson distribution is through the following
+observation:
+\begin{prop}
+Let $\lambda>0$ and suppose that $np\rightarrow\lambda$ as $n\rightarrow\infty$.
+Then,
+\[
+\lim_{n\rightarrow\infty}\binom{n}{k}p^{k}\left(1-p\right)^{n-k}=\frac{\lambda^{k}}{k!}e^{-\lambda},\qquad k=0,1,2,\ldots
+\]
+\end{prop}
+We recognize the left hand side in the above from $B(n,p)$. The above
+suggests that $\operatorname{Poisson}(np)$ captures the number of
+successes in $n$ trials, each having probability $p$, as the number
+of trials becomes large.
+\begin{example}
+The number of market crashes per annum could be modelled as a $\operatorname{Poisson}(\lambda)$
+random variable with, for example, $\lambda=0.1$ (one crash every
+ten years).
+\end{example}
+
+\end{document}

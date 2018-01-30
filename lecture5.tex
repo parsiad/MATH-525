@@ -1,0 +1,356 @@
+%% LyX 2.2.3 created this file.  For more info, see http://www.lyx.org/.
+%% Do not edit unless you really know what you are doing.
+\documentclass[english,12pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage[latin9]{inputenc}
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{amssymb}
+
+\makeatletter
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Textclass specific LaTeX commands.
+\theoremstyle{plain}
+\newtheorem{thm}{\protect\theoremname}[section]
+\theoremstyle{definition}
+\newtheorem{defn}[thm]{\protect\definitionname}
+\theoremstyle{plain}
+\newtheorem{prop}[thm]{\protect\propositionname}
+\ifx\proof\undefined
+\newenvironment{proof}[1][\protect\proofname]{\par
+\normalfont\topsep6\p@\@plus6\p@\relax
+\trivlist
+\itemindent\parindent
+\item[\hskip\labelsep\scshape #1]\ignorespaces
+}{%
+\endtrivlist\@endpefalse
+}
+\providecommand{\proofname}{Proof}
+\fi
+\theoremstyle{definition}
+\newtheorem{example}[thm]{\protect\examplename}
+\theoremstyle{remark}
+\newtheorem{rem}[thm]{\protect\remarkname}
+\theoremstyle{definition}
+\newtheorem{xca}[thm]{\protect\exercisename}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% User specified LaTeX commands.
+\usepackage[margin=1in]{geometry}
+
+\makeatother
+
+\usepackage{babel}
+\providecommand{\definitionname}{Definition}
+\providecommand{\examplename}{Example}
+\providecommand{\exercisename}{Exercise}
+\providecommand{\propositionname}{Proposition}
+\providecommand{\remarkname}{Remark}
+\providecommand{\theoremname}{Theorem}
+
+\begin{document}
+
+\title{Math 525: Lecture 5}
+
+\date{January 18, 2018}
+\maketitle
+
+\section{Series (review)}
+\begin{defn}
+A sequence $(a_{n})_{n}\subset\mathbb{R}$ \emph{converges} to a point
+$L\in\mathbb{R}$ (written $a_{n}\rightarrow L$ or $\lim_{n\rightarrow\infty}a_{n}=L$)
+if for each $\epsilon>0$, we can find $N$ such that $|a_{n}-L|<\epsilon$
+for all $n\geq N$. If the sequence does not converge to any point
+in $\mathbb{R}$, we say it \emph{diverges}.
+\end{defn}
+In our case, we always use ``converge'' to mean ``converges to
+a point in $\mathbb{R}$''. Depending on the context, sometimes people
+will be talking about convergence in other spaces (e.g., if $a_{n}\rightarrow\infty$,
+one might say the sequence converges to a point in $\overline{\mathbb{R}}=\mathbb{R}\cup\{-\infty,+\infty\}$:
+this is a perfectly valid use of the terminology).
+
+\begin{defn}
+Let $(a_{n})_{n=1}^{\infty}\subset\mathbb{R}$ be a sequence. Then...
+\begin{itemize}
+\item We say the series $\sum_{n=1}^{\infty}a_{n}$ \emph{converges} (written
+$\sum_{n=1}^{\infty}a_{n}<\infty$) if the sequence of partial sums
+$(s_{N})_{N=1}^{\infty}$ defined by $s_{N}=\sum_{n=1}^{N}a_{n}$
+converges. Otherwise, we say it \emph{diverges}. In the convergent
+case, we define $\sum_{n=1}^{\infty}a_{n}=\lim_{N\rightarrow\infty}s_{N}$.
+\item The series $\sum_{n=1}^{\infty}a_{n}$ \emph{converges absolutely}
+if the series $\sum_{n=1}^{\infty}|a_{n}|$ converges.
+\end{itemize}
+\end{defn}
+\begin{prop}
+If a series converges \textbf{absolutely} to $L\geq0$, the series
+converges to a number in $[-L,L]$.
+\end{prop}
+\begin{proof}
+First, note that if $\sum_{n}|a_{n}|\rightarrow L$, then
+\[
+-L\leftarrow-\sum_{n=1}^{N}\left|a_{n}\right|\leq\sum_{n=1}^{N}a_{n}\leq\sum_{n=1}^{N}\left|a_{n}\right|\rightarrow L.\qedhere
+\]
+The remainder of the proof requires knowledge of Cauchy sequences
+(if you are not familiar with them, you can safely skip this proof).
+Suppose $\sum_{n=1}^{\infty}a_{n}$ converges absolutely. Define $s_{N}=\sum_{n=1}^{N}a_{n}$
+and $S_{N}=\sum_{n=1}^{N}|a_{n}|$. Then, for $N>M$,
+\[
+\left|s_{N}-s_{M}\right|=\left|a_{N}+a_{N+1}+\cdots+a_{M+1}\right|\leq\left|a_{N}\right|+\left|a_{N+1}\right|+\cdots+\left|a_{M+1}\right|=\left|S_{N}-S_{M}\right|.
+\]
+Since $(S_{N})_{N}$ is convergent, it is a Cauchy sequence. From
+the above, we see that $(s_{N})_{N}$ is a Cauchy sequence and hence
+convergent.
+\end{proof}
+Rearranging the terms in a series may change its value. However, in
+some cases, we can safely rearrange the terms in a series.
+\begin{prop}
+If a series is made up only of positive terms, it can be rearranged
+without changing its sum.
+\end{prop}
+
+\section{Expectation (discrete case)}
+
+In this lecture, we define expectations for discrete random variables.
+Handling the discrete case separately serves the purpose of building
+our intuition of expectations before we handle the more difficult
+case of non-discrete random variables.
+
+Recall that for a discrete random variable $X$, we can find a countable
+set $\{x_{n}\}_{n}\subset\mathbb{R}$ such that
+\[
+\sum_{n}\mathbb{P}(\left\{ X=x_{n}\right\} )=1.
+\]
+Note that this does not necessarily imply that the range of $X$ is
+$\{x_{n}\}_{n}$ (remember, random variables are functions from $\Omega$
+to $\mathbb{R}$). However, we can define a new random variable, call
+it $Y$, as follows: 
+\[
+Y(\omega)=\sum_{n}x_{n}I_{\{X=x_{n}\}}(\omega).
+\]
+Note that
+\[
+\mathbb{P}(\left\{ Y=x_{n}\right\} )=\mathbb{P}(\left\{ I_{\{X=x_{n}\}}=1\right\} )=\mathbb{P}(\left\{ X=x_{n}\right\} ),
+\]
+and hence the random variables $X$ and $Y$ are, for all intents
+and purposes, identical. Therefore, for the remainder, we will always
+assume\textemdash without loss of generality\textendash that a discrete
+random variable $X$ has the form
+\[
+X(\omega)=\sum_{n}x_{n}I_{\Lambda_{n}}(\omega)
+\]
+for some partition $\Lambda_{1},\Lambda_{2},\ldots$ of the sample
+space (i.e., $\Omega=\Lambda_{1}\cup\Lambda_{2}\cup\cdots$ and $\Lambda_{i}\cap\Lambda_{j}=\emptyset$
+whenever $i\neq j$).
+\begin{defn}
+A discrete random variable $X$ is \emph{integrable} if
+\[
+\sum_{n}\left|x_{n}\right|\mathbb{P}(\Lambda_{n})<\infty.
+\]
+\end{defn}
+%
+\begin{defn}
+The \emph{expectation} of an integrable discrete random variable $X$
+is
+\[
+\mathbb{E}X=\sum_{n}x_{n}\mathbb{P}(\Lambda_{n}).
+\]
+\end{defn}
+\begin{example}
+Toss a coin $N\geq1$ times. Let $X_{N}$ be the number of heads.
+If the probability of heads is $p$, the expectation of $X_{N}$ is
+\[
+\mathbb{E}X_{N}=\sum_{n=0}^{N}n\mathbb{P}(\left\{ X_{n}=n\right\} )=\sum_{n=1}^{N}n\binom{N}{n}p^{n}(1-p)^{N-n}=pN.
+\]
+That is, you are expected to see $pN$ heads ``on average''. If
+the coin is fair, for example, $pN=N/2$ (half of the tosses should,
+on average, be heads).
+\end{example}
+Note, in particular, that we only define the expectation of random
+variables that are integrable, and integrability has to do with absolute
+convergence.
+\begin{rem}
+We have, so far, ignored a technical issue. Earlier, we characterized
+a random variable in terms of the sets $\Lambda_{1},\Lambda_{2},\ldots$
+However, the choice of these sets is not unique. For example, the
+constant random variable
+\[
+X(\omega)=1
+\]
+can be written in many ways. Two possibilities are $X(\omega)=1I_{\{\Omega\}}(\omega)$
+and $X(\omega)=1I_{\{\Lambda\}}(\omega)+1I_{\{\Lambda^{c}\}}(\omega)$
+where $\Lambda$ is any subset of the sample space $\Omega$. Since
+the definition of expectation depends on a particular choice of the
+sets $\Lambda_{1},\Lambda_{2},\ldots$, it is not clear that the expectation
+will remain the same if we change our choice of $\Lambda_{1},\Lambda_{2},\ldots$
+This technicality is handled on page 55 of Walsh, John B. \emph{Knowing
+the odds: an introduction to probability}. Vol. 139. American Mathematical
+Soc., 2012.
+\end{rem}
+\begin{example}
+Let $X$ be a nonnegative integer-valued random variable (i.e., $\sum_{n\geq0}\mathbb{P}(\{X=n\})=1$).
+We assume $X$ has the form
+\[
+X(\omega)=\sum_{n\geq0}nI_{\{X=n\}}(\omega).
+\]
+If $X$ is integrable,
+\begin{multline*}
+\mathbb{E}\left[X\right]=\sum_{n\geq0}n\mathbb{P}(\left\{ X=n\right\} )=0\mathbb{P}(\left\{ X=0\right\} )+1\mathbb{P}(\left\{ X=1\right\} )+2\mathbb{P}(\left\{ X=2\right\} )+\cdots\\
+=\left(\mathbb{P}(\left\{ X=1\right\} )+\mathbb{P}(\left\{ X=2\right\} )+\cdots\right)+\left(\mathbb{P}(\left\{ X=2\right\} )+\mathbb{P}(\left\{ X=3\right\} )+\cdots\right)=\sum_{n\geq1}\mathbb{P}(\left\{ X\geq n\right\} ).
+\end{multline*}
+\end{example}
+\begin{prop}
+Let $X$ and $Y$ be discrete random variables and $a,b\in\mathbb{R}$.
+Then,
+\begin{enumerate}
+\item If $X$ and $Y$ are integrable, so is $aX+bY$ and
+\[
+\mathbb{E}\left[aX+bY\right]=a\mathbb{E}X+b\mathbb{E}Y.
+\]
+\item If $|X|\leq|Y|$ and $Y$ is integrable, then $X$ is integrable.
+\item If $X$ and $Y$ are integrable and $X\leq Y$, then $\mathbb{E}X\leq\mathbb{E}Y$.
+\item If $X$ is integrable, $\mathbb{E}X\leq\mathbb{E}|X|$.
+\end{enumerate}
+\end{prop}
+\begin{proof}
+Recall that we can partition $\Omega$ into events $\Lambda_{1}^{X},\Lambda_{2}^{X},\ldots$
+on which $X$ is constant. We can do the same for $Y$, obtaining
+$\Lambda_{1}^{Y},\Lambda_{2}^{Y},\ldots$ This allows us to define
+$\Lambda_{ij}=\Lambda_{i}^{X}\cap\Lambda_{j}^{Y}$, on which \textbf{both}
+$X$ and $Y$ are constant. Since $(\Lambda_{ij})_{i,j}$ is a countable
+sequence, let's relabel it $(\Lambda_{n})_{n}$ and take $X=x_{n}$
+and $Y=y_{n}$ on $\Lambda_{n}$.
+\begin{enumerate}
+\item Suppose $X$ and $Y$ are integrable. Then,
+\begin{align*}
+\sum\left|ax_{n}+by_{n}\right|\mathbb{P}(\Lambda_{n}) & \leq\left|a\right|\sum\left|x_{n}\right|\mathbb{P}(\Lambda_{n})+\left|b\right|\sum\left|y_{n}\right|\mathbb{P}(\Lambda_{n})\\
+ & =\left|a\right|\sum\left|x_{n}\right|\mathbb{P}(\Lambda_{n}^{X})+\left|b\right|\sum\left|y_{n}\right|\mathbb{P}(\Lambda_{n}^{Y})\\
+ & =\left|a\right|\mathbb{E}\left[\left|X\right|\right]+\left|b\right|\mathbb{E}\left[\left|Y\right|\right]
+\end{align*}
+and hence $aX+bY$ is integrable. Repeating almost the exact same
+computation as above without the absolute value signs yields the desired
+result.
+\item This follows from $\sum|x_{n}|\mathbb{P}(\Lambda_{n})\leq\sum|y_{n}|\mathbb{P}(\Lambda_{n})$.
+\item Exercise.
+\item Take $Y=|X|$ in (3).\qedhere
+\end{enumerate}
+\end{proof}
+Most importantly, the above proposition tells us that the expectation
+is a linear function. That is, let $\mathcal{X}$ be the set of all
+random variables. Define $T\colon\mathcal{X}\rightarrow\mathbb{R}$
+as the mapping from a random variable to its expectation:
+\[
+T(X)=\mathbb{E}X.
+\]
+Then, $T$ is linear function (i.e., $T(aX+bY)=aT(X)+bT(Y)$).
+
+As an example of expectations, we introduce now \emph{probability
+generating function} of a discrete random variable. We point out that
+our treatment is a bit cavalier for the time being, but we will come
+back to generating functions in a more principled manner. Before we
+move to this example, let's give a simple definition:
+\begin{defn}
+The \emph{probability mass function} (PMF) of a discrete random variable
+$X$ is $p\colon\mathbb{R}\rightarrow[0,1]$ defined by
+\[
+p(x)=\begin{cases}
+\mathbb{P}(\Lambda_{n}) & \text{if }x=x_{n}\\
+0 & \text{otherwise}.
+\end{cases}
+\]
+\end{defn}
+\begin{example}
+Let $X$ be a nonnegative integer-valued random variable. Define $G$,
+the probability generating function of $X$, by
+\[
+G(t)=\mathbb{E}\left[t^{X}\right].
+\]
+Ignoring the integrability of $X$,
+\[
+G(t)=\sum_{n=0}^{\infty}p(n)t^{n}=p(0)+\sum_{n=1}^{\infty}p(n)t^{n}
+\]
+where $p$ is the probability mass function of $X$. Being a power
+series, $G$ has a radius convergence $0\leq R\leq\infty$ which characterizes
+which values of $t$ it converges for (i.e., converges for $|t|<R$
+and diverges for $t>|R|$). Since
+\[
+G(1)=\sum_{n=0}^{\infty}p(n)1^{n}=\sum_{n=0}^{\infty}p(n)=1,
+\]
+we know that the radius of convergence must be at least one (i.e.,
+$R\geq1$). Furthermore,
+\[
+G(0)=p(0)+\sum_{n=1}^{\infty}p(n)0^{n}=p(0).
+\]
+Now, if we take derivatives of $G$ (for values of $t$ inside the
+radius of convergence), we get
+\begin{align*}
+G^{\prime}(t) & =\sum_{n=1}^{\infty}np(n)t^{n-1}\\
+G^{\prime\prime}(t) & =\sum_{n=2}^{\infty}n\left(n-1\right)p(n)t^{n-2}\\
+ & \vdots\\
+G^{(k)}(t) & =\sum_{n=k}^{\infty}n\left(n-1\right)\cdots\left(n-k+1\right)p(n)t^{n-k}.
+\end{align*}
+We conclude that $p(n)=\frac{1}{n!}G^{(n)}(0)$ for $n=1,2,\ldots$
+\end{example}
+In the previous example, we wrote $\mathbb{E}[t^{X}]$ even though
+$t^{X}$ was not necessarily integrable for arbitrary $t$. We will
+often perform this abuse of notation by writing $\mathbb{E}Y$ for
+any random variable $Y$ with the implicit understanding that the
+$\mathbb{E}Y$ is only well-defined when $Y$ is integrable.
+\begin{prop}
+Let $f\colon\mathbb{R}\rightarrow\mathbb{R}$ and $X$ be a discrete
+random variable with probability mass function $p$ and support $\{x_{n}\}_{n}$.
+Then, $Y=f\circ X$ is integrable if and only if $\sum_{n}|f(x_{n})|p(x_{n})<\infty$,
+in which case
+\[
+\mathbb{\mathbb{E}}\left[f(X)\right]=\sum_{n}f(x_{n})p(x_{n}).
+\]
+\end{prop}
+
+\section{Variance}
+\begin{defn}
+Let $X$ be a discrete random variable. Its \emph{variance} is defined
+as
+\[
+\operatorname{Var}X=\mathbb{E}\left[\left(X-\mathbb{E}X\right)^{2}\right]
+\]
+(there is an implicit assumption about integrability in the definition
+of variance). Its \emph{standard deviation} is $\sqrt{\operatorname{Var}X}$.
+\end{defn}
+Once again interpreting $\mathbb{E}$ as an average, it is clear from
+the definition that variance is a measure of how far the random variable
+is from the expectation ``on average''. Note also that
+\begin{align*}
+\operatorname{Var}X & =\mathbb{E}\left[\left(X-\mathbb{E}X\right)^{2}\right]\\
+ & =\mathbb{E}\left[X^{2}-2X\mathbb{E}X+\left(\mathbb{E}X\right)^{2}\right]\\
+ & =\mathbb{E}\left[X^{2}\right]-2\mathbb{E}X\mathbb{E}X+\left(\mathbb{E}X\right)^{2}\\
+ & =\mathbb{E}\left[X^{2}\right]-2\left(\mathbb{E}X\right)^{2}+\left(\mathbb{E}X\right)^{2}\\
+ & =\mathbb{E}\left[X^{2}\right]-\left(\mathbb{E}X\right)^{2},
+\end{align*}
+which gives us a useful formula for the variance of a random variable.
+We will see next class that $\mathbb{E}X^{2}$ is referred to as the\emph{
+second }\textbf{\emph{raw}}\emph{ moment}, and another name for the
+variance is the \emph{second }\textbf{\emph{central}}\emph{ moment}.
+\begin{example}
+Toss a coin $N\geq1$ times. Let $X_{N}$ be the number of heads.
+Remember, we computed $\mathbb{E}X_{N}=pN$. Therefore, to get $\operatorname{Var}X_{N}$,
+it is sufficient to compute $\mathbb{E}[X_{N}^{2}]$:
+\[
+\mathbb{E}\left[X_{N}^{2}\right]=\sum_{n=0}^{N}n^{2}\mathbb{P}(\left\{ X_{N}=n\right\} )=\sum_{n=1}^{N}n^{2}\binom{N}{n}p^{n}(1-p)^{N-n}=p\left(\left(N-1\right)Np+N\right).
+\]
+\end{example}
+\begin{xca}
+Let $X$ be a random variable with finite variance. Then
+\[
+\operatorname{Var}(aX+b)=a^{2}\operatorname{Var}(X).
+\]
+\end{xca}
+%
+\begin{xca}
+Let $X$ be a discrete random variable. Show that if $X^{2}$ is integrable,
+then $X$ is integrable (i.e., it is not possible to have a random
+variable with finite variance but infinite expectation).
+\end{xca}
+\begin{rem}
+For those familiar with measure theory, the above is an immediate
+consequence of the deeper fact that for a finite measure space, $\mathbb{L}^{q}\subset\mathbb{L}^{p}$
+for $1\leq p\leq q\leq\infty$.
+\end{rem}
+
+\end{document}

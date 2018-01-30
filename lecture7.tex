@@ -1,0 +1,263 @@
+%% LyX 2.2.3 created this file.  For more info, see http://www.lyx.org/.
+%% Do not edit unless you really know what you are doing.
+\documentclass[english,12pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage[latin9]{inputenc}
+\usepackage{mathtools}
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{amssymb}
+
+\makeatletter
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Textclass specific LaTeX commands.
+\theoremstyle{plain}
+\newtheorem{thm}{\protect\theoremname}[section]
+\theoremstyle{definition}
+\newtheorem{defn}[thm]{\protect\definitionname}
+\theoremstyle{plain}
+\newtheorem{prop}[thm]{\protect\propositionname}
+\ifx\proof\undefined
+\newenvironment{proof}[1][\protect\proofname]{\par
+\normalfont\topsep6\p@\@plus6\p@\relax
+\trivlist
+\itemindent\parindent
+\item[\hskip\labelsep\scshape #1]\ignorespaces
+}{%
+\endtrivlist\@endpefalse
+}
+\providecommand{\proofname}{Proof}
+\fi
+\theoremstyle{definition}
+\newtheorem{example}[thm]{\protect\examplename}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% User specified LaTeX commands.
+\usepackage[margin=1in]{geometry}
+
+\makeatother
+
+\usepackage{babel}
+\providecommand{\definitionname}{Definition}
+\providecommand{\examplename}{Example}
+\providecommand{\propositionname}{Proposition}
+\providecommand{\theoremname}{Theorem}
+
+\begin{document}
+
+\title{Math 525: Lecture 7}
+
+\date{January 25, 2018}
+\maketitle
+
+\section{Expectation (general case)}
+
+In a previous lecture, we define the expectation of a discrete random
+variable. Armed now with an intuitive understanding of expectations,
+let's extend our definition to the general case.
+\begin{defn}
+Let $X$ be a random variable and $n$ be a nonnegative integer. Let
+$\{E_{n}^{k}\}_{k\in\mathbb{Z}}$ be the partition of $\mathbb{R}$
+defined by
+\[
+E_{n}^{k}=\left(\frac{k}{2^{n}},\frac{k+1}{2^{n}}\right].
+\]
+Then, the $n$-th\emph{ lower and upper dyadic approximations} of
+$X$ are the random variables $\underline{X}_{n}$ and $\overline{X}_{n}$
+defined by
+\[
+\underline{X}_{n}(\omega)=\sum_{k\in\mathbb{Z}}\frac{k}{2^{n}}I_{E_{n}^{k}}(X(\omega))\qquad\text{and}\qquad\overline{X}_{n}(\omega)=\sum_{k\in\mathbb{Z}}\frac{k+1}{2^{n}}I_{E_{n}^{k}}(X(\omega)).
+\]
+\end{defn}
+Note that $I_{E_{n}^{k}}\circ X$ is a random variable ($I_{E_{n}^{k}}$
+is Borel measurable because $E_{n}^{k}\in\mathcal{B}(\mathbb{R})$).
+It is obvious from the definition that the lower and upper dyadic
+approximations of $X$ are discrete random variables and hence we
+know how to take their expectations (assuming they are integrable).
+It is also useful to note that
+\[
+\frac{k}{2^{n}}=\inf E_{n}^{k}\qquad\text{and}\qquad\frac{k+1}{2^{n}}=\max E_{n}^{k}.
+\]
+\begin{prop}
+Let $X$ be a random variable. For each nonnegative integer $n$,
+\begin{enumerate}
+\item $\overline{X}_{n}-\underline{X}_{n}=1/2^{n}$.
+\item $\underline{X}_{n}\leq\underline{X}_{n+1}<X\leq\overline{X}_{n+1}\leq\overline{X}_{n}$.
+\item The dyadic approximations $\{\underline{X}_{0},\overline{X}^{0},\underline{X}_{1},\overline{X}^{1}\ldots\}$
+are either all integrable or all non-integrable.
+\end{enumerate}
+\end{prop}
+\begin{proof}
+~
+\begin{enumerate}
+\item Let $n$ be a nonnegative integer. The first claim follows from
+\[
+\overline{X}_{n}(\omega)-\underline{X}_{n}(\omega)=\sum_{k\in\mathbb{Z}}\frac{k+1}{2^{n}}I_{E_{n}^{k}}(X(\omega))-\sum_{k\in\mathbb{Z}}\frac{k}{2^{n}}I_{E_{n}^{k}}(X(\omega))=\frac{1}{2^{n}}\sum_{k\in\mathbb{Z}}I_{E_{n}^{k}}(X(\omega))=\frac{1}{2^{n}}.
+\]
+\item Suppose now that $X(\omega)\in E_{n}^{k}=(k/2^{n},(k+1)/2^{n}]$ for
+some particular $k\in\mathbb{Z}$. Then, $\underline{X}_{n}(\omega)=k/2^{n}$
+and $\overline{X}_{n}(\omega)=(k+1)/2^{n}$. This establishes $\underline{X}_{n}(\omega)<X_{n}(\omega)\leq\overline{X}_{n}(\omega)$.
+Moreover, since $E_{n}^{k}=E_{n+1}^{2k}\cup E_{n+1}^{2k+1}$, it follows
+that $\underline{X}_{n+1}(\omega)\geq2k/2^{n+1}=k/2^{n}$ and $\overline{X}_{n}(\omega)\leq(2k+2)/2^{n+1}=(k+1)/2^{n}$,
+establishing the remaining inequalities.
+\item Since $\overline{X}_{0}-\underline{X}_{0}=1$, any two dyadic approximations
+differ by at most one. If a random variable $Z$ and $W$ differ by
+at most one (i.e., $|Z-W|\leq1$), then $|Z|\leq|W|+1$ and $|W|\leq|Z|+1$.
+Therefore, $Z$ is integrable if and only if $W$ is integrable.
+\end{enumerate}
+\end{proof}
+The above result implies that if any particular dyadic approximation
+(e.g., $\overline{X}_{0}$) is integrable, then
+\[
+\mathbb{E}\underline{X}_{0}\leq\mathbb{E}\underline{X}_{1}\leq\mathbb{E}\underline{X}_{2}\leq\cdots\leq\mathbb{E}\overline{X}^{2}\leq\mathbb{E}\overline{X}^{1}\leq\mathbb{E}\overline{X}^{0}.
+\]
+Moreover, since $\mathbb{E}\overline{X}_{n}-\mathbb{E}\underline{X}_{n}=1/2^{n}$,
+it follows that if the dyadic approximations are integrable, $\mathbb{E}\underline{X}_{n}$
+and $\mathbb{E}\overline{X}_{n}$ converge from below and above, respectively,
+to the same point as $n\rightarrow\infty$. This observation motivates
+the following definition:
+\begin{defn}
+A random variable $X$ is \emph{integrable} if $\overline{X}_{0}$
+is integrable. In this case, we define the expectation of $X$ as
+\[
+\mathbb{E}X=\lim_{n\rightarrow\infty}\mathbb{E}\overline{X}_{n}=\lim_{n\rightarrow\infty}\mathbb{E}\underline{X}_{n}.
+\]
+\end{defn}
+Next, we will ``reprove'' some properties of expectations that we
+already encountered in the discrete case. In order to make matters
+simpler, we first introduce a bit of notation:
+\begin{defn}
+We say an event occurs \emph{almost surely} (a.s.) if it occurs with
+probability one.
+\end{defn}
+\begin{example}
+Let $X$ and $Y$ be random variables. We say $X=Y$ a.s. if 
+\[
+\mathbb{P}(\left\{ X=Y\right\} )=\mathbb{P}(\left\{ \omega\in\Omega\colon X(\omega)=Y(\omega)\right\} =1.
+\]
+In other words, there could be outcomes $\omega\in\Omega$ for which
+$X(\omega)\neq Y(\omega)$, but the set of all outcomes has probability
+zero. For all intents and purposes, $X$ and $Y$ are the ``same''.
+In this case, for any set $B\in\mathcal{B}(\mathbb{R})$,
+\[
+\mathbb{P}(\left\{ X\in B\right\} )=\mathbb{P}(\left\{ Y\in B\right\} ).
+\]
+To see why, note that
+\[
+\mathbb{P}(\left\{ X\in B\right\} )=\mathbb{P}(\left\{ X\in B\right\} \cap\left\{ X=Y\right\} )=\mathbb{P}(\left\{ Y\in B\right\} \cap\left\{ X=Y\right\} )=\mathbb{P}(\left\{ Y\in B\right\} ).
+\]
+\end{example}
+We are now ready to prove some properties of expectations:
+\begin{prop}
+Let $X$ and $Y$ be random variables and let $a\in\mathbb{R}$. Then,
+\begin{enumerate}
+\item If $X=Y$ a.s., then $Y$ is integrable if and only if $X$ is, and
+if so, $\mathbb{E}X=\mathbb{E}Y$.
+\item If $X$ and $Y$ are integrable, so is $aX+bY$ and
+\[
+\mathbb{E}\left[aX+bY\right]=a\mathbb{E}X+b\mathbb{E}Y.
+\]
+\item If $|X|\leq|Y|$ and $Y$ is integrable, then $X$ is integrable.
+\item If $X$ and $Y$ are integrable and $X\leq Y$, then $\mathbb{E}X\leq\mathbb{E}Y$.
+\item If $X$ is integrable, $\mathbb{E}X\leq\mathbb{E}|X|$.
+\end{enumerate}
+\end{prop}
+The properties above are exactly those in the discrete case, but now
+they hold for general random variables! We do have to do some work
+to prove them, however.
+\begin{proof}
+Recall that $\overline{X}_{n}-\underline{X}_{n}=1/2^{n}$. Since $\underline{X}_{n}\leq X\leq\overline{X}_{n}$,
+this implies $|\overline{X}_{n}-X|\leq1/2^{n}$, which in turn implies
+\[
+\left|\overline{X}_{n}\right|-1/2^{n}\leq\left|X\right|\leq\left|\overline{X}_{n}\right|+1/2^{n}.
+\]
+\begin{enumerate}
+\item First, note that the statement is true in the discrete case. Now,
+if $X=Y$ a.s., then $\overline{X}_{n}=\overline{Y}_{n}$ a.s., from
+which the desired result follows.
+\item We will use (3) to prove this. First, note that if sequences of random
+variables $(U_{n})_{n}$ and $(W_{n})_{n}$ satisfy $\mathbb{E}|U_{n}-W_{n}|\rightarrow0$
+as $n\rightarrow\infty$, then $\mathbb{E}U_{n}\rightarrow\mathbb{E}W_{n}$
+as $n\rightarrow\infty$ (this is just an application of the triangle
+inequality). Moreover, note that
+\[
+\left|aX+bY\right|\leq\left|a\right|\left|X\right|+\left|b\right|\left|Y\right|\leq\left|a\right|\left(\left|\overline{X}_{0}\right|+1\right)+\left|b\right|\left(\left|\overline{Y}_{0}\right|+1\right),
+\]
+and hence $aX+bY$ is integrable. Now, let $Z=aX+bY$. Then,
+\begin{align*}
+\left|\overline{Z}_{n}-\left(a\overline{X}_{n}+b\overline{Y}_{n}\right)\right| & \leq\left|\overline{Z}_{n}-Z\right|+\left|Z-\left(a\overline{X}_{n}+b\overline{Y}_{n}\right)\right|\\
+ & \leq1/2^{n}+\left|a\right|\left|X-\overline{X}_{n}\right|+\left|b\right|\left|Y-\overline{Y}_{n}\right|\\
+ & \leq1/2^{n}\left(1+\left|a\right|+\left|b\right|\right)\\
+ & \rightarrow0.
+\end{align*}
+Therefore,
+\[
+\lim_{n\rightarrow\infty}\mathbb{E}\left[\overline{Z}_{n}\right]=\lim_{n\rightarrow\infty}\mathbb{E}\left[a\overline{X}_{n}+b\overline{Y}_{n}\right]=\lim_{n\rightarrow\infty}a\mathbb{E}\left[\overline{X}_{n}\right]+b\mathbb{E}\left[\overline{Y}_{n}\right]=a\mathbb{E}X+b\mathbb{E}Y.
+\]
+\item First, note that $|\overline{X}_{0}|\leq|\overline{Y}_{0}|+2$ since
+\[
+\left|\overline{X}_{0}\right|-1\leq\left|X\right|\leq\left|Y\right|\leq\left|\overline{Y}_{0}\right|+1.
+\]
+Now, if $Y$ is integrable, $\overline{Y}_{0}$ is integrable by definition.
+In this case, $\overline{X}_{0}$ is integrable, and hence $X$ is
+integrable by definition.
+\item Exercise.
+\item Take $Y=|X|$ in (4).
+\end{enumerate}
+\end{proof}
+\begin{example}
+Let $X$ be \textbf{any} random variable and define its moment generating
+function (MGF) by $M(\theta)=\mathbb{E}[e^{\theta X}]$. Note that
+the discussions of the previous lecture, albeit based in discrete
+random variables, only used properties of the expectation. Therefore,
+we can still talk about the moment generating function for an arbitrary
+random variable, and we still have the nice result $M^{(k)}(0)=\mathbb{E}[X^{k}]$
+(assuming, of course, that $M$ is differentiable in a neighbourhood
+of zero).
+\end{example}
+\begin{prop}
+Let $X$ and $Y$ be independent and integrable random variables.
+Then, $XY$ is integrable and
+\[
+\mathbb{E}\left[XY\right]=\mathbb{E}X\mathbb{E}Y.
+\]
+\end{prop}
+\begin{proof}
+Consider first the discrete case:
+\begin{align*}
+\mathbb{E}\left[\left|XY\right|\right] & =\sum_{i,j}\left|x_{i}\right|\left|y_{j}\right|\mathbb{P}(\left\{ X=x_{i}\right\} \cap\left\{ Y=y_{j}\right\} )\\
+ & =\sum_{i,j}\left|x_{i}\right|\left|y_{j}\right|\mathbb{P}(\left\{ X=x_{i}\right\} )\mathbb{P}(\left\{ Y=y_{j}\right\} )\\
+ & =\left(\sum_{i}\left|x_{i}\right|\mathbb{P}(\left\{ X=x_{i}\right\} )\right)\left(\sum_{j}\left|y_{j}\right|\mathbb{P}(\left\{ Y=y_{j}\right\} )\right)\\
+ & =\mathbb{E}\left[\left|X\right|\right]\mathbb{E}\left[\left|Y\right|\right].
+\end{align*}
+This establishes that $XY$ are integrable whenever $X$ and $Y$.
+Repeating the same argument now without the absolute value signs establishes
+$\mathbb{E}[XY]=\mathbb{E}X\mathbb{E}Y$.
+
+Now, let's move on to the general case. If $X$ and $Y$ are integrable,
+\begin{align*}
+\mathbb{E}\left[\left|\overline{X}_{n}\overline{Y}_{n}-XY\right|\right] & =\mathbb{E}\left[\left|\overline{X}_{n}\overline{Y}_{n}-\overline{X}_{n}Y+\overline{X}_{n}Y-XY\right|\right]\\
+ & \leq\mathbb{E}\left[\left|\overline{X}_{n}\right|\left|\overline{Y}_{n}-Y\right|\right]+\mathbb{E}\left[\left|Y\right|\left|\overline{X}_{n}-X\right|\right]\\
+ & \leq1/2^{n}\cdot\left(\mathbb{E}\left[\left|\overline{X}_{n}\right|\right]+\mathbb{E}\left[\left|Y\right|\right]\right)\\
+ & \rightarrow0.
+\end{align*}
+Since
+\[
+\mathbb{E}\left[\left|XY\right|-\left|\overline{X}_{n}\overline{Y}_{n}\right|\right]\leq\mathbb{E}\left[\left|\overline{X}_{n}\overline{Y}_{n}-XY\right|\right],
+\]
+this implies that $XY$ is integrable. Moreover, if $X$ and $Y$
+are independent, so too are $\overline{X}_{n}$ and $\overline{Y}_{n}$.
+This implies
+\[
+\mathbb{E}\left[XY\right]=\lim_{n\rightarrow\infty}\mathbb{E}\left[\overline{X}_{n}\overline{Y}_{n}\right]=\lim_{n\rightarrow\infty}\mathbb{E}\left[\overline{X}_{n}\right]\mathbb{E}\left[\overline{Y}_{n}\right]=\mathbb{E}X\mathbb{E}Y
+\]
+as desired.
+\end{proof}
+\begin{example}
+Consider $n$ independent random variables $X_{1},\ldots,X_{n}$ with
+MGFs $M_{X_{i}}(\theta)=\mathbb{E}[e^{\theta X_{i}}]$. Then,
+\[
+M_{X_{1}+\cdots+X_{n}}(\theta)=\mathbb{E}\left[e^{\theta\left(X_{1}+\cdots+X_{n}\right)}\right]=\mathbb{E}\left[e^{\theta X_{1}}\right]\cdots\mathbb{E}\left[e^{\theta X_{n}}\right]=M_{X_{1}}(\theta)\cdots M_{X_{n}}(\theta).
+\]
+In other words, the MGF of the sum is the product of the MGFs.
+\end{example}
+
+\end{document}

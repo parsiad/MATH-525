@@ -1,0 +1,95 @@
+%% LyX 2.2.3 created this file.  For more info, see http://www.lyx.org/.
+%% Do not edit unless you really know what you are doing.
+\documentclass[english,12pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage[latin9]{inputenc}
+\usepackage{amsmath}
+\usepackage{amssymb}
+
+\makeatletter
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% User specified LaTeX commands.
+\usepackage[margin=1in]{geometry}
+
+\makeatother
+
+\usepackage{babel}
+\begin{document}
+
+\title{Math 525: Assignment 1 Solutions}
+
+\date{\date{}}
+\maketitle
+\begin{enumerate}
+\item To simplify notation, let
+\[
+\mathcal{M}(\mathcal{G})=\left\{ \mathcal{F}\colon\mathcal{F}\text{ is a }\sigma-\text{algebra on }\Omega\text{ and }\mathcal{G}\subset\mathcal{F}\right\} 
+\]
+so that
+\[
+\sigma(\mathcal{G})=\bigcap_{\mathcal{F}\in\mathcal{M}(\mathcal{G})}\mathcal{F}.
+\]
+Note that as a trivial consequence of the definition, $\sigma(\mathcal{G})\supset\mathcal{G}$.
+\begin{enumerate}
+\item We claim that the intersection $\mathcal{F}=\cap_{\alpha}\mathcal{F}_{\alpha}$
+of $\sigma$-algebras $\mathcal{F}_{\alpha}$ is itself a $\sigma$-algebra.
+Since $\sigma(\mathcal{G})$ is, by definition, the intersection of
+$\sigma$-algebras, the desired result follows from this claim. The
+claim is established by three points: \emph{(i)} $\emptyset\in\mathcal{F}$
+because $\emptyset\in\mathcal{F}_{\alpha}$ for each $\alpha$. \emph{(ii)}
+Suppose $A\in\mathcal{F}$. Then, $A\in\mathcal{F}_{\alpha}$ for
+each $\alpha$ and hence $A^{c}\in\mathcal{F}_{\alpha}$ for each
+$\alpha$, from which it follows that $A^{c}\in\mathcal{F}$. \emph{(iii)
+}Suppose $A_{1},A_{2},\ldots\in\mathcal{F}$. Then, $A_{1},A_{2},\ldots\in\mathcal{F}_{\alpha}$
+for each $\alpha$ and hence $\cup_{n\geq1}A_{n}\in\mathcal{F}_{\alpha}$
+for each $\alpha$, from which it follows that $\cup_{n\geq1}A_{n}\in\mathcal{F}$.
+\item Suppose $\mathcal{G}\subset\mathcal{G}^{\prime}$. Since any $\sigma$-algebra
+which contains $\mathcal{G}^{\prime}$ must also contain $\mathcal{G}$,
+we have $\mathcal{M}(\mathcal{G})\supset\mathcal{M}(\mathcal{G}^{\prime})$,
+from which the desired result follows.
+\item Suppose $\mathcal{F}$ is a $\sigma$-algebra. Since $\mathcal{F}\in\mathcal{M}(\mathcal{F})$,
+it follows that $\sigma(\mathcal{F})\subset\mathcal{F}$. Since we
+already know $\sigma(\mathcal{F})\supset\mathcal{F}$, the desired
+result follows.
+\item If $\mathcal{G}\subset\mathcal{F}$, part (b) tells us $\sigma(\mathcal{G})\subset\sigma(\mathcal{F})$.
+If $\mathcal{F}$ is a $\sigma$-algebra, part (c) tells us $\sigma(\mathcal{F})=\mathcal{F}$.
+Combining these two points, the desired result follows.
+\end{enumerate}
+\item Checking that these are algebras is straightforward, so I will just
+point out why they are not $\sigma$-algebras:
+\begin{enumerate}
+\item Consider $\mathbb{N}=\{1,2,\ldots\}$. Neither $\mathbb{N}$ nor $\mathbb{N}^{c}=\mathbb{R}\setminus\mathbb{N}$
+are finite subsets of $\mathbb{R}$, and hence $\mathbb{N}$ is not
+in the algebra. However, we can write $\mathbb{N}$ as a countable
+union of elements of the algebra: $\mathbb{N}=\cup_{n\geq1}\{n\}$.
+\item The set $(-\infty,0)$ can be written as a countable union of elements
+of the algebra: $(-\infty,0)=\cup_{n\geq1}(-\infty,-1/n]$.
+\end{enumerate}
+\item Suppose the claim holds for $n$. We attempt to establish it for $n+1$.
+Note that
+\begin{align*}
+\mathbb{P}(A_{1}\cup\cdots\cup A_{n+1}) & =\mathbb{P}(\left(A_{1}\cup\cdots\cup A_{n}\right)\cup A_{n+1})\\
+ & =\mathbb{P}(A_{1}\cup\cdots\cup A_{n})+\mathbb{P}(A_{n+1})-\mathbb{P}(\left(A_{1}\cup\cdots\cup A_{n}\right)\cap A_{n+1})
+\end{align*}
+Let's handle each term in the sum separately. First, note that by
+our induction hypothesis,
+\begin{multline*}
+\mathbb{P}(A_{1}\cup\cdots\cup A_{n})\\
+=\sum_{i\leq n}\mathbb{P}(A_{i})-\sum_{i<j\leq n}\mathbb{P}(A_{i}\cap A_{j})+\sum_{i<j<k\leq n}\mathbb{P}(A_{i}\cap A_{j}\cap A_{k})-\cdots+(-1)^{n+1}\mathbb{P}(A_{1}\cap\cdots\cap A_{n}).
+\end{multline*}
+Similarly, applying our induction hypothesis,
+\begin{multline*}
+\mathbb{P}(\left(A_{1}\cup\cdots\cup A_{n}\right)\cap A_{n+1})=\mathbb{P}(\left(A_{1}\cap A_{n+1}\right)\cup\cdots\cup\left(A_{n}\cap A_{n+1}\right))\\
+=\sum_{i\leq n}\mathbb{P}(A_{i}\cap A_{n+1})-\sum_{i<j\leq n}\mathbb{P}(A_{i}\cap A_{j}\cap A_{n+1})+\sum_{i<j<k\leq n}\mathbb{P}(A_{i}\cap A_{j}\cap A_{k}\cap A_{n+1})\\
+-\cdots+(-1)^{n+1}\mathbb{P}(A_{1}\cap\cdots\cap A_{n}\cap A_{n+1}).
+\end{multline*}
+Now, we can simplify our expression for $\mathbb{P}(A_{1}\cup\cdots\cup A_{n+1})$:
+\begin{multline*}
+\mathbb{P}(A_{1}\cup\cdots\cup A_{n+1})\\
+=\sum_{i\leq n+1}\mathbb{P}(A_{i})-\sum_{i<j\leq n+1}\mathbb{P}(A_{i}\cap A_{j})+\sum_{i<j<k\leq n+1}\mathbb{P}(A_{i}\cap A_{j}\cap A_{k})\\
+-\cdots+(-1)^{n+2}\mathbb{P}(A_{1}\cap\cdots\cap A_{n+1}).
+\end{multline*}
+To finish the proof, note that the claim holds trivially for $n=1$
+(base case).
+\end{enumerate}
+
+\end{document}

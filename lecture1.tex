@@ -1,0 +1,330 @@
+%% LyX 2.2.3 created this file.  For more info, see http://www.lyx.org/.
+%% Do not edit unless you really know what you are doing.
+\documentclass[english,12pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage[latin9]{inputenc}
+\usepackage{babel}
+\usepackage{prettyref}
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{amssymb}
+\usepackage[unicode=true,pdfusetitle,
+ bookmarks=true,bookmarksnumbered=false,bookmarksopen=false,
+ breaklinks=false,pdfborder={0 0 1},backref=false,colorlinks=false]
+ {hyperref}
+\usepackage{breakurl}
+
+\makeatletter
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Textclass specific LaTeX commands.
+\numberwithin{equation}{section}
+\numberwithin{figure}{section}
+\theoremstyle{plain}
+\newtheorem{thm}{\protect\theoremname}[section]
+\theoremstyle{definition}
+\newtheorem{example}[thm]{\protect\examplename}
+\theoremstyle{remark}
+\newtheorem{rem}[thm]{\protect\remarkname}
+\theoremstyle{definition}
+\newtheorem{defn}[thm]{\protect\definitionname}
+\theoremstyle{plain}
+\newtheorem{prop}[thm]{\protect\propositionname}
+\ifx\proof\undefined
+\newenvironment{proof}[1][\protect\proofname]{\par
+\normalfont\topsep6\p@\@plus6\p@\relax
+\trivlist
+\itemindent\parindent
+\item[\hskip\labelsep\scshape #1]\ignorespaces
+}{%
+\endtrivlist\@endpefalse
+}
+\providecommand{\proofname}{Proof}
+\fi
+\theoremstyle{definition}
+\newtheorem{xca}[thm]{\protect\exercisename}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% User specified LaTeX commands.
+\usepackage[margin=1in]{geometry}
+
+\newrefformat{exa}{Example \ref{#1}}
+\newrefformat{exer}{Exercise \ref{#1}}
+\newrefformat{rem}{Remark \ref{#1}}
+
+\makeatother
+
+\providecommand{\definitionname}{Definition}
+\providecommand{\examplename}{Example}
+\providecommand{\exercisename}{Exercise}
+\providecommand{\propositionname}{Proposition}
+\providecommand{\remarkname}{Remark}
+\providecommand{\theoremname}{Theorem}
+
+\begin{document}
+
+\title{Math 525: Lecture 1}
+
+\date{January 4, 2018}
+\maketitle
+
+\section{Motivation}
+\begin{example}
+\label{exa:coin_toss}A coin is tossed whose sides are labelled $H$
+and $T$.
+\end{example}
+Arguably, if we knew the exact conditions of the coin toss, we could
+use the laws of physics to accurately predict its outcome. Of course,
+this approach is impractical! It is more useful to assign a belief
+to each outcome in order to aid our prediction-making. For example,
+we may assign a $1/2$ ``probability'' to each outcome if we believe
+the coin to be fair. But what do we mean by ``probability'', and
+what laws (a.k.a. axioms) does it abide by?
+\begin{rem}
+The coin tossing example is a mundane one: probability has much more
+exciting applications (e.g., financial analysis, machine learning,
+etc.).
+\end{rem}
+
+\section{Probability space}
+
+\subsection{Sample space}
+
+Recall \prettyref{exa:coin_toss}. $H$ and $T$ are referred to as
+\emph{outcomes} of the coin tossing \emph{experiment}. We can gather
+these outcomes into a single set $\Omega=\{H,T\}$, referred to as
+the \emph{sample space.}
+\begin{example}
+\label{exa:coin_toss_n}A coin is tossed $3$ times. We record the
+result of each coin toss. The sample space for this experiment is
+\[
+\Omega=\left\{ HHH,HHT,HTH,HTT,THH,THT,TTH,TTT\right\} .
+\]
+Note that $|\Omega|=2^{3}$. If the coin is tossed $n$ times, $|\Omega|=2^{n}$.
+\end{example}
+The example above deals with a finite sample space. Can we think of
+an example with an \emph{infinite} sample space?
+\begin{example}
+A coin is tossed repeatedly until the first occurrence of $H$, at
+which point we record the total number of tosses. The sample space
+is
+\[
+\Omega=\{1,2,\ldots\}=\mathbb{N}.
+\]
+\end{example}
+The example above deals with a countably infinite sample space. Can
+we think of an example with an \emph{uncountable} sample space?
+\begin{example}
+\label{exa:coin_toss_infinite}A coin is tossed. Once the result ($H$
+or $T$) is recorded, the coin is tossed again. This process continues
+ad infinitum. The sample space is
+\[
+\Omega=\left\{ (\omega_{1},\omega_{2},\ldots)\colon\omega_{i}=H\text{ or }\omega_{i}=T\right\} .
+\]
+For example, the outcome in which all tosses result in heads is written
+$(H,H,H,\ldots)\in\Omega$ (or, omitting the parentheses and commas
+for brevity, $HHH\ldots$).
+\end{example}
+
+\subsection{$\sigma$-algebra}
+
+Recall \prettyref{exa:coin_toss_n}, in which a coin is tossed 3 times.
+We may be interested in answering questions of the following form:
+\begin{enumerate}
+\item What is the ``probability'' that there are an even number of heads?
+\item What is the ``probability'' that the first toss is a head?
+\item What is the ``probability'' that the first toss is \textbf{not }a
+head?
+\item What is the ``probability'' that the first toss is \textbf{not }a
+head \textbf{or }there are an even number of heads?
+\end{enumerate}
+The set of outcomes in which there are an even number of heads is
+a subset of the sample space $\Omega$. Primarily, it is the set
+\[
+A_{1}=\left\{ HHT,HTH,THH,TTT\right\} .
+\]
+Similarly, the set of outcomes in which the first toss is a head is
+\[
+A_{2}=\left\{ HHH,HHT,HTH,HTT\right\} .
+\]
+We can continue in this way to describe the set of outcomes for the
+remaining two questions above. They are $A_{3}=A_{2}^{c}\equiv\Omega\setminus A_{2}$
+and $A_{4}=A_{1}\cup A_{3}$.
+\begin{defn}
+A subset of $\Omega$ is called an \emph{event}.
+\end{defn}
+As hinted at above, we would like to be able to take complements of
+an event $A$ to describe its non-occurrence and unions of events
+$A$ and $B$ in order to describe two (or more) events occurring
+simultaneously.
+\begin{defn}
+The power set of $\Omega$, denoted $2^{\Omega}$, is the set of all
+subsets of $\Omega$.
+\end{defn}
+\begin{example}
+Let $\Omega=\left\{ 1,2,3,\ldots,6\right\} $, corresponding to rolling
+a six-sided dice. Then,
+\[
+2^{\Omega}=\left\{ \emptyset,\left\{ 1\right\} ,\left\{ 2\right\} ,\ldots,\left\{ 6\right\} ,\left\{ 1,2\right\} ,\left\{ 1,3\right\} ,\ldots,\left\{ 5,6\right\} ,\ldots,\Omega\right\} .
+\]
+Note that $|2^{\Omega}|=2^{|\Omega|}$ (in this case, $2^{|\Omega|}=2^{6}=64$).
+\end{example}
+%
+\begin{defn}
+An \emph{algebra} (a.k.a. field) on $\Omega$ is a set $\mathcal{F}\subset2^{\Omega}$
+satisfying the following properties:
+\begin{enumerate}
+\item $\emptyset\in\mathcal{F}$.
+\item if $A\in\mathcal{F}$, then $A^{c}\in\mathcal{F}$.
+\item if $A,B\in\mathcal{F}$, then $A\cup B\in\mathcal{F}$.
+\end{enumerate}
+\end{defn}
+\begin{prop}
+Let $\mathcal{F}$ be an algebra on $\Omega$.
+\begin{enumerate}
+\item $\Omega\in\mathcal{F}$.
+\item If $A_{1},\ldots,A_{n}\in\mathcal{F}$, then $A_{1}\cup\cdots\cup A_{n}\in\mathcal{F}$.
+\item If $A_{1},\ldots,A_{n}\in\mathcal{F}$, then $A_{1}\cap\cdots\cap A_{n}\in\mathcal{F}$.
+\end{enumerate}
+\end{prop}
+\begin{proof}
+The first claim is established by noting that $\Omega=\emptyset^{c}$.
+The next claim is established by writing
+\[
+A_{1}\cup\cdots\cup A_{n}=(A_{1}\cup\cdots\cup A_{n-1})\cup A_{n}
+\]
+and applying induction. The last claim follows by De Morgan's law:
+
+\[
+A_{1}\cap\cdots\cap A_{n}=\left(\left(A_{1}\cap\cdots\cap A_{n}\right)^{c}\right)^{c}=\left(A_{1}^{c}\cup\cdots\cup A_{n}^{c}\right)^{c}.\qedhere
+\]
+\end{proof}
+Algebras are fine for finite sample spaces, but they are not particularly
+useful for infinite sample spaces, since they do not guarantee that
+a countable union of events (i.e., $\cup_{n\geq1}A_{n}$) is itself
+an event. When dealing with infinite sample spaces, we require the
+notion of a $\sigma$-algebra:
+\begin{defn}
+Let $\mathcal{F}$ be an algebra on $\Omega$ such that $A_{1}\cup A_{2}\cup\cdots\in\mathcal{F}$
+whenever $A_{1},A_{2},\ldots\in\mathcal{F}$. We call $\mathcal{F}$
+a \emph{$\sigma$-algebra} (a.k.a. $\sigma$-field).
+\end{defn}
+\begin{example}
+For any sample space $\Omega$, $\mathcal{F}=\{\emptyset,\Omega\}$
+is the so-called \emph{trivial} $\sigma$-algebra.
+\end{example}
+%
+\begin{example}
+For any sample space $\Omega$, $\mathcal{F}=2^{\Omega}$ is the so-called
+\emph{discrete} $\sigma$-algebra.
+\end{example}
+\begin{rem}
+\label{rem:powerset}At this point, you may ask, why do we need $\sigma$-algebras
+aside from the discrete $\sigma$-algebra? After all, the discrete
+$\sigma$-algebra has every possible event that we might be interested
+in. As it turns out, we can always use the discrete $\sigma$-algebra
+for finite (and even countably infinite) sample spaces, but attempting
+to do so for an uncountable sample space turns out to have some bad
+consequences, which are out of the scope of this course.
+\end{rem}
+\begin{xca}
+Let $\mathcal{F}$ be a $\sigma$-algebra on $\Omega$. If $A_{1},A_{2},\ldots\in\mathcal{F}$,
+then $A_{1}\cup A_{2}\cup\cdots\in\mathcal{F}$ and $A_{1}\cap A_{2}\cap\cdots\in\mathcal{F}$.
+\end{xca}
+%
+\begin{xca}
+\label{exer:intersection_of_sigma_algebras}Let $\{\mathcal{F}_{\alpha}\}_{\alpha\in\mathcal{A}}$
+be a family of $\sigma$-algebras (on $\Omega$). Then, $\mathcal{F}=\cap_{\alpha\in\mathcal{A}}\mathcal{F}_{\alpha}$
+is a $\sigma$-algebra.
+\end{xca}
+
+\subsection{Probability measure}
+
+To each event $A$, we would like to associate a number $0\leq\mathbb{P}(A)\leq1$,
+the \emph{probability} of the event $A$ occurring. The intuitive
+interpretation of $\mathbb{P}(A)=0$ (resp. $\mathbb{P}(A)=1$) is
+that the event $A$ \emph{does not occur with certainty} (resp. \emph{occurs
+with certainty}). A larger value of $\mathbb{P}(A)$ means that we
+``believe'' $A$ to be more likely to occur. We define $\mathbb{P}$
+rigorously below:
+\begin{defn}
+Given a $\sigma$-algebra $\mathcal{F}$ on $\Omega$, a \emph{probability
+measure} is a function $\mathbb{P}\colon\mathcal{F}\rightarrow[0,1]$
+satisfying the following properties:
+\begin{enumerate}
+\item $\mathbb{P}(\emptyset)=0$.
+\item $\mathbb{P}(\Omega)=1$.
+\item $\mathbb{P}$ is \emph{countably additive}. That is, if $A_{1},A_{2},\ldots\in\mathcal{F}$
+are disjoint (i.e., $A_{i}\cap A_{j}=\emptyset$ whenever $i\neq j$),
+then 
+\[
+\mathbb{P}\left(\sum_{n\geq1}A_{n}\right)=\sum_{n\geq1}\mathbb{P}(A_{n}).
+\]
+\end{enumerate}
+\end{defn}
+\begin{rem}
+Recall that in \prettyref{rem:powerset}, we mentioned that in the
+case of an uncountable sample space, we are unable to take $\mathcal{F}=2^{\Omega}$
+due to technical issues. For example, if we have the sample space
+$\Omega=[0,1]^{n}$ and we take $\mathcal{F}=2^{\Omega}$, it becomes
+impossible to even define something as simple as a uniform distribution
+$\mathbb{P}$ on $\Omega$. A deep study of this phenomenon is beyond
+the scope of this course.
+\end{rem}
+\begin{defn}
+The triple $(\Omega,\mathcal{F},\mathbb{P})$ is called a \emph{probability
+space}.
+\end{defn}
+\begin{example}
+The probability space associated with \prettyref{exa:coin_toss} is
+$(\Omega,\mathcal{F},\mathbb{P})$ where $\Omega=\{H,T\}$, $\mathcal{F}=\{\emptyset,\{H\},\{T\},\Omega\}$,
+and
+\[
+\mathbb{P}(\{a\})=\begin{cases}
+p & \text{if }a=H\\
+1-p & \text{if }a=T
+\end{cases}\qquad\text{where}\qquad0\leq p\leq1.
+\]
+If the coin is fair, $p=1/2$. 
+\end{example}
+\begin{rem}
+A probability measure is an example of a \emph{measure} $\mu$, which
+satisfies all of the above points save for $\mu(\Omega)=1$. In this
+case, $(\Omega,\mathcal{F},\mu)$ is simply called a measure space.
+\end{rem}
+\begin{xca}
+A probability measure $\mathbb{P}$ satisfies the following properties:
+\begin{enumerate}
+\item $\mathbb{P}(A^{c})=1-\mathbb{P}(A)$.
+\item $\mathbb{P}(A)\leq\mathbb{P}(B)$ whenever $A\subset B$.
+\item If $A_{1},\ldots,A_{n}\in\mathcal{F}$, then
+\[
+\mathbb{P}(\cup_{i}A_{i})=\sum_{i}\mathbb{P}(A_{i})-\sum_{i<j}\mathbb{P}(A_{i}\cap A_{j})+\sum_{i<j<k}\mathbb{P}(A_{i}\cap A_{j}\cap A_{k})-\cdots+(-1)^{n+1}\mathbb{P}(A_{1}\cap\cdots\cap A_{n}).
+\]
+\end{enumerate}
+\end{xca}
+Recall that definition of continuity by sequences: $f$ is continuous
+if $f(x_{n})\rightarrow f(x)$ whenever $x_{n}\rightarrow x$. We
+now establish that $\mathbb{P}$ is continuous in a similar sense:
+\begin{prop}
+Let $A_{1},A_{2},\ldots$ be an increasing sequence in $\mathcal{F}$
+(i.e., $A_{1}\subset A_{2}\subset\cdots$) and define $A=\cup_{n\geq1}A_{n}$.
+Then, $\mathbb{P}(A_{n})\rightarrow\mathbb{P}(A)$. Similarly, if
+$B_{1},B_{2},\ldots$ is a decreasing sequence in $\mathcal{F}$ (i.e.,
+$B_{1}\supset B_{2}\supset\cdots$), we define $B=\cap_{n\geq1}B_{n}$.
+Then, $\mathbb{P}(B_{n})\rightarrow\mathbb{P}(B)$.
+\end{prop}
+\begin{proof}
+It is sufficient to prove the first statement, since the second follows
+by defining $A_{n}=B_{n}^{c}$ and noting that 
+\[
+1-\mathbb{P}(B_{n})=\mathbb{P}(B_{n}^{c})=\mathbb{P}(A_{n})\rightarrow\mathbb{P}(A)=\mathbb{P}(B^{c})=1-\mathbb{P}(B).
+\]
+To prove the first statement, define $C_{1}=A_{1}$ and $C_{n}=A_{n}\setminus A_{n-1}$
+for $n>1$. Then,
+\begin{multline*}
+\mathbb{P}(A)=\mathbb{P}(\cup_{n\geq1}C_{n})=\mathbb{P}(C_{1})+\sum_{n>1}\mathbb{P}(C_{n})=\mathbb{P}(A_{1})+\sum_{n>1}\mathbb{P}(A_{n})-\mathbb{P}(A_{n-1})\\
+=\mathbb{P}(A_{1})+\lim_{N\rightarrow\infty}\sum_{n=2}^{N}\mathbb{P}(A_{n})-\mathbb{P}(A_{n-1})=\lim_{N\rightarrow\infty}\left\{ \mathbb{P}(A_{1})+\sum_{n=2}^{N}\mathbb{P}(A_{n})-\mathbb{P}(A_{n-1})\right\} \\
+=\lim_{N\rightarrow\infty}\mathbb{P}(A_{N})
+\end{multline*}
+as desired.
+\end{proof}
+
+\end{document}
