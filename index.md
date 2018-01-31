@@ -49,7 +49,7 @@ All assignments are to be handed in at the *beginning* of class.
 
 * Assignment 1: due Tu Jan 16 [\[Description\]](assignment1.pdf) [\[LaTeX source\]](assignment1.tex) [\[Solutions\]](solutions1.pdf)
 * Assignment 2: due Tu Jan 23 [\[Description\]](assignment2.pdf) [\[LaTeX source\]](assignment2.tex) [\[Solutions\]](solutions2.pdf)
-* Assignment 3: due Tu Jan 30 [\[Description\]](assignment3.pdf) [\[LaTeX source\]](assignment3.tex)
+* Assignment 3: due Tu Jan 30 [\[Description\]](assignment3.pdf) [\[LaTeX source\]](assignment3.tex) [\[Solutions\]](solutions3.pdf)
 * Assignment 4: due Th Feb 08 [\[Description\]](assignment4.pdf) [\[LaTeX source\]](assignment4.tex)
 
 ## Lecture notes
