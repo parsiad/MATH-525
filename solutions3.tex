@@ -1,0 +1,93 @@
+%% LyX 2.2.3 created this file.  For more info, see http://www.lyx.org/.
+%% Do not edit unless you really know what you are doing.
+\documentclass[english,12pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage[latin9]{inputenc}
+\usepackage{color}
+\usepackage{babel}
+\usepackage{mathtools}
+\usepackage{amssymb}
+\usepackage{esint}
+\usepackage[unicode=true,pdfusetitle,
+ bookmarks=true,bookmarksnumbered=false,bookmarksopen=false,
+ breaklinks=false,pdfborder={0 0 1},backref=false,colorlinks=true]
+ {hyperref}
+\usepackage{breakurl}
+
+\makeatletter
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% User specified LaTeX commands.
+\usepackage[margin=1in]{geometry}
+
+\makeatother
+
+\begin{document}
+
+\title{Math 525: Assignment 3 Solutions}
+
+\date{\date{}}
+\maketitle
+\begin{enumerate}
+\item ~
+\begin{enumerate}
+\item As per the hint, $(-\infty,x]^{c}=(x,\infty)=(x,x+2)\cup(x+1,x+3)\cup\cdots$
+is just a countable union of open intervals. Therefore, is generated
+by $\{(-\infty,x]\colon x\in\mathbb{R}\}\subset\sigma(\mathcal{G})$.
+Applying $\sigma(\cdot)$ to both sides of this containment,
+\[
+\mathcal{B}(\mathbb{R})=\sigma(\left\{ (-\infty,x]\colon x\in\mathbb{R}\right\} )\subset\sigma(\sigma(\mathcal{G}))=\sigma(\mathcal{G}).
+\]
+Moreover, note that $\mathcal{G}\subset\mathcal{B}(\mathbb{R})$ since
+any open interval is a Borel set. Once again applying $\sigma(\cdot)$
+to both side of this containment,
+\[
+\sigma(\mathcal{G})\subset\sigma(\mathcal{B}(\mathbb{R}))=\mathcal{B}(\mathbb{R}).
+\]
+\item We must establish the three properties of a $\sigma$-algebra. (i)
+$\emptyset\in\mathcal{M}$ since $f^{-1}(\emptyset)=\emptyset\in\mathcal{B}(\mathbb{R})$.
+(ii) Let $B\in\mathcal{M}$. Then, $f^{-1}(B^{c})=(f^{-1}(B))^{c}\in\mathcal{B}(\mathbb{R})$
+and hence $B^{c}\in\mathcal{M}$. (iii) Let $B_{1},B_{2},\ldots\in\mathcal{M}$.
+Then, $f^{-1}(\cup_{n\geq1}B_{n})=\cup_{n\geq1}f^{-1}(B_{n})\in\mathcal{B}(\mathbb{R})$
+and hence $\cup_{n\geq1}B_{n}\in\mathcal{M}$.
+\item This is actually just a special case of Lindelöf's lemma. If you've
+seen it, you'll know, if you haven't you just might in a future analysis
+class.
+\item Applying $\sigma(\cdot)$ to both sides of the containment $\mathcal{G}\subset\mathcal{M}$,
+\[
+\mathcal{B}(\mathbb{R})=\sigma(\mathcal{G})\subset\sigma(\mathcal{M})=\mathcal{M}.
+\]
+\end{enumerate}
+\item A discrete random variable $X$ is one for which we can find a countable
+set $\{x_{n}\}_{n}$ satisfying $\sum_{n\geq1}\mathbb{P}(\{X=x_{n}\})=1$.
+Moreover, we showed in class that $\mathbb{P}(\{X=x_{n}\})=F(x_{n})-F(x_{n}-)$.
+Combining these two facts gives the desired result.
+\item ~
+\begin{enumerate}
+\item Note that for $x>0$,
+\[
+F(x)=\int_{0}^{x}\lambda e^{-\lambda x}dx=1-e^{-\lambda x}.
+\]
+Therefore, for $0<y<1$,
+\[
+F^{-1}(y)=-\frac{\ln(1-y)}{\lambda}.
+\]
+Therefore, we can, without loss of generality, define $X=F^{-1}(Y)$
+with $F^{-1}$ as above. Note that we have ignored the events $\{Y=0\}$
+and $\{Y=1\}$ since these occur with probability zero.
+\item We saw in class that $X$ has distribution function $F$.
+\end{enumerate}
+\item Let $Y=\min\{X_{1},\ldots,X_{n}\}$. We saw in class that when $Y$
+is integrable,
+\[
+\mathbb{E}Y=\sum_{n\geq1}\mathbb{P}\left(\left\{ Y\geq n\right\} \right).
+\]
+Therefore,
+\[
+\mathbb{E}Y=\sum_{n\geq1}\mathbb{P}\left(\left\{ \min\left\{ X_{1},\ldots,X_{m}\right\} \geq n\right\} \right)=\sum_{n\geq1}\mathbb{P}\left(\left\{ X_{1},\ldots,X_{m}\geq n\right\} \right)=\sum_{n\geq1}\mathbb{P}\left(\left\{ X_{1}\geq n\right\} \right)^{m}
+\]
+as desired (with the sum being on the right-hand side being infinite
+when $Y$ is not integrable).
+\item The inequality $|X|^{2}\leq|X|+1$ shows that $X^{2}$ is integrable
+whenever $X$ is (we saw this in class).
+\end{enumerate}
+
+\end{document}
