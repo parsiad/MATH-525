@@ -1,0 +1,312 @@
+%% LyX 2.2.1 created this file.  For more info, see http://www.lyx.org/.
+%% Do not edit unless you really know what you are doing.
+\documentclass[english,12pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage[latin9]{inputenc}
+\usepackage{float}
+\usepackage{mathtools}
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{amssymb}
+\usepackage{graphicx}
+
+\makeatletter
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Textclass specific LaTeX commands.
+\theoremstyle{plain}
+\newtheorem{thm}{\protect\theoremname}[section]
+\theoremstyle{definition}
+\newtheorem{defn}[thm]{\protect\definitionname}
+\theoremstyle{plain}
+\newtheorem{prop}[thm]{\protect\propositionname}
+\ifx\proof\undefined
+\newenvironment{proof}[1][\protect\proofname]{\par
+\normalfont\topsep6\p@\@plus6\p@\relax
+\trivlist
+\itemindent\parindent
+\item[\hskip\labelsep\scshape #1]\ignorespaces
+}{%
+\endtrivlist\@endpefalse
+}
+\providecommand{\proofname}{Proof}
+\fi
+\theoremstyle{definition}
+\newtheorem{example}[thm]{\protect\examplename}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% User specified LaTeX commands.
+\usepackage[margin=1in]{geometry}
+
+\makeatother
+
+\usepackage{babel}
+\providecommand{\definitionname}{Definition}
+\providecommand{\examplename}{Example}
+\providecommand{\propositionname}{Proposition}
+\providecommand{\theoremname}{Theorem}
+
+\begin{document}
+
+\title{Math 525: Lecture 9}
+
+\date{February 1, 2018}
+\maketitle
+
+\section{Convergence of random variables}
+
+In a previous lecture, we saw that (roughly speaking) $B(n,\frac{\lambda}{n})\rightarrow\operatorname{Poisson}(\lambda)$
+as $n\rightarrow\infty$. But what does ``$\rightarrow$'' mean
+here? More generally, consider a sequence of random variables $X_{1},X_{2},\ldots$
+What does it mean for this sequence to converge? Are there multiple
+notions of convergence available? Which notions of convergence are
+useful? This will be the topic of today's lecture.
+\begin{defn}
+The sequence $(X_{n})_{n}$ of random variables \emph{converges pointwise}
+to a random variable $X$ if $X_{n}(\omega)\rightarrow X(\omega)$
+for each $\omega$ in the sample space.
+\end{defn}
+This is the usual definition of pointwise convergence for functions,
+but it's not the most useful in probability.
+
+Why? Consider two random variables $X$ and $Y$ which are equal to
+a.s., but we can find $\omega$ such that $X(\omega)\neq Y(\omega)$.
+Then, the alternating sequence $X,Y,X,Y,\ldots$ does not have a pointwise
+limit, even though the two random variables are ``essentially''
+the same!
+
+The above discussion implies that we need a weaker notion of convergence
+when it comes to probability:
+\begin{defn}
+Let $(X_{n})_{n}$ be a sequence of random variables and $X$ be a
+random variable.
+\begin{enumerate}
+\item $(X_{n})_{n}$\emph{ }converges\emph{ in probability} to $X$ if for
+all $\epsilon>0$,
+\[
+\mathbb{P}\left\{ \left|X_{n}-X\right|>\epsilon\right\} \rightarrow0\text{ as }n\rightarrow\infty.
+\]
+\item $(X_{n})_{n}$ converges to $X$ \emph{with probability one} or \emph{almost
+everywhere} (a.e.) if $X_{n}(\omega)\rightarrow X(\omega)$ for all
+$\omega\notin\Lambda$ where $\mathbb{P}(\Lambda)=0$.
+\item $(X_{n})_{n}$ converges to $X$ in $\mathbb{L}^{p}$ if $X^{p}$
+is integrable and
+\[
+\mathbb{E}\left[\left|X_{n}-X\right|^{p}\right]\rightarrow0\text{ as }n\rightarrow\infty.
+\]
+We write $X_{n}\xrightarrow{\mathbb{L}^{p}}X$ in this case. When
+$p=1$, we call this ``convergence in mean''.
+\item Let $F_{n}$ and $F$ denote the distribution functions of $X_{n}$
+and $X$, respectively. $(X_{n})_{n}$ converges to $X$ in distribution
+if $F_{n}(x)\rightarrow F(x)$ for all continuity points of $F$.
+We write $X_{n}\xrightarrow{\mathcal{D}}X$ in this case.
+\end{enumerate}
+\end{defn}
+Some notions of convergence are stronger than others:
+\begin{prop}
+If $X_{n}\xrightarrow{\mathbb{L}^{p}}X$, then $X_{n}\rightarrow X$
+in probability.
+\end{prop}
+\begin{proof}
+This is a consequence of Chebyshev's inequality:
+\[
+\mathbb{P}\left\{ \left|X_{n}-X\right|>\epsilon\right\} \leq\frac{1}{\epsilon^{p}}\mathbb{E}\left[\left|X_{n}-X\right|^{p}\right]\rightarrow0.\qedhere
+\]
+\end{proof}
+\begin{prop}
+If $X_{n}\rightarrow X$ a.e., then $X_{n}\rightarrow X$ in probability.
+\end{prop}
+\begin{proof}
+Suppose $X_{n}\rightarrow X$ pointwise for all $\omega\notin\Lambda$
+where $\mathbb{P}(\Lambda)=1$. Let
+\[
+Z_{n}=\sup_{k\geq n}\left|X_{k}-X\right|
+\]
+and note that $\lim_{n}Z_{n}=\limsup_{n}|X_{n}-X|$. Therefore, 
+\[
+X_{n}(\omega)\rightarrow X(\omega)\iff Z_{n}(\omega)\rightarrow0.
+\]
+Let $\epsilon>0$ and 
+\[
+\Gamma_{n}^{\epsilon}=\left\{ Z_{n}\geq\epsilon\right\} .
+\]
+If $\omega\in\cap_{n}\Gamma_{n}^{\epsilon}$, then $Z(\omega)\nrightarrow0$,
+and hence $\cap_{n}\Gamma_{n}^{\epsilon}\subset\Lambda$. Moreover,
+note that these sets are decreasing in containment: 
+\[
+\Gamma_{1}^{\epsilon}\supset\Gamma_{2}^{\epsilon}\supset\cdots
+\]
+Therefore, $\mathbb{P}(\Gamma_{n}^{\epsilon})\rightarrow\mathbb{P}(\cap_{n}\Gamma_{n}^{\epsilon})\leq\mathbb{P}(\Lambda)=0$.
+Since $|X_{n}-X|\leq Z_{n}$,
+\[
+\mathbb{P}\left\{ \left|X_{n}-X\right|\geq\epsilon\right\} \leq\mathbb{P}(\Gamma_{n}^{\epsilon})\rightarrow0.\qedhere
+\]
+\end{proof}
+The converse of the above is not true in general:
+\begin{example}
+Let $Y\sim U[0,1]$ and define
+\begin{align*}
+X_{1} & =1\\
+X_{2} & =I_{[0,1/2]}(Y)\\
+X_{3} & =I_{(1/2,1]}(Y)\\
+X_{4} & =I_{[0,1/4]}(Y)\\
+X_{5} & =I_{(1/4,1/2]}(Y)\\
+\vdots
+\end{align*}
+Note that $X_{n}\rightarrow0$ in probability. However, there is no
+$\omega$ for which $X_{n}(\omega)\rightarrow0$!
+\end{example}
+It is not trivial that a limit of a sequence of random variables is
+a random variable itself, so we prove that next. As a technical point,
+since limits may introduce values of $-\infty$ and $+\infty$, we
+need to work with random variables which can take on infinite values:
+\begin{defn}
+Let $\overline{\mathbb{R}}=\mathbb{R}\cup\{-\infty,+\infty\}$ denote
+the \emph{extended real line}. An \emph{extended real valued (ERV)
+random variable} is a function $X\colon\Omega\rightarrow\overline{\mathbb{R}}$
+such that
+\[
+\left\{ X\leq x\right\} \in\mathcal{F}\qquad\text{for all }x\in\overline{\mathbb{R}}.
+\]
+\end{defn}
+\begin{prop}
+Let $X_{1},X_{2},\ldots$ be ERV random variables. Then, $M$, $m$,
+and $X_{\infty}$ are also ERV random variables where
+\begin{enumerate}
+\item $M(\omega)=\sup X_{n}(\omega)$.
+\item $m(\omega)=\limsup_{n\rightarrow\infty}X_{n}(\omega)$.
+\item $X_{\infty}(\omega)=\begin{cases}
+\lim_{n}X_{n}(\omega) & \text{if the limit exists}\\
+0 & \text{otherwise}.
+\end{cases}$
+\end{enumerate}
+\end{prop}
+Note that by taking the negation of the first two, we find that $\inf X_{n}$
+and $\liminf_{n\rightarrow\infty}X_{n}$ are also ERV random variables.
+\begin{proof}
+~
+\begin{enumerate}
+\item We need to show that $\{\omega\colon M(\omega)\leq x\}=\cap_{n}\{\omega\colon X_{n}(\omega)\leq x\}$
+is in $\mathcal{F}$ for any $x\in\overline{\mathbb{R}}$. Since it
+is a countable intersection of sets in $\mathcal{F}$, the desired
+result follows.
+\item Note that $m=\inf_{n}Y_{n}$ where $Y_{n}=\sup_{k\geq n}X_{k}$. We
+know by the previous point that $Y_{n}$ is an ERV random variable
+for each $n$. Therefore, $\sup_{n}-Y_{n}=-\inf Y_{n}$ is an ERV
+random variable, and so too is $m$.
+\item Let 
+\[
+\Lambda_{\infty}=\left\{ \omega\colon\limsup_{n}X_{n}(\omega)=\liminf_{n}X_{n}(\omega)\right\} .
+\]
+This set is in $\mathcal{F}$, and hence we can define the random
+variable
+\[
+Y_{n}=I_{\Lambda_{\infty}}X_{n}.
+\]
+The desired result follows because
+\[
+\limsup_{n}Y_{n}=\lim_{n}X_{n}
+\]
+is an extended real-valued random variable.\qedhere
+\end{enumerate}
+\end{proof}
+\begin{defn}
+Let $(\Lambda_{n})_{n}$ be a sequence of subsets of $\Omega$. Define
+\begin{align*}
+\limsup_{n}\Lambda_{n} & =\left\{ \omega\mid\forall N\colon\exists n\geq N\colon\omega\in\Lambda_{n}\right\} \\
+\liminf_{n}\Lambda_{n} & =\left\{ \omega\mid\exists N\colon\forall n\geq N\colon\omega\notin\Lambda_{n}\right\} .
+\end{align*}
+\end{defn}
+Intuitively, we can think of $\limsup_{n}\Lambda_{n}$ as the set
+of all $\omega$ such that $\omega\in\Lambda_{n}$ for ``infinitely
+many $n$''. Similarly, $\liminf_{n}\Lambda_{n}$ is the set of all
+$\omega$ such that $\omega\in\Lambda_{n}$ for ``all but finitely
+many $n$''. Expressed in an equivalent way,
+\begin{align*}
+\limsup_{n}\Lambda_{n} & =\bigcap_{N}\bigcup_{n\geq N}\Lambda_{m}\\
+\liminf_{n}\Lambda_{n} & =\bigcup_{N}\bigcap_{n\geq N}\Lambda_{m}.
+\end{align*}
+Applying De Morgan's law, we see
+\[
+\left(\limsup\Lambda_{n}\right)^{c}=\left(\bigcap_{N}\bigcup_{n\geq N}\Lambda_{m}\right)^{c}=\bigcup_{N}\bigcap_{n\geq N}\Lambda_{m}^{c}=\liminf\Lambda_{n}^{c}
+\]
+and hence $\limsup\Lambda_{n}^{c}=(\liminf\Lambda_{n})^{c}$ also.
+\begin{prop}[Borel-Cantelli lemma]
+Let $(\Lambda_{n})_{n}$ be a sequence in $\mathcal{F}$. Suppose
+$\sum_{n}\mathbb{P}(\Lambda_{n})<\infty$. Then,
+\[
+\mathbb{P}\left\{ \limsup\Lambda_{n}\right\} =0.
+\]
+\end{prop}
+\begin{proof}
+Recall that 
+\[
+\limsup_{n}\Lambda_{n}=\bigcap_{N}A_{N}\qquad\text{where}\qquad A_{N}=\bigcup_{n\geq N}\Lambda_{n}.
+\]
+In particular, $(A_{N})_{N}$ is decreasing in containment: $A_{1}\supset A_{2}\supset\cdots$
+Therefore,
+\[
+\lim_{N\rightarrow\infty}\mathbb{P}(A_{N})=\mathbb{P}\left(\bigcap_{N}A_{N}\right)=\mathbb{P}\left(\limsup_{n}\Lambda_{n}\right)\qquad\text{as}\qquad N\rightarrow\infty.
+\]
+But note that
+\[
+\lim_{N\rightarrow\infty}\mathbb{P}(A_{N})=\lim_{N\rightarrow\infty}\mathbb{P}\left(\bigcup_{n\geq N}\Lambda_{n}\right)\leq\lim_{N\rightarrow\infty}\sum_{n\geq N}\Lambda_{n}\rightarrow0.\qedhere
+\]
+\end{proof}
+Next, we look at an important application of the Borel-Cantelli lemma:
+\begin{prop}
+Let $(X_{n})_{n}$ be a sequence of ERV random variables and suppose
+$X_{n}\rightarrow X$ in probability. Then, there exists a subsequence
+$(n_{k})_{k}$ such that $X_{n_{k}}\rightarrow X$ a.e.
+\end{prop}
+\begin{proof}
+Taking $\epsilon=1/m$ in the definition of convergence in probability,
+we find that for each $m$,
+\[
+\mathbb{P}\left\{ \left|X_{n}-X\right|>1/m\right\} \rightarrow0\qquad\text{as }n\rightarrow\infty.
+\]
+Choose an increasing sequence $(n_{m})_{m}$ such that
+\[
+\mathbb{P}(\Lambda_{m})<1/2^{m}.
+\]
+where
+\[
+\Lambda_{m}=\left\{ \left|X_{n_{m}}-X\right|>\frac{1}{m}\right\} .
+\]
+Then, $\sum_{m}\mathbb{P}(\Lambda_{m})<\infty$, and therefore $\mathbb{P}(\limsup_{m}\Lambda_{m})=0$
+by the Borel-Cantelli lemma. Therefore,
+\[
+\mathbb{P}\left(\liminf_{m}\Lambda_{m}\right)=1.
+\]
+
+Recall now that
+\[
+\liminf_{m}\Lambda_{m}=\left\{ \omega\mid\exists N\colon\forall m\geq N\colon\omega\notin\Lambda_{n}\right\} .
+\]
+Therefore, for each $\omega\in\liminf_{m}\Lambda_{m}$, we can find
+an $N(\omega)$ (depending on $\omega$) such that for all $m\geq N(\omega)$,
+we have $\omega\notin\Lambda_{m}$. It follows that for $\omega\in\liminf_{m}\Lambda_{m}$,
+\[
+\left|X_{n_{m}}(\omega)-X(\omega)\right|\leq\frac{1}{m}\qquad\text{for all }m\geq N(\omega)
+\]
+and hence
+\[
+\left|X_{n_{m}}(\omega)-X(\omega)\right|\rightarrow0.
+\]
+That is, $X_{n_{m}}\rightarrow X$ pointwise on the set $\liminf_{m}\Lambda_{m}$,
+which is exactly the definition of a.e. convergence.
+\end{proof}
+The following diagram summarizes convergence relationships in a probability
+space. AE refers to a.e. convergence, $L^{p}$ refers to what we've
+been calling $\mathbb{L}^{p}$ convergence, and $M$ refers to convergence
+in probability (AU is a.u. convergence, but we haven't covered this
+type of convergence). A solid line from one mode of convergence to
+another indicates implication (e.g., a.e. convergence implies convergence
+in probability). A dashed line means that we can extract a subsequence,
+as in the previous proposition.
+
+\begin{figure}[H]
+\begin{centering}
+\includegraphics[width=3in]{modes}
+\par\end{centering}
+\caption{Modes of convergence (John Cook)}
+\end{figure}
+
+\end{document}
