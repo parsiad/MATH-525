@@ -207,6 +207,8 @@ The desired result follows because
 is an extended real-valued random variable.\qedhere
 \end{enumerate}
 \end{proof}
+
+\section{Borel-Cantelli lemma}
 \begin{defn}
 Let $(\Lambda_{n})_{n}$ be a sequence of subsets of $\Omega$. Define
 \begin{align*}
@@ -252,9 +254,10 @@ But note that
 \end{proof}
 Next, we look at an important application of the Borel-Cantelli lemma:
 \begin{prop}
-Let $(X_{n})_{n}$ be a sequence of ERV random variables and suppose
-$X_{n}\rightarrow X$ in probability. Then, there exists a subsequence
-$(n_{k})_{k}$ such that $X_{n_{k}}\rightarrow X$ a.e.
+\label{prop:extract}Let $(X_{n})_{n}$ be a sequence of ERV random
+variables and suppose $X_{n}\rightarrow X$ in probability. Then,
+there exists a subsequence $(n_{k})_{k}$ such that $X_{n_{k}}\rightarrow X$
+a.e.
 \end{prop}
 \begin{proof}
 Taking $\epsilon=1/m$ in the definition of convergence in probability,
@@ -293,20 +296,43 @@ and hence
 That is, $X_{n_{m}}\rightarrow X$ pointwise on the set $\liminf_{m}\Lambda_{m}$,
 which is exactly the definition of a.e. convergence.
 \end{proof}
+
+\section{Modes of convergence diagram}
+
 The following diagram summarizes convergence relationships in a probability
 space. AE refers to a.e. convergence, $L^{p}$ refers to what we've
 been calling $\mathbb{L}^{p}$ convergence, and $M$ refers to convergence
-in probability (AU is a.u. convergence, but we haven't covered this
-type of convergence). A solid line from one mode of convergence to
-another indicates implication (e.g., a.e. convergence implies convergence
-in probability). A dashed line means that we can extract a subsequence,
-as in the previous proposition.
+in probability. AU is a.u. convergence which we will most likely not
+encounter, though it's definition is below for those who are interested.
 
 \begin{figure}[H]
 \begin{centering}
 \includegraphics[width=3in]{modes}
 \par\end{centering}
-\caption{Modes of convergence (John Cook)}
+\caption{Modes of convergence (diagram by John Cook). A solid line from one
+mode of convergence to another indicates implication (e.g., a.e. convergence
+implies convergence in probability). A dashed line means that we can
+extract a subsequence, as in Proposition \ref{prop:extract}.}
 \end{figure}
+
+
+\subsection{Almost uniform convergence (optional)}
+
+Let $(f_{n})_{n}$ be a sequence of real-valued functions and $f$
+be a real-valued function such that $f_{n}$ and $f$ have the same
+domain. We say $f_{n}\rightarrow f$ \emph{uniformly} if for each
+$\epsilon>0$, we can find $N$ such that for all $n\geq N$,
+\[
+\left\Vert f_{n}-f\right\Vert _{\infty}\equiv\sup_{x}\left|f_{n}(x)-f(x)\right|<\epsilon.
+\]
+
+\begin{defn}
+Let $(X_{n})_{n}$ be a sequence of random variables and $X$ be a
+random variable. We say $X_{n}\rightarrow X$ almost uniformly (a.u.)
+if for every $\epsilon>0$, we can find a set $A\in\mathcal{F}$ with
+$\mathbb{P}(A)<\epsilon$ such that $X_{n}\mid_{A}\rightarrow X\mid_{A}$
+converges uniformly. Here, the symbol $\cdot\mid_{A}$ is the restriction
+of a function to the set $A$.
+\end{defn}
 
 \end{document}
