@@ -1,4 +1,4 @@
-%% LyX 2.2.1 created this file.  For more info, see http://www.lyx.org/.
+%% LyX 2.2.3 created this file.  For more info, see http://www.lyx.org/.
 %% Do not edit unless you really know what you are doing.
 \documentclass[english,12pt]{article}
 \usepackage[T1]{fontenc}
@@ -64,13 +64,11 @@ to a random variable $X$ if $X_{n}(\omega)\rightarrow X(\omega)$
 for each $\omega$ in the sample space.
 \end{defn}
 This is the usual definition of pointwise convergence for functions,
-but it's not the most useful in probability.
-
-Why? Consider two random variables $X$ and $Y$ which are equal to
-a.s., but we can find $\omega$ such that $X(\omega)\neq Y(\omega)$.
-Then, the alternating sequence $X,Y,X,Y,\ldots$ does not have a pointwise
-limit, even though the two random variables are ``essentially''
-the same!
+but it's not the most useful in probability. Why? Consider two random
+variables $X$ and $Y$ which are equal to a.s., but we can find $\omega$
+such that $X(\omega)\neq Y(\omega)$. Then, the alternating sequence
+$X,Y,X,Y,\ldots$ does not have a pointwise limit, even though the
+two random variables are ``essentially'' the same!
 
 The above discussion implies that we need a weaker notion of convergence
 when it comes to probability:
@@ -315,7 +313,6 @@ implies convergence in probability). A dashed line means that we can
 extract a subsequence, as in Proposition \ref{prop:extract}.}
 \end{figure}
 
-
 \subsection{Almost uniform convergence (optional)}
 
 Let $(f_{n})_{n}$ be a sequence of real-valued functions and $f$
@@ -325,7 +322,6 @@ $\epsilon>0$, we can find $N$ such that for all $n\geq N$,
 \[
 \left\Vert f_{n}-f\right\Vert _{\infty}\equiv\sup_{x}\left|f_{n}(x)-f(x)\right|<\epsilon.
 \]
-
 \begin{defn}
 Let $(X_{n})_{n}$ be a sequence of random variables and $X$ be a
 random variable. We say $X_{n}\rightarrow X$ almost uniformly (a.u.)
