@@ -62,7 +62,7 @@ All assignments are to be handed in at the *beginning* of class.
 * [Tu Jan 23: moments, moment generating functions, and special discrete distributions](lecture6.pdf) (Section 2.6 and 2.8) [\[LaTeX source\]](lecture6.tex)
 * [Th Jan 25: expectations of general random variables](lecture7.pdf) (Section 3.1) [\[LaTeX source\]](lecture7.tex)
 * [Tu Jan 30: moment inequalities and Jensen's inequality](lecture8.pdf) (Section 3.3 and 3.4) [\[LaTeX source\]](lecture8.tex)
-* [Th Feb 01: convergence of random variables and the Borel-Cantelli lemma](lecture9.pdf)
+* [Th Feb 01: convergence of random variables and the Borel-Cantelli lemma](lecture9.pdf) (Section 4.1) [\[LaTeX source\]](lecture9.tex)
 * Tu Feb 06
 * Th Feb 08
 * Tu Feb 13
