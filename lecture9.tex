@@ -1,4 +1,4 @@
-%% LyX 2.2.3 created this file.  For more info, see http://www.lyx.org/.
+%% LyX 2.2.1 created this file.  For more info, see http://www.lyx.org/.
 %% Do not edit unless you really know what you are doing.
 \documentclass[english,12pt]{article}
 \usepackage[T1]{fontenc}
@@ -211,7 +211,7 @@ is an extended real-valued random variable.\qedhere
 Let $(\Lambda_{n})_{n}$ be a sequence of subsets of $\Omega$. Define
 \begin{align*}
 \limsup_{n}\Lambda_{n} & =\left\{ \omega\mid\forall N\colon\exists n\geq N\colon\omega\in\Lambda_{n}\right\} \\
-\liminf_{n}\Lambda_{n} & =\left\{ \omega\mid\exists N\colon\forall n\geq N\colon\omega\notin\Lambda_{n}\right\} .
+\liminf_{n}\Lambda_{n} & =\left\{ \omega\mid\exists N\colon\forall n\geq N\colon\omega\in\Lambda_{n}\right\} .
 \end{align*}
 \end{defn}
 Intuitively, we can think of $\limsup_{n}\Lambda_{n}$ as the set
@@ -274,12 +274,12 @@ where
 Then, $\sum_{m}\mathbb{P}(\Lambda_{m})<\infty$, and therefore $\mathbb{P}(\limsup_{m}\Lambda_{m})=0$
 by the Borel-Cantelli lemma. Therefore,
 \[
-\mathbb{P}\left(\liminf_{m}\Lambda_{m}\right)=1.
+\mathbb{P}\left(\liminf_{m}\Lambda_{m}^{c}\right)=1-\mathbb{P}\left(\limsup_{m}\Lambda_{m}\right)=1.
 \]
 
 Recall now that
 \[
-\liminf_{m}\Lambda_{m}=\left\{ \omega\mid\exists N\colon\forall m\geq N\colon\omega\notin\Lambda_{n}\right\} .
+\liminf_{m}\Lambda_{m}^{c}=\left\{ \omega\mid\exists N\colon\forall m\geq N\colon\omega\notin\Lambda_{n}\right\} .
 \]
 Therefore, for each $\omega\in\liminf_{m}\Lambda_{m}$, we can find
 an $N(\omega)$ (depending on $\omega$) such that for all $m\geq N(\omega)$,
@@ -313,6 +313,7 @@ implies convergence in probability). A dashed line means that we can
 extract a subsequence, as in Proposition \ref{prop:extract}.}
 \end{figure}
 
+
 \subsection{Almost uniform convergence (optional)}
 
 Let $(f_{n})_{n}$ be a sequence of real-valued functions and $f$
@@ -322,6 +323,7 @@ $\epsilon>0$, we can find $N$ such that for all $n\geq N$,
 \[
 \left\Vert f_{n}-f\right\Vert _{\infty}\equiv\sup_{x}\left|f_{n}(x)-f(x)\right|<\epsilon.
 \]
+
 \begin{defn}
 Let $(X_{n})_{n}$ be a sequence of random variables and $X$ be a
 random variable. We say $X_{n}\rightarrow X$ almost uniformly (a.u.)
