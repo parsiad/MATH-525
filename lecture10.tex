@@ -1,0 +1,285 @@
+%% LyX 2.2.1 created this file.  For more info, see http://www.lyx.org/.
+%% Do not edit unless you really know what you are doing.
+\documentclass[english,12pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage[latin9]{inputenc}
+\usepackage{mathtools}
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{amssymb}
+
+\makeatletter
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Textclass specific LaTeX commands.
+\theoremstyle{plain}
+\newtheorem{thm}{\protect\theoremname}[section]
+\theoremstyle{definition}
+\newtheorem{example}[thm]{\protect\examplename}
+\theoremstyle{plain}
+\newtheorem{prop}[thm]{\protect\propositionname}
+\ifx\proof\undefined
+\newenvironment{proof}[1][\protect\proofname]{\par
+\normalfont\topsep6\p@\@plus6\p@\relax
+\trivlist
+\itemindent\parindent
+\item[\hskip\labelsep\scshape #1]\ignorespaces
+}{%
+\endtrivlist\@endpefalse
+}
+\providecommand{\proofname}{Proof}
+\fi
+\theoremstyle{plain}
+\newtheorem{cor}[thm]{\protect\corollaryname}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% User specified LaTeX commands.
+\usepackage[margin=1in]{geometry}
+
+\makeatother
+
+\usepackage{babel}
+\providecommand{\corollaryname}{Corollary}
+\providecommand{\examplename}{Example}
+\providecommand{\propositionname}{Proposition}
+\providecommand{\theoremname}{Theorem}
+
+\begin{document}
+
+\title{Math 525: Lecture 10}
+
+\date{February 1, 2018}
+\maketitle
+
+\section{Limits of expectations}
+
+Remember the moment generating function of a random variable $X$?
+It looked like
+\[
+M(\theta)=\mathbb{E}\left[e^{\theta X}\right].
+\]
+We claimed that $M(\theta)$ ``generates the moments'' in the sense
+that $M^{(k)}(0)=\mathbb{E}[X^{k}]$ for $k\in\mathbb{N}$. However,
+we did not justify this claim rigorously, as doing so required us
+to deal with limits under the expectation. In particular, we wanted
+to write
+\[
+M(\theta)=\mathbb{E}\left[\lim_{n\rightarrow\infty}\sum_{n=0}^{N}\frac{\theta^{n}}{n!}X^{n}\right]=\lim_{n\rightarrow\infty}\mathbb{E}\left[\sum_{n=0}^{N}\frac{\theta^{n}}{n!}X^{n}\right]=\lim_{n\rightarrow\infty}\sum_{n=0}^{N}\frac{\theta^{n}}{n!}\mathbb{E}\left[X^{n}\right],
+\]
+but we were unable to justify the second equality above.
+
+Motivated by this (and other applications), we will talk today about
+limits of expectations. That is, given a sequence of random variables
+$(X_{n})_{n}$, can we conclude that $\lim_{n}\mathbb{E}[X_{n}]=\mathbb{E}[\lim_{n}X_{n}]$?
+The answer is, ``most of the time, but not always'':
+\begin{example}
+Let $Y\sim U[0,1]$ and $X_{n}=nI_{[0,1/n]}(Y)$. Then,
+\[
+\mathbb{E}\left[X_{n}\right]=n\mathbb{P}(Y\leq1/n)=1
+\]
+but $X_{n}\rightarrow0$ a.s.! That is, $1=\lim_{n}\mathbb{E}[X_{n}]\neq\mathbb{E}[\lim_{n}X_{n}]=0$.
+\end{example}
+We start out with a simple limit theorem for expectations. To simplify
+notation, let $x\wedge y=\min\{x,y\}$. For the remainder, it should
+be understood that all random variables are extended real valued.
+\begin{prop}
+\label{prop:minimum}Let $X$ be a random variable such that $X\geq0$
+a.s. Then,
+\[
+\lim_{n\rightarrow\infty}\mathbb{E}\left[X\wedge n\right]=\lim_{n\rightarrow\infty}\mathbb{E}\left[X\right].
+\]
+\end{prop}
+This is true even when $X$ is not integrable (i.e., $\mathbb{E}[X]=\infty$).
+\begin{proof}
+Note that
+\[
+X\wedge n=nI_{\{X=\infty\}}+\left(X\wedge n\right)I_{\{X<\infty\}}.
+\]
+Therefore, if $\mathbb{P}\{X=\infty\}>0$,
+\[
+\mathbb{E}\left[X\right]\geq\mathbb{E}\left[X\wedge n\right]\geq\mathbb{E}\left[nI_{\{X=\infty\}}\right]=n\mathbb{P}\left\{ X=\infty\right\} \rightarrow\infty\qquad\text{as}\qquad n\rightarrow\infty
+\]
+and the claim is trivially true. Therefore, we may proceed assuming
+$X$ is finite everywhere.
+
+Note that
+\[
+\underline{X}_{k}\wedge n=\underline{X}_{k}I_{\{\underline{X}_{k}\leq n\}}+nI_{\{\underline{X}_{k}>n\}}.
+\]
+Therefore,
+\begin{align*}
+\mathbb{E}\left[X\wedge n\right] & \geq\mathbb{E}\left[\underline{X}_{k}\wedge n\right]\\
+ & \geq\mathbb{E}\left[\underline{X}_{k}I_{\{\underline{X}_{k}\leq n\}}\right]\\
+ & =\sum_{j=1}^{2^{k}n}\frac{j}{2^{k}}\mathbb{P}\left\{ \underline{X}_{k}=\frac{j}{2^{k}}\right\} .
+\end{align*}
+If we take limits of both sides of this inequality,
+\[
+\lim_{n\rightarrow\infty}\mathbb{E}\left[X\wedge n\right]\geq\sum_{j=1}^{\infty}\frac{j}{2^{k}}\mathbb{P}\left\{ \underline{X}_{k}=\frac{j}{2^{k}}\right\} =\mathbb{E}\left[\underline{X}_{k}\right].
+\]
+Taking limits in the above inequality,
+\[
+\lim_{n\rightarrow\infty}\mathbb{E}\left[X\wedge n\right]\geq\lim_{k\rightarrow\infty}\mathbb{E}\left[\underline{X}_{k}\right]=\mathbb{E}\left[X\right].
+\]
+The reverse inequality is trivial: since $\mathbb{E}[X]\geq\mathbb{E}[X\wedge n]$
+for all $n$,
+\[
+\mathbb{E}\left[X\right]\geq\lim_{n\rightarrow\infty}\mathbb{E}\left[X\wedge n\right].
+\]
+\end{proof}
+Recall that a nondecreasing sequence of real numbers $(a_{n})_{n}$
+can do one of two things: converge to a finite limit, or diverge to
+$\infty$. The Monotone Convergence Theorem (up next) is the analogue
+of this claim for random variables (or, more generally, measurable
+functions).
+\begin{prop}[Monotone Convergence Theorem]
+Consider a sequence of random varibles $(X_{n})_{n}$ satisfying
+$0\leq X_{1}\leq X_{2}\leq\cdots$ a.s. and $X_{n}\rightarrow X$
+a.s. Then,
+\[
+\lim_{n\rightarrow\infty}\mathbb{E}\left[X_{n}\right]=\mathbb{E}\left[X\right].
+\]
+\end{prop}
+As before, this is true even when $X$ is not integrable (i.e., $\mathbb{E}[X]=\infty$).
+\begin{proof}
+As usual, we can ignore the ``a.s.'' (though you should convince
+yourself carefully that this is the case).
+
+Taking expectations of the inequality, we get $0\leq\mathbb{E}X_{1}\leq\mathbb{E}X_{2}\leq\cdots$.
+Therefore, $\lim_{n}\mathbb{E}[X_{n}]\leq\mathbb{E}[X]$ (note that
+$\lim_{n}\mathbb{E}[X_{n}]$ may be infinite). Therefore, if we can
+establish the reverse inequality $\lim_{n}\mathbb{E}[X_{n}]\geq\mathbb{E}[X]$,
+we will be done. By Proposition \ref{prop:minimum}, $\mathbb{E}[X_{n}]=\lim_{N}\mathbb{E}[X_{n}\wedge N]$
+and $\mathbb{E}[X]=\lim_{N}\mathbb{E}[X\wedge N]$ and hence it is
+sufficient to establish
+\[
+\lim_{n}\mathbb{E}[X_{n}\wedge N]\geq\mathbb{E}[X\wedge N]\qquad\text{for all }N.
+\]
+
+Fix $N$ and let $Y=X\wedge N$ and $Y_{n}=X_{n}\wedge N$. Trivially,
+$Y$ and $Y_{N}$ are integrable. Let $\epsilon>0$ and 
+\[
+A_{\epsilon,n}=\left\{ Y-Y_{n}\geq\epsilon\right\} .
+\]
+Note that $A_{\epsilon,1}\supset A_{\epsilon,2}\supset\cdots$ is
+a decreasing sequence of sets (since $Y_{1}\leq Y_{2}\leq\cdots$)
+and hence by continuity of the probability measure,
+\[
+\mathbb{P}(A_{\epsilon,n})\rightarrow\mathbb{P}(\cap_{n}A_{\epsilon,n})\qquad\text{as}\qquad n\rightarrow\infty.
+\]
+Moreover, since $Y_{n}\rightarrow Y$ a.s., $\cap_{n}A_{\epsilon,n}=\emptyset$.
+Note that
+\[
+Y-Y_{n}\leq NI_{A_{\epsilon,n}}+\epsilon I_{A_{\epsilon,n}^{c}}
+\]
+and hence
+\[
+\mathbb{E}\left[Y\right]-\mathbb{E}\left[Y_{n}\right]=\mathbb{E}\left[Y-Y_{n}\right]\leq\mathbb{E}\left[NI_{A_{\epsilon,n}}+\epsilon I_{A_{\epsilon,n}^{c}}\right]\leq N\mathbb{P}(A_{\epsilon,n})+\epsilon\mathbb{P}(A_{\epsilon,n}^{c})\leq N\mathbb{P}(A_{\epsilon,n})+\epsilon.
+\]
+Taking limits,
+\[
+\mathbb{E}\left[Y\right]-\lim_{n}\mathbb{E}\left[Y_{n}\right]\leq\epsilon.
+\]
+Taking $\epsilon\rightarrow0$ gives us the desired inequality.
+\end{proof}
+The monotone convergence theorem was for nonnegative increasing sequences.
+What about decreasing sequences?
+\begin{cor}
+Consider a sequence of random varibles $(X_{n})_{n}$ satisfying $X_{1}\geq X_{2}\geq\cdots\geq0$
+a.s. and $X_{n}\rightarrow X$ a.s. If $X_{1}$ is integrable, then
+\[
+\lim_{n\rightarrow\infty}\mathbb{E}\left[X_{n}\right]=\mathbb{E}\left[X\right].
+\]
+\end{cor}
+\begin{proof}
+Let $Y_{n}=X_{1}-X_{n}$ and note that $Y_{n}$ increases to $Y=X_{1}-X$.
+Therefore, by the Monotone Convergence Theorem,
+\[
+\lim_{n\rightarrow\infty}\mathbb{E}\left[Y_{n}\right]=\mathbb{E}\left[Y\right].
+\]
+Now, $\mathbb{E}[Y]=\mathbb{E}[X_{1}]-\mathbb{E}[X]$ due to integrability.
+Similarly, $\mathbb{E}[Y_{n}]=\mathbb{E}[X_{1}]-\mathbb{E}[X_{n}]$.
+Plugging these into the above and simplifying, we obtain the desired
+result.
+\end{proof}
+It is not possible to remove the integrability condition from the
+above:
+\begin{example}
+Let $Y\sim U[0,1]$ and $X_{n}=\frac{1}{nY}$. Then,
+\[
+\mathbb{E}\left[X_{n}\right]=\int_{0}^{1}\frac{1}{ny}dy=\frac{1}{n}\int_{0}^{1}\frac{1}{y}dy=\frac{1}{n}\lim_{y\downarrow0}\left(\log1-\log y\right)=\infty.
+\]
+However, $X_{n}\downarrow0$ a.s.
+\end{example}
+\begin{prop}[Fatou's Lemma]
+Let $(X_{n})_{n}$ be a sequence of random variables with $X_{n}\geq0$
+a.s. Then,
+\[
+\liminf_{n\rightarrow\infty}\mathbb{E}\left[X_{n}\right]\geq\mathbb{E}\left[\liminf_{n\rightarrow\infty}X_{n}\right].
+\]
+\end{prop}
+\begin{proof}
+Trivially,
+\[
+\mathbb{E}\left[X_{n}\right]\geq\mathbb{E}\left[\inf_{j\geq n}X_{j}\right].
+\]
+Letting $Y_{n}=\inf_{j\geq n}X_{j}$ and applying limit inferiors
+to both sides of the above inequality,
+\[
+\liminf_{n}\mathbb{E}\left[X_{n}\right]\geq\liminf_{n}\mathbb{E}\left[Y_{n}\right].
+\]
+Note, in particular, that $Y_{n}$ is a nondecreasing sequence. Therefore,
+by the Monotone Convergence Theorem,
+\[
+\lim_{n}\mathbb{E}\left[Y_{n}\right]=\mathbb{E}\left[\lim_{n}Y_{n}\right]=\mathbb{E}\left[\lim_{n}\inf_{j\geq n}X_{j}\right]=\mathbb{E}\left[\liminf_{n}X_{n}\right].
+\]
+\end{proof}
+\begin{prop}
+Let $(X_{n})_{n}$ be a sequence of random variables dominated by
+some integrable random variable $Y$ (i.e., $\mathbb{E}|Y|<\infty$
+and $|X_{n}|\leq Y$) such that $X_{n}\rightarrow X$ a.s. Then,
+\[
+\mathbb{E}\left[X_{n}\right]\rightarrow\left[X\right].
+\]
+\end{prop}
+\begin{proof}
+First, we handle the a.s. case. Indeed, suppose $X_{n}\rightarrow X$
+a.s. Then, $Y-X_{n}\geq0$ a.s. and $Y-X_{n}\rightarrow Y-X$ a.s.
+By Fatou's lemma,
+\[
+\mathbb{E}\left[Y\right]-\limsup_{n}\mathbb{E}\left[X_{n}\right]=\liminf_{n}\mathbb{E}\left[Y-X_{n}\right]\geq\mathbb{E}\left[\liminf_{n}\left(Y-X_{n}\right)\right]=\mathbb{E}\left[Y\right]-\mathbb{E}\left[\limsup_{n}X_{n}\right]=\mathbb{E}\left[Y\right]-\mathbb{E}\left[\lim_{n}X_{n}\right].
+\]
+Therefore,
+\[
+\limsup_{n}\mathbb{E}\left[X_{n}\right]\leq\mathbb{E}\left[\lim_{n}X_{n}\right].
+\]
+An identical argument with $Y+X_{n}\geq0$ yields
+\[
+\liminf_{n}\mathbb{E}\left[X_{n}\right]\geq\mathbb{E}\left[\lim_{n}X_{n}\right].
+\]
+Combining the two inequalities above, the desired result follows.
+\end{proof}
+\begin{cor}
+Let $(X_{n})_{n}$ be a sequence of random variables dominated by
+a real number (i.e., $|X_{n}|\leq M$) such that $X_{n}\rightarrow X$
+a.s. Then,
+\[
+\mathbb{E}\left[X_{n}\right]\rightarrow\left[X\right].
+\]
+\end{cor}
+\begin{proof}
+Take $Y=M$ in the Dominated Convergence Theorem.
+\end{proof}
+%
+\begin{cor}
+Let $(X_{n})_{n}$ be a sequence of random variables satisfying the
+requirements of the Dominated Convergence Theorem. Then, $X_{n}\xrightarrow{\mathbb{L}^{1}}X.$
+\end{cor}
+\begin{proof}
+Note that $|X_{n}-X|\leq2Y$ and $|X_{n}-X|\rightarrow0$. Therefore,
+$\mathbb{E}|X_{n}-X|\rightarrow0$ by the Dominated Convergence Theorem,
+and hence the sequence converges in $\mathbb{L}^{1}$.
+\end{proof}
+Conversely, if we have a sequence $(X_{n})_{n}$ converging to some
+$X$ in $\mathbb{L}^{1}$,
+\[
+\left|\mathbb{E}X_{n}-\mathbb{E}X\right|=\mathbb{E}\left[\left|X_{n}-X\right|\right]\rightarrow0
+\]
+and hence it is trivially the case that $\mathbb{E}X_{n}\rightarrow\mathbb{E}X$.
+\end{document}
