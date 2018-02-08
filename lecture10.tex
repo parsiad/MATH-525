@@ -242,9 +242,10 @@ and $|X_{n}|\leq Y$) such that $X_{n}\rightarrow X$ a.s. Then,
 First, we handle the a.s. case. Indeed, suppose $X_{n}\rightarrow X$
 a.s. Then, $Y-X_{n}\geq0$ a.s. and $Y-X_{n}\rightarrow Y-X$ a.s.
 By Fatou's lemma,
-\[
-\mathbb{E}\left[Y\right]-\limsup_{n}\mathbb{E}\left[X_{n}\right]=\liminf_{n}\mathbb{E}\left[Y-X_{n}\right]\geq\mathbb{E}\left[\liminf_{n}\left(Y-X_{n}\right)\right]=\mathbb{E}\left[Y\right]-\mathbb{E}\left[\limsup_{n}X_{n}\right]=\mathbb{E}\left[Y\right]-\mathbb{E}\left[\lim_{n}X_{n}\right].
-\]
+\begin{multline*}
+\mathbb{E}\left[Y\right]-\limsup_{n}\mathbb{E}\left[X_{n}\right]=\liminf_{n}\mathbb{E}\left[Y-X_{n}\right]\geq\mathbb{E}\left[\liminf_{n}\left(Y-X_{n}\right)\right]=\mathbb{E}\left[Y\right]-\mathbb{E}\left[\limsup_{n}X_{n}\right]\\
+=\mathbb{E}\left[Y\right]-\mathbb{E}\left[\lim_{n}X_{n}\right].
+\end{multline*}
 Therefore,
 \[
 \limsup_{n}\mathbb{E}\left[X_{n}\right]\leq\mathbb{E}\left[\lim_{n}X_{n}\right].
