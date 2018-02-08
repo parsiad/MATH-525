@@ -1,4 +1,4 @@
-%% LyX 2.2.1 created this file.  For more info, see http://www.lyx.org/.
+%% LyX 2.2.3 created this file.  For more info, see http://www.lyx.org/.
 %% Do not edit unless you really know what you are doing.
 \documentclass[english,12pt]{article}
 \usepackage[T1]{fontenc}
@@ -247,7 +247,7 @@ Therefore,
 \]
 But note that
 \[
-\lim_{N\rightarrow\infty}\mathbb{P}(A_{N})=\lim_{N\rightarrow\infty}\mathbb{P}\left(\bigcup_{n\geq N}\Lambda_{n}\right)\leq\lim_{N\rightarrow\infty}\sum_{n\geq N}\Lambda_{n}\rightarrow0.\qedhere
+\lim_{N\rightarrow\infty}\mathbb{P}(A_{N})=\lim_{N\rightarrow\infty}\mathbb{P}\left(\bigcup_{n\geq N}\Lambda_{n}\right)\leq\lim_{N\rightarrow\infty}\sum_{n\geq N}\mathbb{P}(\Lambda_{n})\rightarrow0.\qedhere
 \]
 \end{proof}
 Next, we look at an important application of the Borel-Cantelli lemma:
@@ -313,7 +313,6 @@ implies convergence in probability). A dashed line means that we can
 extract a subsequence, as in Proposition \ref{prop:extract}.}
 \end{figure}
 
-
 \subsection{Almost uniform convergence (optional)}
 
 Let $(f_{n})_{n}$ be a sequence of real-valued functions and $f$
@@ -323,7 +322,6 @@ $\epsilon>0$, we can find $N$ such that for all $n\geq N$,
 \[
 \left\Vert f_{n}-f\right\Vert _{\infty}\equiv\sup_{x}\left|f_{n}(x)-f(x)\right|<\epsilon.
 \]
-
 \begin{defn}
 Let $(X_{n})_{n}$ be a sequence of random variables and $X$ be a
 random variable. We say $X_{n}\rightarrow X$ almost uniformly (a.u.)
