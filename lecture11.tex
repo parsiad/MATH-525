@@ -251,8 +251,8 @@ random variables, for some $0\leq p\leq1$. As usual, define $S_{n}=X_{1}+\cdots+
 Note that $S_{n}\sim B(n,p)$, and hence $\mathbb{E}[S_{n}]=np$ (equivalently,
 $\mathbb{E}[\frac{1}{n}S_{n}]=p$). Moreover, $\operatorname{Var}(S_{n})=np(1-p)$.
 
-By the weak law of large numbers, $S_{n}/n\rightarrow p$ in probability.
-Let $\delta>0$. By Chebyshev's inequality,
+By the strong law of large numbers, $S_{n}/n\rightarrow p$ a.s. Let
+$\delta>0$. By Chebyshev's inequality,
 \[
 \mathbb{P}\left\{ \left|\frac{1}{n}S_{n}-p\right|\geq\delta\right\} \leq\frac{1}{\delta^{2}}\mathbb{E}\left[\left|\frac{1}{n}S_{n}-p\right|^{2}\right]=\frac{\operatorname{Var}(\frac{1}{n}S_{n})}{\delta^{2}}=\frac{\operatorname{Var}(S_{n})}{n^{2}\delta^{2}}=\frac{p\left(1-p\right)}{n\delta^{2}}\leq\frac{1}{4n\delta^{2}}.
 \]
@@ -265,15 +265,15 @@ and set it to zero).
 
 Now, let $f\in C[0,1]$ be arbitrary. Since
 \[
-\frac{1}{n}S_{n}\rightarrow p
+\frac{1}{n}S_{n}\rightarrow p\text{ a.s.}
 \]
-in probability, then
+a.s., then by continuity,
 \[
-f\left(\frac{1}{n}S_{n}\right)\rightarrow f(p)
+f\left(\frac{1}{n}S_{n}\right)\rightarrow f(p)\text{ a.s.}
 \]
-in probability. By the dominated convergence theorem,
+By the dominated convergence theorem,
 \[
-\mathbb{E}\left[f\left(\frac{1}{n}S_{n}\right)\right]\rightarrow\mathbb{E}\left[f\left(p\right)\right].
+\mathbb{E}\left[f\left(\frac{1}{n}S_{n}\right)\right]\rightarrow\mathbb{E}\left[f\left(p\right)\right]=f(p).
 \]
 Let $\epsilon>0$. Since continuity and uniform continuity are equivalent
 on compact sets, we can pick $\delta>0$ such that for $|f(x)-f(y)|<\epsilon$
