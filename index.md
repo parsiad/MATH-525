@@ -36,7 +36,7 @@ The grading scheme is as follows:
 * Midterms: 40%
 * Final: 40%
 
-The lowest of your assignment scores will not count towards your final grade. Midterms will be held in class. The final is on **April 23rd, 1:30 - 3:30 pm** (room TBA).
+The lowest of your assignment scores will not count towards your final grade. Midterms will be held in class. The final is on **April 23rd, 1:30 - 3:30 pm** (room TBA). All exams are *closed book*.
 
 Grades will be posted on Canvas:
 
