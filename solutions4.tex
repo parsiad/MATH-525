@@ -1,0 +1,88 @@
+%% LyX 2.2.3 created this file.  For more info, see http://www.lyx.org/.
+%% Do not edit unless you really know what you are doing.
+\documentclass[english,12pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage[latin9]{inputenc}
+\usepackage{color}
+\usepackage{babel}
+\usepackage{mathtools}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage[unicode=true,pdfusetitle,
+ bookmarks=true,bookmarksnumbered=false,bookmarksopen=false,
+ breaklinks=false,pdfborder={0 0 1},backref=false,colorlinks=true]
+ {hyperref}
+\usepackage{breakurl}
+
+\makeatletter
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% User specified LaTeX commands.
+\usepackage[margin=1in]{geometry}
+
+\makeatother
+
+\begin{document}
+
+\title{Math 525: Assignment 4 Solutions}
+
+\date{\date{}}
+\maketitle
+\begin{enumerate}
+\item As per the hint,
+\[
+M(\theta)=\mathbb{E}\left[e^{\theta X}\right]=\int_{-\infty}^{\infty}\frac{1}{\sqrt{2\pi}}e^{-u^{2}/2}e^{\theta u}du=\cdots=e^{\theta^{2}/2}.
+\]
+Therefore,
+\[
+M^{\prime\prime\prime}(\theta)=e^{\theta^{2}/2}\theta\left(\theta^{2}+3\right).
+\]
+Evaulating the above at $\theta=0$, we obtain the third moment: $\mathbb{E}[X^{3}]=M^{\prime\prime\prime}(0)=0$.
+\item ~
+\begin{enumerate}
+\item We showed in class that if $X=Y$ a.s., then $\mathbb{E}X=\mathbb{E}Y$.
+Let $Y=0$, so that $\mathbb{E}X=\mathbb{E}0=0$ (the last equality
+follows since $\mathbb{E}0=\mathbb{E}[0\cdot0]=0\cdot\mathbb{E}0$).
+\item As per the hint, let $A_{n}=\{X\geq1/n\}$. Note that
+\[
+\mathbb{E}X=\mathbb{E}\left[XI_{A_{n}}+XI_{A_{n}^{c}}\right]\geq\mathbb{E}\left[XI_{A_{n}}\right]\geq\mathbb{E}\left[\frac{1}{n}I_{A_{n}}\right]=\frac{1}{n}\mathbb{P}(A_{n}).
+\]
+Since $\mathbb{E}X=0$, the above implies that $\mathbb{P}(A_{n})=0$.
+Note also that the sets $A_{n}$ are increasing: $A_{1}\subset A_{2}\subset\cdots$
+Apply continuity of measure to get $0=\mathbb{P}(A_{n})\rightarrow\mathbb{P}(\cup_{n}A_{n})$.
+Moreover, note that
+\[
+\bigcup_{n}A_{n}=\left\{ X>0\right\} ,
+\]
+as desired.
+\item $XI_{E}=0$ a.s., from which the result follows immediately.
+\end{enumerate}
+\item ~
+\begin{enumerate}
+\item Note that
+\[
+x=\int_{0}^{x}1dy=\int_{0}^{x}1dy+\int_{x}^{\infty}0dy=\int_{0}^{\infty}I_{[0,x)}(y)dy.
+\]
+Plugging in $x=X$ and taking expectations,
+\[
+\mathbb{E}X=\mathbb{E}\left[\int_{0}^{X}I_{[0,X)}(y)dy\right].
+\]
+\item This is just an application of the Fubini-Tonelli theorem (as a technical
+note, to apply Fubini-Toenlli, we need $X$ to be integrable).
+\item Note that
+\[
+I_{[0,X)}(y)=\begin{cases}
+1 & \text{if }y<X\\
+0 & \text{if }y\geq X.
+\end{cases}
+\]
+Therefore,
+\[
+\mathbb{E}\left[I_{[0,X)}(y)\right]=\mathbb{P}(X>y).
+\]
+\item Combining our findings
+\[
+\mathbb{E}X=\int_{0}^{\infty}\mathbb{P}(X>y)dy=\int_{0}^{\infty}\left(1-\mathbb{P}(X\leq y)\right)dy=\int_{0}^{\infty}\left(1-F(y)\right)dy.
+\]
+\end{enumerate}
+\end{enumerate}
+
+\end{document}
