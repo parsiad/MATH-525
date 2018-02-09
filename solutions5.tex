@@ -1,0 +1,63 @@
+%% LyX 2.2.3 created this file.  For more info, see http://www.lyx.org/.
+%% Do not edit unless you really know what you are doing.
+\documentclass[english,12pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage[latin9]{inputenc}
+\usepackage{color}
+\usepackage{babel}
+\usepackage{mathtools}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage[unicode=true,pdfusetitle,
+ bookmarks=true,bookmarksnumbered=false,bookmarksopen=false,
+ breaklinks=false,pdfborder={0 0 1},backref=false,colorlinks=true]
+ {hyperref}
+\usepackage{breakurl}
+
+\makeatletter
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% User specified LaTeX commands.
+\usepackage[margin=1in]{geometry}
+
+\makeatother
+
+\begin{document}
+
+\title{Math 525: Assignment 5 Solutions}
+
+\date{\date{}}
+\maketitle
+\begin{enumerate}
+\item This is just a consequence of Cauchy-Schwarz:
+\[
+\mathbb{E}\left[XYZ\right]\leq\sqrt{\mathbb{E}\left[(XY)^{2}\right]\mathbb{E}\left[Z^{2}\right]}=\sqrt{\mathbb{E}\left[X^{2}\right]\mathbb{E}\left[Y^{2}\right]\mathbb{E}\left[Z^{2}\right]}.
+\]
+We have used independence in the last equality.
+\item Since $x\mapsto e^{\theta x}$ is convex, this is just a consequence
+of Jensen's inequality:
+\[
+e^{\theta\mathbb{E}X}\leq\mathbb{E}\left[e^{\theta X}\right]=M(\theta).
+\]
+\item Let $\epsilon>0$ and
+\[
+\Lambda_{n}^{\epsilon}=\left\{ \left|X_{n}\right|^{p}\geq\epsilon\right\} .
+\]
+By Chebyshev's inequality,
+\[
+\mathbb{P}(\Lambda_{n})\leq\frac{1}{\epsilon^{p}}\mathbb{E}\left[\left|X_{n}\right|^{p}\right]\leq\frac{1}{\epsilon^{p}}f(n).
+\]
+Therefore, $\sum_{n}\mathbb{P}(\Lambda_{n})<\infty$ and hence by
+Borel-Cantelli,
+\[
+\mathbb{P}(\limsup_{n}\Lambda_{n}^{\epsilon})=0.
+\]
+Now, consider
+\[
+\Lambda=\bigcap_{\substack{\epsilon>0\\
+\epsilon\in\mathbb{Q}
+}
+}\left(\limsup_{n}\Lambda_{n}^{\epsilon}\right).
+\]
+If $\omega\notin\Lambda$, $X_{n}(\omega)\rightarrow0$, as desired.
+\end{enumerate}
+
+\end{document}
