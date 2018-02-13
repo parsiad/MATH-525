@@ -66,7 +66,7 @@ All assignments are to be handed in at the *beginning* of class.
 * [Th Feb 01: convergence of random variables and the Borel-Cantelli lemma](lecture9.pdf) (Section 4.1) [\[LaTeX source\]](lecture9.tex)
 * [Tu Feb 06: limits of expectations](lecture10.pdf) (Section 4.2) [\[LaTeX source\]](lecture10.tex)
 * [Th Feb 08: law of large numbers, empirical distribution, Bernstein polynomials](lecture11.pdf) (Section 5.1) [\[LaTeX source\]](lecture11.tex)
-* Tu Feb 13
+* [Tu Feb 13: moment generating functions and characteristic functions (rigorously)](lecture12.pdf) (Section 4.3 and 6.1) [\[LaTeX source\]](lecture11.tex)
 * Th Feb 15: **midterm exam 1** (in class)
 * Tu Feb 20
 * Th Feb 22
