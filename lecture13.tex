@@ -1,4 +1,4 @@
-%% LyX 2.2.1 created this file.  For more info, see http://www.lyx.org/.
+%% LyX 2.2.3 created this file.  For more info, see http://www.lyx.org/.
 %% Do not edit unless you really know what you are doing.
 \documentclass[english,12pt]{article}
 \usepackage[T1]{fontenc}
@@ -130,45 +130,8 @@ If $x$ is a point of continuity, taking $\epsilon\downarrow0$ yields
 $F(x-\epsilon)\rightarrow F(x)$ and $F(x+\epsilon)\rightarrow F(x)$,
 and the result is proved.
 \end{proof}
-Next, we recall a definition from real analysis:
-\begin{defn}
-Let $A\subset\mathbb{R}$. We say $A$ is \emph{dense} in $\mathbb{R}$
-if for each $x\in\mathbb{R}$, we can find a sequence $(x_{n})_{n}$
-of elements of $A$ such that $x_{n}\rightarrow x$.
-\end{defn}
-A classic example is $A=\mathbb{Q}$: any real number can be approximated
-as close as desirable by a rational number.
-\begin{prop}
-\label{prop:convergence}Let $A$ be dense in $\mathbb{R}$. Let $f_{n}\colon\mathbb{R}\rightarrow\mathbb{R}$
-and $f\colon\mathbb{R}\rightarrow\mathbb{R}$ be nondecreasing with
-$f_{n}(x)\rightarrow f(x)$ for all $x\in A$. Then, $f_{n}(x)\rightarrow f(x)$
-at all continuity points of $f$.
-\end{prop}
-The utility of the above result for us is the case of $f_{n}=F_{n}$
-and $f=F$ being distribution functions, which we already know are
-nondecreasing.
-\begin{proof}
-Let $\epsilon>0$. If $x$ is a point of continuity of $f$, we can
-find $a,b\in A$ such that
-\begin{itemize}
-\item $a<x<b$ and
-\item $|f(x)-f(y)|<\epsilon$ for all $y\in[a,b]$.
-\end{itemize}
-Therefore,
-\[
-\limsup_{n}f_{n}(x)\leq\limsup_{n}f_{n}(b)=f(b)<f(x)+\epsilon
-\]
-and
-\[
-\liminf_{n}f_{n}(x)\geq\liminf_{n}f_{n}(a)=f(a)>f(x)-\epsilon.
-\]
-In summary,
-\[
-f(x)-\epsilon<\liminf_{n}f_{n}(x)\leq\limsup_{n}f_{n}(x)<f(x)+\epsilon.
-\]
-Taking $\epsilon\downarrow0$, we get equality.
-\end{proof}
-We next visit an alternate characterization of convergence in distribution.
+
+We now visit an alternate characterization of convergence in distribution.
 Recall that $f\colon\mathbb{R}\rightarrow\mathbb{R}$ is said to be
 bounded if we can find $M>0$ such that $|f(x)|\leq M$ for all $x\in\mathbb{R}$.
 \begin{prop}
@@ -293,6 +256,59 @@ and
 \]
 But $a$ is a continuity point of $F$, and hence $F(a-)=F(a)$, from
 which we get the desired result.
+\end{proof}
+
+\section{Helly's theorem}
+
+In the context of probability, Helly's theorem is a compactness result
+for distribution functions.
+\begin{prop}[Helley's theorem]
+ Let $(F_{n})_{n}$ be a sequence of distribution functions. Then,
+there exists a subsequence $(n_{k})_{k}$ and a right continuous nondecreasing
+function $F$ such that
+\[
+F_{n_{k}}(x)\rightarrow F(x)\text{ for all continuity points }x\text{ of }F.
+\]
+\end{prop}
+Note that $F$ is not necessarily a distribution, since for this to
+be true, we must have $F(-\infty)=0$ and $F(\infty)=1$.
+\begin{proof}
+Let $x$ be arbitrary. Note that $(F_{n}(x))_{n}$ is a bounded sequence
+of real numbers, and thereby admits a convergent subsequence.
+
+Pick a dense countable subset of $\mathbb{R}$, call it $D=\{x_{1},x_{2},\ldots\}$
+(e.g., $D=\mathbb{Q}$). By a diagonalization argument, we can find
+a subsequence $(F_{n_{k}})_{k}$ such that $F_{n_{k}}$ converges
+on $D$. Define
+\[
+\tilde{F}(x)=\lim_{k\rightarrow\infty}F_{n_{k}}(x)\text{ for }x\in D
+\]
+and
+\[
+\tilde{F}(x)=\sup_{D\ni x_{k}\leq x}F_{\infty}(x_{k})\text{ for }x\notin D.
+\]
+Note that $\tilde{F}$ takes values in $[0,1]$ and is nondecreasing.
+
+Let $\mathcal{C}$ be the set of continuity points of $\tilde{F}$.
+Let $x\in\mathcal{C}$ be arbitrary. Choose $y,\xi\in D$ with $y<x<\xi$.
+Therefore, $F_{n_{k}}(y)\leq F_{n_{k}}(x)\leq F_{n_{k}}(\xi)$. Letting
+$k\rightarrow\infty$,
+\[
+\tilde{F}(y)\leq\liminf_{k}F_{n_{k}}(x)\leq\limsup_{k}F_{n_{k}}(x)\leq\tilde{F}(\xi).
+\]
+Since $\tilde{F}$ is continuous at $x$, we get
+\[
+\lim_{k}F_{n_{k}}(x)=\tilde{F}(y).
+\]
+The only problem now is that $\tilde{F}$ is not necessarily right
+continuous. Define the function $F$ by
+\[
+F(x)=\begin{cases}
+\tilde{F}(x) & \text{if }x\in\mathcal{C}\\
+\lim_{y\downarrow x}\tilde{F}(y) & \text{otherwise}.
+\end{cases}
+\]
+Then, $F$ satisfies our requirements.
 \end{proof}
 
 \end{document}
