@@ -1,0 +1,298 @@
+%% LyX 2.2.1 created this file.  For more info, see http://www.lyx.org/.
+%% Do not edit unless you really know what you are doing.
+\documentclass[english,12pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage[latin9]{inputenc}
+\usepackage{mathtools}
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{amssymb}
+
+\makeatletter
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Textclass specific LaTeX commands.
+\theoremstyle{plain}
+\newtheorem{thm}{\protect\theoremname}[section]
+\theoremstyle{definition}
+\newtheorem{example}[thm]{\protect\examplename}
+\theoremstyle{definition}
+\newtheorem{defn}[thm]{\protect\definitionname}
+\theoremstyle{plain}
+\newtheorem{prop}[thm]{\protect\propositionname}
+\ifx\proof\undefined
+\newenvironment{proof}[1][\protect\proofname]{\par
+\normalfont\topsep6\p@\@plus6\p@\relax
+\trivlist
+\itemindent\parindent
+\item[\hskip\labelsep\scshape #1]\ignorespaces
+}{%
+\endtrivlist\@endpefalse
+}
+\providecommand{\proofname}{Proof}
+\fi
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% User specified LaTeX commands.
+\usepackage[margin=1in]{geometry}
+
+\makeatother
+
+\usepackage{babel}
+\providecommand{\definitionname}{Definition}
+\providecommand{\examplename}{Example}
+\providecommand{\propositionname}{Proposition}
+\providecommand{\theoremname}{Theorem}
+
+\begin{document}
+
+\title{Math 525: Lecture 13}
+
+\date{February 20, 2018}
+
+\maketitle
+For the next few lectures, we will work towards proving the central
+limit theorem (CLT). Recall that for a ``sufficiently nice'' sequence
+of i.i.d. random variables $(X_{n})_{n}$, the law of large numbers
+told us
+\[
+\frac{S_{n}}{n}\equiv\frac{X_{1}+\cdots+X_{n}}{n}\rightarrow\mathbb{E}X_{1}\text{ a.s.}
+\]
+The CLT will tell us about the distribution of $S_{n}/n$. Namely,
+\[
+\sqrt{n}\left(\frac{S_{n}}{n}-\mathbb{E}X_{1}\right)\xrightarrow{\mathcal{D}}Y
+\]
+where $Y\sim\mathcal{N}(0,\operatorname{Var}(X_{1}))$. To prove the
+CLT, we will need to build up a series of results culminating in \emph{Levy's
+continuity theorem}.
+
+\section{Convergence in distribution}
+
+We begin with an example:
+\begin{example}
+Let $X=0$ be a ``deterministic'' random variable with distribution
+function $F=[0,\infty)$.
+\begin{enumerate}
+\item Let $X_{n}=-\frac{1}{n}$. Then, its distribution function is $F_{n}=I_{[1/n,\infty)}$.
+Note, in particular, that
+\[
+F_{n}(x)\rightarrow F(x)
+\]
+at all points $x$.
+\item Now consider $X_{n}=\frac{1}{n}$. Then, its distribution function
+is $F_{n}=I_{[\frac{1}{n},\infty)}$. Note, in particular, that
+\[
+F_{n}(x)\rightarrow F(x)
+\]
+for all $x$ except $x=0$ since $F_{n}(0)=0$ for all $n$ and $F(0)=1$!
+\end{enumerate}
+\end{example}
+In the second example above, while we expect the distribution function
+of $X_{n}$ to converge to that of $X$ (after all, $X_{n}\rightarrow X$
+pointwise), it does not! The problem here is the point of discontinuity
+of $F$ at $x=0$. This motivates the definition of convergence in
+distribution (which we actually saw in a previous lecture).
+\begin{defn}
+Let $(X_{n})_{n}$ be a sequence of random variables and $X$ be a
+random variable. Let $F_{n}$ and $F$ denote the distribution functions
+of $X_{n}$ and $X$, respectively. \emph{$(X_{n})_{n}$ converges
+to $X$ in distribution} if $F_{n}(x)\rightarrow F(x)$ for all continuity
+points of $F$. We write $X_{n}\xrightarrow{\mathcal{D}}X$ or $F_{n}\Rightarrow F$
+in this case.
+\end{defn}
+The next proposition tells us that convergence in probability is stronger
+than convergence in distribution (the converse is not true). This
+in turn implies that any kind of convergence that we have covered
+(a.s. or $L^{p}$) are stronger than convergence in distribution.
+\begin{prop}
+If $X_{n}\rightarrow X$ in probability, then $X_{n}\xrightarrow{\mathcal{D}}X$.
+\end{prop}
+\begin{proof}
+Let $\epsilon>0$. Trivially,
+\begin{align*}
+\mathbb{P}\left\{ X_{n}\leq x\right\}  & =\mathbb{P}\left\{ X_{n}\leq x,X\leq x+\epsilon\right\} +\mathbb{P}\left\{ X_{n}\leq x,X>x+\epsilon\right\} \\
+ & \leq\mathbb{P}\left\{ X\leq x+\epsilon\right\} +\mathbb{P}\left\{ \left|X_{n}-X\right|>\epsilon\right\} .
+\end{align*}
+In other words,
+\[
+F_{n}(x)\leq F(x+\epsilon)+\mathbb{P}\left\{ \left|X_{n}-X\right|>\epsilon\right\} .
+\]
+Similarly, we can show
+\[
+F(x-\epsilon)\leq F_{n}(x)+\mathbb{P}\left\{ \left|X_{n}-X\right|>\epsilon\right\} .
+\]
+Combining these inequalities,
+\[
+F(x-\epsilon)-\mathbb{P}\left\{ \left|X_{n}-X\right|>\epsilon\right\} \leq F_{n}(x)\leq F(x+\epsilon)+\mathbb{P}\left\{ \left|X_{n}-X\right|>\epsilon\right\} .
+\]
+Taking $n\rightarrow\infty$,
+\[
+F(x-\epsilon)\leq\liminf_{n\rightarrow\infty}F_{n}(x)\leq\limsup_{n\rightarrow\infty}F_{n}(x)\leq F(x+\epsilon).
+\]
+If $x$ is a point of continuity, taking $\epsilon\downarrow0$ yields
+$F(x-\epsilon)\rightarrow F(x)$ and $F(x+\epsilon)\rightarrow F(x)$,
+and the result is proved.
+\end{proof}
+Next, we recall a definition from real analysis:
+\begin{defn}
+Let $A\subset\mathbb{R}$. We say $A$ is \emph{dense} in $\mathbb{R}$
+if for each $x\in\mathbb{R}$, we can find a sequence $(x_{n})_{n}$
+of elements of $A$ such that $x_{n}\rightarrow x$.
+\end{defn}
+A classic example is $A=\mathbb{Q}$: any real number can be approximated
+as close as desirable by a rational number.
+\begin{prop}
+\label{prop:convergence}Let $A$ be dense in $\mathbb{R}$. Let $f_{n}\colon\mathbb{R}\rightarrow\mathbb{R}$
+and $f\colon\mathbb{R}\rightarrow\mathbb{R}$ be nondecreasing with
+$f_{n}(x)\rightarrow f(x)$ for all $x\in A$. Then, $f_{n}(x)\rightarrow f(x)$
+at all continuity points of $f$.
+\end{prop}
+The utility of the above result for us is the case of $f_{n}=F_{n}$
+and $f=F$ being distribution functions, which we already know are
+nondecreasing.
+\begin{proof}
+Let $\epsilon>0$. If $x$ is a point of continuity of $f$, we can
+find $a,b\in A$ such that
+\begin{itemize}
+\item $a<x<b$ and
+\item $|f(x)-f(y)|<\epsilon$ for all $y\in[a,b]$.
+\end{itemize}
+Therefore,
+\[
+\limsup_{n}f_{n}(x)\leq\limsup_{n}f_{n}(b)=f(b)<f(x)+\epsilon
+\]
+and
+\[
+\liminf_{n}f_{n}(x)\geq\liminf_{n}f_{n}(a)=f(a)>f(x)-\epsilon.
+\]
+In summary,
+\[
+f(x)-\epsilon<\liminf_{n}f_{n}(x)\leq\limsup_{n}f_{n}(x)<f(x)+\epsilon.
+\]
+Taking $\epsilon\downarrow0$, we get equality.
+\end{proof}
+We next visit an alternate characterization of convergence in distribution.
+Recall that $f\colon\mathbb{R}\rightarrow\mathbb{R}$ is said to be
+bounded if we can find $M>0$ such that $|f(x)|\leq M$ for all $x\in\mathbb{R}$.
+\begin{prop}
+$X_{n}\xrightarrow{\mathcal{D}}X$ if and only if for all bounded
+functions $f\colon\mathbb{R}\rightarrow\mathbb{R}$,
+\begin{equation}
+\mathbb{E}\left[f(X_{n})\right]\rightarrow\mathbb{E}\left[f(X)\right].\label{eq:limit}
+\end{equation}
+\end{prop}
+\begin{proof}[Proof ($\Rightarrow$)]
+ Suppose $X_{n}\xrightarrow{\mathcal{D}}X$. We start by establishing
+(\ref{eq:limit}) for all continuous functions $f$ with compact support
+(i.e., $f(x)=0$ if $|x|\geq r$ for some $r>0$). In this case, $f$
+is uniformly continuous.
+
+Now, let $\epsilon>0$. Consider a partition $\{(x_{i-1},x_{i}]\}_{i=1}^{n}$
+of $(-r,r]$ satisfying
+\[
+\left|f(x)-f(x_{i})\right|<\epsilon/2\qquad\text{for all }x\in(x_{i-1},x_{i}]
+\]
+and chosen such that each $x_{i}$ is a point of continuity of $F$,
+the distribution function of $X$. Let $\psi$ be the function defined
+by
+\[
+\psi(x)=\sum_{i=1}^{n}f(x_{i})I_{(x_{i-1},x_{i}]}(x).
+\]
+Note, in particular, that
+\[
+\left|f(x)-\psi(x)\right|\leq\sum_{i=1}^{n}\left|f(x)-f(x_{i})\right|I_{(x_{i-1},x_{i}]}(x)<\epsilon/2.
+\]
+Recalling that any bounded random variable is trivially integrable,
+we have
+\[
+\left|\mathbb{E}f(X)-\mathbb{E}f(X_{n})\right|\leq\left|\mathbb{E}f(X)-\mathbb{E}\psi(X)\right|+\left|\mathbb{E}\psi(X)-\mathbb{E}\psi(X_{n})\right|+\left|\mathbb{E}\psi(X_{n})-\mathbb{E}f(X_{n})\right|.
+\]
+The first and last expectations are bounded by $\epsilon/2$. As for
+the middle expectation,
+\begin{align*}
+\left|\mathbb{E}\psi(X)-\mathbb{E}\psi(X_{n})\right| & =\left|\mathbb{E}\left[\psi(X)-\psi(X_{n})\right]\right|\\
+ & =\left|\sum_{i=1}^{n}f(x_{i})\mathbb{E}\left[I_{(x_{i-1},x_{i}]}(X)-I_{(x_{i-1},x_{i}]}(X_{n})\right]\right|\\
+ & =\left|\sum_{i=1}^{n}f(x_{i})\left[\left(F(x_{i})-F(x_{i-1})\right)-\left(F_{n}(x_{i})-F_{n}(x_{i-1})\right)\right]\right|
+\end{align*}
+Now, since each $x_{i}$ is a point of continuity of $F$, we have
+$F_{n}(x_{i})\rightarrow F(x_{i})$ for all $i$. Therefore,
+\[
+\limsup_{n}\left|\mathbb{E}f(X)-\mathbb{E}f(X_{n})\right|<\epsilon.
+\]
+Now take $\epsilon\downarrow0$ to get
+\[
+\lim_{n}\left|\mathbb{E}f(X)-\mathbb{E}f(X_{n})\right|=0.
+\]
+
+Now, let's see how to modify the proof if $f$ is just bounded and
+continuous but not necessarily of compact support. Let $\epsilon>0$
+and choose $K$ such that $\pm K$ are continuity points of $F$,
+$F(-K)<\epsilon/4$ and $F(K)>1-\epsilon/4$ (remember, $F$ is a
+distribution function, so that $F(-x)\rightarrow0$ and $F(x)\rightarrow1$
+as $x\rightarrow\infty$). Let $g$ be a continuous function such
+that $g(x)=1$ if $|x|\leq K$ and $g(x)=0$ if $|x|\geq K+1$. Then,
+$fg$ is continuous, equals $f$ on $[-K,K]$, and has compact support.
+Therefore,
+\begin{multline}
+\left|\mathbb{E}f(X)-\mathbb{E}f(X_{n})\right|\leq\Vert f\Vert_{\infty}\left(\mathbb{P}\left\{ X\leq-K\right\} +\mathbb{P}\left\{ X_{n}\leq-K\right\} \right)\\
++\Vert f\Vert_{\infty}\left(\mathbb{P}\left\{ X>K\right\} +\mathbb{P}\left\{ X_{n}>K\right\} \right)+\left|\mathbb{E}\left[f(X)g(X)\right]-\mathbb{E}\left[f(X_{n})g(X_{n})\right]\right|.\label{eq:bounds}
+\end{multline}
+Note that
+\[
+\mathbb{P}\left\{ X\leq-K\right\} +\mathbb{P}\left\{ X_{n}\leq-K\right\} =F(-K)+F_{n}(-K)\rightarrow2F(-K)<\epsilon/2
+\]
+Similarly, 
+\[
+\mathbb{P}\left\{ X>K\right\} +\mathbb{P}\left\{ X_{n}>K\right\} =1-F(K)+1-F_{n}(K)\rightarrow2\left(1-F(K)\right)<\epsilon/2.
+\]
+Therefore, the sum of the first two terms on the right hand side of
+(\ref{eq:bounds}) is bounded by $\epsilon\Vert f\Vert_{\infty}$.
+The last term is handled as in the previous paragraph, since $fg$
+has compact support.
+\end{proof}
+%
+\begin{proof}[Proof ($\Leftarrow$)]
+ Suppose (\ref{eq:limit}) holds for all bounded and continuous functions
+$f$. Let $a$ be a point of continuity of $F$. Let $f_{m}$ and
+$g_{m}$ be continuous and bounded functions such that
+\[
+f_{m}(x)=\begin{cases}
+1 & \text{if }x\leq a-1/m\\
+0 & \text{if }x\geq a
+\end{cases}
+\]
+and
+\[
+g_{m}(x)=\begin{cases}
+1 & \text{if }x\leq a\\
+0 & \text{if }x\geq a+1/m.
+\end{cases}
+\]
+Moreover, suppose $f_{m}$ and $g_{m}$ are linear on $[a-1/m,a]$
+and $[a,a+1/m]$, respectively.
+
+Note that $f_{m}\leq I_{(-\infty,a]}\leq g_{m}$. Therefore,
+\[
+\mathbb{E}\left[f_{m}(X_{n})\right]\leq F_{n}(a)\leq\mathbb{E}\left[g_{m}(X_{n})\right]
+\]
+since
+\[
+\mathbb{E}\left[I_{(-\infty,a]}(X_{n})\right]=\mathbb{P}\left\{ X_{n}\leq a\right\} =F_{n}(a).
+\]
+Now, by (\ref{eq:limit}), we can take $n\rightarrow\infty$ to get
+$\mathbb{E}[f_{m}(X_{n})]\rightarrow\mathbb{E}[f_{m}(X)]$ and $\mathbb{E}[g_{m}(X_{n})]\rightarrow\mathbb{E}[g_{m}(X)]$.
+Therefore,
+\[
+\mathbb{E}\left[f_{m}(X)\right]\leq\liminf_{n}F_{n}(a)\leq\limsup_{n}F_{n}(a)\leq\mathbb{E}\left[g_{m}(X)\right].
+\]
+Moreover, as $m\rightarrow\infty$, $f_{m}\rightarrow I_{(-\infty,a)}$
+and $g_{m}\rightarrow I_{(-\infty,a]}$. By the DCT,
+\[
+\mathbb{E}\left[f_{m}(X)\right]\rightarrow\mathbb{E}\left[I_{(-\infty,a)}(X)\right]=\mathbb{P}\left\{ X<a\right\} =F(a-)
+\]
+and
+\[
+\mathbb{E}\left[g_{m}(X)\right]\rightarrow\mathbb{E}\left[I_{(-\infty,a]}(X)\right]=\mathbb{P}\left\{ X\leq a\right\} =F(a).
+\]
+But $a$ is a continuity point of $F$, and hence $F(a-)=F(a)$, from
+which we get the desired result.
+\end{proof}
+
+\end{document}
