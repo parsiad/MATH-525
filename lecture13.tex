@@ -136,7 +136,7 @@ Recall that $f\colon\mathbb{R}\rightarrow\mathbb{R}$ is said to be
 bounded if we can find $M>0$ such that $|f(x)|\leq M$ for all $x\in\mathbb{R}$.
 \begin{prop}
 $X_{n}\xrightarrow{\mathcal{D}}X$ if and only if for all bounded
-functions $f\colon\mathbb{R}\rightarrow\mathbb{R}$,
+and continuous functions $f\colon\mathbb{R}\rightarrow\mathbb{R}$,
 \begin{equation}
 \mathbb{E}\left[f(X_{n})\right]\rightarrow\mathbb{E}\left[f(X)\right].\label{eq:limit}
 \end{equation}
@@ -262,7 +262,7 @@ which we get the desired result.
 
 In the context of probability, Helly's theorem is a compactness result
 for distribution functions.
-\begin{prop}[Helley's theorem]
+\begin{prop}[Helly's theorem]
  Let $(F_{n})_{n}$ be a sequence of distribution functions. Then,
 there exists a subsequence $(n_{k})_{k}$ and a right continuous nondecreasing
 function $F$ such that
@@ -285,7 +285,7 @@ on $D$. Define
 \]
 and
 \[
-\tilde{F}(x)=\sup_{D\ni x_{k}\leq x}F_{\infty}(x_{k})\text{ for }x\notin D.
+\tilde{F}(x)=\sup_{D\ni x_{k}\leq x}\tilde{F}(x_{k})\text{ for }x\notin D.
 \]
 Note that $\tilde{F}$ takes values in $[0,1]$ and is nondecreasing.
 
@@ -296,9 +296,10 @@ $k\rightarrow\infty$,
 \[
 \tilde{F}(y)\leq\liminf_{k}F_{n_{k}}(x)\leq\limsup_{k}F_{n_{k}}(x)\leq\tilde{F}(\xi).
 \]
-Since $\tilde{F}$ is continuous at $x$, we get
+Now, let $y$ and $\xi$ tend to $x$ (from below and above) to get
+that 
 \[
-\lim_{k}F_{n_{k}}(x)=\tilde{F}(y).
+\lim_{k}F_{n_{k}}(x)=\tilde{F}(x).
 \]
 The only problem now is that $\tilde{F}$ is not necessarily right
 continuous. Define the function $F$ by
