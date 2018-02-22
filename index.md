@@ -68,8 +68,8 @@ All assignments are to be handed in at the *beginning* of class.
 * [Th Feb 08: law of large numbers, empirical distribution, Bernstein polynomials](lecture11.pdf) (Section 5.1) [\[LaTeX source\]](lecture11.tex)
 * [Tu Feb 13: moment generating functions and characteristic functions (rigorously)](lecture12.pdf) (Section 4.3 and 6.1) [\[LaTeX source\]](lecture12.tex)
 * Th Feb 15: **midterm exam 1** (in class)
-* [Tu Feb 20: convergence in distribution, Helly's theorem](lecture13.pdf) (Section 6.2) [\[LaTeX source\]](lecture13.tex)
-* Th Feb 22
+* [Tu Feb 20: convergence in distribution and Helly's theorem](lecture13.pdf) (Section 6.2) [\[LaTeX source\]](lecture13.tex)
+* [Th Feb 22: tightness, integration, and Levy's continuity theorem](lecture14.pdf) (Section 6.2 and 6.3) [\[LaTeX source\]](lecture14.tex)
 * Tu Feb 27: no class
 * Th Mar 01: no class
 * Tu Mar 06
