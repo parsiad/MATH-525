@@ -1,0 +1,47 @@
+%% LyX 2.2.3 created this file.  For more info, see http://www.lyx.org/.
+%% Do not edit unless you really know what you are doing.
+\documentclass[english,12pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage[latin9]{inputenc}
+\usepackage{amssymb}
+
+\makeatletter
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% User specified LaTeX commands.
+\usepackage[margin=1in]{geometry}
+
+\makeatother
+
+\usepackage{babel}
+\begin{document}
+
+\title{Math 525: Assignment 6}
+
+\date{\date{}}
+\maketitle
+\begin{enumerate}
+\item Let $X$ be an absolutely continuous random variable. Show that if
+its probability density is even (i.e., $f(x)=f(-x)$), then its characteristic
+function must be real (i.e., $\phi(t)=\overline{\phi(t)}$).
+\item Let $X_{n}\rightarrow X$ a.s. Show that $\phi_{n}\rightarrow\phi$
+pointwise (here, $\phi_{n}$ and $\phi$ are the characteristic functions
+of $X_{n}$ and $X$).
+\item Let $X$ be a random variable and $\phi$ be its characteristic function.
+Show that $|\phi|^{2}$ is also a characteristic function. You'll
+need to use the following facts:
+\begin{itemize}
+\item For any complex number $z$, $|z|^{2}=z\overline{z}$.
+\item You can construct a random variable $Y$ that has the same distribution
+as $X$ but is independent of it\footnote{Rigorously, let $X$ be a random variable on the space $(\Omega,\mathcal{F},\mathbb{P})$.
+Then, we can form the product space $(\Omega\times\Omega,\mathcal{F}\otimes\mathcal{F},\mathbb{P}\times\mathbb{P})$.
+Denote a member of the new sample space $\Omega\times\Omega$ as $\omega\equiv(\omega_{1},\omega_{2})$.
+Define $X_{1}(\omega_{1},\omega_{2})=X(\omega_{1})$ and $X_{2}(\omega_{1},\omega_{2})=X(\omega_{2})$
+as two copies of the random variable $X$ that are independent.} so that $\mathbb{E}[f(X)]\mathbb{E}[g(Y)]=\mathbb{E}[f(X)g(Y)]$
+for any Borel measurable functions $f$ and $g$.
+\end{itemize}
+\item Suppose $(X_{n})_{n}$ and $(Y_{n})_{n}$ converge in probability
+to $X$ and $Y$, respectively. Show that $(X_{n}+Y_{n})_{n}$ converges
+in distribution to $X+Y$ (hint: revisiting the proof for ``convergence
+in probability implies convergence in distribution'' may help).
+\end{enumerate}
+
+\end{document}
