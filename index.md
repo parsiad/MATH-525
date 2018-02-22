@@ -52,6 +52,7 @@ All assignments are to be handed in at the *beginning* of class.
 * Assignment 3: due Tu Jan 30 [\[Description\]](assignment3.pdf) [\[LaTeX source\]](assignment3.tex) [\[Solutions\]](solutions3.pdf)
 * Assignment 4: due Th Feb 08 [\[Description\]](assignment4.pdf) [\[LaTeX source\]](assignment4.tex) [\[Solutions\]](solutions4.pdf)
 * Assignment 5: practice only [\[Description\]](assignment5.pdf) [\[LaTeX source\]](assignment5.tex) [\[Solutions\]](solutions5.pdf)
+* Assignment 6: due Tu Mar 13 [\[Description\]](assignment6.pdf) [\[LaTeX source\]](assignment6.tex)
 
 ## Lecture notes
 
