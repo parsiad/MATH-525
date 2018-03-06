@@ -73,7 +73,7 @@ All assignments are to be handed in at the *beginning* of class.
 * [Th Feb 22: tightness, integration, and Levy's continuity theorem](lecture14.pdf) (Section 6.2 and 6.3) [\[LaTeX source\]](lecture14.tex)
 * Tu Feb 27: no class
 * Th Mar 01: no class
-* Tu Mar 06
+* [Tu Mar 06: normal random variables, central limit theorems, confidence intervals](lecture15.pdf) (Section 6.4) [\[LaTeX source\]](lecture15.tex)
 * Th Mar 08
 * Tu Mar 13
 * Th Mar 15
