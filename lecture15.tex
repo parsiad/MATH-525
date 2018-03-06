@@ -1,0 +1,310 @@
+%% LyX 2.2.1 created this file.  For more info, see http://www.lyx.org/.
+%% Do not edit unless you really know what you are doing.
+\documentclass[english,12pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage[latin9]{inputenc}
+\usepackage{mathtools}
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{amssymb}
+
+\makeatletter
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Textclass specific LaTeX commands.
+\theoremstyle{plain}
+\newtheorem{thm}{\protect\theoremname}[section]
+\theoremstyle{definition}
+\newtheorem{defn}[thm]{\protect\definitionname}
+\theoremstyle{plain}
+\newtheorem{prop}[thm]{\protect\propositionname}
+\ifx\proof\undefined
+\newenvironment{proof}[1][\protect\proofname]{\par
+\normalfont\topsep6\p@\@plus6\p@\relax
+\trivlist
+\itemindent\parindent
+\item[\hskip\labelsep\scshape #1]\ignorespaces
+}{%
+\endtrivlist\@endpefalse
+}
+\providecommand{\proofname}{Proof}
+\fi
+\theoremstyle{definition}
+\newtheorem{xca}[thm]{\protect\exercisename}
+\theoremstyle{definition}
+\newtheorem{example}[thm]{\protect\examplename}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% User specified LaTeX commands.
+\usepackage[margin=1in]{geometry}
+
+\makeatother
+
+\usepackage{babel}
+\providecommand{\definitionname}{Definition}
+\providecommand{\examplename}{Example}
+\providecommand{\exercisename}{Exercise}
+\providecommand{\propositionname}{Proposition}
+\providecommand{\theoremname}{Theorem}
+
+\begin{document}
+
+\title{Math 525: Lecture 15}
+
+\date{March 6, 2018}
+
+\maketitle
+Today, we finally prove the central limit theorem (CLT). Recall that
+for a ``sufficiently nice'' sequence of i.i.d. random variables
+$(X_{n})_{n}$, the law of large numbers told us
+\[
+\frac{S_{n}}{n}\equiv\frac{X_{1}+\cdots+X_{n}}{n}\rightarrow\mathbb{E}X_{1}\text{ a.s.}
+\]
+The CLT will tell us about the distribution of $S_{n}/n$. Namely,
+\begin{equation}
+\sqrt{n}\left(\frac{S_{n}}{n}-\mathbb{E}X_{1}\right)\xrightarrow{\mathcal{D}}Y\label{eq:clt}
+\end{equation}
+where $Y\sim\mathcal{N}(0,\operatorname{Var}(X_{1}))$. Before we
+give the CLT, let's review normal random variables.
+
+\section{Normal random variables}
+\begin{defn}
+We say $X$ is a \emph{normal random variable} with mean $\mu$ and
+variance $\sigma^{2}$ if its probability density is
+\[
+f(x)=\frac{1}{\sqrt{2\pi\sigma^{2}}}e^{-\frac{(x-\mu)^{2}}{2\sigma^{2}}}.
+\]
+In this case, we write $X\sim\mathcal{N}(\mu,\sigma^{2})$.
+\end{defn}
+\begin{prop}
+The characteristic function of $X\sim\mathcal{N}(0,1)$ random variable
+is
+\[
+\phi_{X}(t)=e^{-t^{2}/2}.
+\]
+\end{prop}
+\begin{proof}
+Note that
+\begin{align*}
+\phi_{X}(t)=\mathbb{E}\left[e^{itX}\right] & =\frac{1}{\sqrt{2\pi}}\int_{-\infty}^{\infty}e^{-\frac{x^{2}}{2}}e^{itx}dx\\
+ & =\frac{1}{\sqrt{2\pi}}\left(\int_{-\infty}^{0}e^{-\frac{x^{2}}{2}}e^{itx}dx+\int_{0}^{\infty}e^{-\frac{x^{2}}{2}}e^{itx}dx\right)\\
+ & =\frac{1}{\sqrt{2\pi}}\left(\int_{-\infty}^{0}e^{-\frac{x^{2}}{2}}e^{itx}dx+\int_{0}^{\infty}e^{-\frac{x^{2}}{2}}e^{-itx}dx\right)\\
+ & =\frac{2}{\sqrt{2\pi}}\int_{0}^{\infty}e^{-\frac{x^{2}}{2}}\cos(tx)dx.
+\end{align*}
+Now, take the derivative with respect to $t$ to get
+\[
+\phi_{X}^{\prime}(t)=-\frac{2}{\sqrt{2\pi}}\int_{0}^{\infty}e^{-\frac{x^{2}}{2}}x\sin(tx)dx.
+\]
+Integrate by parts to get
+\begin{align*}
+\phi_{X}^{\prime}(t) & =\frac{2}{\sqrt{2\pi}}\left(e^{-\frac{x^{2}}{2}}\sin(tx)\mid_{0}^{\infty}-t\int_{0}^{\infty}e^{-\frac{x^{2}}{2}}\cos(tx)dx\right)\\
+ & =-\frac{2t}{\sqrt{2\pi}}\int_{0}^{\infty}e^{-\frac{x^{2}}{2}}\cos(tx)dx\\
+ & =-t\phi_{X}(t).
+\end{align*}
+Note that
+\[
+\phi^{\prime}(t)=-t\phi(t)
+\]
+is an ordinary differential equation with
+\[
+\phi(t)=C_{0}\exp\left(-\frac{t^{2}}{2}\right)
+\]
+where $C_{0}$ is some constant. Since $\phi$ is a characteristic
+function, we must have $\phi(0)=1$. This implies that $C_{0}=1$.
+\end{proof}
+
+\section{Classical CLT}
+
+Just like with the law of large numbers, there are various versions
+of the CLT. Here is the first version we encounter:
+\begin{prop}
+Let $(X_{j})_{j}$ be a sequence of i.i.d. random variables. Let $\mu=\mathbb{E}[X_{1}]$,
+$\sigma^{2}=\operatorname{Var}(X_{1})$, and $S_{n}=X_{1}+\cdots+X_{n}$.
+Then,
+\[
+\frac{\sqrt{n}}{\sigma}\left(\frac{S_{n}}{n}-\mu\right)\xrightarrow{\mathcal{D}}\mathcal{N}(0,1)
+\]
+(note that this is identical to (\ref{eq:clt}) if we multiply both
+sides by $\sigma$).
+\end{prop}
+In establishing Levy's continuity theorem, we have actually done all
+the hard work already to prove this fact.
+\begin{proof}
+First, note that
+\[
+\frac{\sqrt{n}}{\sigma}\left(\frac{S_{n}}{n}-\mu\right)=\frac{\left(X_{1}-\mu\right)+\cdots+\left(X_{n}-\mu\right)}{\sqrt{n}\sigma}=\frac{Y_{1}+\cdots+Y_{n}}{\sqrt{n}}.
+\]
+where
+\[
+Y_{n}=\frac{X_{n}-\mu}{\sigma}.
+\]
+Note that
+\begin{align*}
+\mathbb{E}Y_{n} & =\frac{\mathbb{E}X_{n}-\mu}{\sigma}=0\\
+\operatorname{Var}(Y_{n}) & =\operatorname{Var}\left(\frac{X_{n}-\mu}{\sigma}\right)=1.
+\end{align*}
+For brevity, let $S_{n}^{\prime}=Y_{1}+\cdots+Y_{n}$.
+
+The characteristic function of $Y_{n}$ is
+\begin{align*}
+\phi(t) & =\mathbb{E}[e^{itY_{n}}]\\
+ & =\mathbb{E}\left[\sum_{k\geq0}\frac{\left(it\right)^{k}}{k!}Y_{n}^{k}\right]\\
+ & =\mathbb{E}\left[Y^{0}\right]+\left(it\right)\mathbb{E}\left[Y^{1}\right]+\frac{\left(it\right)^{2}}{2}\mathbb{E}\left[Y^{2}\right]+\cdots\\
+ & =1-\frac{t^{2}}{2}+\cdots
+\end{align*}
+More precisely,
+\[
+\phi(t)=1-\frac{t^{2}}{2}+h(t^{2})
+\]
+where $h$ denotes a function that satisfying $h(cx)/x\rightarrow0$
+as $x\rightarrow0$ (corresponding to the higher order terms in the
+Taylor expansion). Now, let
+\[
+S_{n}^{\prime}=\frac{Y_{1}+\cdots+Y_{n}}{\sqrt{n}}.
+\]
+Note that
+\begin{align*}
+\phi_{S_{n}^{\prime}}(t) & =\mathbb{E}\left[\exp\left(it\frac{Y_{1}+\cdots+Y_{n}}{\sqrt{n}}\right)\right]\\
+ & =\mathbb{E}\left[\exp\left(it\frac{Y_{1}}{\sqrt{n}}\right)\cdots\exp\left(it\frac{Y_{n}}{\sqrt{n}}\right)\right]\\
+ & =\mathbb{E}\left[\exp\left(it\frac{Y_{1}}{\sqrt{n}}\right)\right]\cdots\mathbb{E}\left[\exp\left(it\frac{Y_{n}}{\sqrt{n}}\right)\right]\\
+ & =\phi\left(\frac{t}{\sqrt{n}}\right)\cdots\phi\left(\frac{t}{\sqrt{n}}\right)\\
+ & =\left(\phi\left(\frac{t}{\sqrt{n}}\right)\right)^{n}\\
+ & =\left(1-\frac{t^{2}}{2n}+o\left(\frac{t^{2}}{n}\right)\right)^{n}.\\
+ & =\left(1+\frac{z_{n}}{n}\right)^{n}
+\end{align*}
+where we have defined
+\[
+z_{n}=-\frac{t^{2}}{2}+nh\left(\frac{t^{2}}{n}\right).
+\]
+Let $c=t^{2}$ and $x=1/n$. Then,
+\[
+nh\left(\frac{t^{2}}{n}\right)=\frac{h\left(cx\right)}{x}\rightarrow0\qquad\text{as}\qquad x\rightarrow0.
+\]
+Therefore,
+\[
+\phi_{S_{n}^{\prime}}(t)\rightarrow e^{t^{2}/2}.
+\]
+By Lévy's continuity theorem, $S_{n}^{\prime}$ converges to a standard
+normal random variable.
+\end{proof}
+\begin{xca}
+$n$ numbers are rounded to the nearest integer and then summed. Suppose
+that the individual roundoff errors are uniformly distributed over
+$[-0.5,0.5]$. What is the probability that the roundoff error exceeds
+the exact sum by more than $x$?
+
+Hint: let $Y_{j}$ be the $j$-th number and $[Y_{j}]$ be the result
+from rounding. Then,
+\[
+X_{j}=Y_{j}-[Y_{j}]\sim U[-0.5,0.5].
+\]
+Therefore,
+\[
+\mathbb{E}X_{j}=0\qquad\text{and}\qquad\sigma^{2}=\operatorname{Var}(X_{j})=\mathbb{E}X_{j}^{2}=\int_{-1/2}^{1/2}x^{2}dx=\frac{1}{12}.
+\]
+Then,
+\begin{align*}
+\mathbb{P}\left\{ \left|X_{1}+\cdots+X_{n}\right|\geq x\right\}  & =\mathbb{P}\left\{ \left|\frac{X_{1}+\cdots+X_{n}}{\sqrt{n}\sigma}\right|\geq\frac{x}{\sqrt{n}\sigma}\right\} \\
+ & =\mathbb{P}\left\{ -\frac{x}{\sqrt{n}\sigma}\leq\frac{X_{1}+\cdots+X_{n}}{\sqrt{n}\sigma}\leq\frac{x}{\sqrt{n}\sigma}\right\} \\
+ & =\cdots
+\end{align*}
+\end{xca}
+
+\section{Confidence intervals}
+
+The discussion in this section is very hand wavy, so take it with
+a grain of salt.
+
+Consider conducting a sequence of trials represented as i.i.d. random
+variables $(X_{j})_{j}$. For example, we may repeatedly toss an unfair
+coin repeatedly in order to determine its distribution. In practice,
+we will not have access to the variance of $X_{1}$.
+
+Letting $S_{n}=X_{1}+\cdots+X_{n}$, and consider the random variable
+\[
+Z_{n}=\frac{\sqrt{n}}{\sigma}\left(\frac{S_{n}}{n}-\mu\right).
+\]
+Then,
+\[
+\mathbb{P}(-z\leq Z_{n}\leq z)=\mathbb{P}\left(\mu-z\frac{\sigma}{\sqrt{n}}\leq\frac{S_{n}}{n}\leq\mu+z\frac{\sigma}{\sqrt{n}}\right).
+\]
+
+Now, fix $\alpha\in[0,1]$. Pick $z$ such that
+\[
+\mathbb{P}(-z\leq Z_{n}\leq z)=1-\alpha.
+\]
+Since $Z_{n}\xrightarrow{\mathcal{D}}\mathcal{N}(0,1)$,
+\begin{align*}
+\mathbb{P}(-z\leq Z_{n}\leq z) & =\mathbb{P}(Z_{n}\leq z)-\mathbb{P}(Z_{n}<-z)\\
+ & =\mathbb{P}(Z_{n}\leq z)-\left(1-\mathbb{P}(Z_{n}\geq-z)\right)\\
+ & \approx\mathbb{P}(Z_{n}\leq z)-\left(1-\mathbb{P}(Z_{n}\leq z)\right)\\
+ & =2\mathbb{P}(Z_{n}\leq z)-1
+\end{align*}
+where we have used the approximation
+\[
+\mathbb{P}(Z_{n}\geq-z)\approx\mathbb{P}(Z_{n}\leq z)
+\]
+which is a consequence of $Z_{n}$ being nearly normal. Therefore,
+\[
+\mathbb{P}(Z_{n}\leq z)\approx1-\frac{\alpha}{2}
+\]
+and hence
+\[
+z\approx F^{-1}\left(1-\frac{\alpha}{2}\right).
+\]
+
+This tells us that our sample mean $S_{n}/n$ is ``very likely''
+to be within 
+\[
+\pm F^{-1}\left(1-\frac{\alpha}{2}\right)\frac{\sigma}{\sqrt{n}}
+\]
+of the actual mean. However, this estimate is not so useful since
+we may not have access to $\sigma$. So instead, we make another approximation,
+substituting the sample variance:
+\[
+F^{-1}\left(1-\frac{\alpha}{2}\right)\frac{\sigma_{n}}{\sqrt{n}}
+\]
+where
+\[
+\sigma_{n}=\frac{1}{n}\sum_{j=1}^{n}\left(X_{j}-S_{n}\right)^{2}.
+\]
+
+\begin{example}
+We toss a coin $100$ times. The result of the $j$-th toss is $X_{j}$.
+Suppose we observe $53$ heads so that
+\[
+\frac{S_{n}(\omega)}{n}=0.53\qquad\text{and}\qquad\sigma_{n}^{2}\approx0.25
+\]
+where we have written $S_{n}(\omega)$ above to stress that 0.53 is
+an observation. Let $\alpha=0.05$, corresponding to a confidence
+interval of $1-\alpha=0.95$. Then,
+\[
+F^{-1}\left(1-\frac{\alpha}{2}\right)=F^{-1}\left(0.975\right)=1.96.
+\]
+Moreover,
+\[
+1.96\cdot\frac{\sigma_{n}}{\sqrt{n}}\approx0.1
+\]
+The confidence interval is
+\[
+\left[0.53-0.1,0.53+0.1\right]=\left[0.43,0.63\right].
+\]
+\end{example}
+
+\section{Lyapunov's CLT}
+
+The problem with the classical CLT is that it requires the variables
+to be identically distributed. Lyapunov's CLT relaxes this assumption:
+\begin{prop}
+Let $(X_{j})_{j}$ be a sequence independent, mean zero random variables
+such that $X_{j}^{3}$ is integrable. Let $\sigma_{j}^{2}=\operatorname{Var}(X_{j})$,
+$\hat{\gamma}_{j}=\mathbb{E}[X_{j}^{3}]$, and $\gamma_{j}=\mathbb{E}[|X_{j}|^{3}]$.
+Let $S_{n}=X_{1}+\cdots+X_{n}$ and $s_{n}=\sigma_{1}^{2}+\cdots+\sigma_{n}^{2}$.
+Suppose that
+\[
+\frac{\gamma_{1}+\cdots+\gamma_{n}}{s_{n}^{3}}\rightarrow0\qquad\text{as}\qquad n\rightarrow\infty.
+\]
+Then,
+\[
+\frac{S_{n}}{s_{n}}\xrightarrow{\mathcal{D}}\mathcal{N}(0,1)\qquad\text{as}\qquad n\rightarrow\infty.
+\]
+\end{prop}
+
+\end{document}
