@@ -1,4 +1,4 @@
-%% LyX 2.2.1 created this file.  For more info, see http://www.lyx.org/.
+%% LyX 2.2.3 created this file.  For more info, see http://www.lyx.org/.
 %% Do not edit unless you really know what you are doing.
 \documentclass[english,12pt]{article}
 \usepackage[T1]{fontenc}
@@ -199,12 +199,25 @@ Therefore,
 \[
 \mathbb{E}X_{j}=0\qquad\text{and}\qquad\sigma^{2}=\operatorname{Var}(X_{j})=\mathbb{E}X_{j}^{2}=\int_{-1/2}^{1/2}x^{2}dx=\frac{1}{12}.
 \]
-Then,
+Let $S_{n}=X_{1}+\cdots+X_{n}$. Then,
 \begin{align*}
-\mathbb{P}\left\{ \left|X_{1}+\cdots+X_{n}\right|\geq x\right\}  & =\mathbb{P}\left\{ \left|\frac{X_{1}+\cdots+X_{n}}{\sqrt{n}\sigma}\right|\geq\frac{x}{\sqrt{n}\sigma}\right\} \\
- & =\mathbb{P}\left\{ -\frac{x}{\sqrt{n}\sigma}\leq\frac{X_{1}+\cdots+X_{n}}{\sqrt{n}\sigma}\leq\frac{x}{\sqrt{n}\sigma}\right\} \\
- & =\cdots
+\mathbb{P}\left\{ \left|S_{n}\right|>x\right\}  & =1-\mathbb{P}\left\{ \left|S_{n}\right|\leq x\right\} \\
+ & =1-\mathbb{P}\left\{ \frac{\left|S_{n}\right|}{\sqrt{n}\sigma}\leq\frac{x}{\sqrt{n}\sigma}\right\} \\
+ & =1-\mathbb{P}\left\{ -\frac{x}{\sqrt{n}\sigma}\leq\frac{S_{n}}{\sqrt{n}\sigma}\leq\frac{x}{\sqrt{n}\sigma}\right\} \\
+ & =1-\left(\mathbb{P}\left\{ \frac{S_{n}}{\sqrt{n}\sigma}\leq\frac{x}{\sqrt{n}\sigma}\right\} -\mathbb{P}\left\{ \frac{S_{n}}{\sqrt{n}\sigma}<-\frac{x}{\sqrt{n}\sigma}\right\} \right)\\
+ & =1-\left(\mathbb{P}\left\{ \frac{S_{n}}{\sqrt{n}\sigma}\leq\frac{x}{\sqrt{n}\sigma}\right\} -\left(1-\mathbb{P}\left\{ \frac{S_{n}}{\sqrt{n}\sigma}\geq-\frac{x}{\sqrt{n}\sigma}\right\} \right)\right)\\
+ & \approx1-\left(\mathbb{P}\left\{ \frac{S_{n}}{\sqrt{n}\sigma}\leq\frac{x}{\sqrt{n}\sigma}\right\} -\left(1-\mathbb{P}\left\{ \frac{S_{n}}{\sqrt{n}\sigma}\leq\frac{x}{\sqrt{n}\sigma}\right\} \right)\right)\\
+ & =2\left(1-\mathbb{P}\left\{ \frac{S_{n}}{\sqrt{n}\sigma}\leq\frac{x}{\sqrt{n}\sigma}\right\} .\right)
 \end{align*}
+Since we expect $\frac{S_{n}}{\sqrt{n}\sigma}$ to be normally distributed,
+letting $F$ denote the distribution function of $\mathcal{N}(0,1)$,
+\[
+\mathbb{P}\left\{ \left|S_{n}\right|>x\right\} \approx2\left(1-F\left(\frac{x}{\sqrt{n}\sigma}\right)\right).
+\]
+For example, if $n=10$ and $x=1$, then
+\[
+\mathbb{P}\left\{ \left|S_{10}\right|>1\right\} \approx2\left(1-F\left(\frac{\sqrt{12}}{\sqrt{10}}\right)\right)\approx0.27.
+\]
 \end{xca}
 
 \section{Confidence intervals}
@@ -265,7 +278,6 @@ where
 \[
 \sigma_{n}=\frac{1}{n}\sum_{j=1}^{n}\left(X_{j}-S_{n}\right)^{2}.
 \]
-
 \begin{example}
 We toss a coin $100$ times. The result of the $j$-th toss is $X_{j}$.
 Suppose we observe $53$ heads so that
