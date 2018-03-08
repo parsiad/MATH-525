@@ -389,10 +389,37 @@ Then,
 \[
 \mu^{(n)}=\mu P^{n}
 \]
-is the distribution of the gambler's wealth after $n$ plays. It can
-be verified that
+is the distribution of the gambler's wealth after $n$ plays. We can
+diagonalize the matrix $P$ by
 \[
-\lim_{n\rightarrow\infty}P^{n}=\begin{pmatrix}1 & 0 & 0 & 0 & 0\\
+P=SJS^{-1}
+\]
+where
+\[
+J=\begin{pmatrix}0\\
+ & 1\\
+ &  & 1\\
+ &  &  & -\frac{1}{\sqrt{2}}\\
+ &  &  &  & -\frac{1}{\sqrt{2}}
+\end{pmatrix}\qquad S=\begin{pmatrix}0 & -3 & 4 & 0 & 0\\
+-1 & -2 & 3 & 1 & 1\\
+0 & -1 & 2 & -\sqrt{2} & \sqrt{2}\\
+1 & 0 & 1 & 1 & 1\\
+0 & 1 & 0 & 0 & 0
+\end{pmatrix}.
+\]
+Since
+\[
+P^{n}=\left(SJS^{-1}\right)^{n}=\underbrace{\left(SJS^{-1}\right)\cdots\left(SJS^{-1}\right)}_{n\text{ times}}=SJ^{n}S^{-1},
+\]
+it follows that
+\[
+\lim_{n\rightarrow\infty}P^{n}=S\left(\lim_{n\rightarrow\infty}J^{n}\right)S^{-1}=S\begin{pmatrix}0\\
+ & 1\\
+ &  & 1\\
+ &  &  & 0\\
+ &  &  &  & 0
+\end{pmatrix}S^{-1}=\begin{pmatrix}1 & 0 & 0 & 0 & 0\\
 \nicefrac{3}{4} & 0 & 0 & 0 & \nicefrac{1}{4}\\
 \nicefrac{1}{2} & 0 & 0 & 0 & \nicefrac{1}{2}\\
 \nicefrac{1}{4} & 0 & 0 & 0 & \nicefrac{3}{4}\\
