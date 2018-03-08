@@ -1,0 +1,448 @@
+%% LyX 2.2.1 created this file.  For more info, see http://www.lyx.org/.
+%% Do not edit unless you really know what you are doing.
+\documentclass[english,12pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage[latin9]{inputenc}
+\usepackage{float}
+\usepackage{units}
+\usepackage{mathtools}
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{amssymb}
+\PassOptionsToPackage{normalem}{ulem}
+\usepackage{ulem}
+
+\makeatletter
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Textclass specific LaTeX commands.
+\theoremstyle{plain}
+\newtheorem{thm}{\protect\theoremname}[section]
+\theoremstyle{definition}
+\newtheorem{defn}[thm]{\protect\definitionname}
+\theoremstyle{definition}
+\newtheorem{example}[thm]{\protect\examplename}
+\theoremstyle{plain}
+\newtheorem{prop}[thm]{\protect\propositionname}
+\ifx\proof\undefined
+\newenvironment{proof}[1][\protect\proofname]{\par
+\normalfont\topsep6\p@\@plus6\p@\relax
+\trivlist
+\itemindent\parindent
+\item[\hskip\labelsep\scshape #1]\ignorespaces
+}{%
+\endtrivlist\@endpefalse
+}
+\providecommand{\proofname}{Proof}
+\fi
+\theoremstyle{remark}
+\newtheorem{rem}[thm]{\protect\remarkname}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% User specified LaTeX commands.
+\usepackage[margin=1in]{geometry}
+\usepackage{tikz}
+\usetikzlibrary{arrows,decorations.pathreplacing,shapes}
+
+\makeatother
+
+\usepackage{babel}
+\providecommand{\definitionname}{Definition}
+\providecommand{\examplename}{Example}
+\providecommand{\propositionname}{Proposition}
+\providecommand{\remarkname}{Remark}
+\providecommand{\theoremname}{Theorem}
+
+\begin{document}
+
+\title{Math 525: Lecture 16}
+
+\date{March 8, 2018}
+\maketitle
+
+\section{Markov chains}
+
+Consider a sequence $(X_{n})_{n\geq0}$ of random variables (defined
+on the same probability space) each taking values in some countable
+set. If we reinterpret the index $n$ as ``time'', we can think
+of the random variable $X_{n}$ ``occurring'' before $X_{n+1}$.
+Similarly, we may interpret the finite sequence $(X_{n})_{n\in\{0,\ldots,N\}}$
+as indexed by time. Let's give this concept a name:
+\begin{defn}
+A \emph{discrete stochastic process} is a sequence $(X_{n})_{n\in T}$
+such that
+\begin{enumerate}
+\item each $X_{n}$ takes values in some countable set (i.e., there exists
+a countable set $S$ such that $X_{n}(\omega)\in S$ for all $n$
+and $\omega$) and
+\item the index set is either $T=\{0,1,\ldots\}$ or $T=\{0,\ldots,N\}$.
+\end{enumerate}
+We call the set $S$ the \emph{state space}.
+\end{defn}
+In practice, many discrete time stochastic processes satisfy a sort
+of ``memoryless'' property:
+\begin{gather}
+\mathbb{P}(X_{n+1}=j\mid X_{0}=i_{0},\:\ldots,\:X_{n-1}=i_{n-1},\:X_{n}=i)=\mathbb{P}(X_{n+1}=j\mid X_{n}=i)\label{eq:markov_property}\\
+\text{for all }0\leq n<\sup T\text{ and }i_{0},\ldots,i_{n-1},i,j\in S.\nonumber 
+\end{gather}
+That is, if we know the value of $X$ at the ``current'' time $n$,
+knowing the value of $X$ at ``previous'' times $0,\ldots,n-1$
+provides no further insight as to the value of $X$ at ``future''
+time $n+1$. In other words, \uline{only the present value of the
+process is important, not its history}.
+\begin{defn}
+(\ref{eq:markov_property}) is called the \emph{Markov property}.
+A discrete stochastic process which satisfies the Markov property
+is called a \emph{Markov chain}.
+\end{defn}
+Technically, (\ref{eq:markov_property}) is not well-stated since
+the event $\{X_{0}=i_{0},\:\ldots,\:X_{n-1}=i_{n-1},\:X_{n}=i\}$
+can have probability zero. Of course, we ignore the condition for
+such probability zero events.
+\begin{example}
+\label{exa:bernoulli}Let $(Y_{n})_{n\geq0}$ be sequence of independent
+Bernoulli (coin flip) random variables. Let $X_{n}=Y_{1}+\cdots+Y_{n}$.
+Since
+\[
+X_{n+1}=X_{n}+Y_{n+1},
+\]
+it is obvious that $(X_{n})_{n\geq0}$ is a Markov process. In particular,
+\[
+\mathbb{P}(X_{n+1}=j\mid X_{n}=i)=\begin{cases}
+\mathbb{P}(Y_{n+1}=1) & \text{if }j=i+1\\
+\mathbb{P}(Y_{n+1}=0) & \text{if }j=i\\
+0 & \text{otherwise}.
+\end{cases}
+\]
+\end{example}
+\begin{prop}
+If $(X_{n})_{n\in T}$ is a Markov chain, then\textup{
+\[
+\mathbb{P}(X_{n+1}=j\mid(X_{0},\ldots,X_{n-1})\in A,\:X_{n}=i)=\mathbb{P}(X_{n+1}=j\mid X_{n}=i)
+\]
+for all $0\leq n<\sup T$, $i,j\in S$, and $A\subset\mathbb{R}^{n+1}$.}
+\end{prop}
+\begin{proof}
+First, note that
+\[
+\mathbb{P}(X_{n+1}=j\mid(X_{0},\ldots,X_{n-1})\in A,\:X_{n}=i)=\frac{\mathbb{P}(X_{n+1}=j,\:(X_{0},\ldots,X_{n-1})\in A,\:X_{n}=i)}{\mathbb{P}((X_{0},\ldots,X_{n})\in A,\:X_{n}=i)}.
+\]
+Next,
+\begin{multline*}
+\mathbb{P}(X_{n+1}=j,\:(X_{0},\ldots,X_{n-1})\in A,\:X_{n}=i)\\
+=\sum_{a\in A}\mathbb{P}(X_{n+1}=j,\:(X_{0},\ldots,X_{n-1})=a,\:X_{n}=i)\\
+=\sum_{a\in A}\mathbb{P}(X_{n+1}=j\mid(X_{0},\ldots,X_{n-1})=a,\:X_{n}=i)\mathbb{P}((X_{0},\ldots,X_{n-1})=a,\:X_{n}=i)\\
+=\mathbb{P}(X_{n+1}=j\mid X_{n}=i)\sum_{a\in A}\mathbb{P}((X_{0},\ldots,X_{n-1})=a,\:X_{n}=i)\\
+=\mathbb{P}(X_{n+1}=j\mid X_{n}=i)\mathbb{P}((X_{0},\ldots,X_{n})\in A,\:X_{n}=i).
+\end{multline*}
+The desired result follows by combining these equalities.
+\end{proof}
+So far, we have seen that the future value $X_{n+1}$ of a Markov
+chain may depend on the present value $X_{n}$ and the time $n$.
+This was indeed the case in Example \ref{exa:bernoulli}. However,
+what if in Example \ref{exa:bernoulli}, we made the variables $Y_{n}$
+independent? Then, the Markov chain would not depend on the time $n$.
+This is a very common scenario, so we give it a name.
+\begin{defn}
+A Markov chain $X$ is \emph{stationary} if
+\[
+\mathbb{P}(X_{n+1}=j\mid X_{n}=i)=\mathbb{P}(X_{1}=j\mid X_{0}=i)
+\]
+for all states $i,j$ and $0\leq n<\sup T$. If the state space is
+finite, we can create a matrix of \emph{transition probabilities}
+$P=(P_{ij})$ with
+\[
+P_{ij}=\mathbb{P}(X_{n+1}=j\mid X_{n}=i)
+\]
+that wholly describes the evolution of the Markov chain.
+\end{defn}
+\begin{rem}
+Actually, we can create the matrix $P$ even if the state space $S$
+is countable. In this case, we have what is called a \emph{denumerable
+matrix} in $\mathbb{R}^{\mathbb{N}\times\mathbb{N}}$. When we say
+``transition matrix'', we will assume that the state space is finite
+unless otherwise specified.
+\end{rem}
+\begin{example}
+Recall the game of gambler's ruin: a gambler repeatedly plays a game
+against an opponent in which they receive a dollar with probability
+$p$ and lose a dollar with probability $1-p$. Both the gambler and
+opponent start off with initial stakes of $x$ and $y$ dollars, respectively.
+The game ends when either the gambler or the opponent are broke.
+
+Let $X_{n}$ be the amount of money the gambler has at time $n$.
+Let $N=x+y$ be total wealth in play. It is easy to see that $(X_{n})_{n}$
+is a stationary Markov chain, whose transition probabilities are given
+by the tridiagonal $(N+1)\times(N+1)$ matrix 
+\[
+P=\begin{pmatrix}1 & 0\\
+1-p & 0 & p\\
+ & 1-p & 0 & p\\
+ &  & \ddots & \ddots & \ddots\\
+ &  &  & 1-p & 0 & p\\
+ &  &  &  & 1-p & 0 & p\\
+ &  &  &  &  & 0 & 1
+\end{pmatrix}.
+\]
+Pictorially,
+
+\begin{figure}[H]
+\centering
+\begin{tikzpicture}[node distance=2.0cm]
+\node [ultra thick, draw=black!50, ellipse, fill=black!15                                  ] (a) {$0$};
+\node [             draw=black!25, ellipse, fill=black!15, right of=a                      ] (b) {$1$};
+\node [                            ellipse,                right of=b                      ] (c) {$\cdots$};
+\node [             draw=black!25, ellipse, fill=black!15, right of=c, node distance=1.75cm] (d) {$i{-}1$};
+\node [             draw=black!25, ellipse, fill=black!15, right of=d                      ] (e) {$i$};
+\node [             draw=black!25, ellipse, fill=black!15, right of=e                      ] (f) {$i{+}1$};
+\node [                            ellipse,                right of=f                      ] (g) {$\cdots$};
+\node [             draw=black!25, ellipse, fill=black!15, right of=g, node distance=1.75cm] (h) {$N{-}1$};
+\node [ultra thick, draw=black!50, ellipse, fill=black!15, right of=h, node distance=1.75cm] (i) {$N$};
+\path [draw, thick, ->, >=stealth] (b.south west) -- node [below] {$1-p$} (a.south east);
+\path [draw, thick, ->, >=stealth] (c.south west) -- node [below] {$1-p$} (b.south east);
+\path [draw, thick, ->, >=stealth] (d.south west) -- node [below] {$1-p$} (c.south east);
+\path [draw, thick, ->, >=stealth] (e.south west) -- node [below] {$1-p$} (d.south east);
+\path [draw, thick, ->, >=stealth] (f.south west) -- node [below] {$1-p$} (e.south east);
+\path [draw, thick, ->, >=stealth] (g.south west) -- node [below] {$1-p$} (f.south east);
+\path [draw, thick, ->, >=stealth] (h.south west) -- node [below] {$1-p$} (g.south east);
+\path [draw, thick, ->, >=stealth] (b.north east) -- node [above] {$1-p$} (c.north west);
+\path [draw, thick, ->, >=stealth] (c.north east) -- node [above] {$1-p$} (d.north west);
+\path [draw, thick, ->, >=stealth] (d.north east) -- node [above] {$1-p$} (e.north west);
+\path [draw, thick, ->, >=stealth] (e.north east) -- node [above] {$1-p$} (f.north west);
+\path [draw, thick, ->, >=stealth] (f.north east) -- node [above] {$1-p$} (g.north west);
+\path [draw, thick, ->, >=stealth] (g.north east) -- node [above] {$1-p$} (h.north west);
+\path [draw, thick, ->, >=stealth] (h.north east) -- node [above] {$1-p$} (i.north west);
+\end{tikzpicture}
+\end{figure}
+
+\end{example}
+Any Markov chain can always be transformed into a stationary Markov
+chain by ``unrolling'' the state space:
+\begin{prop}
+Let $(X_{n})_{n\in T}$ be a Markov chain that is not necessarily
+stationary. Define a new discrete stochastic process $(Y_{n})_{n\in T}$
+by
+\[
+Y_{n}=(X_{0},\ldots,X_{n}).
+\]
+Then, $(Y_{n})_{n}$ is a stationary Markov chain (if the state space
+of the original Markov chain was $S$, the state space of the new
+Markov chain is $\cup_{n}S^{n}$).
+\end{prop}
+Let's recall some definitions from linear algebra.
+\begin{defn}
+Let $A\in\mathbb{C}^{m\times m}$. We call $\lambda\in\mathbb{C}\setminus\{0\}$
+an \emph{eigenvalue} of $A$ if there exists a nonzero vector $x\in\mathbb{C}^{n}$
+such that
+\[
+Ax=\lambda x.
+\]
+In this case, $x$ is an \emph{eigenvector} associated to the eigenvalue
+$\lambda$. The \emph{spectrum} $\sigma(A)$ of $A$ is the set of
+all the eigenvalues of $A$. The \emph{spectral radius} $\rho(A)$
+of $A$ is defined as
+\[
+\rho(A)=\max_{\lambda\in\sigma(A)}\left|\lambda\right|.
+\]
+We say $A$ is \emph{nonsingular/invertible} if $0\notin\sigma(A)$.
+\end{defn}
+\begin{prop}
+\label{prop:norm}Let $\Vert\cdot\Vert$ be a norm on $\mathbb{C}^{n}$,
+$A\in\mathbb{C}^{n\times n}$, and define the operator norm of $A$
+by
+\[
+\left\Vert A\right\Vert =\sup_{\Vert x\Vert=1}\left\Vert Ax\right\Vert .
+\]
+Then,
+\[
+\rho(A)\leq\left\Vert A^{k}\right\Vert ^{1/k}
+\]
+\end{prop}
+\begin{proof}
+Let $(\lambda,x)$ be an eigenvalue-eigenvector pair. Then,
+\[
+\left|\lambda\right|^{k}\left\Vert x\right\Vert =\left\Vert \lambda^{k}x\right\Vert =\left\Vert A^{k}x\right\Vert \leq\left\Vert A^{k}\right\Vert \left\Vert x\right\Vert 
+\]
+and hence $|\lambda|^{k}\leq\Vert A\Vert^{k}$, from which the desired
+result follows.
+\end{proof}
+\begin{example}
+The infinity norm of a vector is
+\[
+\left\Vert x\right\Vert _{\infty}=\max_{i}\left|x_{i}\right|.
+\]
+This defines the operator norm
+\[
+\left\Vert A\right\Vert _{\infty}=\sup_{\Vert x\Vert_{\infty}=1}\left\Vert Ax\right\Vert _{\infty}.
+\]
+Let $i$ be a row that maximizes the sum $\sum_{j}|A_{ij}|$ and let
+$y$ be the vector with entries 
+\[
+y_{j}=\begin{cases}
++1 & \text{if }A_{ij}\geq0\\
+-1 & \text{otherwise}.
+\end{cases}
+\]
+Note that
+\[
+\left\Vert A\right\Vert _{\infty}=\left\Vert Ay\right\Vert _{\infty}=\max_{i}\sum_{j}\left|A_{ij}\right|.
+\]
+By Proposition \ref{prop:norm} and the above,
+\begin{equation}
+\rho(A)\leq\left\Vert A\right\Vert _{\infty}=\max_{i}\sum_{j}\left|A_{ij}\right|.\label{eq:spectral_radius_bound}
+\end{equation}
+\end{example}
+\begin{prop}
+Let $P=(P_{ij})$ be a transition matrix associated to a stationary
+Markov chain. Then,
+\begin{enumerate}
+\item $P_{ij}\geq0$ for all $i,j$ and
+\item $\sum_{j}P_{ij}=1$ for all $i$.
+\item $\lambda=1$ is an eigenvalue of $P$.
+\item $I-P$ is singular.
+\item $\rho(P)\leq1$.
+\end{enumerate}
+\end{prop}
+\begin{proof}
+The first two points are trivial consequences of the transition matrix
+being defined by
+\[
+P_{ij}=\mathbb{P}(X_{1}=j\mid X_{0}=i).
+\]
+As for the third and fourth points, note that 
+\[
+Pe=e\qquad\text{and hence}\qquad\left(I-P\right)e=0.
+\]
+where $e=(1,\ldots,1)$ is the vector of ones. The last point is a
+consequence of (\ref{eq:spectral_radius_bound}).
+\end{proof}
+\begin{defn}
+Let $\mu_{i}=\mathbb{P}(X_{0}=i)$. $\mu$ is called the \emph{initial
+distribution }of the Markov chain $(X_{n})_{n\in T}$.
+\end{defn}
+Note that the initial distribution is just a vector. If we know the
+initial distribution of a stationary Markov chain and its transition
+matrix, we can determine the distribution $X_{n}$ at any future time
+$n>0$.
+\begin{prop}
+Let $(X_{n})_{n\in T}$ be a stationary Markov chain with transition
+matrix $P=(P_{ij})$ and initial distribution $\mu_{i}$. Then,
+\[
+\mathbb{P}(X_{n}=j)=\mu P^{n}
+\]
+where it is understood that $P^{0}=I$.
+\end{prop}
+\begin{proof}
+Let $\mu_{i}^{(n)}=\mathbb{P}(X_{n}=i)$ so that $\mu=\mu^{(0)}$.
+Then,
+\begin{align*}
+\mu_{j}^{(n+1)}=\mathbb{P}(X_{n+1}=j) & =\sum_{i}\mathbb{P}(X_{n+1}=j\mid X_{n}=i)\mathbb{P}(X_{n}=i)\\
+ & =\sum_{i}\mathbb{P}(X_{1}=j\mid X_{0}=i)\mathbb{P}(X_{n}=i)\\
+ & =\sum_{i}P_{ij}\mu_{i}^{(n)}=\sum_{i}\mu_{i}^{(n)}P_{ij}
+\end{align*}
+and hence
+\[
+\mu^{(n+1)}=\mu^{(n)}P.
+\]
+The desired result now follows by induction.
+\end{proof}
+
+\section{Examples of Markov chains}
+\begin{example}[Gambler's ruin]
+Consider the gambler's ruin with $N=4$ and $p=1/2$. The transition
+matrix is
+\[
+P=\begin{pmatrix}1 & 0\\
+\nicefrac{1}{2} & 0 & \nicefrac{1}{2}\\
+ & \nicefrac{1}{2} & 0 & \nicefrac{1}{2}\\
+ &  & \nicefrac{1}{2} & 0 & \nicefrac{1}{2}\\
+ &  &  & 0 & 1
+\end{pmatrix}.
+\]
+Let $\mu$ be the initial distribution of the gambler's wealth. For
+example, if the gambler's initial wealth is 2, we can represent this
+with the initial distribution vector
+\begin{equation}
+\mu=\begin{pmatrix}0 & 0 & 1 & 0 & 0\end{pmatrix}.\label{eq:gambler_example}
+\end{equation}
+Then,
+\[
+\mu^{(n)}=\mu P^{n}
+\]
+is the distribution of the gambler's wealth after $n$ plays. It can
+be verified that
+\[
+\lim_{n\rightarrow\infty}P^{n}=\begin{pmatrix}1 & 0 & 0 & 0 & 0\\
+\nicefrac{3}{4} & 0 & 0 & 0 & \nicefrac{1}{4}\\
+\nicefrac{1}{2} & 0 & 0 & 0 & \nicefrac{1}{2}\\
+\nicefrac{1}{4} & 0 & 0 & 0 & \nicefrac{3}{4}\\
+0 & 0 & 0 & 0 & 1
+\end{pmatrix}.
+\]
+Therefore,
+\[
+\mu^{(\infty)}\equiv\lim_{n\rightarrow\infty}\left(\mu P^{n}\right)=\mu\lim_{n\rightarrow\infty}P^{n}.
+\]
+If we plug in \ref{eq:gambler_example}, we get
+\[
+\mu^{(\infty)}=\begin{pmatrix}0.5 & 0 & 0 & 0 & 0.5\end{pmatrix}.
+\]
+Unsurprisingly, the probability of ruin is the same as that of victory.
+\end{example}
+%
+\begin{example}[Symmetric random walk]
+Consider once again the gambler's ruin. Suppose now that instead
+of the game ending when one player accumulates all the wealth, the
+game never ends, with players allowed to be in debt. This is a stationary
+Markov chain with the denumerable transition matrix
+\[
+P=\begin{pmatrix}\ddots & \vdots & \vdots & \vdots & \vdots & \vdots\\
+\cdots & \nicefrac{1}{2} & 0 & \nicefrac{1}{2} & 0 & 0 & \cdots\\
+\cdots & 0 & \nicefrac{1}{2} & 0 & \nicefrac{1}{2} & 0 & \cdots\\
+\cdots & 0 & 0 & \nicefrac{1}{2} & 0 & \nicefrac{1}{2} & \cdots\\
+ & \vdots & \vdots & \vdots & \vdots & \vdots & \ddots
+\end{pmatrix}.
+\]
+\end{example}
+%
+\begin{example}[Success runs]
+Consider an experiment with probability $p$ of success and $1-p$
+of failure. Let
+\[
+Y_{-1}=F
+\]
+and
+\[
+Y_{n}=\begin{cases}
+S & \text{if the }n\text{-th experiment was a success}\\
+F & \text{otherwise}
+\end{cases}
+\]
+for $n\geq0$. Then, the variable
+\[
+X_{n}=n-\max\{k\leq n\colon Y_{k}=F\}
+\]
+counts the consecutive number of successes leading up to time $n$.
+For example, if
+\[
+SFSSSF\cdots
+\]
+is a sequence of trials, then $X_{0}=1$, $X_{1}=0$, $X_{2}=1$,
+$X_{3}=2$, $X_{4}=3$, $X_{5}=0$, etc.
+
+This is a stationary Markov chain with
+\[
+\mathbb{P}(X_{1}=j\mid X_{0}=i)=\begin{cases}
+p & \text{if }j=i+1\\
+1-p & \text{if }j=0\\
+0 & \text{otherwise}.
+\end{cases}
+\]
+Therefore, this Markov chain admits the denumerable transition matrix
+\[
+P=\begin{pmatrix}1-p & p & 0 & 0 & \cdots\\
+1-p & 0 & p & 0 & \cdots\\
+1-p & 0 & 0 & p & \cdots\\
+\vdots & \vdots & \vdots & \vdots & \ddots
+\end{pmatrix}.
+\]
+\end{example}
+
+\end{document}
