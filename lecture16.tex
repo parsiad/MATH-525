@@ -1,4 +1,4 @@
-%% LyX 2.2.1 created this file.  For more info, see http://www.lyx.org/.
+%% LyX 2.2.3 created this file.  For more info, see http://www.lyx.org/.
 %% Do not edit unless you really know what you are doing.
 \documentclass[english,12pt]{article}
 \usepackage[T1]{fontenc}
@@ -211,7 +211,6 @@ Pictorially,
 \path [draw, thick, ->, >=stealth] (h.north east) -- node [above] {$p$} (i.north west);
 \end{tikzpicture}
 \end{figure}
-
 \end{example}
 Any Markov chain can always be transformed into a stationary Markov
 chain by ``unrolling'' the state space:
@@ -226,9 +225,9 @@ Then, $(Y_{n})_{n}$ is a stationary Markov chain (if the state space
 of the original Markov chain was $S$, the state space of the new
 Markov chain is $\cup_{n}S^{n}$).
 \end{prop}
-Let's recall some definitions from linear algebra.
+Let's recall some definitions and results from linear algebra.
 \begin{defn}
-Let $A\in\mathbb{C}^{m\times m}$. We call $\lambda\in\mathbb{C}\setminus\{0\}$
+Let $A\in\mathbb{C}^{m\times m}$. We call $\lambda\in\mathbb{C}$
 an \emph{eigenvalue} of $A$ if there exists a nonzero vector $x\in\mathbb{C}^{n}$
 such that
 \[
@@ -243,9 +242,22 @@ of $A$ is defined as
 \]
 We say $A$ is \emph{nonsingular/invertible} if $0\notin\sigma(A)$.
 \end{defn}
+%
+\begin{defn}
+A norm is a function $\Vert\cdot\Vert:\mathbb{C}^{m}\rightarrow\mathbb{R}$
+satisfying, for all $c\in\mathbb{C}$ and $x,y\in\mathbb{C}^{m}$
+\begin{enumerate}
+\item $\Vert cx\Vert=\left|c\right|\Vert x\Vert$,
+\item $\Vert x+y\Vert\leq\Vert x\Vert+\Vert y\Vert$,
+\item $\Vert x\Vert\geq0$,
+\item $\Vert x\Vert=0$ if and only if $x=0$.
+\end{enumerate}
+\end{defn}
+There is some redundancy in the above definition: points (1) and (2)
+imply point (3).
 \begin{prop}
-\label{prop:norm}Let $\Vert\cdot\Vert$ be a norm on $\mathbb{C}^{n}$,
-$A\in\mathbb{C}^{n\times n}$, and define the operator norm of $A$
+\label{prop:norm}Let $\Vert\cdot\Vert$ be a norm on $\mathbb{C}^{m}$,
+$A\in\mathbb{C}^{m\times m}$, and define the operator norm of $A$
 by
 \[
 \left\Vert A\right\Vert =\sup_{\Vert x\Vert=1}\left\Vert Ax\right\Vert .
@@ -268,21 +280,32 @@ The infinity norm of a vector is
 \[
 \left\Vert x\right\Vert _{\infty}=\max_{i}\left|x_{i}\right|.
 \]
-This defines the operator norm
+First, note that for $\Vert x\Vert_{\infty}=1$,
 \[
-\left\Vert A\right\Vert _{\infty}=\sup_{\Vert x\Vert_{\infty}=1}\left\Vert Ax\right\Vert _{\infty}.
+\left\Vert Ax\right\Vert _{\infty}=\max_{i}\left|\sum_{j}A_{ij}x_{i}\right|\leq\max_{i}\sum_{j}\left|A_{ij}\right|\left|x_{i}\right|\leq\max_{i}\sum_{j}\left|A_{ij}\right|.
 \]
-Let $i$ be a row that maximizes the sum $\sum_{j}|A_{ij}|$ and let
-$y$ be the vector with entries 
+Now, let $i^{*}$ be such that
+\[
+\max_{i}\sum_{j}\left|A_{ij}\right|=\sum_{j}\left|A_{i^{*}j}\right|
+\]
+let $y$ be the vector with entries 
 \[
 y_{j}=\begin{cases}
-+1 & \text{if }A_{ij}\geq0\\
++1 & \text{if }A_{i^{*}j}\geq0\\
 -1 & \text{otherwise}.
 \end{cases}
 \]
-Note that
+Note that $\Vert y\Vert=1$ and
 \[
-\left\Vert A\right\Vert _{\infty}=\left\Vert Ay\right\Vert _{\infty}=\max_{i}\sum_{j}\left|A_{ij}\right|.
+\left\Vert Ay\right\Vert _{\infty}=\sum_{j}\left|A_{i^{*}j}\right|.
+\]
+Since
+\[
+\left\Vert Ay\right\Vert _{\infty}\leq\left\Vert A\right\Vert _{\infty}\leq\left\Vert Ay\right\Vert _{\infty},
+\]
+it follows that
+\[
+\left\Vert A\right\Vert _{\infty}=\max_{i}\sum_{j}\left|A_{ij}\right|.
 \]
 By Proposition \ref{prop:norm} and the above,
 \begin{equation}
@@ -325,7 +348,7 @@ $n>0$.
 Let $(X_{n})_{n\in T}$ be a stationary Markov chain with transition
 matrix $P=(P_{ij})$ and initial distribution $\mu_{i}$. Then,
 \[
-\mathbb{P}(X_{n}=j)=\mu P^{n}
+\mathbb{P}(X_{n}=j)\text{ is the }j\text{-th entry of the vector }\mu P^{n}.
 \]
 where it is understood that $P^{0}=I$.
 \end{prop}
