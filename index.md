@@ -74,7 +74,7 @@ All assignments are to be handed in at the *beginning* of class.
 * Tu Feb 27: no class
 * Th Mar 01: no class
 * [Tu Mar 06: normal random variables, central limit theorems, confidence intervals](lecture15.pdf) (Section 6.4) [\[LaTeX source\]](lecture15.tex)
-* Th Mar 08
+* [Th Mar 08: Markov chains](lecture16.pdf) (Section 7.2) [\[LaTeX source\]](lecture16.tex)
 * Tu Mar 13
 * Th Mar 15
 * Tu Mar 20: **midterm exam 2** (in class)
