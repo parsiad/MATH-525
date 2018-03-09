@@ -1,0 +1,80 @@
+%% LyX 2.2.1 created this file.  For more info, see http://www.lyx.org/.
+%% Do not edit unless you really know what you are doing.
+\documentclass[english,12pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage[latin9]{inputenc}
+\usepackage{units}
+\usepackage{amsmath}
+
+\makeatletter
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% User specified LaTeX commands.
+\usepackage[margin=1in]{geometry}
+
+\makeatother
+
+\usepackage{babel}
+\begin{document}
+
+\title{Math 525: Assignment 7}
+
+\date{\date{}}
+\maketitle
+\begin{enumerate}
+\item Let $X_{n},Y_{n}\sim B(n,\lambda/n)$ be independent Binomial random
+variables. Let $Z_{n}=X_{n}-Y_{n}$. Show that $Z_{n}$ converges
+in distribution to some random variable $Z\sim\text{Poisson}(\lambda)$.
+\item Ten numbers $X_{1},\ldots,X_{10}$ are rounded to the nearest integer
+$[X_{1}],\ldots,[X_{10}]$ and then summed $[X_{1}]+\ldots+[X_{10}]$.
+Assume the errors from rounding $Y_{j}=X-[X_{j}]$ are independent
+and uniformly distributed in $[-\nicefrac{1}{2},\nicefrac{1}{2}]$.
+Use the CLT to determine the approximate probability that the error
+\[
+\left|X_{1}+\cdots+X_{10}-\left([X_{1}]+\cdots+[X_{10}]\right)\right|
+\]
+is no greater than one.
+\item Let $(X_{n})_{n\geq0}$ be a Markov chain. Show that $((X_{n},X_{n+1}))_{n\geq0}$
+is also a Markov chain.
+\item ~
+\begin{enumerate}
+\item Show that if $P$ is a transition matrix, then $P^{2}$ is also a
+transition matrix. Use this to conclude, by induction, that $P^{n}$
+is a transition matrix for any $n$.
+\item A matrix $P=(P_{ij})$ is \emph{bistochastic} if it satisfies (1)
+$P_{ij}\geq0$, (2) $\sum_{j}P_{ij}=1$, and (3) $\sum_{i}P_{ij}=1$
+for all $j$. Show that if $P$ is bistochastic, then $P^{2}$ is
+also bistochastic. Use this to conclude, by induction, that $P^{n}$
+is bistochastic.
+\end{enumerate}
+\item ~
+\begin{enumerate}
+\item Recall the matrix $P$ for the gambler's ruin with total wealth $N=4$
+and probability of victory $p=1/2$:
+\[
+P=\begin{pmatrix}1 & 0\\
+\nicefrac{1}{2} & 0 & \nicefrac{1}{2}\\
+ & \nicefrac{1}{2} & 0 & \nicefrac{1}{2}\\
+ &  & \nicefrac{1}{2} & 0 & \nicefrac{1}{2}\\
+ &  &  & 0 & 1
+\end{pmatrix}.
+\]
+Compute the eigenvalues of $P$. What is the multiplicity of the eigenvalue
+$1$?
+\item Now, consider a similar, but slightly different transition matrix:
+\[
+P^{\prime}=\begin{pmatrix}0 & 1\\
+\nicefrac{1}{2} & 0 & \nicefrac{1}{2}\\
+ & \nicefrac{1}{2} & 0 & \nicefrac{1}{2}\\
+ &  & \nicefrac{1}{2} & 0 & \nicefrac{1}{2}\\
+ &  &  & 0 & 1
+\end{pmatrix}.
+\]
+We can interpret this as follows: when the gambler loses, the opponent
+is kind and gives the gambler a dollar so that they can keep playing.
+Compute the eigenvalues of $P^{\prime}$. What is the multiplicity
+of the eigenvalue 1?
+\item What do you think the multiplicity of the eigenvalue $1$ tells you
+about the Markov chain?
+\end{enumerate}
+\end{enumerate}
+
+\end{document}
