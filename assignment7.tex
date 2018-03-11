@@ -22,10 +22,15 @@
 \begin{enumerate}
 \item Let $X_{n},Y_{n}\sim B(n,\lambda/n)$ be independent Binomial random
 variables. Let $Z_{n}=X_{n}-Y_{n}$. Show that $Z_{n}$ converges
-in distribution to some random variable $Z\sim\text{Poisson}(\lambda)$.
+in distribution to some random variable $Z$ with characteristic function
+\[
+\phi(t)=e^{2\lambda\left(\cosh t-1\right)}.
+\]
+Actually, this is called a Skellam random variable (look it up on
+Wikipedia).
 \item Ten numbers $X_{1},\ldots,X_{10}$ are rounded to the nearest integer
 $[X_{1}],\ldots,[X_{10}]$ and then summed $[X_{1}]+\ldots+[X_{10}]$.
-Assume the errors from rounding $Y_{j}=X-[X_{j}]$ are independent
+Assume the errors from rounding $Y_{j}=X_{j}-[X_{j}]$ are independent
 and uniformly distributed in $[-\nicefrac{1}{2},\nicefrac{1}{2}]$.
 Use the CLT to determine the approximate probability that the error
 \[
