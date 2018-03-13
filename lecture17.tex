@@ -1,0 +1,426 @@
+%% LyX 2.2.1 created this file.  For more info, see http://www.lyx.org/.
+%% Do not edit unless you really know what you are doing.
+\documentclass[english,12pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage[latin9]{inputenc}
+\usepackage{refstyle}
+\usepackage{float}
+\usepackage{units}
+\usepackage{mathtools}
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{amssymb}
+
+\makeatletter
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% LyX specific LaTeX commands.
+
+\AtBeginDocument{\providecommand\lemref[1]{\ref{lem:#1}}}
+\RS@ifundefined{subsecref}
+  {\newref{subsec}{name = \RSsectxt}}
+  {}
+\RS@ifundefined{thmref}
+  {\def\RSthmtxt{theorem~}\newref{thm}{name = \RSthmtxt}}
+  {}
+\RS@ifundefined{lemref}
+  {\def\RSlemtxt{lemma~}\newref{lem}{name = \RSlemtxt}}
+  {}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Textclass specific LaTeX commands.
+\theoremstyle{plain}
+\newtheorem{thm}{\protect\theoremname}[section]
+\theoremstyle{definition}
+\newtheorem{defn}[thm]{\protect\definitionname}
+\theoremstyle{definition}
+\newtheorem{example}[thm]{\protect\examplename}
+\theoremstyle{remark}
+\newtheorem{rem}[thm]{\protect\remarkname}
+\theoremstyle{plain}
+\newtheorem{prop}[thm]{\protect\propositionname}
+\ifx\proof\undefined
+\newenvironment{proof}[1][\protect\proofname]{\par
+\normalfont\topsep6\p@\@plus6\p@\relax
+\trivlist
+\itemindent\parindent
+\item[\hskip\labelsep\scshape #1]\ignorespaces
+}{%
+\endtrivlist\@endpefalse
+}
+\providecommand{\proofname}{Proof}
+\fi
+\theoremstyle{definition}
+\newtheorem{xca}[thm]{\protect\exercisename}
+\theoremstyle{plain}
+\newtheorem{lem}[thm]{\protect\lemmaname}
+\theoremstyle{plain}
+\newtheorem{cor}[thm]{\protect\corollaryname}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% User specified LaTeX commands.
+\usepackage[margin=1in]{geometry}
+\usepackage{tikz}
+\usetikzlibrary{arrows,decorations.pathreplacing,shapes}
+
+\makeatother
+
+\usepackage{babel}
+\providecommand{\corollaryname}{Corollary}
+\providecommand{\definitionname}{Definition}
+\providecommand{\examplename}{Example}
+\providecommand{\exercisename}{Exercise}
+\providecommand{\lemmaname}{Lemma}
+\providecommand{\propositionname}{Proposition}
+\providecommand{\remarkname}{Remark}
+\providecommand{\theoremname}{Theorem}
+
+\begin{document}
+
+\title{Math 525: Lecture 17}
+
+\date{March 14, 2018}
+
+\maketitle
+For the remainder, it should be understood that by ``Markov chain'',
+we mean a Markov chain with finite state space $S$ and which is stationary
+(and hence admits a transition matrix $P=(P_{ij})$). We will, without
+loss of generality, take $S=\{1,\ldots,n\}$ for the entirety of this
+lecture.
+
+\section{Reducibility}
+
+It turns out that the reducibility of the transition matrix $P$ has
+a very useful interpretation. Let's first recall the notion of reducibility.
+To do that, we'll need the notion of a permutation matrix:
+\begin{defn}
+A bijective function $\pi:S\rightarrow S$ is called a \emph{permutation}
+of $S=\{1,\ldots,n\}$. The matrix $A=(A_{ij})$ with entries
+\[
+A_{ij}=\begin{cases}
+1 & \text{if }\pi(j)=i\\
+0 & \text{otherwise}
+\end{cases}
+\]
+is the \emph{permutation matrix} associated with $\pi$.
+\end{defn}
+\begin{example}
+The matrix
+\[
+K=\begin{pmatrix}0 & 1 & 0\\
+0 & 0 & 1\\
+1 & 0 & 0
+\end{pmatrix}
+\]
+is a permutation matrix corresponding to the permutation $\pi(2)=1$,
+$\pi(3)=2$, and $\pi(1)=3$.
+\begin{enumerate}
+\item Left-multiplication:
+\[
+K\begin{pmatrix}1\\
+2\\
+3
+\end{pmatrix}=\begin{pmatrix}2\\
+3\\
+1
+\end{pmatrix}.
+\]
+This corresponds to a ``reordering'' of the vector by the permutation
+$\pi$ (i.e., the $i$-th entry of the old vector becomes the $\pi(i)$-th
+entry of new vector).
+\item Similarity transform:
+\[
+K\begin{pmatrix}1 & 2 & 3\\
+4 & 5 & 6\\
+7 & 8 & 9
+\end{pmatrix}K^{\intercal}=\begin{pmatrix}4 & 5 & 6\\
+7 & 8 & 9\\
+1 & 2 & 3
+\end{pmatrix}K^{\intercal}=\begin{pmatrix}5 & 6 & 4\\
+8 & 9 & 7\\
+2 & 3 & 1
+\end{pmatrix}.
+\]
+This corresponds to a ``simultaneous reordering'' of the rows and
+columns by the permutation $\pi$ (i.e., the $(i,j)$-th entry of
+the old matrix becomes the $(\pi(i),\pi(j))$-th entry of the new
+matrix). 
+\end{enumerate}
+\end{example}
+\begin{defn}
+Two matrices $A$ and $B$ are said to be \emph{permutation similar}
+if we can find a permutation matrix $K$ such that
+\[
+KAK^{\intercal}=B.
+\]
+\end{defn}
+%
+\begin{defn}
+A square matrix $A=(A_{ij})$ is said to be \emph{reducible} if it
+is permutation similar to a block upper triangular matrix:
+\[
+KAK^{\intercal}=\begin{pmatrix}A^{(1)} & A^{(2)}\\
+0 & A^{(3)}
+\end{pmatrix}
+\]
+where $A^{(1)}$ and $A^{(3)}$ are square matrices (of order at least
+$1$). The matrix $A$ is \emph{irreducible} if it is not reducible.
+We say a Markov chain is reducible (resp. irreducible) if its transition
+matrix is reducible (resp. irreducible).
+\end{defn}
+%
+\begin{defn}
+Let $A=(A_{ij})$ be a matrix. We say that there is a \emph{walk}
+from $1\leq u\leq n$ to $1\leq v\leq n$ if we can find a (nonempty)
+finite sequence of nonzero entries of $A$ 
+\begin{equation}
+A_{i_{1}i_{2}},\,A_{i_{2}i_{3}},\,\ldots,\,A_{i_{k-1}i_{k}}\label{eq:sequence}
+\end{equation}
+such that $i_{1}=u$ and $i_{k}=v$. For brevity, we denote this walk
+by
+\[
+u=i_{1}\dashrightarrow i_{2}\dashrightarrow\cdots\dashrightarrow i_{k}=v.
+\]
+Since we may not want to write $i_{1}$, $i_{2}$, etc., we will sometimes
+simply write
+\[
+u\rightarrow v
+\]
+to mean that a walk from $u$ to $v$ exists. A walk of length one
+(e.g., $u\dashrightarrow v$) is called an \emph{edge}.
+\end{defn}
+\begin{rem}
+The statements ``there is a walk from $u$ to $v$'', ``$u\rightarrow v$'',
+``$v$ is \emph{reachable} from $u$'', and ``$v$ is \emph{accessible}
+from $u$'' are synonyms.
+\end{rem}
+\begin{prop}
+\label{prop:irreducible}The square matrix $A=(A_{ij})$ is irreducible
+if and only if it is ``strongly connected''. That is, for every
+pair $1\leq u,v\leq n$, we can find a walk from $u$ to $v$.
+\end{prop}
+Before we give a proof of Proposition \ref{prop:irreducible}, let's
+try to understand the strongly connected property:
+\begin{example}
+Consider the matrix
+\[
+P=\begin{pmatrix} &  & 1\\
+\nicefrac{1}{2} &  & \nicefrac{1}{2}\\
+1
+\end{pmatrix}.
+\]
+This matrix \textbf{does not} satisfy connectedness property since
+there is no ``walk'' from vertex $u=1$ (or $u=3$) to vertex $v=2$:
+\begin{figure}[H]
+\centering
+\begin{tikzpicture}[node distance=2.0cm]
+\node [thick, draw=black!50, ellipse, fill=black!15            ] (1) {1};
+\node [thick, draw=black!50, ellipse, fill=black!15, above right of=1] (2) {2};
+\node [thick, draw=black!50, ellipse, fill=black!15, below right of=1] (3) {3};
+\path [draw, thick, ->, >=stealth] (1) -- (3);
+\path [draw, thick, ->, >=stealth] (2) -- (3);
+\path [draw, thick, ->, >=stealth] (3) -- (1);
+\path [draw, thick, ->, >=stealth] (2) -- (1);
+\end{tikzpicture}
+\end{figure}
+What about the matrix
+\[
+P=\begin{pmatrix} & 1\\
+\nicefrac{1}{2} &  & \nicefrac{1}{2}\\
+ & 1
+\end{pmatrix}?
+\]
+Clearly, this matrix satisfies the connectedness property:
+\begin{figure}[H]
+\centering
+\begin{tikzpicture}[node distance=2.0cm]
+\node [thick, draw=black!50, ellipse, fill=black!15            ] (1) {1};
+\node [thick, draw=black!50, ellipse, fill=black!15, above right of=1] (2) {2};
+\node [thick, draw=black!50, ellipse, fill=black!15, below right of=1] (3) {3};
+\path [draw, thick, ->, >=stealth] (1) -- (2);
+\path [draw, thick, ->, >=stealth] (2) -- (3);
+\path [draw, thick, ->, >=stealth] (3) -- (2);
+\path [draw, thick, ->, >=stealth] (2) -- (1);
+\end{tikzpicture}
+\end{figure}
+Note, in particular, that if there is a walk from $u$ to $v$, then
+we can find some positive integer $n$ such that
+\[
+\mathbb{P}(X_{n}=v\mid X_{0}=u)>0
+\]
+(indeed, $n$ can be taken to be the number of edges in the walk).
+\end{example}
+Let's return to the proof of Proposition \ref{prop:irreducible}.
+\begin{proof}
+We prove the reverse direction by contrapositive (i.e., by establishing
+that $\text{reducible}\implies\text{not strongly connected}$). Suppose
+the matrix is reducible. Then, 
+\begin{equation}
+KAK^{\intercal}=\begin{pmatrix}A^{(1)} & A^{(2)}\\
+0 & A^{(3)}
+\end{pmatrix}\qquad\text{where }A^{(1)}\in\mathbb{R}^{m\times m}\text{ and }A^{(3)}\in\mathbb{R}^{(n-m)\times(n-m)}.\label{eq:permutation}
+\end{equation}
+Let $B=KAK^{\intercal}$. It follows that for $u=n$ and $v=1$, we
+are unable to find a walk
+\[
+u=i_{1}\dashrightarrow i_{2}\dashrightarrow\cdots\dashrightarrow i_{k}=v
+\]
+in $B$. Equivalently, we are unable to find a walk
+\[
+\pi^{-1}(u)=\pi^{-1}(i_{1})\dashrightarrow\pi^{-1}(i_{2})\dashrightarrow\cdots\dashrightarrow\pi^{-1}(i_{k})=\pi^{-1}(v).
+\]
+in $A$. Equivalently, we are unable to find a walk
+\[
+\pi^{-1}(u)=i_{1}^{\prime}\dashrightarrow i_{2}^{\prime}\dashrightarrow\cdots\dashrightarrow i_{k}^{\prime}=\pi^{-1}(v).
+\]
+in $A$. Therefore, $A$ is not strongly connected.
+
+As for the forward direction, we also proceed by contrapositive. The
+ideas are similar to the previous paragraph, so sketch them briefly.
+Suppose the matrix is not strongly connected. Then, we can find $u$
+and $v$ such that there is no walk from $u$ to $v$. Let $M$ be
+the set of all rows \textbf{not} reachable by a walk from $u$. Then,
+by our assumptions, $v\in M$ so that $|M|=m>0$. Let $\pi$ be a
+permutation under which $\pi(M)=\{1,\ldots,m\}$. Let $K$ be the
+permutation matrix associated with $\pi$. Then, (\ref{eq:permutation})
+is satisfied, as desired.
+\end{proof}
+\begin{defn}
+If $i\rightarrow j$ and $j\rightarrow i$, we say that $i$ and $j$
+\emph{communicate}, written $i\leftrightarrow j$.
+\end{defn}
+\begin{prop}
+Communication is an equivalence relation.
+\end{prop}
+Due to the above, we can divide the state space into equivalence classes
+$C_{1},\ldots,C_{k}$ such that if $i\in C_{r}$ and $j\in C_{s}$,
+then $i\leftrightarrow j$ if and only if $r=s$.
+\begin{xca}
+Show that if the Markov chain is irreducible, the whole state space
+is a single equivalence class.
+\end{xca}
+
+\section{Periods}
+\begin{defn}
+Let $A=(A_{ij})$ be a nonnegative matrix (i.e., $A_{ij}\geq0$ for
+all $i,j$). Denote by $A^{n}$ the $n$-th power of $A$. The \emph{period
+of $i$} is the greatest common divisor of the set $\{n\geq1\colon(A^{n})_{ii}>0\}$.
+We denote the period of $i$ by $d(i)$. If $d(i)=1$, we say that
+$i$ is \emph{aperiodic}.
+\end{defn}
+\begin{rem}
+The period is also called the \emph{index of imprimitivity }or the
+\emph{order of cyclicity}.
+\end{rem}
+Before we prove some properties of periods, let's try to grasp the
+intuition:
+\begin{example}
+Consider the $n\times n$ transition matrix
+\[
+P=\begin{pmatrix}0 & 1 & 0 & 0 & \cdots & 0\\
+0 & 0 & 1 & 0 & \cdots & 0\\
+0 & 0 & 0 & 1 & \cdots & 0\\
+\vdots & \vdots & \vdots & \vdots &  & \vdots\\
+0 & 0 & 0 & 0 & \cdots & 1\\
+1 & 0 & 0 & 0 & \cdots & 0
+\end{pmatrix}.
+\]
+Note that this transition matrix defines a completely deterministic
+Markov chain. If $X_{1}=1$, then $X_{n}=n$. In particular, it returns
+to its original starting place in $n$ steps, so that $d(1)=n$ (more
+generally, $d(i)=n$ for all $i$).
+\end{example}
+We will write $m\mid n$ to mean that the integer $m$ divides the
+integer $n$. 
+\begin{lem}
+If $a\mid b$ and $a\mid b+c$, then $a\mid c$.
+\end{lem}
+\begin{proof}
+If $a\mid b$, we can find an integer $k$ such that $ak=b$. If $a\mid b+c$,
+we can find an integer $k^{\prime}$ such that $ak^{\prime}=b+c$.
+Then,
+\[
+a\left(k^{\prime}-k\right)=ak^{\prime}-ak=b+c-b=c
+\]
+and hence $a\mid c$.
+\end{proof}
+\begin{lem}
+If $a\mid b$ and $b\mid a$, then $a=\pm b$.
+\end{lem}
+\begin{proof}
+If $a\mid b$, we can find an integer $k$ such that $ak=b$. If $b\mid a$,
+we can find an integer $k^{\prime}$ such that $bk^{\prime}=a$. Then,
+\[
+bk^{\prime}k=b
+\]
+and hence it must be the case that either $k^{\prime}=k=1$ or $k^{\prime}=k=-1$.
+\end{proof}
+\begin{prop}
+If $i\leftrightarrow j$, then $d(i)=d(j)$.
+\end{prop}
+\begin{proof}
+Since $i\rightarrow j$, we can find a positive integer $n$ such
+that
+\[
+(P^{n})_{ij}=\mathbb{P}(X_{n}=j\mid X_{0}=i)>0.
+\]
+Similarly, since $j\rightarrow i$, we can find a positive integer
+$m$ such that
+\[
+(P^{m})_{ji}>0.
+\]
+Therefore,
+\[
+(P^{n+m})_{ii}=(P^{n}P^{m})_{ii}=\sum_{k}(P^{n})_{ik}(P^{m})_{ki}\geq(P^{n})_{ij}(P^{m})_{ji}>0.
+\]
+This implies $d(i)\mid n+m$.
+
+Now, if $(P^{r})_{jj}>0$ for some $r$, the same reasoning yields
+\[
+(P^{n+r+m})_{ii}=(P^{n}P^{r}P^{m})_{ii}=\sum_{k}\sum_{k^{\prime}}(P^{n})_{ik}(P^{r})_{kk^{\prime}}(P^{m})_{k^{\prime}i}\geq(P^{n})_{ij}(P^{r})_{jj}(P^{m})_{ji}>0.
+\]
+Therefore, $d(i)\mid n+r+m$, and hence $d(i)\mid r$. But note that
+the above is trivially satisfied with $r=d(j)$, and hence $d(i)\mid d(j)$.
+
+Symmetrically, we can establish $d(j)\mid d(i)$ to conclude that
+$d(i)=d(j)$.
+\end{proof}
+\begin{cor}
+For an irreducible Markov chain, $d(i)=d(j)$ for all $i$ and $j$.
+\end{cor}
+\begin{rem}
+Due to the above, we refer to the period of any state in an irreducible
+Markov chain as \textbf{the} period of the Markov chain.
+\end{rem}
+
+\section{Regularity}
+\begin{defn}
+A nonnegative matrix $A$ is \emph{primitive} if there exists a positive
+integer $m$ such that $A^{m}$ is positive (i.e., $(A^{m})_{ij}>0$
+for all $i,j$).
+\end{defn}
+We will use the following number-theoretic fact without proof:
+\begin{lem}[Semigroup lemma]
+\label{lem:semigroup}Any set of non-negative integers which is closed
+under addition and which has greatest common divisor 1 must contain
+all but finitely many of the non-negative integers.
+\end{lem}
+\begin{prop}
+Let $A$ be an irreducible and aperiodic matrix. Then, $A$ is primitive.
+\end{prop}
+\begin{proof}
+ Let $A$ be an irreducible and aperiodic matrix. Note that $J_{i}=\{n\colon(A^{n})_{ii}>0\}$
+satisfies $\operatorname{gcd}(J_{i})=1$ by the presumed aperiodicity.
+Therefore, by \lemref{semigroup}, we can find $M(i)$ such that for
+all $n\geq M(i)$, we have $(A^{n})_{ii}>0$. Since $A$ is irreducible,
+we can find $m(i,j)$ such that $(A^{m(i,j)})_{ij}>0$. Therefore,
+for $n\geq M(i)$,
+\[
+(A^{n+m(i,j)})_{ij}=\sum_{k}(A^{n})_{ik}(A^{m(i,j)})_{kj}\geq(A^{n})_{ii}(A^{m(i,j)})_{ij}>0.
+\]
+Let $M=\max_{i,j}M(i)+m(i,j)$. Then, $(A^{M})_{ij}>0$ for all $i,j$
+as desired.
+\end{proof}
+\begin{defn}
+A Markov chain whose transition matrix is primitive is called \emph{regular}.
+\end{defn}
+
+\end{document}
