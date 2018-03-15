@@ -77,7 +77,7 @@ All assignments are to be handed in at the *beginning* of class.
 * [Tu Mar 06: normal random variables, central limit theorems, and confidence intervals](lecture15.pdf) (Section 6.4) [\[LaTeX source\]](lecture15.tex)
 * [Th Mar 08: Markov chains](lecture16.pdf) (Section 7.2) [\[LaTeX source\]](lecture16.tex)
 * [Tu Mar 13: irreducibile matrices and the period of a nonnegative matrix](lecture17.pdf) (Section 7.3) [\[LaTeX source\]](lecture17.tex)
-* Th Mar 15
+* [Th Mar 15: filtrations and stopping times](lecture18.pdf) (Section 7.4) [\[LaTeX source\]](lecture18.tex)
 * Tu Mar 20: **midterm exam 2** (in class)
 * Th Mar 22
 * Tu Mar 27
