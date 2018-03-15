@@ -1,4 +1,4 @@
-%% LyX 2.2.1 created this file.  For more info, see http://www.lyx.org/.
+%% LyX 2.2.3 created this file.  For more info, see http://www.lyx.org/.
 %% Do not edit unless you really know what you are doing.
 \documentclass[english,12pt]{article}
 \usepackage[T1]{fontenc}
@@ -72,9 +72,9 @@ times $X_{0},X_{1},\ldots,X_{n}$). But how can we express the statement
 For our discussion, let $(X_{n})_{n\in T}$ be a Markov chain on a
 countable state space $S\subset\mathbb{R}$. We will not assume that
 the state space $S$ is finite, nor that the Markov chain is stationary.
-We can, since the state space is countable, assume that the underlying
-probability space is of the form $(\Omega,\mathcal{F}=2^{\Omega},\mathbb{P})$
-where $\Omega$ is also a countable set.
+Note that if $T$ is finite, $S^{T}$ is countable and hence we can
+take $(\Omega=S^{T},\mathcal{F}=2^{\Omega},\mathbb{P})$ to be the
+probability space (for some $\mathbb{P}$).
 \begin{defn}
 Let $\mathcal{F}$ be a $\sigma$-algebra and $T$ be an index set.
 A \emph{filtration} is a sequence $(\mathcal{F}_{t})_{t\in T}$ of
@@ -96,7 +96,7 @@ to be our $\sigma$-algebra. Define
 \begin{align*}
 \mathcal{F}_{0} & =\{\emptyset,\Omega\}\\
 \mathcal{F}_{1} & =\{\emptyset,\Omega,\{HH,HT\},\{TH,TT\}\}\\
-\mathcal{F}_{2} & =\{\emptyset,\Omega,\{HH,HT\},\{TH,TT\},\{HH\},\{HT\},\{TH\},\{TT\}\}.
+\mathcal{F}_{2} & =2^{\Omega}.
 \end{align*}
 Note that $(\mathcal{F}_{n})_{n\in\{0,1,2\}}$ defines a filtration
 since $\mathcal{F}_{0}\subset\mathcal{F}_{1}\subset\mathcal{F}_{2}=\mathcal{F}$.
