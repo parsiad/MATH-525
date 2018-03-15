@@ -319,7 +319,8 @@ Let $\tau$ and $\tau^{\prime}$ be stopping times. Then,
 \begin{enumerate}
 \item $\mathcal{F}_{\tau}$ is a $\sigma$-algebra.
 \item Both $\tau$ and $X_{\tau}I_{\{\tau<\infty\}}$ are $\mathcal{F}_{\tau}$
-measurable.
+measurable (assuming $X_{n}$ is $\mathcal{F}_{n}$ measurable for
+each $n$).
 \item If $\tau\leq\tau^{\prime}$, then $\mathcal{F}_{\tau}\subset\mathcal{F}_{\tau^{\prime}}$.
 \end{enumerate}
 \end{prop}
@@ -338,13 +339,14 @@ Then
 \]
 \item This follows from
 \[
-\left\{ X_{\tau}=i\right\} \cap\left\{ \tau=n\right\} =\left\{ X_{n}=i\right\} \cap\left\{ \tau=n\right\} 
+\left\{ X_{\tau}I_{\{\tau<\infty\}}=i\right\} \cap\left\{ \tau=n\right\} =\left\{ X_{n}=i\right\} \cap\left\{ \tau=n\right\} 
 \]
 and
 \[
 \left\{ \tau\leq m\right\} \cap\left\{ \tau\leq n\right\} =\left\{ \tau\leq m\wedge n\right\} \in\mathcal{F}_{m\wedge n}\subset\mathcal{F}_{n}.
 \]
-\item This follows from
+\item Since $\tau\leq\tau^{\prime}$, if $\tau^{\prime}(\omega)\leq n$,
+then $\tau(\omega)\leq n$. Therefore,
 \[
 \Lambda\cap\left\{ \tau^{\prime}\leq n\right\} =\underbrace{\Lambda\cap\left\{ \tau\leq n\right\} }_{\in\mathcal{F}_{n}}\cap\underbrace{\left\{ \tau^{\prime}\leq n\right\} }_{\in\mathcal{F}_{n}}.
 \]
