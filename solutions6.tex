@@ -1,0 +1,104 @@
+%% LyX 2.2.1 created this file.  For more info, see http://www.lyx.org/.
+%% Do not edit unless you really know what you are doing.
+\documentclass[english,12pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage[latin9]{inputenc}
+\usepackage{color}
+\usepackage{babel}
+\usepackage{mathtools}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage[unicode=true,pdfusetitle,
+ bookmarks=true,bookmarksnumbered=false,bookmarksopen=false,
+ breaklinks=false,pdfborder={0 0 1},backref=false,colorlinks=true]
+ {hyperref}
+\usepackage{breakurl}
+
+\makeatletter
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% User specified LaTeX commands.
+\usepackage[margin=1in]{geometry}
+
+\makeatother
+
+\begin{document}
+
+\title{Math 525: Assignment 6 Solutions}
+
+\date{\date{}}
+\maketitle
+\begin{enumerate}
+\item Below are two ways of solving the problem. The second is more general,
+in that it works for random variables which do not admit probability
+densities also.
+\begin{enumerate}
+\item Note that
+\begin{multline*}
+\overline{\phi(t)}=\mathbb{E}\left[e^{-itX}\right]=\int_{-\infty}^{\infty}f(x)e^{-itx}dx=\int_{-\infty}^{0}f(x)e^{-itx}+\int_{0}^{\infty}f(x)e^{-itx}dx\\
+=\int_{-\infty}^{0}f(-x)e^{-itx}+\int_{0}^{\infty}f(-x)e^{-itx}dx.
+\end{multline*}
+Make the substitution $y=-x$ to get
+\[
+\int_{-\infty}^{0}f(-x)e^{-itx}=-\int_{\infty}^{0}f(y)e^{ity}dy=\int_{0}^{\infty}f(y)e^{ity}dy
+\]
+and
+\[
+\int_{0}^{\infty}f(-x)e^{-itx}dx=-\int_{0}^{-\infty}f(y)e^{ity}dy=\int_{-\infty}^{0}f(y)e^{ity}dy.
+\]
+Therefore,
+\[
+\overline{\phi(t)}=\int_{0}^{\infty}f(y)e^{ity}dy+\int_{-\infty}^{0}f(y)e^{ity}dy=\int_{-\infty}^{\infty}f(y)e^{ity}dy=\mathbb{E}\left[e^{itX}\right]=\phi(t).
+\]
+\item If $f$ is even, then
+\[
+\mathbb{P}(X\leq x)=\mathbb{P}(X\geq-x)
+\]
+since
+\[
+\mathbb{P}(X\geq-x)=\int_{-x}^{\infty}f(x)dx=\int_{-x}^{\infty}f(-x)dx=-\int_{x}^{-\infty}f(y)dy=\int_{-\infty}^{x}f(y)dy.
+\]
+Therefore, $X$ and $-X$ have the same distribution function. In
+fact, for any random variable $X$ such that $X$ and $-X$ have the
+same distribution function,
+\[
+\overline{\phi(t)}=\mathbb{E}\left[e^{-itX}\right]=\mathbb{E}\left[e^{itX}\right]=\phi(t).
+\]
+\end{enumerate}
+\item Suppose $X_{n}\rightarrow X$ a.s. There are various ways to reach
+the conclusion. Here are two:
+\begin{enumerate}
+\item $\mathbb{E}[e^{itX_{n}}]\rightarrow\mathbb{E}[e^{itX}]$ by the DCT.
+\item Since $X_{n}\xrightarrow{\mathcal{D}}X$, $\mathbb{E}\left[e^{itX_{n}}\right]\rightarrow\mathbb{E}\left[e^{itX}\right]$
+since the function $x\mapsto e^{itX}$ is continuous and bounded.
+\end{enumerate}
+\item As per the hint,
+\[
+\left|\phi(t)\right|^{2}=\phi(t)\overline{\phi(t)}=\mathbb{E}\left[e^{itX}\right]\mathbb{E}\left[e^{-itX}\right].
+\]
+Let $Y$ be a random variable with the same distribution as $X$ but
+which is independent of $X$. Then,
+\[
+\left|\phi(t)\right|^{2}=\mathbb{E}\left[e^{itX}\right]\mathbb{E}\left[e^{-itY}\right]=\mathbb{E}\left[e^{it\left(X-Y\right)}\right].
+\]
+Therefore, $|\phi|^{2}$ is the characteristic function of $X-Y$.
+\item Suppose $X_{n}$ and $Y_{n}$ converge in probability to $X$ and
+$Y$, respectively. Note that
+\[
+\left|X_{n}+Y_{n}-\left(X+Y\right)\right|\leq\left|X_{n}-X\right|+\left|Y_{n}-Y\right|.
+\]
+Therefore, for any $\epsilon>0$,
+\[
+\left\{ \left|X_{n}+Y_{n}-\left(X+Y\right)\right|\geq\epsilon\right\} \subset\left\{ \left|X_{n}-X\right|+\left|Y_{n}-Y\right|\geq\epsilon\right\} .
+\]
+Moreover,
+\[
+\left\{ \left|X_{n}-X\right|+\left|Y_{n}-Y\right|\geq\epsilon\right\} \subset\left\{ \left|X_{n}-X\right|\geq\epsilon/2\right\} \cup\left\{ \left|Y_{n}-Y\right|\geq\epsilon/2\right\} .
+\]
+Therefore,
+\[
+\mathbb{P}\left\{ \left|X_{n}+Y_{n}-\left(X+Y\right)\right|\geq\epsilon\right\} \leq\mathbb{P}\left\{ \left|X_{n}-X\right|\geq\epsilon/2\right\} +\mathbb{P}\left\{ \left|Y_{n}-Y\right|\geq\epsilon/2\right\} \rightarrow0.
+\]
+This implies that $X_{n}+Y_{n}\rightarrow X+Y$ converge in probability,
+which in turn implies that they converge in distribution.
+\end{enumerate}
+
+\end{document}
