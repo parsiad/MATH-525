@@ -3,7 +3,6 @@
 \documentclass[english,12pt]{article}
 \usepackage[T1]{fontenc}
 \usepackage[latin9]{inputenc}
-\usepackage{refstyle}
 \usepackage{float}
 \usepackage{units}
 \usepackage{mathtools}
@@ -12,21 +11,6 @@
 \usepackage{amssymb}
 
 \makeatletter
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% LyX specific LaTeX commands.
-
-\AtBeginDocument{\providecommand\lemref[1]{\ref{lem:#1}}}
-\RS@ifundefined{subsecref}
-  {\newref{subsec}{name = \RSsectxt}}
-  {}
-\RS@ifundefined{thmref}
-  {\def\RSthmtxt{theorem~}\newref{thm}{name = \RSthmtxt}}
-  {}
-\RS@ifundefined{lemref}
-  {\def\RSlemtxt{lemma~}\newref{lem}{name = \RSlemtxt}}
-  {}
-
-
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Textclass specific LaTeX commands.
 \theoremstyle{plain}
 \newtheorem{thm}{\protect\theoremname}[section]
@@ -77,7 +61,7 @@
 
 \title{Math 525: Lecture 17}
 
-\date{March 14, 2018}
+\date{March 13, 2018}
 
 \maketitle
 For the remainder, it should be understood that by ``Markov chain'',
@@ -390,37 +374,5 @@ For an irreducible Markov chain, $d(i)=d(j)$ for all $i$ and $j$.
 Due to the above, we refer to the period of any state in an irreducible
 Markov chain as \textbf{the} period of the Markov chain.
 \end{rem}
-
-\section{Primitive matrices}
-\begin{defn}
-A nonnegative matrix $A$ is \emph{primitive} if there exists a positive
-integer $m$ such that $A^{m}$ is positive (i.e., $(A^{m})_{ij}>0$
-for all $i,j$).
-\end{defn}
-We will use the following number-theoretic fact without proof:
-\begin{lem}[Semigroup lemma]
-\label{lem:semigroup}Any set of non-negative integers which is closed
-under addition and which has greatest common divisor 1 must contain
-all but finitely many of the non-negative integers.
-\end{lem}
-\begin{prop}
-Let $A$ be an irreducible and aperiodic matrix. Then, $A$ is primitive.
-\end{prop}
-\begin{proof}
- Let $A$ be an irreducible and aperiodic matrix. Note that $J_{i}=\{n\colon(A^{n})_{ii}>0\}$
-satisfies $\operatorname{gcd}(J_{i})=1$ by the presumed aperiodicity.
-Therefore, by \lemref{semigroup}, we can find $M(i)$ such that for
-all $n\geq M(i)$, we have $(A^{n})_{ii}>0$. Since $A$ is irreducible,
-we can find $m(i,j)$ such that $(A^{m(i,j)})_{ij}>0$. Therefore,
-for $n\geq M(i)$,
-\[
-(A^{n+m(i,j)})_{ij}=\sum_{k}(A^{n})_{ik}(A^{m(i,j)})_{kj}\geq(A^{n})_{ii}(A^{m(i,j)})_{ij}>0.
-\]
-Let $M=\max_{i,j}M(i)+m(i,j)$. Then, $(A^{M})_{ij}>0$ for all $i,j$
-as desired.
-\end{proof}
-\begin{defn}
-A Markov chain whose transition matrix is primitive is called \emph{regular}.
-\end{defn}
 
 \end{document}
