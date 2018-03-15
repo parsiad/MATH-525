@@ -1,0 +1,72 @@
+%% LyX 2.2.1 created this file.  For more info, see http://www.lyx.org/.
+%% Do not edit unless you really know what you are doing.
+\documentclass[english,12pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage[latin9]{inputenc}
+\usepackage{color}
+\usepackage{babel}
+\usepackage{mathtools}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage[unicode=true,pdfusetitle,
+ bookmarks=true,bookmarksnumbered=false,bookmarksopen=false,
+ breaklinks=false,pdfborder={0 0 1},backref=false,colorlinks=true]
+ {hyperref}
+\usepackage{breakurl}
+
+\makeatletter
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% User specified LaTeX commands.
+\usepackage[margin=1in]{geometry}
+
+\makeatother
+
+\begin{document}
+
+\title{Math 525: Assignment 7 Solutions}
+
+\date{\date{}}
+\maketitle
+\begin{enumerate}
+\item We know $X_{n},Y_{n}$ converge in distribution to $X,Y\sim\operatorname{Poisson}(\lambda)$.
+Therefore,
+\[
+\phi_{Z_{n}}(t)=\mathbb{E}\left[e^{it\left(X_{n}-Y_{n}\right)}\right]=\mathbb{E}\left[e^{itX_{n}}\right]\mathbb{E}\left[e^{-itY_{n}}\right]=\phi_{X_{n}}(t)\phi_{Y_{n}}(-t)\rightarrow\phi_{X}(t)\phi_{Y}(-t)
+\]
+by one direction of Lévy's continuity theorem. Therefore,
+\[
+\phi_{X}(t)\phi_{Y}(-t)=\exp(\lambda(e^{it}-1))\exp(\lambda(e^{-it}-1))=\exp\left(\lambda\left(e^{it}-e^{-it}\right)\right)=\exp\left(2\lambda\left(\cosh t-1\right)\right).
+\]
+By the other direction of Lévy's continuity theorem, $Z_{n}$ converges
+in distribution to some random variable $Z$ with the above characteristic
+function $\phi_{X}\phi_{Y}$, as desired.
+\item See Exercise 2.2 of Lecture 15.
+\item To show that $((X_{n},X_{n+1}))_{n\geq0}$ is a Markov chain, note
+that
+\begin{multline*}
+\mathbb{P}\left((X_{n},X_{n+1})=(i_{n},i_{n+1})\mid(X_{0},X_{1})=(i_{0},i_{1}),\ldots,(X_{n-1},X_{n})=(i_{n-1},i_{n})\right)\\
+=\mathbb{P}\left(X_{n+1}=i_{n+1}\mid X_{0}=i_{0},\ldots,X_{n}=i_{n}\right)=\mathbb{P}\left(X_{n+1}=i_{n+1}\mid X_{n}=i_{n}\right)\\
+=\mathbb{P}\left(X_{n+1}=i_{n+1}\mid X_{n-1}=i_{n-1},X_{n}=i_{n}\right)\\
+=\mathbb{P}\left((X_{n},X_{n+1})=(i_{n},i_{n+1})\mid(X_{n-1},X_{n})=(i_{n-1},i_{n})\right).
+\end{multline*}
+This follows from
+\item ~
+\begin{enumerate}
+\item If $P$ is a transition matrix, then
+\[
+\sum_{j}(P^{2})_{ij}=\sum_{j}\sum_{k}P_{ik}P_{kj}=\sum_{k}\sum_{j}P_{ik}P_{kj}=\sum_{k}P_{ik}\sum_{j}P_{kj}=\sum_{k}P_{ik}=1.
+\]
+\item If $P$ is a bistochastic matrix, then $P$ and $P^{\intercal}$ are
+transition matrices. Then, by part (a), $P^{2}$ and $(P^{\intercal})^{2}=(P^{2})^{\intercal}$
+are transition matrices. Therefore, $P^{2}$ is bistochastic.
+\end{enumerate}
+\item ~
+\begin{enumerate}
+\item The multiplicity of the eigenvalue is 2.
+\item The multiplicity of the eigenvalue is 1.
+\item How many states there are that correspond to the ``end'' of the
+game. These ``end'' states are called \emph{absorbing states} in
+the Markov chain literature.
+\end{enumerate}
+\end{enumerate}
+
+\end{document}
