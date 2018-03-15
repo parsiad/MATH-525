@@ -1,0 +1,354 @@
+%% LyX 2.2.1 created this file.  For more info, see http://www.lyx.org/.
+%% Do not edit unless you really know what you are doing.
+\documentclass[english,12pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage[latin9]{inputenc}
+\usepackage{mathtools}
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{amssymb}
+
+\makeatletter
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Textclass specific LaTeX commands.
+\theoremstyle{plain}
+\newtheorem{thm}{\protect\theoremname}[section]
+\theoremstyle{definition}
+\newtheorem{defn}[thm]{\protect\definitionname}
+\theoremstyle{definition}
+\newtheorem{example}[thm]{\protect\examplename}
+\theoremstyle{plain}
+\newtheorem{prop}[thm]{\protect\propositionname}
+\ifx\proof\undefined
+\newenvironment{proof}[1][\protect\proofname]{\par
+\normalfont\topsep6\p@\@plus6\p@\relax
+\trivlist
+\itemindent\parindent
+\item[\hskip\labelsep\scshape #1]\ignorespaces
+}{%
+\endtrivlist\@endpefalse
+}
+\providecommand{\proofname}{Proof}
+\fi
+\theoremstyle{definition}
+\newtheorem{xca}[thm]{\protect\exercisename}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% User specified LaTeX commands.
+\usepackage[margin=1in]{geometry}
+\usepackage{tikz}
+\usetikzlibrary{arrows,decorations.pathreplacing,shapes}
+
+\makeatother
+
+\usepackage{babel}
+\providecommand{\definitionname}{Definition}
+\providecommand{\examplename}{Example}
+\providecommand{\exercisename}{Exercise}
+\providecommand{\propositionname}{Proposition}
+\providecommand{\theoremname}{Theorem}
+
+\begin{document}
+
+\title{Math 525: Lecture 18}
+
+\date{March 15, 2018}
+
+\maketitle
+Consider a gambler playing roulette. He has decided that he will place
+a bet on 17 at time $\tau$. We can model the game of roulette as
+a stochastic process with $X_{n}$ being the result of the $n$-th
+spin. In a perfect world, the gambler would choose
+\[
+\tau=\inf\{n\geq0\colon X_{n+1}=17\},
+\]
+the time just before the ball lands on 17. Of course, this is cheating!
+It would mean that the gambler can look into the future. Indeed, the
+gambler can base his decision to bet at time $\tau=n$ only on \emph{information
+available at time $n$} (e.g., the results of the spins at the previous
+times $X_{0},X_{1},\ldots,X_{n}$). But how can we express the statement
+``information available before time $n$'' mathematically?
+
+\section{Filtrations}
+
+For our discussion, let $(X_{n})_{n\in T}$ be a Markov chain on a
+countable state space $S\subset\mathbb{R}$. We will not assume that
+the state space $S$ is finite, nor that the Markov chain is stationary.
+We can, since the state space is countable, assume that the underlying
+probability space is of the form $(\Omega,\mathcal{F}=2^{\Omega},\mathbb{P})$
+where $\Omega$ is also a countable set.
+\begin{defn}
+Let $\mathcal{F}$ be a $\sigma$-algebra and $T$ be an index set.
+A \emph{filtration} is a sequence $(\mathcal{F}_{t})_{t\in T}$ of
+$\sigma$-algebras such that $\mathcal{F}_{s}\subset\mathcal{F}_{t}\subset\mathcal{F}$
+for all $s\leq t$.
+\end{defn}
+While the above definition is general enough for continuous index
+sets, we will focus on the case when $T$ is discrete (e.g., $T=\{0,1,\ldots\}$
+or $T=\{0,1,\ldots,N\}$) since we are motivated by Markov chains.
+The following illustrates that $\mathcal{F}_{t}$ can be thought of
+as all information accrued up to time $t$. 
+\begin{example}
+A coin is flipped twice. This corresponds to the sample space
+\[
+\Omega=\{HH,HT,TH,TT\}.
+\]
+Since this a finite sample space, we can take $\mathcal{F}=2^{\Omega}$
+to be our $\sigma$-algebra. Define
+\begin{align*}
+\mathcal{F}_{0} & =\{\emptyset,\Omega\}\\
+\mathcal{F}_{1} & =\{\emptyset,\Omega,\{HH,HT\},\{TH,TT\}\}\\
+\mathcal{F}_{2} & =\{\emptyset,\Omega,\{HH,HT\},\{TH,TT\},\{HH\},\{HT\},\{TH\},\{TT\}\}.
+\end{align*}
+Note that $(\mathcal{F}_{n})_{n\in\{0,1,2\}}$ defines a filtration
+since $\mathcal{F}_{0}\subset\mathcal{F}_{1}\subset\mathcal{F}_{2}=\mathcal{F}$.
+Now, let $\omega=(\omega_{1},\omega_{2})\in\Omega$ be the result
+of the coin flips. After we have observed the first coin flip, we
+are able to answer whether
+\[
+\omega\in\{HH,HT\}
+\]
+(i.e., whether the first coin flip was heads). However, we cannot
+answer whether
+\[
+\omega\in\{HH\}
+\]
+since this would require intimate knowledge of the second coin flip.
+More generally, at time $n$, we can answer any question of the form
+\[
+\omega\in F\qquad\text{where }F\in\mathcal{F}_{n}.
+\]
+In this sense, $\mathcal{F}_{0}$ is the ``dumb'' sub$\sigma$-algebra,
+since it carries no information whatsoever!
+\end{example}
+As you might have noticed in the above example, it is quite cumbersome
+to write out filtrations by hand (and our example only had two coin
+flips!) There is a better way:
+\begin{defn}
+We say a random variable $X$ is \emph{measurable} with respect to
+some $\sigma$-algebra $\mathcal{G}$ (or simply ``$\mathcal{G}$
+measurable'') if
+\[
+X^{-1}(B)\in\mathcal{G}\qquad\text{for }B\in\mathcal{B}(\mathbb{R}).
+\]
+Let $\{X_{\alpha}\}_{\alpha}$ be family of random variables on the
+same probability space. Then \emph{the $\sigma$-algebra generated
+by the family} is the smallest $\sigma$-algebra $\mathcal{G}$ such
+that for each $\alpha$, $X_{\alpha}$ is $\mathcal{G}$ measurable.
+We will often denote this $\sigma$-algebra by $\sigma(\{X_{\alpha}\})\equiv\mathcal{G}$.
+\end{defn}
+If the family $\{X_{0},\ldots,X_{n}\}$ is finite, we'll forgo the
+curly braces and write $\sigma(X_{0},\ldots,X_{n})$.
+\begin{example}
+Returning to the coin flipping example, let
+\[
+X_{n}=\begin{cases}
+1 & \text{if the }n\text{-th coin flip is heads}\\
+0 & \text{otherwise}.
+\end{cases}
+\]
+Let $B$ be a Borel set. Note that there are four possibilities:
+\begin{itemize}
+\item $1\in B$ and $0\notin B$ in which case $X_{1}^{-1}(B)=\{HH,HT\}$,
+\item $0\in B$ and $1\notin B$ in which case $X_{1}^{-1}(B)=\{TH,TT\}$,
+\item $0,1\in B$ in which case $X_{1}^{-1}(B)=\Omega$.
+\item $0,1\notin B$ in which case $X_{1}^{-1}(B)=\emptyset$, and
+\end{itemize}
+Therefore,
+\[
+\sigma(X_{1})=\mathcal{F}_{1}=\{\emptyset,\Omega,\{HH,HT\},\{TH,TT\}\}.
+\]
+Similarly, you can check that $\sigma(X_{1},X_{2})=\mathcal{F}_{2}$.
+\end{example}
+\begin{defn}
+Let $(\Omega,\mathcal{F},\mathbb{P})$ be a probability space and
+$\mathbb{F}=(\mathcal{F}_{t})_{t\in T}$ be a filtration on $\mathcal{F}$
+where $T$ is some index set. Then, $(\Omega,\mathcal{F},\mathbb{F},\mathbb{P})$
+is called a \emph{filtered probability space}.
+\end{defn}
+
+\section{Stopping times}
+
+For the remainder of this section, we will assume a filtered probability
+space $(\Omega,\mathcal{F},\mathbb{F}=(\mathcal{F}_{t})_{t\in T},\mathbb{P})$
+with index set $T=\{0,1,\ldots\}$ or $T=\{0,1,\ldots,N\}$ (though
+the ideas extend easily to general index sets). We will also assume
+a Markov chain on this space (i.e., $(X_{n})_{n\in T}$).
+
+Armed with the notion of a filtration, we can try to outline some
+fair rules that prevent our greedy gambler from being able to ``look
+into the future''.
+\begin{defn}
+$\tau$ is a \emph{stopping time} if
+\begin{enumerate}
+\item it is a random variable taking values in $T\cup\{\infty\}$ and
+\item for each $n\in T$, $\{\tau=n\}\equiv\{\omega\colon\tau(\omega)=n\}$
+is a set in $\mathcal{F}_{n}$.
+\end{enumerate}
+\end{defn}
+The first property just tells us that $\tau$ is a random time (in
+the roulette example, $\infty$ corresponds to the gambler choosing
+to never place his bet!). The second property tells us that the decision
+to ``stop'' at time $n$ (e.g., place the bet at time $n$) can
+only depend on the information witnessed up to time $n$.
+\begin{prop}
+A random variable $\tau$ taking values in $T\cup\{\infty\}$ is a
+stopping time if and only if
+\begin{equation}
+\{\tau\leq n\}\in\mathcal{F}_{n}\qquad\text{for each }n\in T.\label{eq:alternate_stopping_time}
+\end{equation}
+\end{prop}
+\begin{proof}
+Suppose $\tau$ is a stopping time. Note that 
+\[
+\left\{ \tau\leq n\right\} =\bigcup_{m=0}^{n}\{\tau=m\}.
+\]
+By definition, $\{\tau=m\}\in\mathcal{F}_{m}$ and $\mathcal{F}_{m}\subset\mathcal{F}_{n}$
+whenever $m\leq n$. Therefore, $\{\tau\leq n\}$ is a finite union
+of sets in $\mathcal{F}_{n}$, and hence $\{\tau\leq n\}\in\mathcal{F}_{n}$.
+
+Suppose (\ref{eq:alternate_stopping_time}). Note that
+\[
+\left\{ \tau=n\right\} =\left\{ \tau\leq n\right\} \setminus\left\{ \tau<n\right\} =\left\{ \tau\leq n\right\} \cap\left\{ \tau<n\right\} ^{c}.
+\]
+If $n=0$, $\{\tau<0\}^{c}=\emptyset^{c}=\Omega$. Otherwise, $\{\tau<n\}=\{\tau\leq n-1\}\in\mathcal{F}_{n-1}\subset\mathcal{F}_{n}$.
+Either way, the above is the intersection of elements of $\mathcal{F}_{n}$.
+\end{proof}
+Intuitively, the statement $\{\tau\leq n\}\in\mathcal{F}_{n}$ says
+that the decision to stop before or exactly at time $n$ can be divined
+knowing all information up to time $n$. Indeed, at time $n$, we
+can approach the gambler and ask, ``have you placed your bet yet?''
+If the gambler says yes, then $\tau\leq n$ (this is not the same
+as, ``did you place your bet for the next spin?'')
+\begin{xca}
+Use the properties of $\sigma$-algebras to show that if $\tau$ is
+a stopping time, then for each $n$, the sets $\{\tau<n\}$, $\{\tau\geq n\}$,
+and $\{\tau>n\}$ are in $\mathcal{F}_{n}$.
+\end{xca}
+Let's see some examples of stopping times:
+\begin{example}
+~
+\begin{enumerate}
+\item The constant random variable $\tau=n$ is a stopping time since 
+\[
+\left\{ \tau=m\right\} =\begin{cases}
+\Omega & \text{if }m=n\\
+\emptyset & \text{if }m\neq n.
+\end{cases}
+\]
+\item Let $\mathcal{F}_{n}=\sigma(X_{0},\ldots,X_{n})$ for $n=0,1,2,\ldots$
+where $(X_{n})_{n}$ is a sequence of random variables on the same
+probability space. Let $B=(-1,1)$. Then,
+\[
+\tau_{B}=\inf\left\{ n\geq0\colon X_{n}\notin B\right\} 
+\]
+where we use the convention $\inf\emptyset=\infty$. Then, $\tau_{B}$
+is a stopping time, called the \emph{first exit time}. $B$ can be,
+more generally, any Borel set. $\tau_{B}$ is a stopping time since
+\begin{align*}
+\left\{ \tau_{B}=n\right\}  & =\left\{ X_{0}\in B,\ldots,X_{n-1}\in B,X_{n}\notin B\right\} .\\
+ & =\left\{ X_{0}\in B\right\} \cap\cdots\cap\left\{ X_{n-1}\in B\right\} \cap\left\{ X_{n}\notin B\right\} \\
+ & =X_{0}^{-1}(B)\cap\cdots\cap X_{n-1}^{-1}(B)\cap X_{n}^{-1}(B^{c})\\
+ & =\underbrace{X_{0}^{-1}(B)}_{\in\mathcal{F}_{0}}\cap\cdots\cap\underbrace{X_{n-1}^{-1}(B)}_{\in\mathcal{F}_{n-1}}\cap\underbrace{\left(X_{n}^{-1}(B)\right)^{c}}_{\in\mathcal{F}_{n}}.
+\end{align*}
+\item If $\tau$ is a stopping time and $m\geq0$ is an integer, $\tau+m$
+is a stopping time. To see that this is a stopping time, note that
+\[
+\left\{ \tau+m=n\right\} =\left\{ \tau=n-m\right\} .
+\]
+\item If $\tau_{1}$ and $\tau_{2}$ are stopping times, so are $\tau_{1}\wedge\tau_{2}\equiv\min(\tau_{1},\tau_{2})$
+and $\tau_{1}\vee\tau_{2}\equiv\max(\tau_{1},\tau_{2})$ (left as
+an exercise).
+\end{enumerate}
+\end{example}
+Given a stopping time $\tau$, we would like to define the value of
+the Markov chain $(X_{n})_{n\in T}$ at time $\tau$. We do this below.
+\begin{defn}
+Let $\tau$ be a random variable taking values in $T$ (not necessarily
+a stopping time). Define $X_{\tau}:\Omega\rightarrow\mathbb{R}$ by
+\[
+X_{\tau}(\omega)=X_{\tau(\omega)}(\omega).
+\]
+\end{defn}
+\begin{prop}
+$X_{\tau}$ defined above is indeed a random variable.
+\end{prop}
+\begin{proof}
+This follows from the fact that
+\[
+X_{\tau}^{-1}(B)\equiv\left\{ \omega\colon X_{\tau}\in B\right\} =\bigcup_{n\geq0}\left(\left\{ \tau=n\right\} \cap\left\{ X_{n}\in B\right\} \right).
+\]
+\end{proof}
+There is a potential problem: a stopping time $\tau$ is allowed to
+take infinite values. However, we can still use the above to define
+the value of the Markov chain at time $\tau$. For example,
+\[
+Y=X_{\tau}I_{\{\tau<\infty\}}
+\]
+is a perfectly legitimate definition (other ways to define this exist,
+and you may be inclined to use another definition depending on the
+context).
+
+Similarly, given a stopping time $\tau$, we would like to define
+the information up to time $\tau$. Of course, we cannot simply set
+this to be $\sigma(X_{0},\ldots,X_{\tau})$ since this expression
+is meaningless: $\tau$ is not a positive integer, it is a random
+variable. Instead, we do the following:
+\begin{defn}
+Given a stopping time $\tau$, let
+\[
+\mathcal{F}_{\tau}=\left\{ \Lambda\in\mathcal{F}\colon\left(\Lambda\cap\left\{ \tau\leq n\right\} \right)\in\mathcal{F}_{n}\text{ for }n\in T\right\} .
+\]
+\end{defn}
+\begin{prop}
+Equivalently,
+\[
+\mathcal{F}_{\tau}=\left\{ \Lambda\in\mathcal{F}\colon\left(\Lambda\cap\left\{ \tau=n\right\} \right)\in\mathcal{F}_{n}\text{ for }n\in T\right\} .
+\]
+\end{prop}
+\begin{proof}
+To see this, note that
+\[
+\Lambda\cap\left\{ \tau\leq n\right\} =\bigcup_{m=0}^{n}\Lambda\cap\left\{ \tau=m\right\} 
+\]
+and
+\[
+\Lambda\cap\left\{ \tau=n\right\} =\left(\Lambda\cap\left\{ \tau\leq n\right\} \right)\setminus\left(\Lambda\cap\left\{ \tau<n\right\} \right).
+\]
+\end{proof}
+\begin{prop}
+Let $\tau$ and $\tau^{\prime}$ be stopping times. Then,
+\begin{enumerate}
+\item $\mathcal{F}_{\tau}$ is a $\sigma$-algebra.
+\item Both $\tau$ and $X_{\tau}I_{\{\tau<\infty\}}$ are $\mathcal{F}_{\tau}$
+measurable.
+\item If $\tau\leq\tau^{\prime}$, then $\mathcal{F}_{\tau}\subset\mathcal{F}_{\tau^{\prime}}$.
+\end{enumerate}
+\end{prop}
+\begin{proof}
+~
+\begin{enumerate}
+\item Clearly, $\emptyset$ and $\Omega$ are in $\mathcal{F}_{\tau}$.
+Now, suppose $\Lambda\in\mathcal{F}_{\tau}$. Then, for each $n\in T$,
+\[
+\Lambda^{c}\cap\left\{ \tau\leq n\right\} =\left(\Lambda\cup\left\{ \tau>n\right\} \right)^{c}\in\mathcal{F}_{n}.
+\]
+Lastly, let $\Lambda_{1},\Lambda_{2},\ldots\in\mathcal{F}_{\tau}$.
+Then
+\[
+\bigcup_{n\geq0}\left(\Lambda_{n}\cap\left\{ \tau\leq n\right\} \right)=\left(\bigcup_{n\geq0}\Lambda_{n}\right)\cap\left\{ \tau\le n\right\} \in\mathcal{F}_{n}.
+\]
+\item This follows from
+\[
+\left\{ X_{\tau}=i\right\} \cap\left\{ \tau=n\right\} =\left\{ X_{n}=i\right\} \cap\left\{ \tau=n\right\} 
+\]
+and
+\[
+\left\{ \tau\leq m\right\} \cap\left\{ \tau\leq n\right\} =\left\{ \tau\leq m\wedge n\right\} \in\mathcal{F}_{m\wedge n}\subset\mathcal{F}_{n}.
+\]
+\item This follows from
+\[
+\Lambda\cap\left\{ \tau^{\prime}\leq n\right\} =\underbrace{\Lambda\cap\left\{ \tau\leq n\right\} }_{\in\mathcal{F}_{n}}\cap\underbrace{\left\{ \tau^{\prime}\leq n\right\} }_{\in\mathcal{F}_{n}}.
+\]
+\end{enumerate}
+\end{proof}
+
+\end{document}
