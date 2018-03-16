@@ -1,0 +1,160 @@
+%% LyX 2.2.1 created this file.  For more info, see http://www.lyx.org/.
+%% Do not edit unless you really know what you are doing.
+\documentclass[english,12pt,addpoints]{exam}
+\usepackage[T1]{fontenc}
+\usepackage[latin9]{inputenc}
+\setcounter{secnumdepth}{2}
+\setcounter{tocdepth}{2}
+\usepackage{xcolor}
+\usepackage{fancybox}
+\usepackage{calc}
+\usepackage{amsmath}
+\usepackage{amssymb}
+
+\makeatletter
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Textclass specific LaTeX commands.
+%% Map the lyx-friendly SmartQuestion style to exam environments
+%% See http://tex.stackexchange.com/a/319996/17868
+\newcounter{mydepth}%
+\newcommand{\myenvironmentname}{%
+\ifnum\value{mydepth}=0notinquestion\fi%
+\ifnum\value{mydepth}=1question\fi%
+\ifnum\value{mydepth}=2part\fi%
+\ifnum\value{mydepth}=3subpart\fi%
+\ifnum\value{mydepth}=4subsubpart\fi%
+\ifnum\value{mydepth}>4undefinedquestion\fi%
+}%
+\newcommand{\myquestion}{\csname \myenvironmentname\endcsname}%
+\newenvironment{myquestions}%
+  {\stepcounter{mydepth}\begin{\myenvironmentname s}}%
+  {\end{\myenvironmentname s}\addtocounter{mydepth}{-1}}%
+
+% code to rewrite \mychoice or \mychoice[] to \choice or \CorrectChoice respectively
+% see http://tex.stackexchange.com/a/319470/17868
+\def\mychoice{\@ifnextchar[{\@with}{\@without}}
+\def\@with[#1]{\CorrectChoice}
+\def\@without{\choice}
+
+
+\makeatother
+
+\usepackage{babel}
+\begin{document}
+
+\footer{}{}{Thursday, February 15, 2018}{}
+
+\title{Midterm 1}
+
+\author{Math 525: Probability}
+
+\maketitle
+\thispagestyle{headandfoot} % hack to work around \maketitle clobbering the first page's headers/footers
+\begin{center}
+\noindent\begin{minipage}[t]{1\textwidth}%
+Last name, first name:\enskip{}\hrulefill{}~%
+\end{minipage}\vspace{0.2in}
+\noindent\begin{minipage}[t]{1\textwidth}%
+Section number:\enskip{}\hrulefill{}~%
+\end{minipage}\vspace{0.2in}
+\noindent\begin{minipage}[t]{1\textwidth}%
+User ID:\enskip{}\hrulefill{}~%
+\end{minipage}\vfill{}
+\noindent\fcolorbox{black}{lightgray}{\parbox[t]{1\columnwidth - 2\fboxsep - 2\fboxrule}{%
+\begin{center}
+\gradetable[h]{}
+\par\end{center}%
+}}\vfill{}
+\doublebox{\begin{minipage}[t]{5.5in}%
+\begin{center}
+Answer the questions in the spaces provided on the question sheets.
+If you run out of room for an answer, continue on the back of the
+page.
+\par\end{center}%
+\end{minipage}}
+\par\end{center}
+
+\noindent \begin{flushleft}
+\qformat{\textbf{Question \thequestion}\quad (\totalpoints\ \points)\hfill}
+\pointsinrightmargin
+\printanswers
+\par\end{flushleft}
+
+\noindent \newpage{}\vspace{0.1in}
+
+\begin{myquestions}
+\myquestion[30] Consider a dinner at a \textbf{circular table} with a total of $N\geq4$
+(distinct) guests including Barbie (B), Ken (K), and the famous probabilist
+Émile Borel (E). B, K, and E wish to sit together (i.e., there cannot
+be another guest between any two of them). How many possible arrangements
+satisfy this requirement?
+
+\newpage{}
+\begin{solution}
+Label the seats $s_{1},\ldots,s_{N}$.
+\begin{enumerate}
+\item Consider the case that $s_{i}=B$, $s_{i+1}=K$, and $s_{i+2}=E$.
+In this case, the remaining guests can be arranged in $(N-3)!$ ways.
+Since $1\leq i\leq N-2$, there are $(N-2)(N-3)!$ such arrangements.
+\item Consider the case that $s_{N-1}=B$, $s_{N}=K$, and $s_{1}=E$. In
+this case, the remaining guests can be arranged in $(N-3)!$ ways.
+\item Consider the case that $s_{N}=B$, $s_{1}=K$, and $s_{2}=E$. In
+this case, the remaining guests can be arranged in $(N-3)!$ ways.
+\item Since we can permute $B$, $K$, and $E$ to obtain another valid
+arrangement, we have a total of
+\[
+3!\left(N-3\right)!\left(2+N-2\right)=3!N\left(N-3\right)!
+\]
+\end{enumerate}
+\end{solution}
+
+\myquestion[35] Let $X$ and $Y$ be \textbf{independent} real-valued random variables
+defined on some probability space. Let $f\colon\mathbb{R}\rightarrow\mathbb{R}$
+and $g\colon\mathbb{R}\rightarrow\mathbb{R}$ be \textbf{monotone
+bijective} Borel measurable functions. Show that $f\circ X$ and $g\circ Y$
+are also independent.
+
+\textbf{Hint}: two random variables $U$ and $W$ are said to be independent
+if 
+\[
+\mathbb{P}(\{U\leq u\}\cap\{W\leq w\})=\mathbb{P}\{U\leq u\}\mathbb{P}\{W\leq w\}
+\]
+ for all choices of $u,w\in\mathbb{R}$. 
+
+\newpage{}
+\begin{solution}
+This follows from
+\begin{align*}
+\mathbb{P}(\left\{ f(X)\leq u\right\} \cap\left\{ g(Y)\leq w\right\} ) & =\mathbb{P}(\left\{ X\leq f^{-1}(u)\right\} \cap\left\{ Y\leq g^{-1}(w)\right\} )\\
+ & =\mathbb{P}\left\{ X\leq f^{-1}(u)\right\} \mathbb{P}\left\{ Y\leq g^{-1}(w)\right\} \\
+ & =\mathbb{P}\left\{ f(X)\leq u\right\} \mathbb{P}\left\{ g(Y)\leq w\right\} \\
+ & =\mathbb{P}(\left\{ f(X)\leq u\right\} \cap\left\{ g(Y)\leq w\right\} ).
+\end{align*}
+\end{solution}
+
+\myquestion[35] Let $(X_{n})_{n}$ be a sequence of random variables that are bounded
+from below by an integrable random variable $Y$ (i.e., $X_{n}\geq Y$
+a.s. for each $n$). Suppose that $\lim_{n}X_{n}=X$ a.s. Show that
+$\mathbb{E}[X]\leq\sup_{n}\mathbb{E}[X_{n}]$.
+
+\textbf{Hint}: Fatou's lemma states that when $(W_{n})_{n}$ is a
+sequence of nonnegative random variables, $\mathbb{E}[\liminf_{n}W_{n}]\leq\liminf_{n}\mathbb{E}[W_{n}]$.
+\begin{solution}
+Let
+\[
+W_{n}=X_{n}-Y.
+\]
+Applying Fatou's lemma,
+\begin{align*}
+\mathbb{E}[X-Y] & =\mathbb{E}[\lim_{n}X_{n}-Y]\\
+ & =\mathbb{E}[\liminf_{n}W_{n}]\\
+ & \leq\liminf_{n}\mathbb{E}[W_{n}]\\
+ & \leq\limsup_{n}\mathbb{E}[W_{n}]\\
+ & =\inf_{n}\sup_{m\geq n}\mathbb{E}[W_{m}]\\
+ & \leq\sup_{n}\mathbb{E}[W_{n}]\\
+ & =\sup_{n}\mathbb{E}[X_{n}-Y].
+\end{align*}
+\end{solution}
+
+\end{myquestions}
+
+\end{document}
