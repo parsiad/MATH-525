@@ -1,0 +1,294 @@
+%% LyX 2.2.3 created this file.  For more info, see http://www.lyx.org/.
+%% Do not edit unless you really know what you are doing.
+\documentclass[english,12pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage[latin9]{inputenc}
+\usepackage{mathtools}
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{amssymb}
+\PassOptionsToPackage{normalem}{ulem}
+\usepackage{ulem}
+
+\makeatletter
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Textclass specific LaTeX commands.
+\theoremstyle{plain}
+\newtheorem{thm}{\protect\theoremname}[section]
+\theoremstyle{plain}
+\newtheorem{prop}[thm]{\protect\propositionname}
+\ifx\proof\undefined
+\newenvironment{proof}[1][\protect\proofname]{\par
+\normalfont\topsep6\p@\@plus6\p@\relax
+\trivlist
+\itemindent\parindent
+\item[\hskip\labelsep\scshape #1]\ignorespaces
+}{%
+\endtrivlist\@endpefalse
+}
+\providecommand{\proofname}{Proof}
+\fi
+\theoremstyle{plain}
+\newtheorem{cor}[thm]{\protect\corollaryname}
+\theoremstyle{definition}
+\newtheorem{example}[thm]{\protect\examplename}
+\theoremstyle{definition}
+\newtheorem{xca}[thm]{\protect\exercisename}
+\theoremstyle{definition}
+\newtheorem{defn}[thm]{\protect\definitionname}
+\theoremstyle{remark}
+\newtheorem{rem}[thm]{\protect\remarkname}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% User specified LaTeX commands.
+\usepackage[margin=1in]{geometry}
+\usepackage{tikz}
+\usetikzlibrary{arrows,decorations.pathreplacing,shapes}
+
+\makeatother
+
+\usepackage{babel}
+\providecommand{\corollaryname}{Corollary}
+\providecommand{\definitionname}{Definition}
+\providecommand{\examplename}{Example}
+\providecommand{\exercisename}{Exercise}
+\providecommand{\propositionname}{Proposition}
+\providecommand{\remarkname}{Remark}
+\providecommand{\theoremname}{Theorem}
+
+\begin{document}
+
+\title{Math 525: Lecture 19}
+
+\date{March 22, 2018}
+\maketitle
+
+\section{Strong Markov property}
+
+The memoryless/Markov property for a stationary Markov chain can be
+expressed as follows: ``for each $n$, the process $X_{n},X_{n+1},\ldots$
+is a Marko chain with the same transition probabilities as $X_{0},X_{1},\ldots$''
+\begin{quotation}
+\textbf{Question}: is the same result true if we replace $n$ by $\tau$?
+\end{quotation}
+Let $(X_{n})_{n\geq0}$ be a Markov chain with transition matrix $P$
+and let $\mathcal{F}_{n}=\sigma(X_{0},\ldots,X_{n})$ . The Markov
+property can be rephrased in terms of $\mathcal{F}_{n}$ as follows:
+\[
+\mathbb{P}(X_{n+1}=j\mid X_{n}=i,\Lambda)=P_{ij}\qquad\text{for }\Lambda\in\mathcal{F}_{n}.
+\]
+Equivalently,
+\begin{equation}
+\mathbb{P}(\Lambda,X_{n}=i,X_{n+1}=j)=\mathbb{P}(\Lambda,X_{n}=i)P_{ij}\qquad\text{for }\Lambda\in\mathcal{F}_{n}.\label{eq:memoryless}
+\end{equation}
+\begin{prop}[Strong Markov property]
+ Let $\tau$ be a finite stopping time (i.e., $\tau<\infty$ a.s.).
+Given that $X_{\tau}=i$, the sequence $(X_{\tau+n})_{n\geq0}$ is
+a Markov chain with transition matrix $P$.
+\end{prop}
+\begin{proof}
+Let $S$ be a finite stopping time and let $\Lambda\in\mathcal{F}_{S}$.
+Remember that
+\[
+\mathcal{F}_{S}=\left\{ \Lambda\in\mathcal{F}\colon\Lambda\cap\{S=n\}\in\mathcal{F}_{n}\text{ for all }n=0,1,2\ldots\right\} .
+\]
+Then, for states $i$ and $j$,
+\[
+\mathbb{P}(\Lambda,X_{S}=i,X_{S+1}=j)=\sum_{k\geq0}\mathbb{P}(\Lambda\cap\{S=k\},X_{k}=i,X_{k+1}=j).
+\]
+Since $\Lambda\in\mathcal{F}_{S}$, it follows that $\Lambda\cap\{S=k\}\in\mathcal{F}_{S}$
+for each $k$. By (\ref{eq:memoryless}),
+\[
+\mathbb{P}(\Lambda,X_{S}=i,X_{S+1}=j)=P_{ij}\sum_{k\geq0}\mathbb{P}(\Lambda\cap\{S=k\},X_{k}=i)=P_{ij}\mathbb{P}(\Lambda,X_{S}=i).
+\]
+Divide both sides by $\mathbb{P}(\Lambda,X_{S}=i)$ to get
+\begin{equation}
+\mathbb{P}(X_{S+1}=j\mid\Lambda,X_{S}=i)=\frac{\mathbb{P}(\Lambda,X_{S}=i,X_{S+1}=j)}{\mathbb{P}(\Lambda,X_{S}=i).}=P_{ij}.\label{eq:stronger_memoryless}
+\end{equation}
+
+Now, fix $n$. Take $S=\tau+n$. Since $S$ is the sum of a stopping
+time and a constant, $S$ is also a stopping time. Let $\Lambda=\{X_{\tau}=i_{0},\ldots,X_{\tau+n}=i_{n}\}$.
+Therefore, by (\ref{eq:stronger_memoryless}),
+\[
+\mathbb{P}(X_{\tau+n+1}=i_{n+1}\mid X_{\tau+n}=i_{n},\ldots,X_{\tau}=i_{0})=P_{i_{n}i_{n+1}}.
+\]
+That is, $(X_{\tau+n})_{n\geq0}$ is a Markov chain with transition
+matrix $P$.
+\end{proof}
+An immediate corollary of the above is the following:
+\begin{cor}
+Let $X_{0},X_{1},\ldots$ be i.i.d. discrete random variables (so
+that $(X_{n})_{n\geq0}$ is a stationary Markov chain). Let $\tau$
+be a finite stopping time. Then, $X_{\tau+1}$ has the same distribution
+as $X_{0}$.
+\end{cor}
+Before we prove this, let's try to understand the intuition.
+\begin{example}
+A gambler plays roulette and chooses a time to place a bet. Let $X_{n}$
+be the outcome of the $n$-th spin and $\tau$ be the stopping time
+at which the bet is placed. The above says that $X_{\tau+1}$ has
+the same distribution as $X_{0}$. In other words, assuming that the
+gambler eventually places a bet (i.e., $\tau<\infty$), they are no
+better off than they would have been had they placed the bet at time
+zero (i.e., $\tau=0$).
+\end{example}
+\begin{proof}
+$X_{0},X_{1},\ldots$ is a Markov chain with transition probabilities
+$P_{ij}=\mathbb{P}(X_{n+1}=x_{j}\mid X_{n}=x_{i})\equiv p_{j}$. In
+other words, $P_{ij}$ does not depend on $i$. By the strong Markov
+property, $X_{\tau},X_{\tau+1},\ldots$ is once again a Markov chain
+with the same transition probabilities. That is, if $\Lambda\in\mathcal{F}_{\tau}$,
+\[
+\mathbb{P}(X_{\tau+1}=x_{j}\mid\Lambda,X_{\tau}=x_{i})=P_{ij}=p_{j}=\mathbb{P}(X_{0}=x_{j}).
+\]
+\end{proof}
+\begin{xca}
+$X_{\tau}$ does not necessarily have the same distribution as $X_{0}$.
+Why?
+\end{xca}
+
+\section{Recurrence and transience}
+
+If we start a Markov chain at state $i$, will it ever return to $i$?
+How many times will it return to $i$? These are the questions we
+look to answer next.
+\begin{defn}
+For a discrete random variable $Y$, we define its expectation conditional
+on an event $\Lambda$ with $\mathbb{P}(\Lambda)>0$ by
+\[
+\mathbb{E}\left[Y\mid\Lambda\right]=\frac{\mathbb{E}\left[Y\cdot I_{\Lambda}\right]}{\mathbb{P}(\Lambda)}.
+\]
+\end{defn}
+Actually, the conditional expectation for a general random variable
+is \emph{much} harder to define. We might come back to it later. To
+simplify notation, let 
+\[
+\mathbb{P}^{i}(\Lambda)=\mathbb{P}(\Lambda\mid X_{0}=i)
+\]
+be the probability of $\Lambda$ conditional on the initial state
+of the Markov chain being $i$. Similarly, let
+\[
+\mathbb{E}^{i}(Y)=\mathbb{E}\left[Y\mid X_{0}=i\right].
+\]
+\begin{defn}
+The \emph{first hitting time} of $i$ is $T_{i}=\inf\{n\geq1\colon X_{n}=i\}$.
+\end{defn}
+If $X_{0}\neq i$, $T_{i}$ is the \uline{first time the chain
+reaches} $i$. If $X_{0}=i$, $T_{i}$ is the \uline{first time
+the chain returns} to $i$. In the above, $\inf\emptyset=\infty$,
+so that $T_{i}=\infty$ corresponds to the chain never hitting/returning
+to $i$.
+\begin{xca}
+$T_{i}$ is a stopping time.
+\end{xca}
+%
+\begin{xca}
+Let $i\neq j$. Show that $i\rightarrow j$ if and only if $\mathbb{P}^{i}\{T_{j}<\infty\}>0$.
+\end{xca}
+\begin{defn}
+A state $i$ is \emph{recurrent} if $\mathbb{P}^{i}\{T_{i}<\infty\}=1$.
+It is \emph{transient} otherwise.
+\end{defn}
+We can extend the definition of $T_{i}$ as follows: let $T_{i}^{1}=T_{i}$
+and
+\[
+T_{i}^{n}=\inf\left\{ k>T_{i}^{n}\colon X_{k}=i\right\} .
+\]
+That is, $T_{i}^{n}$ is the $n$-th time the Markov chain visits
+$i$.
+\begin{xca}
+$T_{i}^{n}$ is a stopping time for each $n\geq1$.
+\end{xca}
+\begin{defn}
+The \emph{total number of returns }to $i$ is
+\[
+N_{i}=\left|\left\{ n\colon T_{i}^{n}<\infty\right\} \right|=\left|\left\{ n\geq1\colon X_{n}=i\right\} \right|.
+\]
+\end{defn}
+\begin{prop}
+Let $i$ be a given state and define $p=P^{i}\{T_{i}<\infty\}$. Then,
+\[
+\mathbb{P}^{i}\left\{ N_{i}\geq n\right\} =p^{n}.
+\]
+In particular, if $X_{0}=i$ then
+\begin{itemize}
+\item $N_{i}=\infty$ a.s. if $i$ is recurrent and
+\item $\mathbb{E}^{i}[N_{i}]=\frac{p}{1-p}$ if $i$ is transient.
+\end{itemize}
+\end{prop}
+\begin{proof}
+Let $p^{(n)}=\mathbb{P}^{i}\{N_{i}\geq n\}$. Note that
+\[
+N_{i}\geq n\iff T_{i}^{n}<\infty.
+\]
+Therefore, $p^{(1)}=p$ by definition. Now, suppose $p^{(k)}=p^{k}$
+for $k=1,2,\ldots,n$. If $T_{i}^{n}<\infty$, then $X_{T_{i}^{n}}=i$.
+Therefore, by the strong Markov property, $(X_{T_{i}^{n}+n})_{n\geq0}$
+is a Markov chain with the same transition matrix as $(X_{n})_{n\geq0}$.
+Therefore,
+\[
+\mathbb{P}^{i}(N_{i}\geq n+1)=\mathbb{P}^{i}(N_{i}\geq n)p.
+\]
+Equivalently, $p^{(n+1)}=p^{(n)}p=p^{n}p=p^{n+1}$. This establishes
+that
+\[
+p^{(n)}=p^{n}
+\]
+for all $n\geq1$. Now, note that
+\[
+\mathbb{E}^{i}\left[N_{i}\right]=\sum_{k\geq1}\mathbb{P}^{i}\left\{ N_{i}\geq n\right\} =\sum_{k\geq1}p^{k}=\left(\sum_{k\geq0}p^{k}\right)-1=\frac{1}{1-p}-1=\frac{p}{1-p}.
+\]
+\end{proof}
+\begin{rem}
+~
+\begin{enumerate}
+\item If the chain starts at a recurrent state, it returns to that state
+infinitely often.
+\item The claim
+\[
+\mathbb{E}^{i}\left[N_{i}\right]=\frac{p}{1-p}
+\]
+is actually true even when $i$ is recurrent under the interpretation
+$1/(1-p)=\infty$. Therefore,
+\begin{align*}
+i\text{ is transient} & \iff\mathbb{E}^{i}\left[N_{i}\right]<\infty\\
+i\text{ is recurrent} & \iff\mathbb{E}^{i}\left[N_{i}\right]=\infty.
+\end{align*}
+\end{enumerate}
+\end{rem}
+We can express the above just using the transition matrix $P$.
+\begin{prop}
+A state $i$ is recurrent if and only if $\sum_{n\geq0}(P^{n})_{ii}=\infty$.
+\end{prop}
+\begin{proof}
+This is just a consequence of $(P^{n})_{ii}=\mathbb{P}(X_{n}=i\mid X_{0}=i)$.
+Since $N_{i}=\sum_{n\geq1}I_{\{X_{n}=i\}}$, it follows that
+\[
+\mathbb{E}^{i}\left[N_{i}\right]=\mathbb{E}^{i}\left[\sum_{n\geq1}I_{\{X_{n}=i\}}\right]=\sum_{n\geq1}\mathbb{E}^{i}\left[I_{\{X_{n}=i\}}\right]=\sum_{n\geq1}(P^{n})_{ii}.
+\]
+\end{proof}
+\begin{cor}
+A state $i$ is transient if and only if $\sum_{n\geq0}(P^{n})_{ii}<\infty$.
+\end{cor}
+%
+\begin{cor}
+If $i\rightarrow j$ and $i$ is recurrent, then $i\leftrightarrow j$,
+$\mathbb{P}^{j}\{T_{i}<\infty\}=1$, and $j$ is recurrent.
+\end{cor}
+\begin{proof}
+Since $i\rightarrow j$, $\mathbb{P}^{i}\{T_{j}<\infty\}>0$. Therefore,
+if $\mathbb{P}^{j}\{T_{i}<\infty\}<1$, then we obtain a contradiction
+to $\mathbb{E}^{i}[N_{i}]=\infty$.
+
+Therefore, we can find $r$ and $s$ such that $(P^{r})_{ij}>0$ and
+$(P^{s})_{ji}>0$ (since $i\leftrightarrow j$). Then, for any $n$,
+\[
+(P^{s+n+r})_{jj}=\sum_{k,\ell}(P^{s})_{jk}(P^{n})_{k\ell}(P^{r})_{\ell j}\geq(P^{s})_{ji}(P^{n})_{ii}(P^{r})_{ij}.
+\]
+Therefore,
+\[
+\sum_{n}(P^{n})_{jj}\geq\sum_{n}(P^{s+n+r})_{jj}=(P^{s})_{ji}(P^{r})_{ij}\sum_{n}(P^{n})_{ii}
+\]
+Now, since $(P^{s})_{ji}(P^{r})_{ij}>0$, then $j$ is recurrent since
+$\sum_{n}(P^{n})_{ii}=\infty$.
+\end{proof}
+
+\end{document}
