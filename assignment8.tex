@@ -1,0 +1,59 @@
+%% LyX 2.2.3 created this file.  For more info, see http://www.lyx.org/.
+%% Do not edit unless you really know what you are doing.
+\documentclass[english,12pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage[latin9]{inputenc}
+\usepackage{amssymb}
+
+\makeatletter
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% User specified LaTeX commands.
+\usepackage[margin=1in]{geometry}
+
+\makeatother
+
+\usepackage{babel}
+\begin{document}
+
+\title{Math 525: Assignment 8}
+
+\date{\date{}}
+\maketitle
+\begin{enumerate}
+\item A coin with probability $p$ of heads is flipped repeatedly. $X_{n}$
+is the result of the $n$-th coin flip ($n=1$ is the first coin flip).
+Let
+\[
+\tau=\inf\left\{ n>1\colon(X_{n-1},X_{n})=(H,T)\right\} ,
+\]
+corresponding to the first time at which we see a heads ($H$) followed
+by a tails ($T$).
+\begin{enumerate}
+\item Give an expression for $\mathbb{P}(\tau\leq n)$.\\
+\textbf{Hint}: try to think of a transition matrix $P$ such that
+$\mathbb{P}(\tau\leq n)=\mu^{\intercal}P^{n}\nu$ for appropriately
+chosen column vectors $\mu$ and $\nu$. Don't forget about $n=\infty$!
+\item Give an expression for $\mathbb{P}(\tau=n)$.\\
+\textbf{Hint}: use your results from part (b). Don't forget about
+$n=\infty$!
+\item Compute $\mathbb{P}(\tau\leq10)$.
+\end{enumerate}
+\item Let $P$ be a transition matrix, $\mu=(\mu_{1},\ldots,\mu_{n})^{\intercal}$
+be a column vector, and $e=(1,\ldots,1)^{\intercal}$ be the column
+vector of ones.
+\begin{enumerate}
+\item Show that if $\mu^{\intercal}e=1$, then $\mu^{\intercal}Pe=1$.
+\item Suppose $P^{\intercal}$ admits $n$ linearly independent eigenvectors
+$\{v_{1},\ldots,v_{n}\}$ with corresponding eigenvalues $\{\lambda_{1},\ldots,\lambda_{n}\}$.
+If
+\[
+\mu=c_{1}v_{1}+\cdots+c_{n}v_{n}
+\]
+is an eigendecomposition of $\mu$, show that
+\[
+\mu^{\intercal}P^{k}=c_{1}\lambda_{1}^{k}v_{1}+\cdots+c_{n}\lambda_{n}^{k}v_{n}
+\]
+for any positive integer $k$.
+\end{enumerate}
+\end{enumerate}
+
+\end{document}
