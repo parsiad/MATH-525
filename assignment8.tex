@@ -1,25 +1,95 @@
-%% LyX 2.2.3 created this file.  For more info, see http://www.lyx.org/.
+%% LyX 2.2.1 created this file.  For more info, see http://www.lyx.org/.
 %% Do not edit unless you really know what you are doing.
 \documentclass[english,12pt]{article}
 \usepackage[T1]{fontenc}
 \usepackage[latin9]{inputenc}
+\usepackage{units}
+\usepackage{amstext}
+\usepackage{amsthm}
 \usepackage{amssymb}
 
 \makeatletter
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Textclass specific LaTeX commands.
+ \theoremstyle{definition}
+ \newtheorem*{defn*}{\protect\definitionname}
+  \theoremstyle{plain}
+  \newtheorem*{thm*}{\protect\theoremname}
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%% User specified LaTeX commands.
 \usepackage[margin=1in]{geometry}
 
 \makeatother
 
 \usepackage{babel}
+  \providecommand{\definitionname}{Definition}
+  \providecommand{\theoremname}{Theorem}
+
 \begin{document}
 
 \title{Math 525: Assignment 8}
 
 \date{\date{}}
+
 \maketitle
+To answer the first question, you will need a theorem from linear
+algebra. Recall that a matrix/vector is said to be nonnegative/positive
+if all of its entries are nonnegative/positive.
+\begin{defn*}
+Let $A$ be a nonnegative matrix. We say $A$ is \emph{primitive}
+if $A^{m}$ is a positive matrix for some positive integer $m$.
+\end{defn*}
+\begin{thm*}[Perron-Frobenius for primitive matrices]
+Let $A$ be a primitive matrix. Then,
+\begin{itemize}
+\item $\lambda_{1}=\rho(A)$ is an eigenvalue of $A$.
+\item All other eigenvalues $\lambda_{j}$ are smaller in magnitude than
+$\lambda_{1}$ (i.e., $|\lambda_{j}|<\lambda_{1}$).
+\item $\{x\colon Ax=\lambda_{1}x\}=\text{span}(v)$ for some positive vector
+$v$.
+\end{itemize}
+\end{thm*}
+\noindent\hrulefill
 \begin{enumerate}
-\item A coin with probability $p$ of heads is flipped repeatedly. $X_{n}$
+\item A Markov chain whose transition matrix $P$ is primitive is called
+\emph{regular}.\emph{ }Let
+\begin{itemize}
+\item $\mu=(\mu_{1},\ldots,\mu_{m})^{\intercal}$ be a column vector with
+$\mu^{\intercal}e=1$ where $e=(1,\ldots,1)^{\intercal}$,
+\item $P$ be the transition matrix of a regular Markov chain, and
+\item suppose that $P^{\intercal}$ has a linearly independent set of eigenvectors
+$\{v_{1},\ldots,v_{m}\}$ with corresponding eigenvalues $\{\lambda_{1},\ldots,\lambda_{m}\}$
+in descending order of magnitude: 
+\[
+|\lambda_{1}|>|\lambda_{2}|\geq\cdots\geq|\lambda_{m}|.
+\]
+\end{itemize}
+\begin{enumerate}
+\item Show that if $\mu^{\intercal}e=1$, then $\mu^{\intercal}Pe=1$.
+\item Let $\mu=c_{1}v_{1}+\cdots+c_{m}v_{m}$ be an eigendecomposition of
+$\mu$. By the Perron-Frobenius theorem, we can, without loss of generality,
+pick $v_{1}$ to be a positive vector. Show that for any positive
+integer $k$,
+\[
+\mu^{\intercal}P^{k}=c_{1}\lambda_{1}^{k}v_{1}^{\intercal}+\cdots+c_{m}\lambda_{m}^{k}v_{m}^{\intercal}.
+\]
+\item Show that $\lim_{n\rightarrow\infty}\mu^{\intercal}P^{n}=c_{1}v_{1}^{\intercal}$\textbf{
+}(\textbf{Hint}: Proposition 1.13 of Lecture 16).
+\item Show that $(c_{1}v_{1}^{\intercal})P=c_{1}v_{1}^{\intercal}$.
+\item Show that $(c_{1}v_{1}^{\intercal})e=1$ (\textbf{Hint}: part (a))
+and $c_{1}>0$.
+\item Part (e) shows that $c_{1}v_{1}^{\intercal}$ is a distribution vector
+(i.e., it is nonnegative and its entries add up to one). With this
+in mind, what is the significance of
+\begin{enumerate}
+\item Part (c)? (\textbf{Hint}: if $\mathbb{P}(X_{0}=i)=\mu_{i}$, then
+$(\mu^{\intercal}P^{n})_{i}=\mathbb{P}(X_{n}=i)$).
+\item Part (d)?
+\end{enumerate}
+\end{enumerate}
+\end{enumerate}
+\clearpage{}
+\begin{enumerate}
+\item[2.] A coin with probability $p$ of heads is flipped repeatedly. $X_{n}$
 is the result of the $n$-th coin flip ($n=1$ is the first coin flip).
 Let
 \[
@@ -28,31 +98,13 @@ Let
 corresponding to the first time at which we see a heads ($H$) followed
 by a tails ($T$).
 \begin{enumerate}
-\item Give an expression for $\mathbb{P}(\tau\leq n)$.\\
-\textbf{Hint}: try to think of a transition matrix $P$ such that
-$\mathbb{P}(\tau\leq n)=\mu^{\intercal}P^{n}\nu$ for appropriately
-chosen column vectors $\mu$ and $\nu$. Don't forget about $n=\infty$!
-\item Give an expression for $\mathbb{P}(\tau=n)$.\\
-\textbf{Hint}: use your results from part (b). Don't forget about
-$n=\infty$!
-\item Compute $\mathbb{P}(\tau\leq10)$.
-\end{enumerate}
-\item Let $P$ be a transition matrix, $\mu=(\mu_{1},\ldots,\mu_{n})^{\intercal}$
-be a column vector, and $e=(1,\ldots,1)^{\intercal}$ be the column
-vector of ones.
-\begin{enumerate}
-\item Show that if $\mu^{\intercal}e=1$, then $\mu^{\intercal}Pe=1$.
-\item Suppose $P^{\intercal}$ admits $n$ linearly independent eigenvectors
-$\{v_{1},\ldots,v_{n}\}$ with corresponding eigenvalues $\{\lambda_{1},\ldots,\lambda_{n}\}$.
-If
-\[
-\mu=c_{1}v_{1}+\cdots+c_{n}v_{n}
-\]
-is an eigendecomposition of $\mu$, show that
-\[
-\mu^{\intercal}P^{k}=c_{1}\lambda_{1}^{k}v_{1}+\cdots+c_{n}\lambda_{n}^{k}v_{n}
-\]
-for any positive integer $k$.
+\item Give an expression for $\mathbb{P}(\tau\leq n)$ (\textbf{Hint}: try
+to think of a transition matrix $P$ such that $\mathbb{P}(\tau\leq n)=\mu^{\intercal}P^{n}\nu$
+for appropriately chosen column vectors $\mu$ and $\nu$).
+\item Give an expression for $\mathbb{P}(\tau=n)$\textbf{ }(\textbf{Hint}:
+use your results from part (b)).
+\item (Optional) Let $p=\nicefrac{1}{3}$ and compute $\mathbb{P}(\tau\leq10)$
+with numerical software such as MATLAB.
 \end{enumerate}
 \end{enumerate}
 
