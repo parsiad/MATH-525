@@ -1,4 +1,4 @@
-%% LyX 2.2.3 created this file.  For more info, see http://www.lyx.org/.
+%% LyX 2.2.1 created this file.  For more info, see http://www.lyx.org/.
 %% Do not edit unless you really know what you are doing.
 \documentclass[english,12pt]{article}
 \usepackage[T1]{fontenc}
@@ -79,6 +79,7 @@ Equivalently,
 \begin{equation}
 \mathbb{P}(\Lambda,X_{n}=i,X_{n+1}=j)=\mathbb{P}(\Lambda,X_{n}=i)P_{ij}\qquad\text{for }\Lambda\in\mathcal{F}_{n}.\label{eq:memoryless}
 \end{equation}
+
 \begin{prop}[Strong Markov property]
  Let $\tau$ be a finite stopping time (i.e., $\tau<\infty$ a.s.).
 Given that $X_{\tau}=i$, the sequence $(X_{\tau+n})_{n\geq0}$ is
@@ -168,6 +169,7 @@ of the Markov chain being $i$. Similarly, let
 \[
 \mathbb{E}^{i}(Y)=\mathbb{E}\left[Y\mid X_{0}=i\right].
 \]
+
 \begin{defn}
 The \emph{first hitting time} of $i$ is $T_{i}=\inf\{n\geq1\colon X_{n}=i\}$.
 \end{defn}
@@ -190,7 +192,7 @@ It is \emph{transient} otherwise.
 We can extend the definition of $T_{i}$ as follows: let $T_{i}^{1}=T_{i}$
 and
 \[
-T_{i}^{n}=\inf\left\{ k>T_{i}^{n}\colon X_{k}=i\right\} .
+T_{i}^{n+1}=\inf\left\{ k>T_{i}^{n}\colon X_{k}=i\right\} .
 \]
 That is, $T_{i}^{n}$ is the $n$-th time the Markov chain visits
 $i$.
