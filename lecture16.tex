@@ -1,4 +1,4 @@
-%% LyX 2.2.3 created this file.  For more info, see http://www.lyx.org/.
+%% LyX 2.2.1 created this file.  For more info, see http://www.lyx.org/.
 %% Do not edit unless you really know what you are doing.
 \documentclass[english,12pt]{article}
 \usepackage[T1]{fontenc}
@@ -211,6 +211,7 @@ Pictorially,
 \path [draw, thick, ->, >=stealth] (h.north east) -- node [above] {$p$} (i.north west);
 \end{tikzpicture}
 \end{figure}
+
 \end{example}
 Any Markov chain can always be transformed into a stationary Markov
 chain by ``unrolling'' the state space:
@@ -383,11 +384,16 @@ Let $\mu$ be the initial distribution of the gambler's wealth. For
 example, if the gambler's initial wealth is 2, we can represent this
 with the initial distribution vector
 \begin{equation}
-\mu=\begin{pmatrix}0 & 0 & 1 & 0 & 0\end{pmatrix}.\label{eq:gambler_example}
+\mu=\begin{pmatrix}0\\
+0\\
+1\\
+0\\
+0
+\end{pmatrix}\label{eq:gambler_example}
 \end{equation}
 Then,
 \[
-\mu^{(n)}=\mu P^{n}
+\mu^{(n)}=\mu^{\intercal}P^{n}
 \]
 is the distribution of the gambler's wealth after $n$ plays. We can
 diagonalize the matrix $P$ by
@@ -428,11 +434,16 @@ it follows that
 \]
 Therefore,
 \[
-\mu^{(\infty)}\equiv\lim_{n\rightarrow\infty}\left(\mu P^{n}\right)=\mu\lim_{n\rightarrow\infty}P^{n}.
+\mu^{(\infty)}\equiv\lim_{n\rightarrow\infty}\left(\mu^{\intercal}P^{n}\right)=\mu^{\intercal}\lim_{n\rightarrow\infty}P^{n}.
 \]
 If we plug in \ref{eq:gambler_example}, we get
 \[
-\mu^{(\infty)}=\begin{pmatrix}0.5 & 0 & 0 & 0 & 0.5\end{pmatrix}.
+\mu^{(\infty)}=\begin{pmatrix}\nicefrac{1}{2}\\
+0\\
+0\\
+0\\
+\nicefrac{1}{2}
+\end{pmatrix}.
 \]
 Unsurprisingly, the probability of ruin is the same as that of victory.
 \end{example}
