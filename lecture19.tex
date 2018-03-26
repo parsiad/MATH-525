@@ -67,7 +67,8 @@ The memoryless/Markov property for a stationary Markov chain can be
 expressed as follows: ``for each $n$, the process $X_{n},X_{n+1},\ldots$
 is a Marko chain with the same transition probabilities as $X_{0},X_{1},\ldots$''
 \begin{quotation}
-\textbf{Question}: is the same result true if we replace $n$ by $\tau$?
+\textbf{Question}: is the same result true if we replace $n$ by a
+stopping time $\tau$?
 \end{quotation}
 Let $(X_{n})_{n\geq0}$ be a Markov chain with transition matrix $P$
 and let $\mathcal{F}_{n}=\sigma(X_{0},\ldots,X_{n})$ . The Markov
@@ -138,7 +139,7 @@ other words, $P_{ij}$ does not depend on $i$. By the strong Markov
 property, $X_{\tau},X_{\tau+1},\ldots$ is once again a Markov chain
 with the same transition probabilities. That is, if $\Lambda\in\mathcal{F}_{\tau}$,
 \[
-\mathbb{P}(X_{\tau+1}=x_{j}\mid\Lambda,X_{\tau}=x_{i})=P_{ij}=p_{j}=\mathbb{P}(X_{0}=x_{j}).
+\mathbb{P}(X_{\tau+1}=x_{j}\mid\Lambda,X_{\tau}=x_{i})=P_{ij}=p_{j}=\mathbb{P}(X_{0}=x_{j}).\qedhere
 \]
 \end{proof}
 \begin{xca}
@@ -236,7 +237,7 @@ p^{(n)}=p^{n}
 \]
 for all $n\geq1$. Now, note that
 \[
-\mathbb{E}^{i}\left[N_{i}\right]=\sum_{k\geq1}\mathbb{P}^{i}\left\{ N_{i}\geq n\right\} =\sum_{k\geq1}p^{k}=\left(\sum_{k\geq0}p^{k}\right)-1=\frac{1}{1-p}-1=\frac{p}{1-p}.
+\mathbb{E}^{i}\left[N_{i}\right]=\sum_{k\geq1}\mathbb{P}^{i}\left\{ N_{i}\geq n\right\} =\sum_{k\geq1}p^{k}=\left(\sum_{k\geq0}p^{k}\right)-1=\frac{1}{1-p}-1=\frac{p}{1-p}.\qedhere
 \]
 \end{proof}
 \begin{rem}
@@ -264,7 +265,7 @@ A state $i$ is recurrent if and only if $\sum_{n\geq0}(P^{n})_{ii}=\infty$.
 This is just a consequence of $(P^{n})_{ii}=\mathbb{P}(X_{n}=i\mid X_{0}=i)$.
 Since $N_{i}=\sum_{n\geq1}I_{\{X_{n}=i\}}$, it follows that
 \[
-\mathbb{E}^{i}\left[N_{i}\right]=\mathbb{E}^{i}\left[\sum_{n\geq1}I_{\{X_{n}=i\}}\right]=\sum_{n\geq1}\mathbb{E}^{i}\left[I_{\{X_{n}=i\}}\right]=\sum_{n\geq1}(P^{n})_{ii}.
+\mathbb{E}^{i}\left[N_{i}\right]=\mathbb{E}^{i}\left[\sum_{n\geq1}I_{\{X_{n}=i\}}\right]=\sum_{n\geq1}\mathbb{E}^{i}\left[I_{\{X_{n}=i\}}\right]=\sum_{n\geq1}(P^{n})_{ii}.\qedhere
 \]
 \end{proof}
 \begin{cor}
