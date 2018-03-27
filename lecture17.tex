@@ -187,7 +187,7 @@ try to understand the strongly connected property:
 Consider the matrix
 \[
 P=\begin{pmatrix} &  & 1\\
-\nicefrac{1}{2} &  & \nicefrac{1}{2}\\
+\nicefrac{1}{2} & 0 & \nicefrac{1}{2}\\
 1
 \end{pmatrix}.
 \]
@@ -225,12 +225,13 @@ Clearly, this matrix satisfies the connectedness property:
 \path [draw, thick, ->, >=stealth] (2) -- (1);
 \end{tikzpicture}
 \end{figure}
-Note, in particular, that if there is a walk from $u$ to $v$, then
-we can find some positive integer $n$ such that
+Note, in particular, that if there is a walk from $u$ to $v$ in
+a probability matrix $P$ corresponding to a Markov chain $(X_{n})_{n\geq0}$,
+then we can find some positive integer $k$ such that
 \[
-\mathbb{P}(X_{n}=v\mid X_{0}=u)>0
+\mathbb{P}(X_{k}=v\mid X_{0}=u)>0
 \]
-(indeed, $n$ can be taken to be the number of edges in the walk).
+(indeed, $k$ can be taken to be the number of edges in the walk).
 \end{example}
 Let's return to the proof of Proposition \ref{prop:irreducible}.
 \begin{proof}
@@ -258,13 +259,13 @@ in $A$. Equivalently, we are unable to find a walk
 in $A$. Therefore, $A$ is not strongly connected.
 
 As for the forward direction, we also proceed by contrapositive. The
-ideas are similar to the previous paragraph, so sketch them briefly.
-Suppose the matrix is not strongly connected. Then, we can find $u$
-and $v$ such that there is no walk from $u$ to $v$. Let $M$ be
-the set of all rows \textbf{not} reachable by a walk from $u$. Then,
-by our assumptions, $v\in M$ so that $|M|=m>0$. Let $\pi$ be a
-permutation under which $\pi(M)=\{1,\ldots,m\}$. Let $K$ be the
-permutation matrix associated with $\pi$. Then, (\ref{eq:permutation})
+ideas are similar to the previous paragraph, so we only sketch them
+briefly. Suppose the matrix is not strongly connected. Then, we can
+find $u$ and $v$ such that there is no walk from $u$ to $v$. Let
+$M$ be the set of all rows \textbf{not} reachable by a walk from
+$u$. Then, by our assumptions, $v\in M$ so that $|M|>0$. Let $m=|M|$
+and $\pi$ be a permutation under which $\pi(M)=\{1,\ldots,m\}$.
+Let $K$ be the permutation matrix associated with $\pi$. Then, (\ref{eq:permutation})
 is satisfied, as desired.
 \end{proof}
 \begin{defn}
