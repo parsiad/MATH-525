@@ -1,0 +1,449 @@
+%% LyX 2.2.1 created this file.  For more info, see http://www.lyx.org/.
+%% Do not edit unless you really know what you are doing.
+\documentclass[english,12pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage[latin9]{inputenc}
+\usepackage{refstyle}
+\usepackage{units}
+\usepackage{mathtools}
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{amssymb}
+\usepackage{graphicx}
+
+\makeatletter
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% LyX specific LaTeX commands.
+
+\AtBeginDocument{\providecommand\lemref[1]{\ref{lem:#1}}}
+\RS@ifundefined{subsecref}
+  {\newref{subsec}{name = \RSsectxt}}
+  {}
+\RS@ifundefined{thmref}
+  {\def\RSthmtxt{theorem~}\newref{thm}{name = \RSthmtxt}}
+  {}
+\RS@ifundefined{lemref}
+  {\def\RSlemtxt{lemma~}\newref{lem}{name = \RSlemtxt}}
+  {}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Textclass specific LaTeX commands.
+\theoremstyle{plain}
+\newtheorem{thm}{\protect\theoremname}[section]
+\theoremstyle{definition}
+\newtheorem{example}[thm]{\protect\examplename}
+\theoremstyle{definition}
+\newtheorem{defn}[thm]{\protect\definitionname}
+\theoremstyle{plain}
+\newtheorem{lem}[thm]{\protect\lemmaname}
+\ifx\proof\undefined
+\newenvironment{proof}[1][\protect\proofname]{\par
+\normalfont\topsep6\p@\@plus6\p@\relax
+\trivlist
+\itemindent\parindent
+\item[\hskip\labelsep\scshape #1]\ignorespaces
+}{%
+\endtrivlist\@endpefalse
+}
+\providecommand{\proofname}{Proof}
+\fi
+\theoremstyle{plain}
+\newtheorem{prop}[thm]{\protect\propositionname}
+\theoremstyle{plain}
+\newtheorem{cor}[thm]{\protect\corollaryname}
+\theoremstyle{remark}
+\newtheorem{rem}[thm]{\protect\remarkname}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% User specified LaTeX commands.
+\usepackage[margin=1in]{geometry}
+\usepackage{tikz}
+\usetikzlibrary{arrows,decorations.pathreplacing,shapes}
+
+\makeatother
+
+\usepackage{babel}
+\providecommand{\corollaryname}{Corollary}
+\providecommand{\definitionname}{Definition}
+\providecommand{\examplename}{Example}
+\providecommand{\lemmaname}{Lemma}
+\providecommand{\propositionname}{Proposition}
+\providecommand{\remarkname}{Remark}
+\providecommand{\theoremname}{Theorem}
+
+\begin{document}
+
+\title{Math 525: Lecture 20}
+
+\date{March 27, 2018}
+\maketitle
+
+\section{Motivation}
+
+We have already seen many situations involving the \emph{limiting
+distribution}
+\begin{equation}
+\alpha^{\intercal}=\lim_{n\rightarrow\infty}\mu^{\intercal}P^{n}\label{eq:limiting_distribution}
+\end{equation}
+of a Markov chain, where $\mu$ is the \emph{initial distribution}
+(i.e., $\mathbb{P}(X_{0}=i)=\mu_{i}$). To stress that $\alpha$ is
+a function of $\mu$, we will write $\alpha(\mu)$.
+\begin{example}[Gambler's ruin]
+We determined the probability of ruin by substituting
+\[
+P=\begin{pmatrix}1 & 0\\
+\nicefrac{1}{2} & 0 & \nicefrac{1}{2}\\
+ & \nicefrac{1}{2} & 0 & \nicefrac{1}{2}\\
+ &  & \ddots & \ddots & \ddots\\
+ &  &  & \nicefrac{1}{2} & 0 & \nicefrac{1}{2}\\
+ &  &  &  & 0 & 1
+\end{pmatrix}\qquad\text{and}\qquad\mu=\begin{pmatrix}0\\
+\vdots\\
+0\\
+1\\
+0\\
+\vdots\\
+0
+\end{pmatrix}
+\]
+into (\ref{eq:limiting_distribution}). There, we found that
+\[
+\alpha(\mu)=\begin{pmatrix}\nicefrac{1}{2}\\
+0\\
+\vdots\\
+0\\
+\nicefrac{1}{2}
+\end{pmatrix}.
+\]
+\end{example}
+More generally, it is natural to ask:
+\begin{enumerate}
+\item Is (\ref{eq:limiting_distribution}) always independent of the initial
+distribution $\mu$?
+\item Is (\ref{eq:limiting_distribution}) an equilibrium/stationary distribution?
+(i.e., $\alpha(\mu)^{\intercal}P=\alpha(\mu)^{\intercal}$)
+\end{enumerate}
+The answer to the first question is very easily seen to be no:
+\begin{example}
+Consider the transition matrix $P=I$. Then, $P^{n}=I$ and hence
+\[
+\alpha(\mu)=\lim_{n\rightarrow\infty}\mu^{\intercal}P^{n}=\lim_{n\rightarrow\infty}\mu^{\intercal}=\mu^{\intercal}.
+\]
+\end{example}
+Worse yet, the limit does not even have to exist:
+\begin{example}
+Consider
+\[
+P=\begin{pmatrix}0 & 1\\
+1 & 0
+\end{pmatrix}\qquad\text{and}\qquad\mu=\begin{pmatrix}1\\
+0
+\end{pmatrix}.
+\]
+Note that $P^{2n}=I$ and $P^{2n+1}=P$. Therefore,
+\[
+\mu^{\intercal}P^{2n+1}=\begin{pmatrix}0 & 1\end{pmatrix}\qquad\text{and}\qquad\mu^{\intercal}P^{2n}=\begin{pmatrix}1 & 0\end{pmatrix}
+\]
+so that $\alpha(\mu)$ does not exist.
+\end{example}
+As for the second question, suppose the limit exists. Then, by continuity,
+\[
+\alpha(\mu)^{\intercal}P=\left(\lim_{n\rightarrow\infty}\mu^{\intercal}P^{n}\right)P=\lim_{n\rightarrow\infty}\mu^{\intercal}P^{n+1}=\alpha(\mu)^{\intercal}.
+\]
+
+For the remainder, we will try to understand when the limit is independent
+of the initial distribution. As in the gambler's ruin, the limiting
+distribution tells us a lot about the problem, and can even be considered
+as an approximation for $\mu^{\intercal}P^{n}$ with $n$ large. Moreover,
+we will see that in many of these cases, the limit can be computed
+efficiently.
+
+\section{Primitive matrices}
+\begin{defn}
+Let $A$ be a square matrix that is nonnegative (i.e., $A_{ij}\geq0$).
+We say $A$ is \emph{primitive }if there exists a positive integer
+$m$ such that $A^{m}$ is positive (i.e., $(A^{m})_{ij}>0$).
+\end{defn}
+\begin{lem}
+\label{lem:primitive_implies_reducible}If $A$ is primitive, then
+$A$ is irreducible.
+\end{lem}
+\begin{proof}
+We prove this by contrapositive. Suppose $A$ is reducible. By definition,
+we can find a permutation matrix $K$ such that
+\[
+KAK^{\intercal}=\begin{pmatrix}B & C\\
+0 & D
+\end{pmatrix}.
+\]
+Let $m$ be a positive integer. Then,
+\[
+\left(KAK^{\intercal}\right)^{m}=KA^{m}K^{\intercal}=K\begin{pmatrix}B^{m} & X\\
+0 & D^{m}
+\end{pmatrix}K^{\intercal}
+\]
+where $X$ is some matrix (depending on $B$, $C$, $D$, and $m$).
+The above implies that $A$ is not primitive since $A^{m}$ has some
+entries equal to zero.
+\end{proof}
+\begin{prop}
+\label{prop:primitive_characterization}Let $A$ be a nonnegative
+square matrix. Then, $A$ is irreducible and aperiodic (i.e., has
+period equal to one) if and only if it is primitive.
+\end{prop}
+Before we give a proof, let's discuss some consequences. Given a matrix
+$A$, recall that
+\[
+i\rightarrow j
+\]
+means that we can find a walk
+\[
+i=i_{1}\dashrightarrow i_{2}\dashrightarrow\cdots\dashrightarrow i_{k}=j
+\]
+from $i$ to $j$. We refer to the number of edges in a walk as its
+\emph{length} (in the above example, the length is $k-1$). Recall
+also that the period of $i$ is defined as
+\[
+d(i)=\operatorname{gcd}(\left\{ n\geq1\colon(A^{n})_{ii}>0\right\} ).
+\]
+Moreover,
+\[
+(A^{n})_{ii}>0\iff\text{there exists a walk of length }n\text{ from }i\text{ to itself}.
+\]
+Therefore, we can equivalently define the period as
+\[
+d(i)=\operatorname{gcd}(\left\{ \operatorname{length}(w)\colon w\text{ is a walk from }i\text{ to itself}\right\} ).
+\]
+This observation gives us a quick way to check if a matrix is primitive
+by checking the gcd of walks from a node to itself. One particularly
+useful consequence is given below.
+\begin{cor}
+\label{cor:quick}Let $A=(A_{ij})$ be a nonnegative and irreducible
+square matrix. If $A_{ii}>0$ for some $i$, then $A$ is primitive.
+\end{cor}
+\begin{proof}
+By the assumptions, $d(i)=1$ and hence $A$ is aperiodic. Therefore,
+by Proposition \ref{prop:primitive_characterization}, $A$ is primitive.
+\end{proof}
+\begin{example}
+The matrix
+\[
+P=\begin{pmatrix}\nicefrac{1}{2} & \nicefrac{1}{2} & 0\\
+0 & 0 & 1\\
+1 & 0 & 0
+\end{pmatrix}.
+\]
+satisfies Corollary \ref{cor:quick}. Indeed, matrix multiplication
+reveals
+\[
+P^{4}=\begin{pmatrix}0.5625 & 0.3125 & 0.1250\\
+0.2500 & 0.2500 & 0.5000\\
+0.6250 & 0.1250 & 0.2500
+\end{pmatrix}.
+\]
+\end{example}
+Let's now return to our goal of proving Proposition \ref{prop:primitive_characterization}.
+First, we need an intermediate result from number theory/algebra,
+which we state without proof.
+\begin{lem}[Semigroup lemma]
+\label{lem:semigroup}Any set of non-negative integers which is closed
+under addition and which has greatest common divisor 1 must contain
+all but finitely many of the non-negative integers.
+\end{lem}
+We will just prove the forward direction of Proposition \ref{prop:primitive_characterization}:
+\begin{proof}[Proof of Proposition \ref{prop:primitive_characterization} ($\Rightarrow$)]
+ Let $A$ be an irreducible and aperiodic matrix. For each row $i$
+of $A$ let 
+\[
+J_{i}=\left\{ n\geq1\colon(A^{n})_{ii}>0\right\} .
+\]
+Now, let $n_{1}$ and $n_{2}$ be elements of $J_{i}$. Then,
+\[
+(A^{n_{1}+n_{2}})_{ii}=(A^{n_{1}}A^{n_{2}})_{ii}=\sum_{k}(A^{n_{1}})_{ik}(A^{n_{2}})_{ki}\geq(A^{n_{1}})_{ii}(A^{n_{2}})_{ii}>0
+\]
+and hence $n_{1}+n_{2}$ is also in $J_{i}$. That is, $J_{i}$ is
+closed under addition. Moreover, $\operatorname{gcd}(J_{i})=1$ by
+the presumed aperiodicity.
+
+Applying \lemref{semigroup} to $J_{i}$, we can find $M(i)$ such
+that for all $n\geq M(i)$, we have $(A^{n})_{ii}>0$. Since $A$
+is irreducible, we can find $m(i,j)$ such that $(A^{m(i,j)})_{ij}>0$.
+Therefore, for $n\geq M(i)$,
+\[
+(A^{n+m(i,j)})_{ij}=\sum_{k}(A^{n})_{ik}(A^{m(i,j)})_{kj}\geq(A^{n})_{ii}(A^{m(i,j)})_{ij}>0.
+\]
+Let $M=\max_{i}\{M(i)\}+\max_{i,j}\{m(i,j)\}$. Then, $(A^{M})_{ij}>0$
+for all $i,j$ as desired.
+\end{proof}
+\begin{defn}
+A Markov chain whose transition matrix is primitive is called \emph{regular}.
+\end{defn}
+\begin{prop}
+Let $P$ be the transition matrix of a regular Markov chain. Then,
+there exists a vector $\alpha$ such that for any vector $\mu$,
+\begin{equation}
+\alpha^{\intercal}=\lim_{n\rightarrow\infty}\mu^{\intercal}P^{n}.\label{eq:limit}
+\end{equation}
+Moreover,
+\begin{equation}
+\alpha^{\intercal}P=\alpha^{\intercal}.\label{eq:equilibrium}
+\end{equation}
+In fact, $\alpha=c_{1}v_{1}$ where $v_{1}$ is a positive eigenvector
+corresponding to the eigenvalue $\lambda=1$ of $P^{\intercal}$ and
+$c_{1}$ is a normalizing constant which ensures that $\alpha$ is
+a probability vector.
+\end{prop}
+You are asked to prove this when $P^{\intercal}$ admits a full set
+of linearly independent eigenvectors in assignment 8. The general
+case can also be proved using the Jordan decomposition of $P^{\intercal}$.
+Some observations:
+\begin{itemize}
+\item (\ref{eq:limit}) states that the limiting distribution is independent
+of $\mu$.
+\item (\ref{eq:equilibrium}) states that the limiting distribution is an
+equilibrium of the Markov chain.
+\item $\alpha$ can be obtained by computing an eigenvector of $P^{\intercal}$
+associated with the eigenvalue $\lambda=1$. For small matrices, you
+can do this by hand. In practice, there are various computational
+methods to do this, the simplest of which is the \emph{power method}.
+\end{itemize}
+Of course, there are ``irregular'' Markov chains which still have
+limiting distributions:
+\begin{example}
+Note that
+\[
+\mu^{\intercal}\begin{pmatrix}1 & 0\\
+1 & 0
+\end{pmatrix}=\begin{pmatrix}\mu_{1}+\mu_{2}\\
+0
+\end{pmatrix}^{\intercal}
+\]
+for any vector $\mu$.
+\end{example}
+
+\section{Page Rank}
+
+We close by discussing an application of regular Markov chains: Page
+Rank. This is an algorithm used by Google to determine the ``goodness''
+of a page so as to determine the order of a search query.
+
+\begin{figure}
+\begin{centering}
+\includegraphics[width=3in]{page_rank}
+\par\end{centering}
+\caption{The ``goodness'' of each page is proportional to the number of links
+to that page.}
+\end{figure}
+
+Consider a web with $N$ pages. Links between pages are recorded in
+a binary matrix $G=(G_{ij})$. That is,
+\[
+G_{ij}=\begin{cases}
+1 & \text{if there is a link from page }i\text{ to page }j\\
+0 & \text{otherwise.}
+\end{cases}
+\]
+Letting $e$ denote the column vector of ones in $\mathbb{R}^{N}$,
+note that
+\[
+(Ge)_{i}=\text{number of outgoing links from }i.
+\]
+
+We wish to model a \emph{web surfer}. Suppose first that each page
+has at least one outgoing link. If the surfer is at page $i$ at time
+$n$, then they choose a page from the set
+\[
+\left\{ j\colon G_{ij}=1\right\} 
+\]
+to visit at time $n+1$ with uniform probability. Our assumption guarantees
+that the above is nonempty. The transition matrix corresponding to
+this Markov chain is
+\[
+\tilde{P}=\operatorname{diag}(Ge)^{-1}G
+\]
+where
+\[
+\operatorname{diag}(x)=\begin{pmatrix}x_{1}\\
+ & x_{2}\\
+ &  & \ddots\\
+ &  &  & x_{N}
+\end{pmatrix}
+\]
+is the diagonal matrix obtained by placing the entries of the vector
+$x$ on the diagonal. There are two problems with this preliminary
+model: (1) it's not realistic and (2) it's not a regular Markov chain.
+
+We would like to incorporate the notion that the web surfer is \emph{restless}
+and can, at any point in time, pick any page (not necessarily via
+an outgoing link) at random. Let
+\[
+E=ee^{\intercal}=\begin{pmatrix}1 & 1 & 1 & \cdots & 1\\
+1 & 1 & 1 & \cdots & 1\\
+1 & 1 & \vdots &  & \vdots\\
+1 & 1 & 1 & \cdots & 1
+\end{pmatrix}
+\]
+where $e$ is the vector of ones. Then, incorporating the restlessness,
+we arrive at the new transition matrix 
+\[
+P=\left(1-\alpha\right)\operatorname{diag}(Ge)^{-1}G+\alpha\frac{1}{m}E
+\]
+where $0<\alpha\leq1$. The closer $\alpha$ is to one, the ``more
+restless'' our web surfer. Since $\frac{1}{m}E$ is a positive transition
+matrix, $P^{\prime}$ is trivially a regular Markov chain.
+\begin{rem}
+The assumption that each page has at least one outgoing link is not
+particularly restrictive. Indeed, we can replace $G$ by $G^{\prime}$,
+which is defined by
+\[
+G_{ij}^{\prime}=\begin{cases}
+G_{ij} & \text{if }(Ge)_{i}>0\\
+1 & \text{otherwise}.
+\end{cases}
+\]
+This corresponds to a surfer that, having encountered a page with
+no outgoing links, becomes restless and picks a page at random.
+\end{rem}
+Since $P$ is regular, the limiting distribution
+\[
+\nu^{\intercal}=\lim_{n\rightarrow\infty}\mu^{\intercal}P^{n}
+\]
+gives us an idea of the random surfers distribution after $n$ steps,
+assuming $n$ is large. Since $P$ is regular, this does not depend
+on the initial distribution $\mu$. Now, let
+\[
+\hat{\nu}=\begin{pmatrix}1 & \nu_{1}\\
+2 & \nu_{2}\\
+\vdots & \vdots\\
+N & \nu_{N}
+\end{pmatrix}
+\]
+and sort the rows of $\hat{\nu}$ according to the second column:
+\begin{example}
+Suppose
+\[
+\nu=\begin{pmatrix}0.2\\
+0.1\\
+0.3\\
+0.4\\
+0.1
+\end{pmatrix}\implies\hat{\nu}=\begin{pmatrix}1 & 0.2\\
+2 & 0.1\\
+3 & 0.3\\
+4 & 0.4\\
+5 & 0.1
+\end{pmatrix}.
+\]
+After sorting,
+\[
+\hat{\nu}_{\text{sorted}}=\begin{pmatrix}4 & 0.4\\
+3 & 0.3\\
+1 & 0.2\\
+2 & 0.1\\
+5 & 0.1
+\end{pmatrix}
+\]
+and hence we can conclude that page 4 has the highest rank, page 3
+the second highest, etc.
+\end{example}
+
+\end{document}
