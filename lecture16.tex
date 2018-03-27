@@ -92,10 +92,12 @@ process is important, not its history}.
 A discrete stochastic process which satisfies the Markov property
 is called a \emph{Markov chain}.
 \end{defn}
-Technically, (\ref{eq:markov_property}) is not well-stated since
+Technically, (\ref{eq:markov_property}) is not properly stated since
 the event $\{X_{0}=i_{0},\:\ldots,\:X_{n-1}=i_{n-1},\:X_{n}=i\}$
-can have probability zero. Of course, we ignore the condition for
-such probability zero events.
+can have probability zero. Therefore, when we say that the Markov
+property holds, it is understood that we are ignoring (\ref{eq:markov_property})
+when the event $\{X_{0}=i_{0},\:\ldots,\:X_{n-1}=i_{n-1},\:X_{n}=i\}$
+has probability zero.
 \begin{example}
 \label{exa:bernoulli}Let $(Y_{n})_{n\geq0}$ be sequence of independent
 Bernoulli (coin flip) random variables. Let $X_{n}=Y_{1}+\cdots+Y_{n}$.
