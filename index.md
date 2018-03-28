@@ -81,7 +81,7 @@ All assignments are to be handed in at the *beginning* of class.
 * [Th Mar 15: filtrations and stopping times](lecture18.pdf) (Section 7.4) [\[LaTeX source\]](lecture18.tex)
 * Tu Mar 20: **midterm exam 2** (in class)
 * [Th Mar 22: strong Markov property, recurrence, and transience](lecture19.pdf) (Section 7.5 and 7.6) [\[LaTeX source\]](lecture19.tex)
-* [Tu Mar 27: limiting distribution, primitive matrices, and Page Rank](lecture20.pdf) (Section 7.7 and 7.8) [\[LaTeX source\]]
+* [Tu Mar 27: limiting distribution, primitive matrices, and Page Rank](lecture20.pdf) (Section 7.7 and 7.8) [\[LaTeX source\]](lecture20.tex)
 * Th Mar 29
 * Tu Apr 03
 * Th Apr 05
