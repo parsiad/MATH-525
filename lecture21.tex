@@ -1,4 +1,4 @@
-%% LyX 2.2.1 created this file.  For more info, see http://www.lyx.org/.
+%% LyX 2.2.3 created this file.  For more info, see http://www.lyx.org/.
 %% Do not edit unless you really know what you are doing.
 \documentclass[english,12pt]{article}
 \usepackage[T1]{fontenc}
@@ -149,7 +149,7 @@ policy $\pi^{\epsilon}=(\pi_{n}^{\epsilon})_{n\geq0}$ by
 \[
 \pi_{n}^{\epsilon}=\begin{cases}
 \pi_{0} & \text{if }n=0\\
-\mathbf{1}_{\{i\}}(X_{1}^{\pi_{0}})\pi_{n-1}^{i} & \text{if }n>0.
+\sum_{i}\mathbf{1}_{\{X_{1}^{\pi_{0}}=i\}}\pi_{n-1}^{i} & \text{if }n>0.
 \end{cases}
 \]
 Note that
@@ -176,7 +176,6 @@ First, we need some notation:
 \[
 \text{for }\{y_{\alpha}\}_{\alpha}\in\mathbb{R}^{n}\text{, }\inf_{\alpha}y_{\alpha}\text{ is the vector with entries }\inf_{\alpha}(y_{\alpha})_{i}.
 \]
-
 \begin{thm}[Dynamic programming]
 Let $v=(v(1),\ldots,v(m))^{\intercal}$ and $c=(c(1),\ldots,c(m))^{\intercal}$
 where $v(i)$ is the quantity defined by (\ref{eq:mdp}). Then,
@@ -319,7 +318,6 @@ The matrix (\ref{eq:matrix}) is w.c.d.d. (see Figure \ref{fig:graph}).
 \par\end{centering}
 \caption{Graph of (\ref{eq:matrix})\label{fig:graph}}
 \end{figure}
-
 \begin{prop}
 w.c.d.d. matrices are nonsingular.\footnote{Shivakumar, P. N., and Kim Ho Chew. \textquotedbl{}A sufficient condition
 for nonvanishing of determinants.\textquotedbl{} Proceedings of the
