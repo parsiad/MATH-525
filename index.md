@@ -82,7 +82,7 @@ All assignments are to be handed in at the *beginning* of class.
 * Tu Mar 20: **midterm exam 2** (in class)
 * [Th Mar 22: strong Markov property, recurrence, and transience](lecture19.pdf) (Section 7.5 and 7.6) [\[LaTeX source\]](lecture19.tex)
 * [Tu Mar 27: limiting distribution, primitive matrices, and Page Rank](lecture20.pdf) (Section 7.7 and 7.8) [\[LaTeX source\]](lecture20.tex)
-* [Th Mar 29: Markov decision processes, dynamic programming, and monotone and related matrices](lecture21.pdf) [\[LaTeX\]](lecture21.tex)
+* [Th Mar 29: Markov decision processes, dynamic programming, and monotone and related matrices](lecture21.pdf) [\[LaTeX source\]](lecture21.tex)
 * Tu Apr 03
 * Th Apr 05
 * Tu Apr 10
