@@ -1,4 +1,4 @@
-%% LyX 2.2.3 created this file.  For more info, see http://www.lyx.org/.
+%% LyX 2.2.1 created this file.  For more info, see http://www.lyx.org/.
 %% Do not edit unless you really know what you are doing.
 \documentclass[english,12pt]{article}
 \usepackage[T1]{fontenc}
@@ -7,7 +7,6 @@
 \usepackage{amsmath}
 \usepackage{amsthm}
 \usepackage{amssymb}
-\usepackage{graphicx}
 
 \makeatletter
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Textclass specific LaTeX commands.
@@ -28,8 +27,8 @@
 }
 \providecommand{\proofname}{Proof}
 \fi
-\theoremstyle{definition}
-\newtheorem{example}[thm]{\protect\examplename}
+\theoremstyle{remark}
+\newtheorem{rem}[thm]{\protect\remarkname}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%% User specified LaTeX commands.
 \usepackage[margin=1in]{geometry}
@@ -40,8 +39,8 @@
 
 \usepackage{babel}
 \providecommand{\definitionname}{Definition}
-\providecommand{\examplename}{Example}
 \providecommand{\propositionname}{Proposition}
+\providecommand{\remarkname}{Remark}
 \providecommand{\theoremname}{Theorem}
 
 \begin{document}
@@ -125,6 +124,23 @@ less than one:
 \left|v(i)\right|\leq\sum_{n\geq0}d^{n}\max_{j}\left|c(j)\right|=\frac{1}{1-d}\max_{j}\left|c(j)\right|.\qedhere
 \]
 \end{proof}
+\begin{rem}
+We glossed over defining $\mathcal{F}_{n}$ earlier, so we return
+to that now. Given a particular randomized policy $\pi$, we define
+\[
+\mathcal{F}_{n}=\sigma(X_{0}^{\pi},\ldots,X_{n}^{\pi}).
+\]
+This definition seems, at first glance, circular... it seems as though
+$\pi_{n}$ depends on $\mathcal{F}_{n}$ and vice versa. However,
+if we look a bit closer at the definition of $X_{n}^{\pi}$, we note
+that it only depends on the $\pi_{0},\ldots,\pi_{n-1}$. In light
+of this, we can write $X_{n}^{\pi}\equiv X_{n}^{\pi_{0},\ldots,\pi_{n-1}}$.
+Therefore,
+\[
+\mathcal{F}_{n}=\sigma(X_{0},X_{1}^{\pi_{0}},X_{2}^{\pi_{0},\pi_{1}},\ldots,X_{n}^{\pi_{0},\pi_{1},\ldots,\pi_{n-1}})
+\]
+and hence $\pi$ is well-defined.
+\end{rem}
 
 \section{Dynamic programming}
 
@@ -176,6 +192,7 @@ First, we need some notation:
 \[
 \text{for }\{y_{\alpha}\}_{\alpha}\in\mathbb{R}^{n}\text{, }\inf_{\alpha}y_{\alpha}\text{ is the vector with entries }\inf_{\alpha}(y_{\alpha})_{i}.
 \]
+
 \begin{thm}[Dynamic programming]
 Let $v=(v(1),\ldots,v(m))^{\intercal}$ and $c=(c(1),\ldots,c(m))^{\intercal}$
 where $v(i)$ is the quantity defined by (\ref{eq:mdp}). Then,
@@ -208,142 +225,4 @@ In light of this, the remainder of this lecture is focused on (\ref{eq:dp_genera
 In particular, we would like to know if an arbitrary vector $v$ satisfies
 (\ref{eq:dp_general}), is it necessarily equal to the MDP (\ref{eq:mdp})?
 Moreover, can we use (\ref{eq:dp_general}) to compute the MDP?
-
-\section{Matrix classes}
-
-First, we will need to recall some more linear algebra.
-
-\subsection{Monotone matrices}
-\begin{defn}
-A \emph{monotone matrix} is a real square matrix $A$ such that $Ax\geq0$
-implies $x\geq0$ for all real vectors $x$.
-\end{defn}
-\begin{prop}
-Monotone matrices are nonsingular.
-\end{prop}
-\begin{proof}
-Let $A$ be a monotone matrix and assume there exists $x$ with $Ax=0$.
-Then, by monotonicity, $x\geq0$ and $-x\geq0$, and hence $x=0$.
-\end{proof}
-%
-\begin{prop}
-A real square matrix $A$ is monotone if and only if $A^{-1}$ exists
-and is nonnegative.
-\end{prop}
-\begin{proof}
-Suppose $A$ is monotone. Denote by $x$ the $i$-th column of $A$.
-Then, $Ax$ is the $i$-th standard basis vector, and hence $x\geq0$
-by monotonicity. For the reverse direction, suppose $A$ admits a
-nonnegative inverse. Then, if $Ax\geq0$, $x=A^{-1}Ax\geq A^{-1}0=0$,
-and hence $A$ is monotone.
-\end{proof}
-
-\subsection{M-matrices}
-\begin{defn}
-An \emph{M-matrix} is any square matrix $A$ which can be written
-in the form
-\begin{equation}
-A=sI-B\label{eq:m_matrix}
-\end{equation}
-where $s\geq\rho(B)$ and $B$ is nonnegative.
-\end{defn}
-\begin{prop}
-The M-matrix (\ref{eq:m_matrix}) is nonsingular if and only if $s>\rho(B)$.
-\end{prop}
-\begin{proof}
-Note that $A$ is nonsingular if and only if $s$ is an eigenvalue
-of $B$ since
-\[
-Ax=sx-Bx=0\iff Bx=sx.
-\]
-Therefore, if $s>\rho(B)$, then $A$ is nonsingular. Conversely,
-if $s=\rho(B)$, by the Perron-Frobenius theorem, $s$ is an eigenvalue
-of $B$.
-\end{proof}
-\begin{prop}
-Nonsingular M-matrices are monotone.
-\end{prop}
-\begin{proof}
-Divide (\ref{eq:m_matrix}) by $s$ so that
-\[
-s^{-1}A=I-s^{-1}B.
-\]
-Noting that $\rho(s^{-1}B)<1$, the inverse of the right hand side
-of the above is the Neumann series
-\[
-\left(I-s^{-1}B\right)^{-1}=\sum_{k\geq0}\left(s^{-1}B\right)^{k}.
-\]
-In particular, this Neumann series consists only of powers of nonnegative
-matrices, and therefore converges to a nonnegative matrix. In other
-words, $sA^{-1}$ is nonnegative, and hence so too is $A^{-1}$. 
-\end{proof}
-
-\subsection{Weakly chained diagonally dominant matrices}
-\begin{defn}
-Let $A=(A_{ij})$ be a matrix. We say its $i$-th row is \emph{strictly
-diagonally dominant} (s.d.d.) if
-\begin{equation}
-\left|A_{ii}\right|>\sum_{i\neq j}\left|A_{ij}\right|.\label{eq:sdd}
-\end{equation}
-We say the matrix is s.d.d. if all of its rows are s.d.d. Weakly diagonally
-dominant (w.d.d.) is defined with weak inequality ($\geq$) instead.
-\end{defn}
-\begin{example}
-The matrix
-\begin{equation}
-\begin{pmatrix}\phantom{-}1\\
--1 & \phantom{-}1\\
- & -1 & \phantom{-}1\\
- &  & -1 & \phantom{-}1
-\end{pmatrix}\label{eq:matrix}
-\end{equation}
-is not strictly diagonally dominant, but it is weakly diagonally dominant.
-\end{example}
-\begin{defn}
-\label{def:wcdd}Let $A=(A_{ij})$ be a matrix. Let \[ J = \{ i \colon i \text{ satisfies } \eqref{eq:sdd} \} \]
-denote the set of all s.d.d. rows of $A$. We say $A$ is \emph{weakly
-chained diagonally dominant} (w.c.d.d.) if
-\begin{enumerate}
-\item $A$ is w.d.d.
-\item \label{enu:wcdd}For each row $i\notin J$, there is a walk $i\rightarrow j$
-with $j\in J$.
-\end{enumerate}
-\end{defn}
-\begin{example}
-The matrix (\ref{eq:matrix}) is w.c.d.d. (see Figure \ref{fig:graph}).
-\end{example}
-\begin{figure}
-\begin{centering}
-\includegraphics[width=3in]{wcdd}
-\par\end{centering}
-\caption{Graph of (\ref{eq:matrix})\label{fig:graph}}
-\end{figure}
-\begin{prop}
-w.c.d.d. matrices are nonsingular.\footnote{Shivakumar, P. N., and Kim Ho Chew. \textquotedbl{}A sufficient condition
-for nonvanishing of determinants.\textquotedbl{} Proceedings of the
-American mathematical society (1974): 63-66.}
-\end{prop}
-\begin{proof}
-Let $A$ be w.c.d.d. If $A$ is singular, we can find a nonzero vector
-$x$ such that $Ax=0$. Without loss of generality, let $i_{1}$ be
-such that $|x_{i_{1}}|=1\geq|x_{j}|$ for all $j$. Since $A$ is
-w.c.d.d., we may pick a walk $i_{1}\dashrightarrow i_{2}\dashrightarrow\cdots\dashrightarrow i_{k}$
-ending at an s.d.d. row $i_{k}\in J$.
-
-Taking moduli on both sides of
-\[
--a_{i_{1}i_{1}}x_{i_{1}}=\sum_{j\neq i_{1}}a_{i_{1}j}x_{j}
-\]
-yields
-\[
-\left|a_{i_{1}i_{1}}\right|=\left|a_{i_{1}i_{1}}x_{i_{1}}\right|=\left|\sum_{j\neq i_{1}}a_{i_{1}j}x_{j}\right|\leq\sum_{j\neq i_{1}}\left|a_{i_{1}j}\right|\left|x_{j}\right|\leq\sum_{j\neq i_{1}}\left|a_{i_{1}j}\right|.
-\]
-Since $A$ is w.d.d., the above must hold with equality. Therefore,
-$|x_{j}|=1$ whenever $a_{i_{1}j}$ is nonzero. In particular, $|x_{i_{2}}|=1$,
-and we can repeat the same argument as above to get that row $i_{2}$
-is not s.d.d., row $i_{3}$ is not s.d.d., etc. until we conclude
-that row $i_{k}$ is not s.d.d., a contradiction.
-\end{proof}
-
-\subsubsection*{To be continued...}
 \end{document}
