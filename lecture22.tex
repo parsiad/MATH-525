@@ -1,4 +1,4 @@
-%% LyX 2.2.1 created this file.  For more info, see http://www.lyx.org/.
+%% LyX 2.2.3 created this file.  For more info, see http://www.lyx.org/.
 %% Do not edit unless you really know what you are doing.
 \documentclass[english,12pt]{article}
 \usepackage[T1]{fontenc}
@@ -122,7 +122,7 @@ A real square matrix $A$ is monotone if and only if $A^{-1}$ exists
 and is nonnegative.
 \end{prop}
 \begin{proof}
-Suppose $A$ is monotone. Denote by $x$ the $i$-th column of $A$.
+Suppose $A$ is monotone. Denote by $x$ the $i$-th column of $A^{-1}$.
 Then, $Ax$ is the $i$-th standard basis vector, and hence $x\geq0$
 by monotonicity. For the reverse direction, suppose $A$ admits a
 nonnegative inverse. Then, if $Ax\geq0$, $x=A^{-1}Ax\geq A^{-1}0=0$,
@@ -245,7 +245,6 @@ that row $i_{k}$ is not s.d.d., a contradiction.
 \par\end{centering}
 \caption{Containment of matrix classes}
 \end{figure}
-
 \begin{thm}
 \label{thm:wcdd}Let $A$ be a square w.d.d. matrix with nonnegative
 diagonals ($A_{ii}\geq0$) and nonpositive off-diagonals (i.e., $A_{ij}\leq0$
@@ -264,9 +263,9 @@ s-B_{ii}=A_{ii}\geq\sum_{j\neq i}\left|A_{ij}\right|=\sum_{j\neq i}B_{ij}
 \]
 and hence
 \[
-\rho(B)\leq\left\Vert B\right\Vert _{\infty}\leq\max_{i}\left\{ B_{ii}+\sum_{j\neq i}B_{ij}\right\} \leq\max_{i}\left\{ B_{ii}+s-B_{ii}\right\} =s.
+\rho(B)\leq\left\Vert B\right\Vert _{\infty}=\max_{i}\left\{ B_{ii}+\sum_{j\neq i}B_{ij}\right\} \leq\max_{i}\left\{ B_{ii}+s-B_{ii}\right\} =s.
 \]
-
+In other words, $A$ is a (possibly singular) M-matrix.
 \begin{proof}[Proof of (1) $\implies$ (2)]
  It is sufficient to prove that if $A$ is nonsingular, then $A$
 has positive diagonals. We prove the contrapositive. Suppose $A_{ii}=0$
@@ -283,9 +282,6 @@ matrix is a nonsingular M-matrix.'' \emph{Mathematics of Computation}
 %
 \begin{proof}[Proof of (3) $\implies$ (1)]
  If $A$ is w.c.d.d., it is nonsingular (Proposition \ref{prop:wcdd}).
-Then, by the same argument involving the Perron-Frobenius theorem
-in the proof of Proposition \ref{prop:m_matrix}, $\rho(B)<s$ (if
-$\rho(B)=s$, then $s$ is an eigenvalue of $B$, contradicting nonsingularity).
 \end{proof}
 \begin{cor}
 A square s.d.d. matrix with nonnegative diagonals and nonpositive
@@ -380,7 +376,6 @@ and Hasnaa Zidani. ``Some convergence results for Howard's algorithm.''
 \par\end{centering}
 \caption{Robot navigation}
 \end{figure}
-
 \begin{itemize}
 \item This example is by Massimiliano Patacchiola (\url{https://mpatacchiola.github.io/}).
 \item A robot, started in position $(1,1)$, has to find the best way to

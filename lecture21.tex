@@ -1,4 +1,4 @@
-%% LyX 2.2.1 created this file.  For more info, see http://www.lyx.org/.
+%% LyX 2.2.3 created this file.  For more info, see http://www.lyx.org/.
 %% Do not edit unless you really know what you are doing.
 \documentclass[english,12pt]{article}
 \usepackage[T1]{fontenc}
@@ -158,7 +158,7 @@ v(i)\geq\inf_{\pi_{0}\in\Pi_{0}}\left\{ c(i)+d\sum_{j}(P(\pi_{0}))_{ij}v(j)\righ
 Now, fix $\epsilon>0$. For each $i$, let $\pi^{i}=(\pi_{n}^{i})_{n\geq0}$
 be a randomized policy which satisifes
 \[
-v(i)\geq J(i,\pi^{i})+\epsilon.
+v(i)\geq J(i,\pi^{i})-\epsilon.
 \]
 Let $\pi_{0}$ be an arbitrary stationary policy. Define a new randomized
 policy $\pi^{\epsilon}=(\pi_{n}^{\epsilon})_{n\geq0}$ by
@@ -170,11 +170,11 @@ policy $\pi^{\epsilon}=(\pi_{n}^{\epsilon})_{n\geq0}$ by
 \]
 Note that
 \[
-v(i)\leq J(i,\pi^{\epsilon})=c(i)+d\sum_{j}(P(\pi_{0}))_{ij}J(j,\pi^{j})\leq c(i)+d\sum_{j}(P(\pi_{0}))_{ij}v(j)-\epsilon.
+v(i)\leq J(i,\pi^{\epsilon})=c(i)+d\sum_{j}(P(\pi_{0}))_{ij}J(j,\pi^{j})\leq c(i)+d\sum_{j}(P(\pi_{0}))_{ij}v(j)+\epsilon.
 \]
 Now, take infimums of both sides to get
 \begin{equation}
-v(i)\leq\inf_{\pi_{0}\in\Pi_{0}}\left\{ c(i)+d\sum_{j}(P(\pi_{0}))_{ij}v(j)\right\} -\epsilon.\label{eq:udp}
+v(i)\leq\inf_{\pi_{0}\in\Pi_{0}}\left\{ c(i)+d\sum_{j}(P(\pi_{0}))_{ij}v(j)\right\} +\epsilon.\label{eq:udp}
 \end{equation}
 
 We can take $\epsilon\downarrow0$ and combine (\ref{eq:ldp}) and
@@ -192,7 +192,6 @@ First, we need some notation:
 \[
 \text{for }\{y_{\alpha}\}_{\alpha}\in\mathbb{R}^{n}\text{, }\inf_{\alpha}y_{\alpha}\text{ is the vector with entries }\inf_{\alpha}(y_{\alpha})_{i}.
 \]
-
 \begin{thm}[Dynamic programming]
 Let $v=(v(1),\ldots,v(m))^{\intercal}$ and $c=(c(1),\ldots,c(m))^{\intercal}$
 where $v(i)$ is the quantity defined by (\ref{eq:mdp}). Then,
@@ -210,7 +209,7 @@ Moving some terms around, we obtain the desired result.
 In fact, the situation is much more general than we have let on. We
 can allow for more general discount factors and costs:
 \[
-J(i,\pi)=\mathbb{E}\left[\sum_{n\geq0}d(\pi_{n},X_{n}^{\pi})^{n}c(\pi_{n},X_{n}^{\pi})\middle|X_{0}^{\pi}=i\right].
+J(i,\pi)=\mathbb{E}\left[\sum_{n\geq0}d(\pi_{n}(X_{n}^{\pi}),X_{n}^{\pi})^{n}c(\pi_{n}(X_{n}^{\pi}),X_{n}^{\pi})\middle|X_{0}^{\pi}=i\right].
 \]
 However, in this case, it is no longer necessarily the case that $v(\cdot)$
 is bounded. When it is, the corresponding dynamic programming equation
@@ -218,8 +217,15 @@ is
 \begin{equation}
 \sup_{\pi_{0}\in\Pi_{0}}\left\{ \left(I-D(\pi_{0})P(\pi_{0})\right)v-c(\pi_{0})\right\} =0\label{eq:dp_general}
 \end{equation}
-where $D(\pi_{0})=\operatorname{diag}(d(\pi_{0}(1),1),\ldots,d(\pi_{0}(m),m))$
-and $c(\pi_{0})=(c(\pi_{0}(1),1),\ldots,c(\pi_{0}(m),m))^{\intercal}$.
+where $c(\pi_{0})=(c(\pi_{0}(1),1),\ldots,c(\pi_{0}(m),m))^{\intercal}$
+and
+\[
+D(\pi_{0})=\operatorname{diag}(d(\pi_{0}(1),1),\ldots,d(\pi_{0}(m),m))=\begin{pmatrix}d(\pi_{0}(1),1)\\
+ & d(\pi_{0}(2),2)\\
+ &  & \ddots\\
+ &  &  & d(\pi_{0}(m),m)
+\end{pmatrix}.
+\]
 
 In light of this, the remainder of this lecture is focused on (\ref{eq:dp_general}).
 In particular, we would like to know if an arbitrary vector $v$ satisfies
