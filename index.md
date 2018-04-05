@@ -83,8 +83,8 @@ All assignments are to be handed in at the *beginning* of class.
 * [Th Mar 22: strong Markov property, recurrence, and transience](lecture19.pdf) (Section 7.5 and 7.6) [\[LaTeX source\]](lecture19.tex)
 * [Tu Mar 27: limiting distribution, primitive matrices, and Page Rank](lecture20.pdf) (Section 7.7 and 7.8) [\[LaTeX source\]](lecture20.tex)
 * Th Mar 29: lecture cancelled
-* [Tu Apr 03: Markov decision processes, dynamic programming, and monotone and related matrices](lecture21.pdf) [\[LaTeX source\]](lecture21.tex)
-* Th Apr 05
+* [Tu Apr 03: Markov decision processes, dynamic programming](lecture21.pdf) [\[LaTeX source\]](lecture21.tex)
+* [Th Apr 05: Monotone, M, and weakly chained diagonally dominant matrices and the Bellman equation](lecture22.pdf) [\[LaTeX source\]](lecture22.tex)
 * Tu Apr 10
 * Th Apr 12
 * Tu Apr 17
