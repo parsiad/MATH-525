@@ -85,7 +85,7 @@ All assignments are to be handed in at the *beginning* of class.
 * Th Mar 29: lecture cancelled
 * [Tu Apr 03: Markov decision processes, dynamic programming](lecture21.pdf) [\[LaTeX source\]](lecture21.tex)
 * [Th Apr 05: Monotone, M, and weakly chained diagonally dominant matrices and the Bellman equation](lecture22.pdf) [\[LaTeX source\]](lecture22.tex)
-* Tu Apr 10
+* [Tu Apr 10: joint distribution, covariances, and correlations](lecture23.pdf) (Section 3.6) [\[LaTeX source\]](lecture23.tex)
 * Th Apr 12
 * Tu Apr 17
 
