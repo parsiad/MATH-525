@@ -1,0 +1,358 @@
+%% LyX 2.2.1 created this file.  For more info, see http://www.lyx.org/.
+%% Do not edit unless you really know what you are doing.
+\documentclass[english,12pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage[latin9]{inputenc}
+\usepackage{mathtools}
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{amssymb}
+\PassOptionsToPackage{normalem}{ulem}
+\usepackage{ulem}
+
+\makeatletter
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Textclass specific LaTeX commands.
+\theoremstyle{plain}
+\newtheorem{thm}{\protect\theoremname}[section]
+\theoremstyle{definition}
+\newtheorem{defn}[thm]{\protect\definitionname}
+\theoremstyle{remark}
+\newtheorem{rem}[thm]{\protect\remarkname}
+\theoremstyle{plain}
+\newtheorem{prop}[thm]{\protect\propositionname}
+\ifx\proof\undefined
+\newenvironment{proof}[1][\protect\proofname]{\par
+\normalfont\topsep6\p@\@plus6\p@\relax
+\trivlist
+\itemindent\parindent
+\item[\hskip\labelsep\scshape #1]\ignorespaces
+}{%
+\endtrivlist\@endpefalse
+}
+\providecommand{\proofname}{Proof}
+\fi
+\theoremstyle{plain}
+\newtheorem{cor}[thm]{\protect\corollaryname}
+\theoremstyle{definition}
+\newtheorem{example}[thm]{\protect\examplename}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% User specified LaTeX commands.
+\usepackage[margin=1in]{geometry}
+\usepackage{tikz}
+\usetikzlibrary{arrows,decorations.pathreplacing,shapes}
+
+\makeatother
+
+\usepackage{babel}
+\providecommand{\corollaryname}{Corollary}
+\providecommand{\definitionname}{Definition}
+\providecommand{\examplename}{Example}
+\providecommand{\propositionname}{Proposition}
+\providecommand{\remarkname}{Remark}
+\providecommand{\theoremname}{Theorem}
+
+\begin{document}
+
+\title{Math 525: Lecture 23}
+
+\date{April 10, 2018}
+\maketitle
+
+\section{Joint distribution}
+
+In previous lectures, we have dealt with only one-dimensional distribution
+functions (i.e., $F(x)=\mathbb{P}\{X\leq x\}$). In this lecture,
+we extend our findings to higher dimensions.
+\begin{defn}
+The \emph{joint distribution} of two random variables $X$ and $Y$
+(defined on the same probability space) is the function $F:\mathbb{R}\times\mathbb{R}\rightarrow[0,1]$
+defined by
+\[
+F(x,y)=\mathbb{P}\left\{ X\leq x,Y\leq y\right\} .
+\]
+If we wish to be explicit, we may write $F_{XY}$.
+\end{defn}
+\begin{rem}
+Similarly, we can define $F(x_{1},\ldots,x_{n})=\mathbb{P}\{X_{1}\leq x_{1},\ldots,X_{n}\leq x_{n}\}$
+as the joint distribution of $n$ random variables. Since this extension
+is trivial, we work solely with the two dimensional case for ease
+of notation.
+\end{rem}
+ Recall that distribution functions satisfy some distinctive properties.
+Let's now extend those to joint distribution functions.
+\begin{prop}
+Let $y$ be arbitrary. Then,
+\begin{enumerate}
+\item $x\mapsto F(x,y)$ is nondecreasing.
+\item $x\mapsto F(x,y)$ is right-continuous.
+\item $\lim_{x\rightarrow-\infty}F(x,y)=0$.
+\item $\lim_{x\rightarrow\infty}F(x,y)=\mathbb{P}\{Y\leq y\}$.
+\end{enumerate}
+\end{prop}
+\begin{proof}
+Let $B^{y}=\{Y\leq y\}$ and for each $x$, let $A_{x}=\{X\leq x\}$.
+\begin{enumerate}
+\item Since $A_{x_{1}}\subset A_{x_{2}}$ whenever $x_{1}\leq x_{2}$, then
+$A_{x_{1}}\cap B^{y}\subset A_{x_{2}}\cap B^{y}$ and hence $F(x_{1},y)=\mathbb{P}(A_{x_{1}}\cap B^{y})\leq\mathbb{P}(A_{x_{2}}\cap B^{y})=F(x_{2},y)$.
+\item Let $x$ be arbitrary and $(x_{n})_{n\geq1}$ be a sequence with $x_{n}\downarrow x$.
+Then, 
+\[
+A_{x_{1}}\cap B^{y}\supset A_{x_{2}}\cap B^{y}\supset\cdots
+\]
+ By continuity of measure,
+\begin{multline*}
+\lim_{n\rightarrow\infty}F(x_{n},y)=\lim_{n\rightarrow\infty}\mathbb{P}(A_{x_{n}}\cap B^{y})=\mathbb{P}\left(\bigcap_{n\geq1}\left(A_{x_{n}}\cap B^{y}\right)\right)\\
+=\mathbb{P}\left(\left(\bigcap_{n\geq1}A_{x_{n}}\right)\cap B^{y}\right)=\mathbb{P}\left(A_{x}\cap B^{y}\right)=F(x,y).
+\end{multline*}
+\item Note that $A_{-1}\supset A_{-2}\supset\cdots$ and hence by continuity
+of measure,
+\[
+\lim_{n\rightarrow\infty}F(-n,y)=\lim_{n\rightarrow\infty}\mathbb{P}(A_{-n}\cap B^{y})=\mathbb{P}(\emptyset)=0.
+\]
+\item Note that $A_{1}\subset A_{2}\subset\cdots$ and hence by continuity
+of measure,
+\[
+\lim_{n\rightarrow\infty}F(n,y)=\lim_{n\rightarrow\infty}\mathbb{P}(A_{n}\cap B^{y})=\mathbb{P}(B^{y}).\qedhere
+\]
+\end{enumerate}
+\end{proof}
+Note that the last point tells us that we can retrieve the distribution
+function of $Y$ by taking limits in $x$. That is, $F(\infty,y)\equiv\lim_{x\rightarrow\infty}F(x,y)=F_{Y}(y)$,
+where $F_{Y}(y)=\mathbb{P}\{Y\leq y\}$ defines the distribution function
+of $Y$. We call $F(\infty,y)$ the \emph{marginal distribution }of
+$Y$. The act of taking limits in $x$ is called \emph{marginalization
+}(i.e., ``summing out'' the variable you are not interested in).
+\begin{cor}
+Let $F_{Y}$ be the distribution function of $Y$. If $F_{Y}\neq0$,
+then, $x\mapsto F(x,y)/F_{Y}(y)$ is a distribution function.
+\end{cor}
+Indeed, we can go a little further in our claim:
+\[
+\frac{F(x,y)}{F_{Y}(y)}=\frac{\mathbb{P}\left\{ X\leq x,Y\leq y\right\} }{\mathbb{P}\{Y\leq y\}}=\mathbb{P}(X\leq x\mid Y\leq y).
+\]
+
+\begin{proof}
+We proved that $x\mapsto F(x,y)/F_{Y}(y)$ is nondecreasing, right-continuous,
+its limit as $x\rightarrow-\infty$ is zero and its limit as $x\rightarrow\infty$
+is
+\[
+\lim_{x\rightarrow\infty}\frac{F(x,y)}{F_{Y}(y)}=\frac{F_{Y}(y)}{F_{Y}(y)}=1.\qedhere
+\]
+\end{proof}
+Using the same ideas as above (involving continuity of measure) we
+can prove a few more facts about joint distribution functions. We
+state them without proof.
+\begin{prop}
+~
+\begin{enumerate}
+\item $(x,y)\mapsto F(x,y)$ is nondecreasing with respect to the element-wise
+partial order (i.e., $F(x_{1},y_{1})\leq F(x_{2},y_{2})$ whenever
+$x_{1}\leq x_{2}$ and $y_{1}\leq y_{2}$).
+\item $\lim_{x,y\rightarrow\infty}F(x,y)=1$.
+\end{enumerate}
+\end{prop}
+As usual, we can define $F(x-,y)=\lim_{t\uparrow x}F(t,y)$, $F(x,y-)=\lim_{s\uparrow y}F(x,s)$,
+and $F(x-,y-)=\lim_{t\uparrow x,s\uparrow y}F(t,s)$. We use the notation
+$x\uparrow y$ to mean that $x$ converges to $y$ \emph{strictly}
+from below (i.e., $x<y$ and $x\rightarrow y$).\footnote{Walsh uses the symbol $\upuparrows$ for this.}
+\begin{prop}
+Let $x_{1}<x_{2}$ and $y_{1}<y_{2}$. Then,
+\begin{enumerate}
+\item $\mathbb{P}\{X\leq x_{2},Y<y_{2}\}=F(x_{2},y_{2}-)$.
+\item $\mathbb{P}\left\{ X<x_{2},Y\leq y_{2}\right\} =F(x_{2}-,y_{2})$.
+\item $\mathbb{P}\left\{ X<x_{2},Y<y_{2}\right\} =F(x_{2}-,y_{2}-)$.
+\item $\mathbb{P}\{x_{1}<X\leq x_{2},y_{1}<Y\leq y_{2}\}=F(x_{2},y_{2})-F(x_{1},y_{2})-F(x_{2},y_{1})+F(x_{1},y_{1})$.
+\item $\mathbb{P}\{X=x_{1},Y=y_{1}\}=F(x_{1},y_{1})-F(x_{1}-,y_{1})-F(x_{1},y_{1}-)+F(x_{1}-,y_{1}-)$.
+\end{enumerate}
+\end{prop}
+\begin{defn}
+If $X$ and $Y$ are discrete random variables, their \emph{joint
+probability mass function} $p:\mathbb{R}\times\mathbb{R}\rightarrow[0,1]$
+(written $p_{XY}$ if we wish to be explicit) is defined by
+\[
+p_{XY}(x,y)=\mathbb{P}\left\{ X=x,Y=y\right\} .
+\]
+\end{defn}
+In this case, the corresponding joint distribution function is given
+by 
+\[
+F_{XY}(x,y)=\sum_{u\leq x,v\leq y}p_{XY}(u,v).
+\]
+Note that this sum is well defined since even though the set $A=\{(u,v)\colon u\leq x,v\leq y\}$
+is uncountable, there are only countably many elements $(u,v)\in A$
+such that $p_{XY}(u,v)$ is nonzero.
+
+\section{Absolutely continuous distributions}
+\begin{defn}
+We say $F$ is \emph{absolutely continuous} if it can be written
+\[
+F(x,y)=\int_{-\infty}^{y}\int_{-\infty}^{x}f(u,v)dudv
+\]
+for some integrable function $f$. We call $f$ the joint density
+of $X$ and $Y$ (sometimes written $f_{XY}$ to be explicit).
+\end{defn}
+From the definition,
+\[
+\mathbb{P}\left\{ x_{1}<X\leq x_{2},y_{1}<Y\leq y_{2}\right\} =\int_{x_{1}}^{x_{2}}\int_{y_{1}}^{y_{2}}f(x,y)dxdy.
+\]
+More generally, for any Borel measurable set $A\subset\mathbb{R}^{2}$,
+\[
+\mathbb{P}((X,Y)\in A)=\int\int_{A}f(x,y)dxdy.
+\]
+Moreover, by the fundamental theorem of calculus, if $f$ is continuous,
+then
+\[
+f(x,y)=\frac{\partial^{2}}{\partial x\partial y}F(x,y).
+\]
+As with marginal distributions, we can also define \emph{marginal
+densities}:
+\begin{prop}
+Suppose $X$ and $Y$ have a joint density $f_{XY}$. Then, $Y$ has
+a density $f_{Y}$ satisfying 
+\[
+f_{Y}(y)=\int_{-\infty}^{\infty}f_{XY}(x,y)dx.
+\]
+\end{prop}
+\begin{proof}
+We obtain the desired result by showing that $F_{Y}$ is absolutely
+continuous with integrand $f_{Y}$:
+\[
+F_{Y}(y)=\mathbb{P}\left\{ -\infty<X<\infty,Y\leq y\right\} =\int_{-\infty}^{y}\int_{-\infty}^{\infty}f_{XY}(u,v)dudv=\int_{-\infty}^{y}f_{Y}(v)dv.\qedhere
+\]
+\end{proof}
+The above shows that if $X$ and $Y$ have a joint density, then $Y$
+(and also $X$) also has a density. The converse is not true in general:
+\begin{example}
+Let $X\sim U[0,1]$ and $Y=X$ ($X$ and $Y$ are \uline{not} independent).
+Of course, both of these variables have the density $f_{X}=f_{Y}=1$.
+If they had a joint density $f_{XY}$, its probability mass would
+have to be concentrated on the diagonal $\{(x,y)\colon x=y\}$. However,
+the area of this diagonal is zero, and hence the integral $\int_{0}^{1}\int_{0}^{1}f_{XY}(x,y)dxdy$
+would also be zero, a contradiction.
+\end{example}
+\begin{prop}
+Suppose $X$ and $Y$ have a continuous joint density $f_{XY}$. Then,
+they are independent if and only if $f_{XY}(x,y)=f_{X}(x)f_{Y}(y)$
+at all points $x$ and $y$.
+\end{prop}
+Continuity is not actually required in the above if we are willing
+to replace ``at all'' by ``at almost all'' since absolutely continuous
+functions are differentiable almost everywhere (those of you who have
+taken/are taking measure theory might have seen this).
+\begin{proof}
+Suppose $X$ and $Y$ are independent, so that $F_{XY}(x,y)=F_{X}(x)F_{Y}(y)$
+for all $x$ and $y$. Then, for all $x$ and $y$,
+\begin{multline*}
+f_{XY}(x,y)=\frac{\partial^{2}}{\partial x\partial y}F_{XY}(x,y)=\frac{\partial^{2}}{\partial x\partial y}\left[F_{X}(x)F_{Y}(y)\right]=\left(\frac{\partial}{\partial x}F_{X}(x)\right)\left(\frac{\partial}{\partial y}F_{Y}(y)\right)\\
+=f_{X}(x)f_{Y}(y).
+\end{multline*}
+Suppose $f_{XY}(x,y)=f_{X}(x)f_{Y}(y)$ for all $x$ and $y$. Then,
+for all $x$ and $y$
+\begin{multline*}
+F_{XY}(x,y)=\int_{-\infty}^{y}\int_{-\infty}^{x}f_{XY}(u,v)dudv=\int_{-\infty}^{y}\int_{-\infty}^{x}f_{X}(u)f_{Y}(v)dudv\\
+=\left(\int_{-\infty}^{x}f_{X}(u)du\right)\left(\int_{-\infty}^{y}f_{Y}(v)dv\right)=F_{X}(x)F_{Y}(y).\qedhere
+\end{multline*}
+\end{proof}
+
+\section{Covariances and correlations}
+
+So far, we know that two random variables can either be independent
+or not. This is not particularly useful when we want to make statistical
+inferences.
+
+For example, if $X$ is someone's muscle mass and $Y$ is the average
+amount of protein they eat per day, we certainly do not expect $X$
+and $Y$ to be independent. We expect that $X$ to be large if $Y$
+is large. That is, we expect $X$ and $Y$ to be ``positively correlated''.
+
+Before we define correlation, let's define the covariance:
+\begin{defn}
+Let $X$ and $Y$ be square integrable random variables. The \emph{covariance
+}of $X$ and $Y$ is
+\[
+\operatorname{Cov}(X,Y)=\mathbb{E}\left[\left(X-\mathbb{E}X\right)\left(Y-\mathbb{E}Y\right)\right].
+\]
+\end{defn}
+Note that the covariance above is well-defined since by Cauchy-Schwarz,
+\begin{equation}
+\left|\operatorname{Cov}(X,Y)\right|\leq\sqrt{\mathbb{E}\left[\left(X-\mathbb{E}X\right)^{2}\right]\mathbb{E}\left[\left(Y-\mathbb{E}Y\right)^{2}\right]}=\sqrt{\operatorname{Var}(X)\operatorname{Var}(Y)}<\infty.\label{eq:cauchy}
+\end{equation}
+Note also that $\operatorname{Cov}(X,X)=\operatorname{Var}(X)$. The
+correlation is just the normalized covariance:
+\begin{defn}
+Let $X$ and $Y$ be square integrable random variables each having
+nonzero variance. The \emph{correlation} of $X$ and $Y$ is
+\[
+\operatorname{Cor}(X,Y)=\frac{\operatorname{Cov}(X,Y)}{\sqrt{\operatorname{Var}(X)}\sqrt{\operatorname{Var}(Y)}}.
+\]
+\end{defn}
+Note that in the above, the correlation is undefined when either $X$
+and $Y$ have variance zero. However, this is not a particularly interesting
+case, since a random variable with variance zero (i.e., a random variable
+which ``does not vary'') is actually deterministic:
+\begin{prop}
+Let $X$ be a square integrable random variable with $\operatorname{Var}(X)=0$.
+Then, $X=\mathbb{E}X$ a.s.
+\end{prop}
+\begin{proof}
+This follows directly from the fact that $\operatorname{Var}(X)=\mathbb{E}[(X-\mathbb{E}[X])^{2}]=0$
+implies that $(X-\mathbb{E}[X])^{2}=0$ a.s.
+\end{proof}
+\begin{prop}
+If $X$ and $Y$ are square-integrable, then
+\begin{enumerate}
+\item $-1\leq\operatorname{Cor}(X,Y)\leq1$.
+\item $\operatorname{Cov}(X,Y)=\mathbb{E}[XY]-\mathbb{E}[X]\mathbb{E}[Y]$.
+\item $\operatorname{Cor}(X,Y)=1\iff Y=aX+b$ a.s. for some constants $a>0$
+and $b$.
+\item $\operatorname{Cor}(X,Y)=-1\iff Y=aX+b$ a.s. for some constants $a<0$
+and $b$.
+\item The correlation is the covariance of the normalized random variables:
+\[
+\operatorname{Cor}(X,Y)=\operatorname{Cov}\left(\frac{X}{\sqrt{\operatorname{Var}(X)}},\frac{Y}{\sqrt{\operatorname{Var}(Y)}}\right).
+\]
+\item If $X$ and $Y$ are independent, then $\operatorname{Cor}(X,Y)=\operatorname{Cov}(X,Y)=0$.
+\end{enumerate}
+\end{prop}
+\begin{proof}
+~
+\begin{enumerate}
+\item By (\ref{eq:cauchy}).
+\item This follows from
+\begin{equation}
+\operatorname{Cov}(X,Y)=\mathbb{E}\left[XY-X\mathbb{E}Y-Y\mathbb{E}X+\mathbb{E}X\mathbb{E}Y\right]=\mathbb{E}\left[XY\right]-\mathbb{E}X\mathbb{E}Y.\label{eq:cov}
+\end{equation}
+\item Suppose $Y=aX+b$ for some $a>0$ and $b$. Then,
+\begin{multline*}
+\operatorname{Cov}(X,Y)=\operatorname{Cov}(X,aX+b)=\mathbb{E}\left[X\left(aX+b\right)\right]-\mathbb{E}X\mathbb{E}\left[aX+b\right]\\
+=a\mathbb{E}\left[X^{2}\right]+b\mathbb{E}\left[X\right]-\mathbb{E}X\left(a\mathbb{E}\left[X\right]+b\right)=a\left(\mathbb{E}\left[X^{2}\right]-\left(\mathbb{E}X\right)^{2}\right)=a\operatorname{Var}(X).
+\end{multline*}
+Moreover, $\operatorname{Var}(Y)=\operatorname{Var}(aX+b)=a^{2}\operatorname{Var}(X)$.
+Therefore,
+\[
+\operatorname{Cor}(X,Y)=\frac{\operatorname{Cov}(X,Y)}{\sqrt{a^{2}\operatorname{Var}(X)}\sqrt{\operatorname{Var}(X)}}=\frac{a\operatorname{Var}(X)}{a\operatorname{Var}(X)}=1.
+\]
+Now, suppose $\operatorname{Cor}(X,Y)=1$. This means that (\ref{eq:cauchy})
+holds with equality, which only occurs if
+\[
+Y-\mathbb{E}Y=a\left(X-\mathbb{E}X\right)\qquad\text{a.s.}
+\]
+for some constant $a$ (we proved this in an early lecture). Therefore,
+\[
+Y=aX\underbrace{-a\mathbb{E}X+\mathbb{E}Y}_{b}\qquad\text{a.s.}
+\]
+\item Similar to the above.
+\item This follows by two applications of (\ref{eq:cov}):
+\begin{multline*}
+\operatorname{Cov}\left(\frac{X}{\sqrt{\operatorname{Var}(X)}},\frac{Y}{\sqrt{\operatorname{Var}(Y)}}\right)=\mathbb{E}\left[\frac{XY}{\sqrt{\operatorname{Var}(X)}\sqrt{\operatorname{Var}(Y)}}\right]-\frac{\mathbb{E}X\mathbb{E}Y}{\sqrt{\operatorname{Var}(X)}\sqrt{\operatorname{Var}(Y)}}.\\
+=\frac{\mathbb{E}\left[XY\right]-\mathbb{E}X\mathbb{E}Y}{\sqrt{\operatorname{Var}(X)}\sqrt{\operatorname{Var}(Y)}}=\frac{\operatorname{Cov}(X,Y)}{\sqrt{\operatorname{Var}(X)}\sqrt{\operatorname{Var}(Y)}}=\operatorname{Cor}(X,Y).
+\end{multline*}
+\item By (\ref{eq:cov}).\qedhere
+\end{enumerate}
+\end{proof}
+\begin{defn}
+If $\operatorname{Cov}(X,Y)=0$, we say $X$ and $Y$ are \emph{orthogonal}.
+\end{defn}
+While independence implies orthogonality, the converse is not true
+in general.
+\end{document}
