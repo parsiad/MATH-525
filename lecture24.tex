@@ -1,4 +1,4 @@
-%% LyX 2.2.3 created this file.  For more info, see http://www.lyx.org/.
+%% LyX 2.2.1 created this file.  For more info, see http://www.lyx.org/.
 %% Do not edit unless you really know what you are doing.
 \documentclass[english,12pt]{article}
 \usepackage[T1]{fontenc}
@@ -99,10 +99,13 @@ If $h$ is small, we expect the above to be approximately
 This motivates the definition below.
 \begin{defn}
 Let $X$ and $Y$ be random variables which admit a joint density
-$f_{XY}$. If $f_{X}\neq0$, we can define the \emph{conditional density}
-of $Y$ given $X=x$ by
+$f_{XY}$. We can define the \emph{conditional density} of $Y$ given
+$X=x$ by
 \[
-f_{Y\mid X}(y\mid x)={\displaystyle \frac{f_{XY}(x,v)}{f_{X}(x)}}.
+f_{Y\mid X}(y\mid x)=\begin{cases}
+{\displaystyle \frac{f_{XY}(x,v)}{f_{X}(x)}} & \text{if }f_{X}(x)>0\\
+0 & \text{otherwise}.
+\end{cases}
 \]
 The \emph{conditional distribution function} of $Y$ given $X=x$
 is
@@ -251,9 +254,9 @@ S_N = sum(sum(pairs.^2) <= 1);
 
 pi_approximate = 4 * (S_N / N);
 \end{lstlisting}
-With $N$ equal to 10 billion, a run of the code above yields $\pi_{\text{approximate}}=3.142106$.
+With $N$ equal to 10 million, a run of the code above yields $\pi_{\text{approximate}}=3.142106$.
 \end{example}
-Even though we used 10 billion samples in the above, our approximation
+Even though we used 10 million samples in the above, our approximation
 is only accurate up to three significant digits! The slow convergence\footnote{There are much more effective ways to compute $\pi$ (e.g., Chudnovsky
 algorithm), but they do not have to do with Monte Carlo.} is explained by the CLT, which says
 \[
