@@ -1,0 +1,159 @@
+%% LyX 2.2.3 created this file.  For more info, see http://www.lyx.org/.
+%% Do not edit unless you really know what you are doing.
+\documentclass[english,12pt,addpoints]{exam}
+\usepackage[T1]{fontenc}
+\usepackage[latin9]{inputenc}
+\setcounter{secnumdepth}{2}
+\setcounter{tocdepth}{2}
+\usepackage{xcolor}
+\usepackage{fancybox}
+\usepackage{calc}
+\usepackage{units}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\PassOptionsToPackage{normalem}{ulem}
+\usepackage{ulem}
+
+\makeatletter
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Textclass specific LaTeX commands.
+%% Map the lyx-friendly SmartQuestion style to exam environments
+%% See http://tex.stackexchange.com/a/319996/17868
+\newcounter{mydepth}%
+\newcommand{\myenvironmentname}{%
+\ifnum\value{mydepth}=0notinquestion\fi%
+\ifnum\value{mydepth}=1question\fi%
+\ifnum\value{mydepth}=2part\fi%
+\ifnum\value{mydepth}=3subpart\fi%
+\ifnum\value{mydepth}=4subsubpart\fi%
+\ifnum\value{mydepth}>4undefinedquestion\fi%
+}%
+\newcommand{\myquestion}{\csname \myenvironmentname\endcsname}%
+\newenvironment{myquestions}%
+  {\stepcounter{mydepth}\begin{\myenvironmentname s}}%
+  {\end{\myenvironmentname s}\addtocounter{mydepth}{-1}}%
+
+% code to rewrite \mychoice or \mychoice[] to \choice or \CorrectChoice respectively
+% see http://tex.stackexchange.com/a/319470/17868
+\def\mychoice{\@ifnextchar[{\@with}{\@without}}
+\def\@with[#1]{\CorrectChoice}
+\def\@without{\choice}
+
+
+\makeatother
+
+\usepackage{babel}
+\begin{document}
+
+\footer{}{}{Thursday, March 20, 2018}{}
+
+\title{Midterm 2}
+
+\date{\date{}}
+
+\author{Math 525: Probability}
+
+\maketitle
+\thispagestyle{headandfoot} % hack to work around \maketitle clobbering the first page's headers/footers
+\begin{center}
+\noindent\begin{minipage}[t]{1\textwidth}%
+Last name, first name:\enskip{}\hrulefill{}~%
+\end{minipage}\vspace{0.2in}
+\noindent\begin{minipage}[t]{1\textwidth}%
+Section number:\enskip{}\hrulefill{}~%
+\end{minipage}\vspace{0.2in}
+\noindent\begin{minipage}[t]{1\textwidth}%
+User ID:\enskip{}\hrulefill{}~%
+\end{minipage}\vfill{}
+\noindent\fcolorbox{black}{lightgray}{\parbox[t]{1\columnwidth - 2\fboxsep - 2\fboxrule}{%
+\begin{center}
+\gradetable[h]{}
+\par\end{center}%
+}}\vfill{}
+\doublebox{\begin{minipage}[t]{5.5in}%
+\begin{center}
+Answer the questions in the spaces provided on the question sheets.
+If you run out of room for an answer, continue on the back of the
+page.
+\par\end{center}%
+\end{minipage}}
+\par\end{center}
+
+\noindent \begin{flushleft}
+\qformat{\textbf{Question \thequestion}\quad (\totalpoints\ \points)\hfill}
+\pointsinrightmargin
+\printanswers
+\par\end{flushleft}
+
+\noindent \newpage{}\vspace{0.1in}
+\begin{myquestions}
+\myquestion[35] Consider a person walking along a line. Their position at time $n$
+is denoted $X_{n}$, and they start at position zero (i.e., $X_{0}=0$).
+At any point in time, the person can either take a step forward ($X_{n+1}=X_{n}+1$)
+or a step backwards ($X_{n+1}=X_{n}-1$). Let $N$ be a positive integer
+and $0<p<1$. The person walking follows the rules
+\begin{align*}
+\mathbb{P}(X_{n+1}=i+1\mid X_{n}=i) & =p, & \text{if }-N<i<N\\
+\mathbb{P}(X_{n+1}=i-1\mid X_{n}=i) & =1-p, & \text{if }-N<i<N
+\end{align*}
+and
+\[
+\mathbb{P}(X_{n+1}=\pm(N-1)\mid X_{n}=\pm N)=1
+\]
+\begin{myquestions}
+\myquestion Write down the transition matrix $P$ for $N=2$ and $p=\nicefrac{1}{3}$.
+\myquestion Recalling that $X_{0}=0$, give an expression for $\mathbb{P}(X_{10}=0)$
+using the matrix $P$.\\
+Just write down an expression: do not compute anything!
+\end{myquestions}
+
+\newpage{}
+\begin{solution}
+XXX
+\end{solution}
+
+\myquestion[35] Recall that the characteristic function of a normal random variable
+$X_{n}\sim\mathcal{N}(0,n)$ with mean zero and variance $n$ is
+\[
+\phi_{n}(t)=e^{-nt^{2}/2}.
+\]
+\begin{myquestions}
+\myquestion What is $\phi(t)=\lim_{n\rightarrow\infty}\phi_{n}(t)$?
+\myquestion Can we conclude, \uline{using Lévy's continuity theorem}, that
+$X_{n}$ converges in distribution to a random variable $X$ with
+characteristic function $\phi$? Why or why not?
+\end{myquestions}
+\textbf{Lévy's continuity theorem}: Let $X_{n}$ be a random variable
+with distribution functions $F_{n}$ and characteristic function $\phi_{n}$.
+If $\lim_{n\rightarrow\infty}\phi_{n}(t)=\phi(t)$ for some function
+$\phi$ which is continuous at the origin, then there exists a distribution
+function $F$ such that $F_{n}\Rightarrow F$ and $\phi$ is the characteristic
+function of $F$.
+
+\newpage{}
+\begin{solution}
+XXX
+\end{solution}
+
+\myquestion[30] We would like to compute
+\[
+\mathbb{E}\left[I_{A}(X)\right]
+\]
+where $A$ is some (Borel) subset of the real line and $X$ is a random
+variable. One way to do so involves generating independent samples
+$X_{1},\ldots,X_{n}$ (each having the same distribution as $X$)
+and making the approximation 
+\[
+\mathbb{E}\left[I_{A}(X)\right]\approx\frac{S_{n}}{n}\qquad\text{where}\qquad S_{n}=I_{A}(X_{1})+\cdots+I_{A}(X_{n}).
+\]
+The central limit theorem tells us
+\begin{equation}
+\sqrt{n}\left(\frac{S_{n}}{n}-\mathbb{E}\left[I_{A}(X)\right]\right)\xrightarrow{\mathcal{D}}\mathcal{N}(0,\sigma^{2}).\tag{*}\label{eq:clt}
+\end{equation}
+\begin{myquestions}
+\myquestion What is the exact value of $\sigma^{2}$ in the above? Simplify as
+much as possible.
+\myquestion In your own words, what is the significance of (\ref{eq:clt})?
+\end{myquestions}
+\end{myquestions}
+
+\end{document}
