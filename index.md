@@ -59,6 +59,7 @@ All assignments are to be handed in at the *beginning* of class.
 * Assignment 6: due Tu Mar 13 [\[Description\]](assignment6.pdf) [\[LaTeX source\]](assignment6.tex) [\[Solutions\]](solutions6.pdf)
 * Assignment 7: practice only [\[Description\]](assignment7.pdf) [\[LaTeX source\]](assignment7.tex) [\[Solutions\]](solutions7.pdf)
 * Assignment 8: due Tu Apr 03 [\[Description\]](assignment8.pdf) [\[LaTeX source\]](assignment8.tex) [\[Solutions\]](solutions8.pdf)
+* Assignment 9: practice only [\[Description\]](assignment9.pdf) [\[LaTeX source\]](assignment9.tex) [\[Solutions\]]
 
 ## Lecture notes
 
@@ -83,7 +84,7 @@ All assignments are to be handed in at the *beginning* of class.
 * [Th Mar 08: Markov chains](lecture16.pdf) (Section 7.2) [\[LaTeX source\]](lecture16.tex)
 * [Tu Mar 13: irreducibile matrices and the period of a nonnegative matrix](lecture17.pdf) (Section 7.3) [\[LaTeX source\]](lecture17.tex)
 * [Th Mar 15: filtrations and stopping times](lecture18.pdf) (Section 7.4) [\[LaTeX source\]](lecture18.tex)
-* Tu Mar 20: **midterm exam 2** (in class)
+* [Tu Mar 20: **midterm exam 2**](midterm2.pdf) (in class)
 * [Th Mar 22: strong Markov property, recurrence, and transience](lecture19.pdf) (Section 7.5 and 7.6) [\[LaTeX source\]](lecture19.tex)
 * [Tu Mar 27: limiting distribution, primitive matrices, and Page Rank](lecture20.pdf) (Section 7.7 and 7.8) [\[LaTeX source\]](lecture20.tex)
 * Th Mar 29: lecture cancelled
