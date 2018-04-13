@@ -1,0 +1,70 @@
+%% LyX 2.2.3 created this file.  For more info, see http://www.lyx.org/.
+%% Do not edit unless you really know what you are doing.
+\documentclass[english,12pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage[latin9]{inputenc}
+\usepackage{amsmath}
+\usepackage{amssymb}
+
+\makeatletter
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% User specified LaTeX commands.
+\usepackage[margin=1in]{geometry}
+
+\makeatother
+
+\usepackage{babel}
+\begin{document}
+
+\title{Math 525: Assignment 9}
+
+\date{\date{}}
+\maketitle
+\begin{enumerate}
+\item Let $X,Y\sim U[0,1]$ be independent. Find the joint density of $\min(X,Y)$
+and $\max(X,Y)$.
+\item Let $X$ and $Y$ be random variables admitting the joint density
+\[
+f_{XY}(x,y)=\begin{cases}
+{\displaystyle \frac{1}{\pi}\exp\left(-\frac{\left(x^{2}+y^{2}\right)}{2}\right)} & \text{if }xy\geq0\\
+0 & \text{otherwise}.
+\end{cases}
+\]
+Show that $X,Y\sim\mathcal{N}(0,1)$ but that $X$ and $Y$ are not
+independent. \textbf{Hint}: compute the marginal distribution.
+\item Let $U$ and $V$ be independent $\mathcal{N}(0,1)$ random variables.
+Let $X=aU+bV$ and $Y=cU+dV$ where $a^{2}+b^{2}=1$, $c^{2}+d^{2}=1$,
+and $ac+bd=\rho$.
+\begin{enumerate}
+\item Show that $X\sim\mathcal{N}(0,1)$. \textbf{Hint}: what is the characteristic
+function of $X$?
+\item Show that $\mathbb{E}[XY]=\rho$.
+\item The \emph{joint characteristic function} of $X$ and $Y$ is a function
+$\varphi:\mathbb{R}^{2}\rightarrow\mathbb{C}$ given by
+\[
+\varphi_{X,Y}(t,s)=\mathbb{E}\left[\exp\left(itX+isY\right)\right]
+\]
+(of course, this can be generalized to the case of $n$ random variables
+by $\varphi_{X_{1},\ldots,X_{n}}(t_{1},\ldots,t_{n})=\mathbb{E}\left[\exp(it_{1}X_{1}+\cdots+it_{n}X_{n})\right]$).
+Show that
+\[
+\varphi_{X,Y}(t,s)=\exp\left(-\frac{t^{2}+2\rho ts+s^{2}}{2}\right).
+\]
+\textbf{Hint}: for a $Z\sim\mathcal{N}(\mu,\sigma)$, we know $\varphi_{Z}(t)=\exp(i\mu t-(\sigma t)^{2}/2)$.
+\item Show that the joint density of $X$ and $Y$ is given by
+\[
+f_{XY}(x,y)=\frac{1}{2\pi\sqrt{1-\rho^{2}}}\exp\left(-\frac{x^{2}-2\rho xy+y^{2}}{2\left(1-\rho^{2}\right)}\right).
+\]
+\textbf{Hint}: use the fact that if $X$ and $Y$ admit a joint density,
+it can be obtained as the \emph{inverse Fourier transform} of their
+joint characteristic function (see page 152 of Walsh for details):
+\[
+f_{XY}(x,y)=\frac{1}{\left(2\pi\right)^{2}}\int_{-\infty}^{\infty}\int_{-\infty}^{\infty}\varphi_{X,Y}(t,s)\exp\left(-i\left(tx+sy\right)\right)dtds.
+\]
+\item Part (b) implies that if $\rho\neq0$, then $X$ and $Y$ are not
+independent. Use your findings in part (d) to establish the converse.
+\textbf{Hint}: recall that $f_{XY}=f_{X}f_{Y}$ is a sufficient condition
+for independence.
+\end{enumerate}
+\end{enumerate}
+
+\end{document}
