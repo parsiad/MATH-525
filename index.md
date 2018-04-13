@@ -38,7 +38,11 @@ The grading scheme is as follows:
 
 The lowest of your assignment scores will not count towards your final grade. Midterms will be held in class. The final is on **April 23rd, 1:30 - 3:30 pm in 296 Weiser Hall**. All exams are *closed book*.
 
-Grades will be posted on Canvas:
+The final exam covers all lectures except for lectures 21 and 22.
+
+Alternate final times for students who cannot make the regular time are **April 25: 12:00 pm - 2:00 pm** and **April 27: 12:00 pm - 2:00 pm**. Rooms for the alternate times are TBA.
+
+Grades are posted on Canvas:
 
 * **Section 1:** [https://umich.instructure.com/courses/207895](https://umich.instructure.com/courses/207895)
 * **Section 2:** [https://umich.instructure.com/courses/194654](https://umich.instructure.com/courses/194654)
