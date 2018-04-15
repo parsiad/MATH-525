@@ -3,6 +3,8 @@
 \documentclass[english,12pt]{article}
 \usepackage[T1]{fontenc}
 \usepackage[latin9]{inputenc}
+\usepackage{float}
+\usepackage{booktabs}
 \usepackage{mathtools}
 \usepackage{amsmath}
 \usepackage{amsthm}
@@ -10,6 +12,15 @@
 \usepackage{graphicx}
 
 \makeatletter
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% LyX specific LaTeX commands.
+%% Because html converters don't know tabularnewline
+\providecommand{\tabularnewline}{\\}
+\floatstyle{ruled}
+\newfloat{algorithm}{tbp}{loa}
+\providecommand{\algorithmname}{Algorithm}
+\floatname{algorithm}{\protect\algorithmname}
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Textclass specific LaTeX commands.
 \theoremstyle{plain}
 \newtheorem{thm}{\protect\theoremname}[section]
@@ -245,16 +256,36 @@ $S_{N}$ by one.
 \end{enumerate}
 Some MATLAB code for this procedure is given below:
 
+\begin{algorithm}[H]
 \begin{lstlisting}[language=Matlab,basicstyle={\footnotesize}]
 % Generate (X, Y) pairs
-X_Y_pairs = 2 * rand(2, N) - 1;
+pairs = 2 * rand(2, N) - 1;
 
 % Count which pairs are in the circle
 S_N = sum(sum(pairs.^2) <= 1);
 
 pi_approximate = 4 * (S_N / N);
 \end{lstlisting}
-With $N$ equal to 10 million, a run of the code above yields $\pi_{\text{approximate}}=3.142106$.
+
+\caption{Monte Carlo method to approximate $\pi$}
+\end{algorithm}
+With $N$ equal to 10 million, below are some results of running the
+code:
+
+\begin{table}[H]
+\centering{}\footnotesize%
+\begin{tabular}{cc}
+\toprule 
+\textbf{Run} & \textbf{Result}\tabularnewline
+\midrule
+1 & 3.1414432\tabularnewline
+2 & 3.1416316\tabularnewline
+3 & 3.1418980\tabularnewline
+4 & 3.1416388\tabularnewline
+5 & 3.1424888\tabularnewline
+\bottomrule
+\end{tabular}
+\end{table}
 \end{example}
 Even though we used 10 million samples in the above, our approximation
 is only accurate up to three significant digits! The slow convergence\footnote{There are much more effective ways to compute $\pi$ (e.g., Chudnovsky
@@ -265,7 +296,7 @@ algorithm), but they do not have to do with Monte Carlo.} is explained by the CL
 where $\sigma^{2}=\operatorname{Var}(I_{C}(X,Y))$. With a slight
 abuse of notation, we may write
 \[
-\pi_{\text{approximate}}-\pi=4\frac{S_{N}}{N}-\pi=O\left(\frac{1}{\sqrt{N}}\right)
+\left|\pi_{\text{approximate}}-\pi\right|=\left|4\frac{S_{N}}{N}-\pi\right|=O\left(\frac{1}{\sqrt{N}}\right)
 \]
 to represent this fact.
 \end{document}
