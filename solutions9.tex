@@ -1,0 +1,156 @@
+%% LyX 2.2.1 created this file.  For more info, see http://www.lyx.org/.
+%% Do not edit unless you really know what you are doing.
+\documentclass[english,12pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage[latin9]{inputenc}
+\usepackage{color}
+\usepackage{babel}
+\usepackage{mathtools}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\PassOptionsToPackage{normalem}{ulem}
+\usepackage{ulem}
+\usepackage[unicode=true,pdfusetitle,
+ bookmarks=true,bookmarksnumbered=false,bookmarksopen=false,
+ breaklinks=false,pdfborder={0 0 1},backref=false,colorlinks=true]
+ {hyperref}
+\usepackage{breakurl}
+
+\makeatletter
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% User specified LaTeX commands.
+\usepackage[margin=1in]{geometry}
+
+\makeatother
+
+\begin{document}
+
+\title{Math 525: Assignment 9 Solutions}
+
+\date{\date{}}
+\maketitle
+\begin{enumerate}
+\item Let $U=\min(X,Y)$ and $V=\max(X,Y)$ for brevity. Note that $U\leq u$
+if and only if $X\leq u$ \uline{or} $Y\leq u$. Similarly, $V\leq v$
+if and only if $X\leq v$ \uline{and} $Y\leq v$. Therefore,
+\[
+F_{UV}(u,v)\equiv\mathbb{P}(U\leq u,V\leq v)=\begin{cases}
+v^{2} & \text{if }0\leq v\leq u\leq1\\
+2uv-u^{2} & \text{if }0\leq u\leq v\leq1
+\end{cases}
+\]
+(it might help to draw a diagram to understand the above). Differentiating
+away from the discontinuity,
+\[
+f_{UV}(u,v)=\frac{\partial^{2}F_{UV}}{\partial u\partial v}(u,v)=\begin{cases}
+2 & \text{if }0\leq v<u\leq1\\
+0 & \text{otherwise}.
+\end{cases}
+\]
+You can verify that this is the density by integrating.
+\item We first show that $X\sim\mathcal{N}(0,1)$ ($Y\sim\mathcal{N}(0,1)$
+is obtained similarly). The marginal density is
+\[
+f_{X}(x)=\int_{-\infty}^{\infty}f_{XY}(x,y)=\begin{cases}
+\int_{0}^{\infty}\frac{1}{\pi}e^{-(x^{2}+y^{2})/2}dy & \text{if }x\geq0\\
+\int_{-\infty}^{0}\frac{1}{\pi}e^{-(x^{2}+y^{2})/2}dy & \text{if }x<0.
+\end{cases}
+\]
+By symmetry,
+\[
+f_{X}(x)=\int_{0}^{\infty}\frac{1}{\pi}e^{-(x^{2}+y^{2})/2}dy=\frac{1}{\pi}e^{-x^{2}/2}\int_{0}^{\infty}e^{-y^{2}/2}dy=\frac{1}{\sqrt{2\pi}}e^{-x^{2}/2}.
+\]
+To see that $X$ and $Y$ are not independent, note that by symmetry,
+the quantity
+\[
+\mathbb{E}\left[XY\right]=\int_{-\infty}^{\infty}\int_{-\infty}^{\infty}xyf_{XY}(x,y)dxdy=\frac{2}{\pi}\int_{0}^{\infty}\int_{0}^{\infty}xye^{-(x^{2}+y^{2})/2}dxdy
+\]
+is positive (and hence not equal to $\mathbb{E}X\mathbb{E}Y=0$).
+\item ~
+\begin{enumerate}
+\item To see that $X\sim\mathcal{N}(0,1)$, compare its characteristic function
+to that of a $\mathcal{N}(0,1)$ random variable:
+\begin{multline*}
+\varphi_{X}(t)=\varphi_{aU+bV}(t)=\varphi_{aU}(t)\varphi_{bV}(t)=\exp\left(-\frac{a^{2}t^{2}}{2}\right)\exp\left(-\frac{b^{2}t^{2}}{2}\right)\\
+=\exp\left(-\frac{(a^{2}+b^{2})t^{2}}{2}\right)=\exp\left(-\frac{t^{2}}{2}\right).
+\end{multline*}
+\item Note that
+\begin{multline*}
+\mathbb{E}\left[XY\right]=\mathbb{E}\left[\left(aU+bV\right)\left(cU+dV\right)\right]=\mathbb{E}\left[acU^{2}+2\left(ad+bc\right)UV+bdV^{2}\right]\\
+=ac\mathbb{E}\left[U^{2}\right]+2\left(ad+bc\right)\mathbb{E}U\mathbb{E}V+bd\mathbb{E}\left[V^{2}\right]=ac+bd=\rho.
+\end{multline*}
+\item The joint characteristic function of $X$ and $Y$ is
+\begin{multline*}
+\varphi_{XY}(t,s)=\mathbb{E}\left[\exp\left(itX+isY\right)\right]=\mathbb{E}\left[\exp\left(i\left(ta+sc\right)U+i\left(tb+sd\right)V\right)\right]\\
+=\varphi_{U}(ta+sc)\varphi_{V}(tb+sd)=\exp\left(-\frac{(ta+sc)^{2}}{2}\right)\exp\left(-\frac{(tb+sd)^{2}}{2}\right)\\
+=\exp\left(-\frac{(a^{2}+b^{2})t^{2}+2(ac+bd)st+(c^{2}+d^{2})s^{2}}{2}\right)=\exp\left(-\frac{t^{2}+2\rho st+s^{2}}{2}\right).
+\end{multline*}
+\item The inverse Fourier transform of the joint characteristic function
+is
+\begin{align*}
+f_{XY}(x,y) & =\mathcal{F}^{-1}[\varphi_{XY}](x,y)\\
+ & =\frac{1}{\left(2\pi\right)^{2}}\int\int_{\mathbb{R}^{2}}\varphi_{XY}(t,s)\exp\left(-it\left(tx+sy\right)\right)dtds\\
+ & =\frac{1}{\left(2\pi\right)^{2}}\int\int_{\mathbb{R}^{2}}\exp\left(-\frac{t^{2}+2\rho st+s^{2}}{2}\right)\exp\left(-i\left(tx+sy\right)\right)dtds.
+\end{align*}
+Note that the term $t^{2}+2\rho st+s^{2}$ is nothing other than the
+quadratic form
+\[
+\begin{pmatrix}t & s\end{pmatrix}\Sigma\begin{pmatrix}t\\
+s
+\end{pmatrix}\qquad\text{where}\qquad\Sigma=\begin{pmatrix}1 & \rho\\
+\rho & 1
+\end{pmatrix}.
+\]
+Therefore, letting $\mathbf{t}=(t,s)^{\intercal}$ and $\mathbf{x}=(x,y)^{\intercal}$,
+we can rewrite the integral as
+\[
+\mathcal{I}(\mathbf{x})\equiv\frac{1}{\left(2\pi\right)^{2}}\int_{\mathbb{R}^{2}}\exp\left(-\frac{1}{2}\mathbf{t}^{\intercal}\Sigma\mathbf{t}\right)\exp\left(-i\mathbf{t}^{\intercal}\mathbf{x}\right)d\mathbf{t}.
+\]
+Moreover, we have the following factorization of $\Sigma$:
+\[
+\Sigma=U^{\intercal}U\qquad\text{where}\qquad U=\begin{pmatrix}1 & \rho\\
+ & \sqrt{1-\rho^{2}}
+\end{pmatrix}.
+\]
+so that $\mathbf{t}^{\intercal}\Sigma\mathbf{t}=(U\mathbf{t})^{\intercal}(U\mathbf{t})$.
+This should inspire the change of variables $\mathbf{u}=U\mathbf{t}$.
+Note that the substitution has Jacobian
+\[
+\det(U^{-1})=\frac{1}{\det(U)}=\frac{1}{\sqrt{1-\rho^{2}}}.
+\]
+Performing the substitution,
+\[
+\mathcal{I}(\mathbf{x})=\frac{1}{\sqrt{1-\rho^{2}}}\frac{1}{\left(2\pi\right)^{2}}\int_{\mathbb{R}^{2}}\exp\left(-\frac{1}{2}\mathbf{u}^{\intercal}\mathbf{u}\right)\exp\left(-i\mathbf{u}^{\intercal}U^{-\intercal}\mathbf{x}\right)d\mathbf{u}.
+\]
+It is straightforward to derive the following inverse Fourier transform:
+\begin{equation}
+\mathcal{F}^{-1}\left[\mathbf{u}\mapsto\exp\left(-\frac{1}{2}\mathbf{u}^{\intercal}\mathbf{u}\right)\right]=\mathbf{y}\mapsto\frac{1}{2\pi}\exp\left(-\frac{1}{2}\mathbf{y}^{\intercal}\mathbf{y}\right).\label{eq:ift}
+\end{equation}
+Now, note that $\mathcal{I}(\mathbf{x})$ is nothing other (\ref{eq:ift})
+evaluated at $\mathbf{y}=U^{-1}\mathbf{x}$, with a multiplicative
+factor of $1/\sqrt{1-\rho^{2}}$. That is,
+\[
+\mathcal{I}(\mathbf{x})=\frac{1}{\sqrt{1-\rho^{2}}}\frac{1}{2\pi}\exp\left(-\frac{1}{2}(U^{-1}\mathbf{x})^{\intercal}(U^{-1}\mathbf{x})\right).
+\]
+Now, a straightforward computation reveals that
+\[
+(U^{-1}\mathbf{x})^{\intercal}(U^{-1}\mathbf{x})=\frac{x^{2}-2\rho xy+y^{2}}{1-\rho^{2}}.
+\]
+\item Part (b) tell us 
+\[
+\rho\neq0\implies X,Y\text{ dependent},
+\]
+which is equivalent to saying 
+\[
+X,Y\text{ independent}\implies\rho=0
+\]
+by modus tollens. The converse of this claim is obtained by noting
+that if $\rho=0$, then the joint density becomes a product of standard
+normal densities:
+\[
+f_{XY}(x,y)=\frac{1}{2\pi}\exp\left(-\frac{x^{2}+y^{2}}{2}\right)=\underbrace{\frac{1}{\sqrt{2\pi}}\exp\left(-\frac{x^{2}}{2}\right)}_{f(x)}\underbrace{\frac{1}{\sqrt{2\pi}}\exp\left(-\frac{y^{2}}{2}\right)}_{f(y)}.
+\]
+Therefore, $X$ and $Y$ are independent.
+\end{enumerate}
+\end{enumerate}
+
+\end{document}
