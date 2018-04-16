@@ -98,6 +98,7 @@ All assignments are to be handed in at the *beginning* of class.
 
 You are not expected to know any material in this section for assignments/exams.
 
-* It was asked in class if the [principle of inclusion-exclusion](https://en.wikipedia.org/wiki/Inclusion%E2%80%93exclusion_principle) can be extended to countably many events. The answer seems to be yes, but with some technical conditions. See, e.g., [Friedland, Shmuel, and Elliot Krop. "Exact conditions for countable inclusion-exclusion identity and extensions."](https://arxiv.org/abs/math/0602035)
+* Can the [principle of inclusion-exclusion](https://en.wikipedia.org/wiki/Inclusion%E2%80%93exclusion_principle) be extended to countably many events? The answer seems to be yes, but with some technical conditions. See, e.g., [Friedland, Shmuel, and Elliot Krop. "Exact conditions for countable inclusion-exclusion identity and extensions."](https://arxiv.org/abs/math/0602035)
 * [Why do probabilists take random variables to be Borel (and not Lebesgue) measurable?](https://mathoverflow.net/questions/31603/why-do-probabilists-take-random-variables-to-be-borel-and-not-lebesgue-measura)
 * [Is a measure for a sigma algebra determined by its values for a generator of the sigma algebra?](https://math.stackexchange.com/questions/90491/is-a-measure-for-a-sigma-algebra-determined-by-its-values-for-a-generator-of-the)
+* A bound on the star discrepancy of the Van der Corput sequence can be found in [Haber, Seymour. "On a sequence of points of interest for numerical quadrature." J. Res. Nat. Bur. Standards Sect. B 70 (1966): 127-136](jresv70Bn2p127_A1b.pdf).
