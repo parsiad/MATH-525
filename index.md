@@ -18,7 +18,7 @@
 
 ### Course description
 
-This is a fairly rigorous introduction to probability theory with some emphasis given to both theory and applications, although a knowledge of measure theory is not assumed. Topics covered are: probability spaces, conditional probability, discrete and continuous random variables, generating functions, characteristic functions, random walks, branching processes, limit theorems.
+This is a fairly rigorous introduction to probability theory with some emphasis given to both theory and applications, although a knowledge of measure theory is not assumed. Topics covered include probability spaces, conditional probability, independence, moment generating and characteristic functions, expectations, convergence of random variables, law of large numbers, central limit theorem, Markov chains, and Monte Carlo methods.
 
 ### Prerequisites
 
