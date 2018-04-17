@@ -92,7 +92,7 @@ All assignments are to be handed in at the *beginning* of class.
 * [Th Apr 05: Monotone, M, and weakly chained diagonally dominant matrices and the Bellman equation](lecture22.pdf) [\[LaTeX source\]](lecture22.tex)
 * [Tu Apr 10: joint distributions, covariances, and correlations](lecture23.pdf) (Section 3.6) [\[LaTeX source\]](lecture23.tex)
 * [Th Apr 12: conditional distributions, conditional expectations, and intro to Monte Carlo methods](lecture24.pdf) (Section 3.7) [\[LaTeX source\]](lecture24.tex)
-* Tu Apr 17
+* [Tu Apr 17: accuracy and computational effort of Monte Carlo, quasi-Monte Carlo](lecture25.pdf) [\[LaTeX source\]](lecture25.tex)
 
 ## Miscellany
 
