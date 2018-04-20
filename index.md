@@ -16,6 +16,8 @@
 * Tu 11:30AM-01:00PM in 1842 EH
 * Th 03:00PM-04:30PM in 1842 EH
 
+Extra office hours for the final will be held at 10:00AM-11:30AM in 1842 EH.
+
 ### Course description
 
 This is a fairly rigorous introduction to probability theory with some emphasis given to both theory and applications, although a knowledge of measure theory is not assumed. Topics covered include probability spaces, conditional probability, independence, moment generating and characteristic functions, expectations, convergence of random variables, law of large numbers, central limit theorem, Markov chains, and Monte Carlo methods.
