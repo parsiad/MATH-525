@@ -42,8 +42,8 @@ v^{2} & \text{if }0\leq v\leq u\leq1\\
 away from the discontinuity,
 \[
 f_{UV}(u,v)=\frac{\partial^{2}F_{UV}}{\partial u\partial v}(u,v)=\begin{cases}
-2 & \text{if }0\leq v<u\leq1\\
-0 & \text{otherwise}.
+0 & \text{if }0\leq v<u\leq1\\
+2 & \text{otherwise}.
 \end{cases}
 \]
 You can verify that this is the density by integrating.
@@ -121,7 +121,7 @@ Performing the substitution,
 \[
 \mathcal{I}(\mathbf{x})=\frac{1}{\sqrt{1-\rho^{2}}}\frac{1}{\left(2\pi\right)^{2}}\int_{\mathbb{R}^{2}}\exp\left(-\frac{1}{2}\mathbf{u}^{\intercal}\mathbf{u}\right)\exp\left(-i\mathbf{u}^{\intercal}U^{-\intercal}\mathbf{x}\right)d\mathbf{u}.
 \]
-It is straightforward to derive the following inverse Fourier transform:
+\item It is straightforward to derive the following inverse Fourier transform:
 \begin{equation}
 \mathcal{F}^{-1}\left[\mathbf{u}\mapsto\exp\left(-\frac{1}{2}\mathbf{u}^{\intercal}\mathbf{u}\right)\right]=\mathbf{y}\mapsto\frac{1}{2\pi}\exp\left(-\frac{1}{2}\mathbf{y}^{\intercal}\mathbf{y}\right).\label{eq:ift}
 \end{equation}
