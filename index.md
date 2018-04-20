@@ -40,7 +40,7 @@ The lowest of your assignment scores will not count towards your final grade. Mi
 
 The final exam covers all lectures except for lectures 21 and 22.
 
-Alternate final times for students who cannot make the regular time are **April 25: 12:00 pm - 2:00 pm** and **April 27: 12:00 pm - 2:00 pm**. Rooms for the alternate times are TBA.
+Alternate final times for students who cannot make the regular time are **April 25: 12:00 pm - 2:00 pm** and **April 27: 12:00 pm - 2:00 pm**. Both alternate exams will be held in **2866 East Hall**.
 
 Grades are posted on Canvas:
 
