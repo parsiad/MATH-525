@@ -46,8 +46,6 @@
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%% User specified LaTeX commands.
 \usepackage[margin=1in]{geometry}
-\usepackage{tikz}
-\usetikzlibrary{arrows,decorations.pathreplacing,shapes}
 
 \makeatother
 
@@ -291,7 +289,7 @@ Even though we used 10 million samples in the above, our approximation
 is only accurate up to three significant digits! The slow convergence\footnote{There are much more effective ways to compute $\pi$ (e.g., Chudnovsky
 algorithm), but they do not have to do with Monte Carlo.} is explained by the CLT, which says
 \[
-\frac{1}{\sqrt{N}}\left(\frac{S_{N}}{N}-\frac{\pi}{4}\right)\xrightarrow{\mathcal{D}}\mathcal{N}(0,\sigma)
+\sqrt{N}\left(\frac{S_{N}}{N}-\frac{\pi}{4}\right)\xrightarrow{\mathcal{D}}\mathcal{N}(0,\sigma)
 \]
 where $\sigma^{2}=\operatorname{Var}(I_{C}(X,Y))$. With a slight
 abuse of notation, we may write
