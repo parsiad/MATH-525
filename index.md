@@ -16,7 +16,7 @@
 * Tu 11:30AM-01:00PM in 1842 EH
 * Th 03:00PM-04:30PM in 1842 EH
 
-Extra office hours for the final will be held at 10:00AM-11:30AM in 1842 EH.
+**Final office hours** will be held at 10:00AM-11:30AM in 1842 EH on April 21.
 
 ### Course description
 
