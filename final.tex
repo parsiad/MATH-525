@@ -1,0 +1,263 @@
+%% LyX 2.2.1 created this file.  For more info, see http://www.lyx.org/.
+%% Do not edit unless you really know what you are doing.
+\documentclass[english,12pt,addpoints]{exam}
+\usepackage[T1]{fontenc}
+\usepackage[latin9]{inputenc}
+\setcounter{secnumdepth}{2}
+\setcounter{tocdepth}{2}
+\usepackage{fancybox}
+\usepackage{calc}
+\usepackage{mathtools}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\PassOptionsToPackage{normalem}{ulem}
+\usepackage{ulem}
+
+\makeatletter
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Textclass specific LaTeX commands.
+%% Map the lyx-friendly SmartQuestion style to exam environments
+%% See http://tex.stackexchange.com/a/319996/17868
+\newcounter{mydepth}%
+\newcommand{\myenvironmentname}{%
+\ifnum\value{mydepth}=0notinquestion\fi%
+\ifnum\value{mydepth}=1question\fi%
+\ifnum\value{mydepth}=2part\fi%
+\ifnum\value{mydepth}=3subpart\fi%
+\ifnum\value{mydepth}=4subsubpart\fi%
+\ifnum\value{mydepth}>4undefinedquestion\fi%
+}%
+\newcommand{\myquestion}{\csname \myenvironmentname\endcsname}%
+\newenvironment{myquestions}%
+  {\stepcounter{mydepth}\begin{\myenvironmentname s}}%
+  {\end{\myenvironmentname s}\addtocounter{mydepth}{-1}}%
+
+% code to rewrite \mychoice or \mychoice[] to \choice or \CorrectChoice respectively
+% see http://tex.stackexchange.com/a/319470/17868
+\def\mychoice{\@ifnextchar[{\@with}{\@without}}
+\def\@with[#1]{\CorrectChoice}
+\def\@without{\choice}
+
+
+\makeatother
+
+\usepackage{babel}
+\begin{document}
+
+\footer{}{}{April 2018}{}
+
+\title{Final Exam}
+
+\date{\date{}}
+
+\author{Math 525: Probability}
+
+\maketitle
+\thispagestyle{headandfoot} % hack to work around \maketitle clobbering the first page's headers/footers
+\begin{center}
+\noindent\begin{minipage}[t]{1\textwidth}%
+Last name, first name:\enskip{}\hrulefill{}~%
+\end{minipage}\vspace{0.2in}
+\noindent\begin{minipage}[t]{1\textwidth}%
+Section number:\enskip{}\hrulefill{}~%
+\end{minipage}\vspace{0.2in}
+\noindent\begin{minipage}[t]{1\textwidth}%
+User ID:\enskip{}\hrulefill{}~%
+\end{minipage}\vfill{}
+\doublebox{\begin{minipage}[t]{5.5in}%
+\begin{center}
+Answer the questions in the spaces provided on the question sheets.
+If you run out of room for an answer, continue on the back of the
+page.
+\par\end{center}%
+\end{minipage}}
+\par\end{center}
+
+\begin{center}
+\doublebox{\begin{minipage}[t]{5.5in}%
+\begin{center}
+If you are unsure about a question, leave it blank (or cross out any
+work you have done on it), to be awarded 25\% of its points.
+\par\end{center}%
+\end{minipage}}
+\par\end{center}
+
+\noindent \begin{flushleft}
+\qformat{\textbf{Question \thequestion}\quad (\totalpoints\ \points)\hfill}
+\pointsinrightmargin
+\printanswers
+\par\end{flushleft}
+
+\noindent \newpage{}\vspace{0.1in}
+
+\begin{myquestions}
+\myquestion[5] Let $\mathbb{P}$ be a probability measure and $A$ and $B$ be events.
+Show that 
+\[
+\mathbb{P}(A\cup B)=\mathbb{P}(A)+\mathbb{P}(B)-\mathbb{P}(A\cap B).
+\]
+
+
+\vspace*{1in}{}
+\myquestion[5] Let $\mathcal{A}=\{(-\infty,x]\colon x\in\mathbb{R}\}$ and $\mathcal{B}=\{[x,\infty)\colon x\in\mathbb{R}\}$.
+Show that $\mathcal{A}\subset\sigma(\mathcal{B})$.
+
+\vspace*{1in}{}
+\myquestion[5] Flip $4$ fair coins. Conditional on there being an even number of
+heads, what is the probability that there are at least 2 heads?
+
+\vspace*{1in}{}
+\myquestion[5] Let $X$ be an r.v. and $F$ be its distribution function. Show that
+$\mathbb{P}\{X<x\}=\lim_{y\uparrow x}F(y)$.
+
+\newpage{}
+\myquestion[5] $f:\mathbb{R}\rightarrow\mathbb{R}$ is \emph{upper semicontinuous
+}if it can be written as the limit of a sequence $(f_{n})_{n\geq0}$
+of nonincreasing (i.e., $f_{n}\geq f_{n+1}$) continuous functions.
+Show that $f$ is Borel measurable.\\
+\textbf{Hint}: it is sufficient to show that $f^{-1}((-\infty,a])$
+is a Borel set, which you can do by using the fact that $f_{n}^{-1}((-\infty,a])$
+is a Borel set for each $n$.
+
+\vspace*{1in}{}
+\myquestion[5] Let $X$ be a positive integer-valued r.v. Show that 
+\[
+\mathbb{P}\{X=n\}=\frac{1}{n(n+1)}\qquad\text{for }n\geq1
+\]
+defines a probability distribution.\textbf{ Hint}: $\frac{1}{n(n+1)}=\frac{1}{n}-\frac{1}{n+1}$.
+
+\vspace*{1in}{}
+\myquestion[5] Let $X$ be an r.v. Give an example of a function $f$ such that
+$f\circ X$ is an r.v. that is independent of $X$.\textbf{ Hint}:
+$f$ can be as simple as you want.
+
+\vspace*{1in}{}
+\myquestion[5] Let $X$ and $Y$ be nonnegative integer-valued r.v.s. Show that
+\[
+\mathbb{P}\{X\leq Y\}=\sum_{n=0}^{\infty}p_{n}\sum_{k=0}^{n}q_{k}
+\]
+where $p_{n}=\mathbb{P}\{Y=n\}$ and $q_{n}=\mathbb{P}\{X=n\}$.
+
+\newpage{}
+\myquestion[5] Let $X$ be an r.v. with MGF $M(\theta)=\frac{\lambda}{\lambda-\theta}$.
+Then $\mathbb{E}[X]$ is equal to...
+\begin{choices}
+\mychoice $\frac{\lambda}{\left(\lambda-\theta\right)^{2}}$
+\mychoice $\frac{1}{\lambda}$
+\mychoice $\frac{2\lambda}{\left(\lambda-\theta\right)^{3}}$
+\mychoice $\frac{2}{\lambda^{2}}$\medskip{}
+\end{choices}
+\myquestion[5] Show that 
+\[
+(\mathbb{E}[X])^{2}\leq\mathbb{E}[X^{2}]\qquad\text{for any r.v. }X.
+\]
+\textbf{Hint}: use the \emph{Cauchy-Schwarz inequality} ($\mathbb{E}[XY]\leq\sqrt{\mathbb{E}[X^{2}]\mathbb{E}[Y^{2}]}$).
+
+\vspace*{1in}{}
+\myquestion[5] Let $(X_{n})_{n}$ be a sequence of r.v.s such that $X_{n}\rightarrow\infty$
+a.s. Show that the probability that $X_{n}\geq1$ for all but finitely
+many $n$ is one. That is, show that 
+\[
+\mathbb{P}(\{\omega\mid\exists N\colon\forall n\geq N\colon X_{n}(\omega)\geq1\})=1.
+\]
+\textbf{Hint}: $X_{n}\rightarrow X$ a.s. means $\mathbb{P}(\{\omega\colon\lim_{n\rightarrow\infty}X_{n}(\omega)=X(\omega)\})=1$.
+
+\vspace*{1in}{}
+\myquestion[5] Let $(\Lambda_{n})_{n}$ be a sequence of events with $\mathbb{P}(\Lambda_{n})\rightarrow0$.
+Let $X$ be an integrable random variable. Show that $\mathbb{E}[XI_{\Lambda_{n}}]\rightarrow0$.\textbf{
+Hint}: $X$ is integrable means $\mathbb{E}[|X|]<\infty$.
+
+\newpage{}
+\myquestion[5] For square-integrable r.v.s $X$ and $Y$, show that $\sqrt{\mathbb{E}[(X+Y)^{2}]}\leq\sqrt{\mathbb{E}[X^{2}]}+\sqrt{\mathbb{E}[Y^{2}]}$.\\
+\textbf{Hint}: expand $\mathbb{E}[(X+Y)^{2}]$ and use the Cauchy-Schwarz
+inequality.
+
+\vspace*{1in}{}
+\myquestion[5] Let $(X_{n})_{n\geq1}$ be a sequence of r.v.s and $f\geq0$ be a
+\uline{continuous} function such that
+\[
+\mathbb{E}\left[f(X_{n})\right]\leq\frac{1}{n}\qquad\text{for all }n\geq1.
+\]
+Suppose $X_{n}\rightarrow x\in\mathbb{R}$ in $L^{p}$ for some $p$.
+Show that $f(x)=0$.\textbf{}\\
+\textbf{Hint}: use the fact that $L^{p}$ convergence implies a.s.
+convergence along a subsequence and apply \emph{Fatou's lemma}, which
+tells us $\liminf_{n\rightarrow\infty}\mathbb{E}[f(X_{n})]\geq\mathbb{E}[\liminf_{n\rightarrow\infty}f(X_{n})]$.
+
+\vspace*{1in}{}
+\myquestion[5] Repeatedly flip a coin with probability $p$ of heads. Let $X_{n}$
+be the number of heads seen after the $n$-th flip ($X_{0}=0$). Let
+$\tau$ be the number of flips until you see $N\geq1$ heads. Then,
+$\mathbb{E}[\tau]=\sum_{n\geq1}n\mu^{\intercal}\left(P^{n}-P^{n-1}\right)\nu$
+where $\mu=\begin{pmatrix}1 & 0 & \cdots & 0\end{pmatrix}^{\intercal}$,
+$\nu=\begin{pmatrix}0 & \cdots & 0 & 1\end{pmatrix}^{\intercal}$,
+and $P\in\mathbb{R}^{(N+1)\times(N+1)}$. Fill in the nonzero entries
+of $P$:
+\[
+P=\begin{pmatrix}\boxed{\phantom{p}} & \boxed{\phantom{p}}\\
+ & \boxed{\phantom{p}} & \boxed{\phantom{p}}\\
+ &  & \ddots & \ddots\\
+ &  &  & \boxed{\phantom{p}} & \boxed{\phantom{p}}\\
+ &  &  &  & \boxed{\phantom{p}}
+\end{pmatrix}
+\]
+\medskip{}
+\myquestion[5] Let $f:[0,1]^{d}\rightarrow\mathbb{R}$. To reduce the error $|\frac{1}{N}\sum_{n=1}^{N}f(z^{n})-\int_{[0,1]^{d}}f(\boldsymbol{x})d\boldsymbol{x}|$
+in quasi-Monte Carlo, you should pick the sequence $(z^{n})_{n}$
+such that...
+\begin{choices}
+\mychoice The variation of $f$ is as low as possible.
+\mychoice The variation of $f$ is as high as possible.
+\mychoice The star discrepancy of $P=\{z^{1},\ldots,z^{N}\}$ (for each $N$)
+is as low as possible.
+\mychoice The star discrepancy of $P=\{z^{1},\ldots,z^{N}\}$ (for each $N$)
+is as high as possible.
+\end{choices}
+
+\newpage{}
+\myquestion[5] You have a discrete stochastic process $(X_{n})_{n\in T}$ where
+$T=\{0,1,\ldots,N\}$. You can transform this into a Markov process
+by defining $(Y_{n})_{n\in T}$ by
+\[
+Y_{n}=(X_{0},\ldots,X_{n}).
+\]
+Suppose the state space of the $X$ process is $S$ with $|S|<\infty$.
+How large is the state space of the $Y$ process?
+\begin{choices}
+\mychoice $\sum_{n=0}^{N}|S|^{n+1}=|S|\frac{|S|^{N+1}-1}{|S|-1}$
+\mychoice $\prod_{n=0}^{N}|S|^{n+1}=|S|^{\frac{1}{2}(N+1)(N+2)}$
+\mychoice $|S|^{N+1}$
+\mychoice $(N+1)|S|$\medskip{}
+\end{choices}
+\myquestion[5] Consider the matrix $\left(\begin{smallmatrix}1/2&0&1/2\\2&0&0\\0&1&0\end{smallmatrix}\right)$.
+This matrix is... (check \uline{all} that apply)
+\begin{checkboxes}
+\mychoice irreducible
+\mychoice aperiodic
+\mychoice primitive
+\mychoice a transition matrix\medskip{}
+\end{checkboxes}
+\myquestion[5] Check \uline{all} true statements.
+\begin{checkboxes}
+\mychoice A discrete process is said to satisfy the \emph{Markov (a.k.a. memoryless)
+property} if the conditional probability distribution of future states
+(conditional on both past and present states) depend only upon the
+present state.
+\mychoice The \emph{strong Markov property} establishes a strong law of large
+numbers for a discrete process that satisfies the Markov property.
+\mychoice The \emph{strong Markov property} extends the Markov property to stopping
+times.
+\mychoice Any random variable which takes values in $[0,\infty]$ is a \emph{stopping
+time}.\medskip{}
+\end{checkboxes}
+\myquestion[5] Fill in the blank. The PageRank algorithm represents a random surfer's
+location in the web as a \_\_\_\_\_\_ Markov chain. This guarantees
+that it has a limiting distribution.
+\begin{choices}
+\mychoice irreducible
+\mychoice regular
+\mychoice stationary
+\mychoice nonnegative\medskip{}
+\end{choices}
+\end{myquestions}
+
+\end{document}
