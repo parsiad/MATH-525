@@ -8,6 +8,8 @@
 
 This is a fairly rigorous introduction to probability theory with some emphasis given to both theory and applications, although a knowledge of measure theory is not assumed. Topics covered include probability spaces, conditional probability, independence, moment generating and characteristic functions, expectations, convergence of random variables, law of large numbers, central limit theorem, Markov chains, and Monte Carlo methods.
 
+An archive of the course (including all lecture notes, assigments, solutions, TeX files, etc.) can be [downloaded directly](archive/master.zip).
+
 ### Textbook
 
 (Optional) Walsh, John B. Knowing the odds: an introduction to probability. Vol. 139. American Mathematical Soc., 2012.
